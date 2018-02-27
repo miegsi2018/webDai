@@ -21,4 +21,14 @@ router.get('/home', function(request, response){
 
 
 });
+
+router.get('/registo', function(request, response){
+	//console.log(request.isAuthenticated());
+
+	response.set("Content-Type", "text/html");
+	response.render('./registo', {
+	})
+
+
+});
 module.exports = router;
