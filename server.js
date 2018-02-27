@@ -102,7 +102,9 @@ app.use(function(request, response, next){
 
 
 app.use('/', require('./controllers/index.route'));
-app.use('/profile', require('./controllers/profile.route'));
-app.use('/room', require('./controllers/room.route'));
 app.use('/public', express.static('public'));
+app.use('/profile', require('./controllers/profile.route'));
+app.use('/sensor', require('./controllers/sensor.route'));
+app.use('/room', require('./controllers/room.route'));
+
 //new
