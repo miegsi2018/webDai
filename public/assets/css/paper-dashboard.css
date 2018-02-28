@@ -1576,7 +1576,7 @@ textarea.form-control {
 
 .card-user .image {
   border-radius: 8px 8px 0 0;
-  height: 150px;
+  height: 200px;
   position: relative;
   overflow: hidden; }
   .card-user .image img {
@@ -1603,6 +1603,7 @@ textarea.form-control {
   .card-user .avatar.border-gray {
     border: 5px solid #ccc5b9; }
 .card-user .title {
+  margin-bottom: 20px;
   font-weight: 600;
   line-height: 24px; }
 .card-user .description {
@@ -1612,6 +1613,11 @@ textarea.form-control {
 .card-user.card-plain .avatar {
   height: 190px;
   width: 190px; }
+  .card-user h5{
+    text-align: center;
+    margin-bottom: 0px;
+    }
+
 
 .card-map .map {
   height: 500px;
