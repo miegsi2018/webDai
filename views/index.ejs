@@ -299,8 +299,20 @@
                 </div>
             </div>
         </div>
+        <script>
+        swal({
+  title: 'Error!',
+  text: 'Do you want to continue',
+  type: 'error',
+  confirmButtonText: 'Cool'
+})
+        </script>
+        
+        <button class="btn btn-primary btn-fill" onclick='swal()' >Try me!</button>
+       
+       
+       
         <% include partials/footer %>
-
     </div>
 </div>
 

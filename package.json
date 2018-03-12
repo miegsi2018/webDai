@@ -40,6 +40,7 @@
     "npm": "^5.7.1",
     "passport": "^0.4.0",
     "resize-image": "0.0.4",
-    "resize-img": "^1.1.2"
+    "resize-img": "^1.1.2",
+    "sweetalert2": "^7.15.1"
   }
 }

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../models/user.model');
+const swal = require('sweetalert2');
 
 router.get('/', function(request, response){
 	//console.log(request.isAuthenticated());
@@ -17,6 +18,7 @@ router.get('/home', function(request, response){
 
 	response.set("Content-Type", "text/html");
 	response.render('./index', {
+		
 	})
 
 
