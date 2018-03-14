@@ -147,9 +147,9 @@ body {
     position: relative; }
 
 a {
-  color: #68B3C8; }
+  color: black;}
   a:hover, a:focus {
-    color: #3091B2;
+    color: black;
     text-decoration: none; }
 
 a:focus, a:active,
