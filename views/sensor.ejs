@@ -47,7 +47,7 @@
                             <div class="panel-body">
                                     <hr>
                                     <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>                                        
-                                    <p>Temperatura atual: 23</p>      
+                                   <p id=tempAtual></p>      
                             </div>
                         </div>
                            
@@ -208,9 +208,31 @@
     </div>
     </div>
 
+    <script src="/socket.io/socket.io.js"></script>
 
 
+
+   
+    <script>
+    
+    
+    
+  
+    
+        
+        var socket = io.connect('http://localhost:5000');
+      socket.on('mqttData', function (message) {
+        console.log(message);
+        $('#tempAtual').text('Temperatura atual: '+message);
+    
+    
+    
+})
+      </script>
+   
+
 </div>
 </div>
 </div>
+
 <% include partials/footer %>
