@@ -137,19 +137,8 @@
             <div class="panel-body">
                 <hr>
                 
-                        <div class="col-md-12 col-lg-2">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i> Address:
-                        </div>
-                        <div class="col-md-12 col-lg-4">
-                            18310 Gilbert St<br />
-                            Tenino, WA  98503
-                        </div>
-                        <div class="col-md-12 col-lg-2">
-                            <i class="fa fa-phone" aria-hidden="true"></i> Phone:
-                        </div>
-                        <div class="col-md-12 col-lg-4">
-                            867-5309
-                        </div>
+                <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>                                        
+                <p id=luzAtual></p> 
             </div>
         </div>
            
@@ -226,7 +215,9 @@
         var labels = JSON.parse(message);
         console.log(message);
         var temp = labels["temperature"];
+        var luz = labels["brightness"];
         $('#tempAtual').text('Temperatura atual: '+temp);
+        $('#luzAtual').text('Luminuzidade: '+luz);
     
     
     
