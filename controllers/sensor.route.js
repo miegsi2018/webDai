@@ -10,18 +10,27 @@ var client  = mqtt.connect('mqtt://94.61.10.49:8883',
 	})
 //var client = mqtt.connect('mqtt://localhost:1883'); 
 client.on('connect', function () {
+	
+	
 	console.log('fuck')
-  client.subscribe('3')
+  client.subscribe('dai/sensors')
   client.publish('presence', 'Hello mqtt')
 })
 io.on('connection', function (socket) {
 
 client.on('message', (topic, message) => {  
 	
-	console.log(message)
-	console.log(`Received message: '${message}'`);
+	
 
+	console.log(`Received message: '${message}'`);
 		socket.emit('mqttData',message.toString());
+		var labels = JSON.parse(message);
+		console.log(labels)
+		
+		console.log(labels["temperature"]);
+		
+
+
 	
 	  });
  });

@@ -16,6 +16,7 @@ client.on('connect', function () {
 })
 io.on('connection', function (socket) {
 
+
 client.on('message', (topic, message) => {  
 	
 	console.log(message)
