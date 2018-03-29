@@ -5,12 +5,12 @@ const bodyParser = require('body-parser');
 const app = express();
 const validator = require('express-validator');
 const engines = require('consolidate');
-
 var schedule = require('node-schedule');
 var nodemailer = require('nodemailer');
 
+var server = require('http').createServer(app);  
+global.io = require('socket.io')(server);
 
-//new
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
@@ -99,6 +99,9 @@ app.use(function(request, response, next){
 
 
 
+
+
+server.listen(5000)
 
 
 app.use('/', require('./controllers/index.route'));

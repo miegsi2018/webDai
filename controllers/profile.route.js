@@ -10,4 +10,13 @@ router.get('/', function(request, response){
 
 
 });
+router.get('/create', function(request, response){
+	//console.log(request.isAuthenticated());
+
+	response.set("Content-Type", "text/html");
+	response.render('./create_user', {
+	})
+
+
+});
 module.exports = router;

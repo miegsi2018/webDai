@@ -16,7 +16,7 @@
 
 </head>
 
-<body class="text-center">
+<body class="text-center" id="test">
     <form class="form-signin">
         <h1 class="logo">Digital Friendly House</h1>
         <br>
@@ -37,7 +37,34 @@
         <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>
+    <p id="messages"></p>
+    <script src="/socket.io/socket.io.js"></script>
+
+
+
+   
+    <script>
     
+    
+    
+         
+         $(document).ready(function(){
+    
+    
+        
+        var socket = io.connect('http://localhost:5000');
+      socket.on('mqttData', function (message) {
+        console.log(message);
+        $('#messages').text(message);
+    
+    
+    
+      })
+    })
+      </script>
+   
+
+      
 </body>
 
 </html>

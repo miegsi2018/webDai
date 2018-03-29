@@ -3,112 +3,145 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-4 col-md-5">
+                <div class="col-lg-4 col-md-5" onclick="location.href='/profile/create';">
                     <div class="card card-user">
                         <div class="image">
-                            <img src="./public/assets/img/background.jpg" alt="..."/>
+                            <img src="/public/assets/img/background1.jpeg" alt="..."/>
                         </div>
                         <div class="content">
                             <div class="author">
-                              <img class="avatar border-white" src="./public/assets/img/faces/face-2.jpg" alt="..."/>
-                              <h4 class="title">Chet Faker<br />
-                                 <a href="#"><small>@chetfaker</small></a>
+                              <img class="avatar border-white" src="/public/assets/img/faces/face-2.jpg" alt="..."/>
+                              <h4 class="title">Utilizador<br />
+                                
                               </h4>
                             </div>
+                            <hr>
                             <p class="description text-center">
-                                "ALGO <br>
-                                INTERESSANTE <br>
-                                AQUI"
+                                Permissões:<br>
+                                Sala: <small> temperatura: <i class="fas fa-check" style="color: green;"></i>
+                                    Luzes: <i class="fas fa-check" style="color: green;"></i><br>
+                                    Quarto 1: <small> temperatura: <i class="fas fa-check" style="color: green;"></i>
+                                        Luzes: <i class="fas fa-check" style="color: green;"></i>
+                                    
+                                </small>
                             </p>
                         </div>
                         <hr>
-                        <div class="text-center">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h5>5<br /><small>Divisões</small></h5>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-5" onclick="location.href='/profile/create';">
+                        <div class="card card-user">
+                            <div class="image">
+                                <img src="/public/assets/img/background1.jpeg" alt="..."/>
+                            </div>
+                            <div class="content">
+                                <div class="author">
+                                  <img class="avatar border-white" src="/public/assets/img/faces/face-3.jpg" alt="..."/>
+                                  <h4 class="title">Utilizador<br />
+                                   
+                                  </h4>
                                 </div>
-                                <div class="col-md-6">
-                                    <h5>18<br /><small>Sensores</small></h5>
+                                <hr>
+                                <p class="description text-center">
+                                        Permissões:<br>
+                                        Sala: <small> temperatura: <i class="fas fa-ban" style="color: red;"></i>
+                                            Luzes: <i class="fas fa-check" style="color: green;"></i><br>
+                                            Quarto 1: <small> temperatura: <i class="fas fa-check" style="color: green;"></i>
+                                                Luzes: <i class="fas fa-ban" style="color: red;"></i>
+                                            
+                                        </small>
+                                    </p>
+                            </div>
+                            <hr>
+                            
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-5" onclick="location.href='/profile/create';">
+                            <div class="card card-user">
+                                <div class="image">
+                                    <img src="/public/assets/img/background1.jpeg" alt="..."/>
                                 </div>
+                                <div class="content">
+                                    <div class="author">
+                                      <img class="avatar border-white" src="/public/assets/img/faces/face-1.jpg" alt="..."/>
+                                      <h4 class="title">Adicionar Utilizador<br />
+                            
+                                      </h4>
+                                    </div>
+                                    <hr>
+                                    <p class="description text-center">
+                                           
+                                        </p>
+                                </div>
+                                <hr>
+                                
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-7">
-                    <div class="card">
-                        <div class="header">
-                            <h4 class="title">Editar Perfil</h4>
+                <!--
+                <div class="col-lg-4 col-md-5">
+                    <div class="card card-user">
+                        <div class="image">
+                            <img src="/public/assets/img/background1.jpeg" alt="..."/>
                         </div>
                         <div class="content">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Username</label>
-                                            <input type="text" class="form-control border-input" placeholder="Username" value="michael23">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Endereço de Email</label>
-                                            <input type="email" class="form-control border-input" placeholder="Email">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Primeiro Nome</label>
-                                            <input type="text" class="form-control border-input" placeholder="Company" value="Chet">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Ultimo Nome</label>
-                                            <input type="text" class="form-control border-input" placeholder="Last Name" value="Faker">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Morada</label>
-                                            <input type="text" class="form-control border-input" placeholder="Home Address" value="Melbourne, Australia">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Cidade</label>
-                                            <input type="text" class="form-control border-input" placeholder="City" value="Melbourne">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>País</label>
-                                            <input type="text" class="form-control border-input" placeholder="Country" value="Australia">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Código Postal</label>
-                                            <input type="number" class="form-control border-input" placeholder="Código Postal">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-info btn-fill btn-wd">Atualizar Perfil</button>
-                                </div>
-                                <div class="clearfix"></div>
-                            </form>
-                        </div>
+                            <div class="author">
+                              <img class="avatar border-white" src="/public/assets/img/faces/face-2.jpg" alt="..."/>
+                              <h4 class="title">Nome User<br />
+                                 
+                              </h4>
+                            </div>              
+                    </div> 
                     </div>
                 </div>
-
+                <div class="col-lg-4 col-md-5">
+                    <div class="card">
+                        <div class="card">
+                            <div class="content">
+                   
+                
+                      
+                        <div class="dropdown-heading" role="tab" id="heading-3">
+                            
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-3" aria-expanded="true" aria-controls="collapse-3">
+                               
+                                
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <div class="icon-big icon-danger text-center">
+                                                    <img class="avatar border-white" src="/public/assets/img/faces/face-2.jpg" alt="..."/>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-7"><br>
+                                                <h4 class="title">Nome User<br />
+                                 
+                                                </h4>
+                                        </div>
+                                    </div>
+                            </a>
+                        </div>
+                    
+                
+                        <div id="collapse-3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-3">
+                            <div class="panel-body">
+                                    <hr>
+                                    <p class="description text-center">
+                                            Permissões:</p>
+                                            <p>Sala: <small> temperatura: <i class="fas fa-check" style="color: green;"></i>
+                                                Luzes: <i class="fas fa-check" style="color: green;"></i>
+                                                
+                                            </small> </p>
+                            </div>
+                        </div>
+                           
+                
+                    
+                    </div>
+                </div>
+                    </div>
+                </div>
+            -->
+                
 
             </div>
         </div>
