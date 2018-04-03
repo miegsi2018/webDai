@@ -70,10 +70,10 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 global.connection = mysql.createConnection({
-	host: '----',
-	user: '----',
-	password: '----',
-	database: '----'
+	host: 'd4w.pt',
+	user: 'dwpt_dai',
+	password: 'Daivinteporcento',
+	database: 'dwpt_dai'
 }).on('enqueue', function (sequence) {
 	if ('Query' === sequence.constructor.name) {
 		console.log(sequence.sql);
