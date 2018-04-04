@@ -164,6 +164,52 @@
                    
                     
                         <div class="row">
+                                <h3 style="text-align: center;">Humidade</h3>
+                            
+                            
+                            <div class="col-xs-4">
+                                
+                            </div>
+                            <div class="col-xs-4">
+                                <div class="icon-big icon-warning text-center">
+                                        <i class="fas fa-tint" style="color: DeepSkyBlue   ;"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                
+                            </div>
+                            
+                        </div>
+                </a>
+            </div>
+        
+    
+            <div id="collapse-4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-4">
+                <div class="panel-body">
+                    <hr>
+                    <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>                                        
+                    <p id=humAtual></p>    
+                </div>
+            </div>
+               
+    
+        
+        </div>
+    </div>
+    </div>
+
+    <div class="col-lg-4 col-sm-6">
+        <div class="card">
+                <div class="content">
+       
+    
+          
+            <div class="dropdown-heading" role="tab" id="heading-5">
+                
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-5" aria-expanded="true" aria-controls="collapse-5">
+                   
+                    
+                        <div class="row">
                                 <h3 style="text-align: center;">Incendio</h3>
                             
                             
@@ -184,7 +230,7 @@
             </div>
         
     
-            <div id="collapse-4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-4">
+            <div id="collapse-5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-5">
                 <div class="panel-body">
                     <hr>
                                 <p>Temperatura atual: 23</p>      
@@ -196,7 +242,6 @@
         </div>
     </div>
     </div>
-
     <script src="/socket.io/socket.io.js"></script>
 
 
@@ -217,15 +262,17 @@ console.log(message);
 var temp = labels["temperature"];
 var luz = labels["brightness"];
 var movimento = labels["motion"];
+var humidade = labels["humidity"];
 $('#tempAtual').text('Temperatura atual: '+temp);
 $('#luzAtual').text('Luminuzidade: '+luz);
 $('#movAtual').text(movimento);
+$('#humAtual').text('Humidade: ' + humidade);
 
 
 if(movimento == "motion detected"){
-    document.getElementById("Movi").style.color = "red";
-}else{
     document.getElementById("Movi").style.color = "green";
+}else{
+   
 }
     
     
