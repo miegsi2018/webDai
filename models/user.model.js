@@ -1,6 +1,6 @@
 module.exports = {
 	list(callback) {
-		var sql = 'SELECT * from users WHERE ativo=1';
+		var sql = 'SELECT * FROM dwpt_dai.utilizador';
 		global.connection.query(sql, function(error, rows, fields){
 			if (error) throw error;
 			callback(rows);
@@ -8,7 +8,7 @@ module.exports = {
 	},
 
 	read(username, callback) {
-		var sql = "SELECT * from users where username=?";	
+		var sql = "SELECT * from utilizador where username=?";	
 		global.connection.query(sql, [username], function(error, rows, fields) {
 			if (error) throw error;
 			callback(rows[0]);			
@@ -16,9 +16,9 @@ module.exports = {
 	},	
 
 	create(data, callback) {
-		var sql = "INSERT INTO users (username, nome, password,ativo) VALUES (?,?,?,?,?,?,?,1)"; 
+		var sql = "INSERT INTO utilizador (username, password, email) VALUES (?,?,?)"; 
 		global.connection.query(
-			sql, [data.username, data.nome, data.password], function(error, rows, fields) {
+			sql, [data.username, data.password, data.email], function(error, rows, fields) {
 			if (error) throw error;
 			callback(rows[0]);			
 		});
@@ -43,7 +43,7 @@ module.exports = {
 
 	//New
 	areValidCredentials(username, password, callback) {
-		var sql = "SELECT * from users where ativo=1 AND username=?";
+		var sql = "SELECT * from users where username=?";
 		global.connection.query(sql, [username], function(error, rows, fields){
 			if (error) throw error;
 			if (rows.length == 1 && rows[0].password === password) {

@@ -3,17 +3,20 @@ const router = express.Router();
 const model = require('../models/user.model');
 const swal = require('sweetalert2')
 var mqtt = require('mqtt')
+
 var client  = mqtt.connect('mqtt://94.61.10.49:8883', 
 	{
 		username: "dai",
-	 password: '12345678'
+	 	password: '12345678'
 	})
 //var client = mqtt.connect('mqtt://localhost:1883'); 
+
 client.on('connect', function () {
 	console.log('fuck')
-  client.subscribe('3')
-  client.publish('presence', 'Hello mqtt')
+  	client.subscribe('3')
+  	client.publish('presence', 'Hello mqtt')
 })
+
 io.on('connection', function (socket) {
 
 
@@ -60,5 +63,25 @@ router.get('/registo', function(request, response){
 	})
 
 
+});
+
+router.post('/registo', function(request, response) {
+	var errors = request.validationErrors();	
+	if (errors) {
+		response.render('users-item', {
+			isNew: true,
+			user: {},
+			errors: errors
+		});
+	}else{
+		var data = {
+			'username': request.body.username,
+			'password': request.body.password,
+			'email': request.body.email
+		};
+		model.create(data, function(){
+			response.redirect('/profile');
+		});
+	}
 });
 module.exports = router;
