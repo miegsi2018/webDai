@@ -42,9 +42,9 @@ module.exports = {
 	},
 
 	//New
-	areValidCredentials(username, password, callback) {
-		var sql = "SELECT * from users where username=?";
-		global.connection.query(sql, [username], function(error, rows, fields){
+	areValidCredentials(email, password, callback) {
+		var sql = "SELECT * from utilizador where email=?";
+		global.connection.query(sql, [email], function(error, rows, fields){
 			if (error) throw error;
 			if (rows.length == 1 && rows[0].password === password) {
 				callback(true);
