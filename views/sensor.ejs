@@ -76,7 +76,7 @@
                                             </div>
                                             <div class="col-xs-4">
                                                 <div class="icon-big icon-warning text-center">
-                                                        <i class="fas fa-street-view"  style="color: Grey   ;"></i>
+                                                        <i id="Movi" class="fas fa-street-view"  style="color: Grey   ;"></i>
                                                 </div>
                                             </div>
                                             <div class="col-xs-4">
@@ -211,13 +211,22 @@
         
     var socket = io.connect('http://localhost:5000');
       socket.on('mqttData', function (message) {
-
         var labels = JSON.parse(message);
-        console.log(message);
-        var temp = labels["temperature"];
-        var luz = labels["brightness"];
-        $('#tempAtual').text('Temperatura atual: '+temp);
-        $('#luzAtual').text('Luminuzidade: '+luz);
+
+console.log(message);
+var temp = labels["temperature"];
+var luz = labels["brightness"];
+var movimento = labels["motion"];
+$('#tempAtual').text('Temperatura atual: '+temp);
+$('#luzAtual').text('Luminuzidade: '+luz);
+$('#movAtual').text(movimento);
+
+
+if(movimento == "motion detected"){
+    document.getElementById("Movi").style.color = "red";
+}else{
+    document.getElementById("Movi").style.color = "green";
+}
     
     
     

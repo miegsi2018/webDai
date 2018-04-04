@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../models/user.model');
-
 var mqtt = require('mqtt')
+
 var client  = mqtt.connect('mqtt://94.61.10.49:8883', 
 	{
 		username: "dai",
@@ -27,7 +27,10 @@ client.on('message', (topic, message) => {
 		var labels = JSON.parse(message);
 		console.log(labels)
 		
-		console.log(labels["temperature"]);
+		
+		var temp = labels["temperature"];
+		var luz = labels["brightness"];
+		var movimento = labels["motion"];
 		
 
 
@@ -43,8 +46,9 @@ router.get('/', function(request, response){
 
 	response.set("Content-Type", "text/html");
 	response.render('./sensor', {
+		
 	})
-
-
+	
+	
 });
 module.exports = router;
