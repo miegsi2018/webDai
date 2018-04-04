@@ -68,7 +68,7 @@ router.get('/registo', function(request, response){
 router.post('/registo', function(request, response) {
 	var errors = request.validationErrors();	
 	if (errors) {
-		response.render('users-item', {
+		response.render('registo', {
 			isNew: true,
 			user: {},
 			errors: errors
