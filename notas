@@ -1,4 +1,3 @@
 ﻿Ideias:
     -divisoes em cartões que direcionam para a divisão com cartões dos sensores que descem ao serem clicados com informações
     -dashboard cartões com temperatura média das leituras, humidade média, "carrosel" com as leituras das várias divisões do utilizar e uma final com relógio e calendário
-    - Erro das checkbox reside na jquery-1.10.2.js no entanto nao sei exatamente onde
