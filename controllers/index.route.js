@@ -4,31 +4,6 @@ const model = require('../models/user.model');
 const swal = require('sweetalert2')
 var mqtt = require('mqtt')
 
-var client  = mqtt.connect('mqtt://94.61.10.49:8883', 
-	{
-		username: "dai",
-	 	password: '12345678'
-	})
-//var client = mqtt.connect('mqtt://localhost:1883'); 
-
-client.on('connect', function () {
-	console.log('fuck')
-  	client.subscribe('3')
-  	client.publish('presence', 'Hello mqtt')
-})
-
-io.on('connection', function (socket) {
-
-
-client.on('message', (topic, message) => {  
-	
-	console.log(message)
-	console.log(`Received message: '${message}'`);
-
-		socket.emit('mqttData',message.toString());
-	
-	  });
- });
 
 
 router.get('/', function(request, response){
@@ -68,7 +43,7 @@ router.get('/registo', function(request, response){
 router.post('/registo', function(request, response) {
 	var errors = request.validationErrors();	
 	if (errors) {
-		response.render('users-item', {
+		response.render('registo', {
 			isNew: true,
 			user: {},
 			errors: errors
@@ -84,4 +59,47 @@ router.post('/registo', function(request, response) {
 		});
 	}
 });
+
+router.post('/', function (request, response) {
+	
+	model.areValidCredentials(request.body.email, request.body.password, function (areValid) {
+		if (areValid) {
+			//Create the login session
+
+			request.login(request.body.email, function (err) {
+
+				response.redirect('/home');
+			});
+		} else {
+			response.json({
+				error: "Updated Successfully",
+				status: 400
+			});
+		}
+	});
+});
+
+
+/*
+router.post('/', function(request, response) {
+		var errors = request.validationErrors();
+		
+		if (errors) {
+			response.render('login', { errors: errors });
+			return;
+		}
+		model.areValidCredentials(request.body.email, request.body.password, function(areValid) {
+			if (areValid) {
+				//Create the login session
+				request.login(request.body.email, function(err) {
+					response.redirect('/home');
+				});		
+			}else{
+				response.render('login', { errors: [
+					{ msg: 'Invalid credentials provided' }
+				]});
+			}
+		});
+});*/
+
 module.exports = router;

@@ -17,7 +17,7 @@
 </head>
 
 <body class="text-center" id="test">
-    <form class="form-signin">
+    <form class="form-signin" method="post" action="/">
         <h1 class="logo">Digital Friendly House</h1>
         <br>
         <h1 class="h3 mb-3 font-weight-normal">Não tem conta? <a href="/registo">Registe-se</a></h1>
@@ -25,10 +25,10 @@
         <button class="btn btn-lg btn-danger btn-block" type="submit"><i class="fa fa-google"></i> Conta Google</button>
         <hr>
         <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
-        <label for="inputEmail" class="sr-only">Username</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <label for="inputEmail" class="sr-only">Email</label>
+        <input type="text" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
         <div class="checkbox mb-3">
         <label>
             <input type="checkbox" value="remember-me"> Remember me
@@ -37,34 +37,6 @@
         <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>
-    <p id="messages"></p>
-    <script src="/socket.io/socket.io.js"></script>
-
-
-
-   
-    <script>
-    
-    
-    
-         
-         $(document).ready(function(){
-    
-    
-        
-        var socket = io.connect('http://localhost:5000');
-      socket.on('mqttData', function (message) {
-        console.log(message);
-        $('#messages').text(message);
-    
-    
-    
-      })
-    })
-      </script>
-   
-
-      
 </body>
 
 </html>
