@@ -7,9 +7,9 @@ module.exports = {
 		});
 	},
 
-	read(username, callback) {
-		var sql = "SELECT * from utilizador where username=?";	
-		global.connection.query(sql, [username], function(error, rows, fields) {
+	read(email, callback) {
+		var sql = "SELECT * from utilizador where email=?";	
+		global.connection.query(sql, [email], function(error, rows, fields) {
 			if (error) throw error;
 			callback(rows[0]);			
 		});

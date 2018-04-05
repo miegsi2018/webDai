@@ -5,8 +5,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const validator = require('express-validator');
 const engines = require('consolidate');
-var schedule = require('node-schedule');
-var nodemailer = require('nodemailer');
 
 var server = require('http').createServer(app);  
 global.io = require('socket.io')(server);
@@ -55,12 +53,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function (username, callback) {
-	callback(null, username);
+passport.serializeUser(function (email, callback) {
+	callback(null, email);
 });
 
-passport.deserializeUser(function (username, callback) {
-	userModel.read(username, function (data) {
+passport.deserializeUser(function (email, callback) {
+	userModel.read(email, function (data) {
 		callback(null, data);
 	})
 });
