@@ -306,7 +306,7 @@ jQuery.fn = jQuery.prototype = {
 	push: core_push,
 	sort: [].sort,
 	splice: [].splice
-};
+}; 
 
 // Give the init function the jQuery prototype for later instantiation
 jQuery.fn.init.prototype = jQuery.fn;
