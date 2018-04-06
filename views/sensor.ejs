@@ -272,7 +272,7 @@
 
             console.log(message);
             var temp = labels["temperature"];
-            var luz = labels["brightness"];
+            var luz = labels["ldr"];
             var movimento = labels["motion"];
             var humidade = labels["humidity"];
             $('#tempAtual<%=e.sensor%>').text('Temperatura atual na <%= e.divisao%>: ' + temp);
@@ -302,7 +302,7 @@ var socket = io.connect('http://localhost:5000');
 
             console.log(message);
             var temp = labels["temperature"];
-            var luz = labels["brightness"];
+            var luz = labels["ldr"];
             var movimento = labels["motion"];
             var humidade = labels["humidity"];
             $('#tempAtual<%=sensores[0].sensor%>').text('Temperatura atual: ' + temp);
