@@ -11,7 +11,7 @@ module.exports = {
     var sql = 'SELECT * FROM dwpt_dai.contas_v where email=?';
     global.connection.query(sql, [email], function(error, rows, fields) {
       if (error) throw error;
-      callback(rows[0]);
+      callback(rows);
     });
   },
   read(email, callback) {

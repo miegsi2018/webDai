@@ -50,14 +50,13 @@
                   <hr>
                   <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
  <% if (sensores.length > 1 ) { %>        
-<% window.alert('maisdeum')%>        
 <% for (var e of sensores) { %>
 
  <p id=tempAtual<%=e.sensor%>></p>
 <% } %>
 <% }else { %>
 
- <p id=tempAtual<%= sensores.sensor %>></p>
+ <p id=tempAtual<%=sensores[0].sensor%>></p>
 <%}%>
                 </div>
               </div>
@@ -264,7 +263,8 @@
 
         <script>
 <% if (sensores.length > 1) { %>
-<% for (var e of sensores){ %>	
+<% for (var e of sensores){ %>
+	
           var socket = io.connect('http://localhost:5000');
           socket.on('dai/<%=e.sensor%>', function(message)
           {
@@ -275,7 +275,7 @@
             var luz = labels["brightness"];
             var movimento = labels["motion"];
             var humidade = labels["humidity"];
-            $('#tempAtual<%=e.sensor%>').text('Temperatura atual: ' + temp);
+            $('#tempAtual<%=e.sensor%>').text('Temperatura atual na <%= e.divisao%>: ' + temp);
             $('#luzAtual').text('Luminuzidade: ' + luz);
             $('#movAtual').text(movimento);
             $('#humAtual').text('Humidade: ' + humidade);
@@ -296,7 +296,7 @@
 <%}%>
 <%}else {%>
 var socket = io.connect('http://localhost:5000');
-          socket.on('dai/<%=sensores.sensor%>', function(message)
+          socket.on('dai/<%=sensores[0].sensor%>', function(message)
           {
             var labels = JSON.parse(message);
 
@@ -305,7 +305,7 @@ var socket = io.connect('http://localhost:5000');
             var luz = labels["brightness"];
             var movimento = labels["motion"];
             var humidade = labels["humidity"];
-            $('#tempAtual<%=sensores.sensor%>').text('Temperatura atual: ' + temp);
+            $('#tempAtual<%=sensores[0].sensor%>').text('Temperatura atual: ' + temp);
             $('#luzAtual').text('Luminuzidade: ' + luz);
             $('#movAtual').text(movimento);
             $('#humAtual').text('Humidade: ' + humidade);

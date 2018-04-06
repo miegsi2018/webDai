@@ -13,8 +13,7 @@ router.get('/', function(request, response) {
   var sensoresUser = new Array();
   model.readEmail(id, function(sensores) {
 
-    console.log('##################################################' + sensores.email + '########');
-    sensoresUser = sensores;
+    console.log('##################################################' + sensores[0].email + '########');
 
     /*for (var e of sensoresUser) {
        console.log(e.sensor)
@@ -26,24 +25,26 @@ router.get('/', function(request, response) {
     })
 
 
-	  
+
     if (sensores.length > 1) {
-console.log('###############///////////////////////###################(((((((()))))))))))');
-      for (var e of sensores) {
+      console.log('###############///////////////////////###################(((((((()))))))))))');
 
-        client.on('connect', function() {
-          console.log('MQTT IS WORKING' + ' ' + 2)
+      client.on('connect', function() {
+        console.log('MQTT IS WORKING' + ' ' + 2)
+
+        for (var e of sensores) {
           client.subscribe('dai/' + e.sensor)
-          client.publish('presence', 'Hello mqtt')
-        })
+        }
+        client.publish('presence', 'Hello mqtt')
 
 
 
-      }
+
+      })
     } else {
       client.on('connect', function() {
         console.log('MQTT IS WORKING' + ' ' + 2)
-        client.subscribe('dai/' + sensores.sensor)
+        client.subscribe('dai/' + sensores[0].sensor)
         client.publish('presence', 'Hello mqtt')
       })
     }
@@ -54,20 +55,20 @@ console.log('###############///////////////////////###################(((((((())
 
 
         console.log(`Received message: '${message}'`);
-        socket.emit(topic , message.toString());
+        socket.emit(topic, message.toString());
         var labels = JSON.parse(message);
         console.log(labels)
 
 
-    
+
 
       });
     });
 
     response.set("Content-Type", "text/html");
     response.render('./sensor', {
-   	sensores : sensores 
-    
+      sensores: sensores
+
     })
   });
 });
