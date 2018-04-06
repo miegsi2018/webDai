@@ -6,7 +6,7 @@ var mqtt = require('mqtt')
 
 
 router.get('/', function(request, response) {
-  //console.log(request.isAuthenticated());
+  //console.log(request.isAuthenticated()); 
 
 
   var id = request.user.email;
