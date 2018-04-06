@@ -1,288 +1,334 @@
 <% include partials/header %>
-<style>
-    a{
-        color: black;
-    }
-    a:hover,  a:focus{
-        color: black;
+  <style>
+    a {
+      color: black;
     }
 
-</style>
-<div class="content">
+    a:hover,
+    a:focus {
+      color: black;
+    }
+  </style>
+  <div class="content">
     <div class="container-fluid">
-<div class="row">
-                    <div class="col-lg-4 col-sm-6">
-                    <div class="card">
-                            <div class="content">
-                   
-                
-                      
-                        <div class="dropdown-heading" role="tab" id="heading-1">
-                            
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-                               
-                                
-                                    <div class="row">
-                                            <h3 style="text-align: center;">Temperatura</h3>
-                                        
-                                        
-                                        <div class="col-xs-4">
-                                            
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <div class="icon-big icon-warning text-center">
-                                                    <i class="fas fa-thermometer-half" style="color: RoyalBlue ;"></i></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            
-                                        </div>
-                                        
-                                    </div>
-                            </a>
-                        </div>
-                    
-                
-                        <div id="collapse-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-1">
-                            <div class="panel-body">
-                                    <hr>
-                                    <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>                                        
-                                   <p id=tempAtual></p>      
-                            </div>
-                        </div>
-                           
-                
-                    
-                    </div>
-                </div>
-                </div>
-                        <div class="col-lg-4 col-sm-6">
-                        <div class="card">
-                                <div class="content">
-                       
-                    
-                          
-                            <div class="dropdown-heading" role="tab" id="heading-2">
-                                
-                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
-                                   
-                                    
-                                        <div class="row">
-                                                <h3 style="text-align: center;">Movimento</h3>
-                                            
-                                            
-                                            <div class="col-xs-4">
-                                                
-                                            </div>
-                                            <div class="col-xs-4">
-                                                <div class="icon-big icon-warning text-center">
-                                                        <i id="Movi" class="fas fa-street-view"  style="color: Grey   ;"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-4">
-                                                
-                                            </div>
-                                            
-                                        </div>
-                                </a>
-                            </div>
-                        
-                    
-                            <div id="collapse-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-2">
-                                <div class="panel-body">
-                                    <hr>
-                                                <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>    
-                                </div>
-                            </div>
-                               
-                    
-                        
-                        </div>
-                    </div>
-                    </div>
-
-    <div class="col-lg-4 col-sm-6">
-    <div class="card">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6">
+          <div class="card">
             <div class="content">
-   
 
-      
-        <div class="dropdown-heading" role="tab" id="heading-3">
-            
-            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-3" aria-expanded="true" aria-controls="collapse-3">
-               
-                
-                    <div class="row">
-                            <h3 style="text-align: center;">Iluminação</h3>
-                        
-                        
-                        <div class="col-xs-4">
-                            
-                        </div>
-                        <div class="col-xs-4">
-                            <div class="icon-big icon-warning text-center">
-                                    <i class="fas fa-lightbulb" style="color: Gold ;"></i>
-                            </div>
-                        </div>
-                        <div class="col-xs-4">
-                            
-                        </div>
-                        
+
+
+              <div class="dropdown-heading" role="tab" id="heading-1">
+
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1"
+                  aria-expanded="true" aria-controls="collapse-1">
+
+
+                  <div class="row">
+                    <h3 style="text-align: center;">Temperatura</h3>
+
+
+                    <div class="col-xs-4">
+
                     </div>
-            </a>
-        </div>
-    
+                    <div class="col-xs-4">
+                      <div class="icon-big icon-warning text-center">
+                        <i class="fas fa-thermometer-half" style="color: RoyalBlue ;"></i></i>
+                      </div>
+                    </div>
+                    <div class="col-xs-4">
 
-        <div id="collapse-3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-3">
-            <div class="panel-body">
-                <hr>
-                
-                <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>                                        
-                <p id=luzAtual></p> 
+                    </div>
+
+                  </div>
+                </a>
+              </div>
+
+
+              <div id="collapse-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-1">
+                <div class="panel-body">
+                  <hr>
+                  <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
+ <% if (sensores.length > 1 ) { %>        
+<% window.alert('maisdeum')%>        
+<% for (var e of sensores) { %>
+
+ <p id=tempAtual<%=e.sensor%>></p>
+<% } %>
+<% }else { %>
+
+ <p id=tempAtual<%= sensores.sensor %>></p>
+<%}%>
+                </div>
+              </div>
+
+
+
             </div>
+          </div>
         </div>
-           
+        <div class="col-lg-4 col-sm-6">
+          <div class="card">
+            <div class="content">
 
-    
-    </div>
-</div>
-</div>
 
-</div>
 
-<div class="row">
+              <div class="dropdown-heading" role="tab" id="heading-2">
+
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-2"
+                  aria-expanded="true" aria-controls="collapse-2">
+
+
+                  <div class="row">
+                    <h3 style="text-align: center;">Movimento</h3>
+
+
+                    <div class="col-xs-4">
+
+                    </div>
+                    <div class="col-xs-4">
+                      <div class="icon-big icon-warning text-center">
+                        <i id="Movi" class="fas fa-street-view" style="color: Grey   ;"></i>
+                      </div>
+                    </div>
+                    <div class="col-xs-4">
+
+                    </div>
+
+                  </div>
+                </a>
+              </div>
+
+
+              <div id="collapse-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-2">
+                <div class="panel-body">
+                  <hr>
+                  <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
 
         <div class="col-lg-4 col-sm-6">
-        <div class="card">
-                <div class="content">
-       
-    
-          
-            <div class="dropdown-heading" role="tab" id="heading-4">
-                
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-4" aria-expanded="true" aria-controls="collapse-4">
-                   
-                    
-                        <div class="row">
-                                <h3 style="text-align: center;">Humidade</h3>
-                            
-                            
-                            <div class="col-xs-4">
-                                
-                            </div>
-                            <div class="col-xs-4">
-                                <div class="icon-big icon-warning text-center">
-                                        <i class="fas fa-tint" style="color: DeepSkyBlue   ;"></i>
-                                </div>
-                            </div>
-                            <div class="col-xs-4">
-                                
-                            </div>
-                            
-                        </div>
+          <div class="card">
+            <div class="content">
+
+
+
+              <div class="dropdown-heading" role="tab" id="heading-3">
+
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-3"
+                  aria-expanded="true" aria-controls="collapse-3">
+
+
+                  <div class="row">
+                    <h3 style="text-align: center;">Iluminação</h3>
+
+
+                    <div class="col-xs-4">
+
+                    </div>
+                    <div class="col-xs-4">
+                      <div class="icon-big icon-warning text-center">
+                        <i class="fas fa-lightbulb" style="color: Gold ;"></i>
+                      </div>
+                    </div>
+                    <div class="col-xs-4">
+
+                    </div>
+
+                  </div>
                 </a>
-            </div>
-        
-    
-            <div id="collapse-4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-4">
-                <div class="panel-body">
-                    <hr>
-                    <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>                                        
-                    <p id=humAtual></p>    
-                </div>
-            </div>
-               
-    
-        
-        </div>
-    </div>
-    </div>
+              </div>
 
-    <div class="col-lg-4 col-sm-6">
-        <div class="card">
-                <div class="content">
-       
-    
-          
-            <div class="dropdown-heading" role="tab" id="heading-5">
-                
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-5" aria-expanded="true" aria-controls="collapse-5">
-                   
-                    
-                        <div class="row">
-                                <h3 style="text-align: center;">Incendio</h3>
-                            
-                            
-                            <div class="col-xs-4">
-                                
-                            </div>
-                            <div class="col-xs-4">
-                                <div class="icon-big icon-warning text-center">
-                                        <i class="fas fa-fire" style="color: OrangeRed ;"></i>
-                                </div>
-                            </div>
-                            <div class="col-xs-4">
-                                
-                            </div>
-                            
-                        </div>
+
+              <div id="collapse-3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-3">
+                <div class="panel-body">
+                  <hr>
+
+                  <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
+                  <p id=luzAtual></p>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-4 col-sm-6">
+          <div class="card">
+            <div class="content">
+
+
+
+              <div class="dropdown-heading" role="tab" id="heading-4">
+
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-4"
+                  aria-expanded="true" aria-controls="collapse-4">
+
+
+                  <div class="row">
+                    <h3 style="text-align: center;">Humidade</h3>
+
+
+                    <div class="col-xs-4">
+
+                    </div>
+                    <div class="col-xs-4">
+                      <div class="icon-big icon-warning text-center">
+                        <i class="fas fa-tint" style="color: DeepSkyBlue   ;"></i>
+                      </div>
+                    </div>
+                    <div class="col-xs-4">
+
+                    </div>
+
+                  </div>
                 </a>
-            </div>
-        
-    
-            <div id="collapse-5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-5">
+              </div>
+
+
+              <div id="collapse-4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-4">
                 <div class="panel-body">
-                    <hr>
-                                <p>Temperatura atual: 23</p>      
+                  <hr>
+                  <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
+                  <p id=humAtual></p>
                 </div>
+              </div>
+
+
+
             </div>
-               
-    
-        
+          </div>
         </div>
+
+        <div class="col-lg-4 col-sm-6">
+          <div class="card">
+            <div class="content">
+
+
+
+              <div class="dropdown-heading" role="tab" id="heading-5">
+
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-5"
+                  aria-expanded="true" aria-controls="collapse-5">
+
+
+                  <div class="row">
+                    <h3 style="text-align: center;">Incendio</h3>
+
+
+                    <div class="col-xs-4">
+
+                    </div>
+                    <div class="col-xs-4">
+                      <div class="icon-big icon-warning text-center">
+                        <i class="fas fa-fire" style="color: OrangeRed ;"></i>
+                      </div>
+                    </div>
+                    <div class="col-xs-4">
+
+                    </div>
+
+                  </div>
+                </a>
+              </div>
+
+
+              <div id="collapse-5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-5">
+                <div class="panel-body">
+                  <hr>
+                  <p>Temperatura atual: 23</p>
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+        <script src="/socket.io/socket.io.js"></script>
+
+
+
+
+        <script>
+<% if (sensores.length > 1) { %>
+<% for (var e of sensores){ %>	
+          var socket = io.connect('http://localhost:5000');
+          socket.on('dai/<%=e.sensor%>', function(message)
+          {
+            var labels = JSON.parse(message);
+
+            console.log(message);
+            var temp = labels["temperature"];
+            var luz = labels["brightness"];
+            var movimento = labels["motion"];
+            var humidade = labels["humidity"];
+            $('#tempAtual<%=e.sensor%>').text('Temperatura atual: ' + temp);
+            $('#luzAtual').text('Luminuzidade: ' + luz);
+            $('#movAtual').text(movimento);
+            $('#humAtual').text('Humidade: ' + humidade);
+
+
+            if (movimento == "motion detected")
+            {
+              document.getElementById("Movi").style.color = "green";
+            }
+            else
+            {
+
+            }
+
+
+
+          })
+<%}%>
+<%}else {%>
+var socket = io.connect('http://localhost:5000');
+          socket.on('dai/<%=sensores.sensor%>', function(message)
+          {
+            var labels = JSON.parse(message);
+
+            console.log(message);
+            var temp = labels["temperature"];
+            var luz = labels["brightness"];
+            var movimento = labels["motion"];
+            var humidade = labels["humidity"];
+            $('#tempAtual<%=sensores.sensor%>').text('Temperatura atual: ' + temp);
+            $('#luzAtual').text('Luminuzidade: ' + luz);
+            $('#movAtual').text(movimento);
+            $('#humAtual').text('Humidade: ' + humidade);
+
+
+            if (movimento == "motion detected")
+            {
+              document.getElementById("Movi").style.color = "green";
+            }
+            else
+            {
+
+            }
+
+
+
+          })
+<%}%>
+        </script>
+
+
+      </div>
     </div>
-    </div>
-    <script src="/socket.io/socket.io.js"></script>
+  </div>
 
-
-
-   
-    <script>
-    
-    
-    
-  
-    
-        
-    var socket = io.connect('http://localhost:5000');
-      socket.on('dai/3', function (message) {
-        var labels = JSON.parse(message);
-
-console.log(message);
-var temp = labels["temperature"];
-var luz = labels["brightness"];
-var movimento = labels["motion"];
-var humidade = labels["humidity"];
-$('#tempAtual').text('Temperatura atual: '+temp);
-$('#luzAtual').text('Luminuzidade: '+luz);
-$('#movAtual').text(movimento);
-$('#humAtual').text('Humidade: ' + humidade);
-
-
-if(movimento == "motion detected"){
-    document.getElementById("Movi").style.color = "green";
-}else{
-   
-}
-    
-    
-    
-})
-      </script>
-   
-
-</div>
-</div>
-</div>
-
-<% include partials/footer %>
+  <% include partials/footer %>

@@ -26,9 +26,10 @@ router.get('/', function(request, response) {
     })
 
 
-    if (sensores.lenght > 1) {
-
-      for (var e of sensoresUser) {
+	  
+    if (sensores.length > 1) {
+console.log('###############///////////////////////###################(((((((()))))))))))');
+      for (var e of sensores) {
 
         client.on('connect', function() {
           console.log('MQTT IS WORKING' + ' ' + 2)
@@ -42,7 +43,7 @@ router.get('/', function(request, response) {
     } else {
       client.on('connect', function() {
         console.log('MQTT IS WORKING' + ' ' + 2)
-        client.subscribe('dai/' + sensoresUser.sensor)
+        client.subscribe('dai/' + sensores.sensor)
         client.publish('presence', 'Hello mqtt')
       })
     }
@@ -64,7 +65,10 @@ router.get('/', function(request, response) {
     });
 
     response.set("Content-Type", "text/html");
-    response.render('./sensor', {})
+    response.render('./sensor', {
+   	sensores : sensores 
+    
+    })
   });
 });
 
