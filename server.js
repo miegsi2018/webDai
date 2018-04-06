@@ -107,5 +107,6 @@ app.use('/public', express.static('public'));
 app.use('/profile', require('./controllers/profile.route'));
 app.use('/sensor', require('./controllers/sensor.route'));
 app.use('/room', require('./controllers/room.route'));
+app.use('/admin', require('./controllers/admin.route'));
 
 //new
