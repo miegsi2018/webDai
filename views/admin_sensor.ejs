@@ -1,0 +1,111 @@
+<% include partials/header %>
+
+<div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-5">
+                    <div class="card card">
+                            <div class="header">
+                                    <h4 class="title">Adicionar sensor</h4>
+                                </div>
+                                <div class="content">
+                                        <form role= "form" action="/admin/sensor"  method="post">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Sensor</label>
+                                                            <input type="text" class="form-control border-input" name="id_sensor "  placeholder="ID Sensor" >
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                                <div class="form-check">
+                                                        <label class="text-center">Tipo Sensor:</label>
+                                                        <br>
+                                                       
+                                                                    <label>
+                                                                            <input type="radio" class="option-input radio" name="id_tipo "  value="1"  />
+                                                                            Temperatura
+                                                                          </label>
+                                                                    
+                                                                        <label>
+                                                                                <input type="radio" class="option-input radio" name="id_tipo "  value="2" />
+                                                                                Luz
+                                                                              </label>
+                                                                  
+                                                                            <label>
+                                                                                    <input type="radio" class="option-input radio" name="id_tipo "  value="3" />
+                                                                                    Humidade
+                                                                                  </label>
+                                                                           
+                                                                                <label>
+                                                                                        <input type="radio" class="option-input radio"name="id_tipo "  value="4"/>
+                                                                                        Movimento
+                                                                                      </label>
+                                                                     
+                                                            
+                                                    </div>
+                                                    <br>
+                                                    <button type="submit" class="btn btn-info btn-fill btn-wd">Adicionar Perfil</button>
+                                                    <br>
+                                                    </form>
+                                    </div>
+                       
+                       
+                        
+                    </div>
+                    <!--- Outra div -->
+                </div>
+                <div class="col-lg-6 col-md-7">
+                    <div class="content">
+                    <div class="card" style="overflow:scroll; overflow-x: hidden;">
+                        <div class="header">
+                            <h4 class="title">Lista Sensores</h4>
+                        </div>
+                        <div class="content">
+                                <div class="table-responsive">          
+                                        <table class="table" id="Table"> 
+                                        <thead>
+                                            
+                                        <tr>   
+                                            <th>ID Sensor</th> 
+                                            <th>Tipo Sensor</th> 
+                                            
+                                                                  
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                                <% for (var u of sensor) { %>     
+                                                <tr>
+                                                    
+                                                   
+                                                    <td><%= u.id_sensor %></td>
+                                                    <% if  (u.id_tipo == 1 ) { %>
+                                                        <td >Temperatura</td>
+                                                        <%}else if(u.id_tipo == 2 ) { %> 
+                                                            <td >tipo2</td>
+                                                            <%}else if(u.id_tipo == 3 ) { %> 
+                                                                <td >tipo3</td>
+                                                                <%}else if(u.id_tipo == 4 ) { %> 
+                                                                    <td >tipo4</td>
+                                                            <%} %>
+                                                </tr>
+                                                <%} %>    
+                                        </tbody>
+                                        </table>
+                                       
+                                        </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                </div>
+                <script>
+               
+                </script>
+
+
+            </div>
+        </div>
+    </div>
+
+<% include partials/footer %>
