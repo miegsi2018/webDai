@@ -255,7 +255,7 @@
     
         
     var socket = io.connect('http://localhost:5000');
-      socket.on('mqttData', function (message) {
+      socket.on('dai/3', function (message) {
         var labels = JSON.parse(message);
 
 console.log(message);

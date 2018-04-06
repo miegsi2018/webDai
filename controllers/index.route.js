@@ -6,77 +6,76 @@ var mqtt = require('mqtt')
 
 
 
-router.get('/', function(request, response){
-	//console.log(request.isAuthenticated());
-	
-
-	response.set("Content-Type", "text/html");
-	response.render('./login', {
-		
-	})
+router.get('/', function(request, response) {
+  //console.log(request.isAuthenticated());
 
 
-});
+  response.set("Content-Type", "text/html");
+  response.render('./login', {
 
-router.get('/home', function(request, response){
-	//console.log(request.isAuthenticated());
-
-	response.set("Content-Type", "text/html");
-	response.render('./index', {	
-		
-		
-	})
+  })
 
 
 });
 
-router.get('/registo', function(request, response){
-	//console.log(request.isAuthenticated());
+router.get('/home', function(request, response) {
+  //console.log(request.isAuthenticated());
 
-	response.set("Content-Type", "text/html");
-	response.render('./registo', {
-	})
+  response.set("Content-Type", "text/html");
+  response.render('./index', {
+
+
+  })
+
+
+});
+
+router.get('/registo', function(request, response) {
+  //console.log(request.isAuthenticated());
+
+  response.set("Content-Type", "text/html");
+  response.render('./registo', {})
 
 
 });
 
 router.post('/registo', function(request, response) {
-	var errors = request.validationErrors();	
-	if (errors) {
-		response.render('registo', {
-			isNew: true,
-			user: {},
-			errors: errors
-		});
-	}else{
-		var data = {
-			'username': request.body.username,
-			'password': request.body.password,
-			'email': request.body.email
-		};
-		model.create(data, function(){
-			response.redirect('/profile');
-		});
-	}
+  var errors = request.validationErrors();
+  if (errors) {
+    response.render('registo', {
+      isNew: true,
+      user: {},
+      errors: errors
+    });
+  } else {
+    var data = {
+      'username': request.body.username,
+      'password': request.body.password,
+      'email': request.body.email
+    };
+    model.create(data, function() {
+      response.redirect('/profile');
+    });
+  }
 });
 
-router.post('/', function (request, response) {
-	
-	model.areValidCredentials(request.body.email, request.body.password, function (areValid) {
-		if (areValid) {
-			//Create the login session
+router.post('/', function(request, response) {
 
-			request.login(request.body.email, function (err) {
+  model.areValidCredentials(request.body.email, request.body.password, function(areValid) {
+    if (areValid) {
+      //Create the login session
 
-				response.redirect('/sensor');
-			});
-		} else {
-			response.json({
-				error: "Updated Successfully",
-				status: 400
-			});
-		}
-	});
+      request.login(request.body.email, function(err) {
+
+        response.redirect('/sensor');
+      });
+    } else {
+      response.json({
+        error: "Updated Successfully",
+        status: 400
+      });
+    }
+  });
 });
 
 
