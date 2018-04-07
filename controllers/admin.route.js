@@ -26,23 +26,17 @@ router.get('/sensor', function(request, response){
 	
 });
 
-router.post('/sensor', function(request, response) {
+router.post('/registo', function(request, response) {
 	var errors = request.validationErrors();	
-	if (errors) {
-		response.render('admin_sensor', {
-			isNew: true,
-			user: {},
-			errors: errors
-		});
-	}else{
+	
 		var data = {
 			'id_sensor': request.body.id_sensor,
 			'id_tipo': request.body.id_tipo
 			
 		};
 		sensorModel.createSensor(data, function(){
-			response.redirect('/admin_sensor');
+			response.redirect('/sensor');
 		});
-	}
+	
 });
 module.exports = router;

@@ -3,20 +3,17 @@ const router = express.Router();
 const model = require('../models/user.model');
 var mqtt = require('mqtt')
 
-
-
-router.get('/', function(request, response) {
-  //console.log(request.isAuthenticated()); 
-
+router.get('/', function(request, response){
+	//console.log(request.isAuthenticated());
 
   var id = request.user.email;
-  var sensoresUser = new Array();
-  model.readEmail(id, function(sensores) {
+  var divisoesUser = new Array();
+  model.readEmail(id, function(divisoes) {
 
-    console.log('##################################################' + sensores[0].email + '########');
+    console.log('##################################################' + divisoes[0].email + '########');
 
-    /*for (var e of sensoresUser) {
-       console.log(e.sensor)
+    /*for (var e of divisoesUser) {
+       console.log(e.divisao)
       }
 	*/
     var client = mqtt.connect('mqtt://94.61.10.49:80', {
@@ -26,14 +23,14 @@ router.get('/', function(request, response) {
 
 
 
-    if (sensores.length > 1) {
+    if (divisoes.length > 1) {
       console.log('###############///////////////////////###################(((((((()))))))))))');
 
       client.on('connect', function() {
         console.log('MQTT IS WORKING' + ' ' + 2)
 
-        for (var e of sensores) {
-          client.subscribe('dai/' + e.sensor)
+        for (var e of divisoes) {
+          client.subscribe('dai/' + e.divisao)
         }
         client.publish('presence', 'Hello mqtt')
 
@@ -44,7 +41,7 @@ router.get('/', function(request, response) {
     } else {
       client.on('connect', function() {
         console.log('MQTT IS WORKING' + ' ' + 2)
-        client.subscribe('dai/' + sensores[0].sensor)
+        client.subscribe('dai/' + divisoes[0].divisao)
         client.publish('presence', 'Hello mqtt')
       })
     }
@@ -64,13 +61,13 @@ router.get('/', function(request, response) {
 
       });
     });
+	response.set("Content-Type", "text/html");
+	response.render('./divisao', {
+		divisoes : divisoes
+	})
 
-    response.set("Content-Type", "text/html");
-    response.render('./sensor', {
-      sensores: sensores
 
-    })
-  });
+});
 });
 
 module.exports = router;
