@@ -67,7 +67,7 @@ router.post('/', function(request, response) {
 
       request.login(request.body.email, function(err) {
 
-        response.redirect('/sensor');
+        response.redirect('/home');
       });
     } else {
       response.json({
