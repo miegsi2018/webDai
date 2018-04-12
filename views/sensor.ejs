@@ -49,14 +49,14 @@
                 <div class="panel-body">
                   <hr>
                   <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
- <% if (sensores.length > 1 ) { %>        
-<% for (var e of sensores) { %>
+ <% if (divisoes.length > 1 ) { %>        
+<% for (var e of divisoes) { %>
 
  <p id=tempAtual<%=e.sensor%>></p>
 <% } %>
 <% }else { %>
 
- <p id=tempAtual<%=sensores[0].sensor%>></p>
+ <p id=tempAtual<%=divisoes[0].sensor%>></p>
 <%}%>
                 </div>
               </div>
@@ -151,14 +151,14 @@
 
                   <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
                   
- <% if (sensores.length > 1 ) { %>        
-<% for (var e of sensores) { %>
+ <% if (divisoes.length > 1 ) { %>        
+<% for (var e of divisoes) { %>
 
- <p id=luzAtual<%=e.sensor%>></p>
+ <p id=luzAtual<%=e.divisoes%>></p>
 <% } %>
 <% }else { %>
 
- <p id=luzAtual<%=sensores[0].sensor%>></p>
+ <p id=luzAtual<%=divisoes[0].sensor%>></p>
 <%}%>
  
                 </div>
@@ -270,8 +270,8 @@
 
 
         <script>
-<% if (sensores.length > 1) { %>
-<% for (var e of sensores){ %>
+<% if (divisoes.length > 1) { %>
+<% for (var e of divisoes){ %>
 	
           var socket = io.connect('http://localhost:5000');
           socket.on('dai/<%=e.sensor%>', function(message)
@@ -283,8 +283,8 @@
             var luz = labels["ldr"];
             var movimento = labels["motion"];
             var humidade = labels["humidity"];
-            $('#tempAtual<%=e.sensor%>').text('Temperatura atual na <%= e.divisao%>: ' + temp);
-            $('#luzAtual<%=e.sensor%>').text('Luminuzidade na <%= e.divisao%>: ' + luz);
+            $('#tempAtual<%=e.sensor%>').text('Temperatura atual: ' + temp);
+            $('#luzAtual<%=e.sensor%>').text('Luminuzidade: ' + luz);
             $('#movAtual').text(movimento);
             $('#humAtual').text('Humidade: ' + humidade);
 
@@ -302,9 +302,9 @@
 
           })
 <%}%>
-<%}else {%>
+<%} else {%>
 var socket = io.connect('http://localhost:5000');
-          socket.on('dai/<%=sensores[0].sensor%>', function(message)
+          socket.on('dai/<%=divisoes[0].sensor%>', function(message)
           {
             var labels = JSON.parse(message);
 
@@ -313,7 +313,7 @@ var socket = io.connect('http://localhost:5000');
             var luz = labels["ldr"];
             var movimento = labels["motion"];
             var humidade = labels["humidity"];
-            $('#tempAtual<%=sensores[0].sensor%>').text('Temperatura atual: ' + temp);
+            $('#tempAtual<%=divisoes[0].sensor%>').text('Temperatura atual: ' + temp);
             $('#luzAtual').text('Luminuzidade: ' + luz);
             $('#movAtual').text(movimento);
             $('#humAtual').text('Humidade: ' + humidade);

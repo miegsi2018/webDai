@@ -15,10 +15,6 @@ router.get('/', function(request, response) {
 
     console.log('##################################################' + sensores[0].email + '########');
 
-    /*for (var e of sensoresUser) {
-       console.log(e.sensor)
-      }
-	*/
     var client = mqtt.connect('mqtt://94.61.10.49:80', {
       username: "dai",
       password: '12345678'

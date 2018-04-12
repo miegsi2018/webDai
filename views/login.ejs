@@ -1,42 +1,75 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="body-full-height">
+    <head>        
+        <!-- META SECTION -->
+        <title>Digital Friendly House</title>            
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
 
-<head>
-    <title>Digital Friendly House</title>
-    <link rel="icon" type="image/png" sizes="96x96" href="/public/assets/img/logo.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=0, maximum-scale=1.0">
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="/public/assets/css/custom.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-</head>
-
-<body class="text-center" id="test">
-    <form class="form-signin" method="post" action="/">
-        <h1 class="logo">Digital Friendly House</h1>
-        <br>
-        <h1 class="h3 mb-3 font-weight-normal">Não tem conta? <a href="/registo">Registe-se</a></h1>
-        <br>
-        <button class="btn btn-lg btn-danger btn-block" type="submit"><i class="fa fa-google"></i> Conta Google</button>
-        <hr>
-        <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
-        <label for="inputEmail" class="sr-only">Email</label>
-        <input type="text" id="email" name="email" class="form-control" placeholder="Email" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-        <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> Remember me
-        </label>
+        <!-- END META SECTION -->
+        
+        <!-- CSS INCLUDE -->        
+        <link rel="stylesheet" type="text/css" id="theme" href="../public/assets/login/css/theme-default.css"/>
+        <!-- EOF CSS INCLUDE -->                                    
+    </head>
+    <body>
+        
+        <div class="login-container">
+        
+            <div class="login-box animated fadeInDown">
+                <div class="login" style="text-align: center"><img src="../public/assets/login/img/dfh.png" alt=""></div>
+                <br>
+                <div class="login-body">
+                    <div class="login-title"><strong>Entre</strong> na sua conta</div>
+                    <form action="/" class="form-horizontal" method="post">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" name="email" class="form-control" placeholder="E-mail"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="password" name="password" class="form-control" placeholder="Password"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <a href="#" class="btn btn-link btn-block">Esqueceu-se da password?</a>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-info btn-block">Log In</button>
+                        </div>
+                    </div>
+                    <div class="login-or">OU</div>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <button class="btn btn-info btn-block btn-twitter"><span class="fa fa-twitter"></span> Twitter</button>
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-info btn-block btn-facebook"><span class="fa fa-facebook"></span> Facebook</button>
+                        </div>
+                        <div class="col-md-4">                            
+                            <button class="btn btn-info btn-block btn-google"><span class="fa fa-google-plus"></span> Google</button>
+                        </div>
+                    </div>
+                    <div class="login-subtitle">
+                        Não tem conta ainda? <a href="/registo">Crie uma</a>
+                    </div>
+                    </form>
+                </div>
+                <div class="login-footer">
+                    <div class="pull-left">
+                        <img src="../public/assets/login/img/teamdai.png" alt="" height="50%" width="50%">
+                    </div>
+                    <div class="pull-right">
+                        <a href="#">About</a> |
+                        <a href="#">Privacy</a> |
+                        <a href="#">Contact Us</a>
+                    </div>
+                </div>
+            </div>  
         </div>
-        <button class="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-    </form>
-</body>
-
+    </body>
 </html>
