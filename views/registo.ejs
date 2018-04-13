@@ -1,84 +1,67 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <title>Digital Friendly House</title>
-    <link rel="icon" type="image/png" sizes="96x96" href="/public/assets/img/logo.png">
-    
-    <link href="/public/assets/css/custom.css" rel="stylesheet">
-    
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
-
-
-    <!-- Bootstrap core CSS     -->
-    <link href="/public/assets/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Animation library for notifications   -->
-    <link href="/public/assets/css/animate.min.css" rel="stylesheet"/>
-
-    <!--  Paper Dashboard core CSS    -->
-    <link href="/public/assets/css/paper-dashboard.css" rel="stylesheet"/>
-
-
-
-    <!--  Fonts and icons     -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-    <link href="/public/assets/css/themify-icons.css" rel="stylesheet">
-</head>
-
-<body>
-    <div class="container">
+<!DOCTYPE html>
+<html lang="en" class="body-full-height">
+    <head>        
+        <!-- META SECTION -->
+        <title>Digital Friendly House</title>            
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         
-        <div class="text-center">
-            <div class="logo">
-                <h1 class="simple-text">Digital Friendly House</h1>
-            </div>
-        </div>
-        <div class="col-md-4"></div>
-        <div class="main-login col-md-4">
-            <div>
-                <div class="header">
-                    <h4 class="title text-center">Registo</h4>
-                </div>
-                <div class="content">
-                    <form name="formregisto" method="post" action="/registo">
-                        <div class="row">
-                            <div class="form-group">
-                                <label>Username</label>
-                                <input type="text" class="form-control border-input" name="username" placeholder="Username" >
-                            </div>
+
+        <!-- END META SECTION -->
+        
+        <!-- CSS INCLUDE -->        
+        <link rel="stylesheet" type="text/css" id="theme" href="../public/assets/login/css/theme-default.css"/>
+        <!-- EOF CSS INCLUDE -->                                    
+    </head>
+    <body>
+        
+        <div class="login-container">
+        
+            <div class="login-box animated fadeInDown">
+                <div class="login" style="text-align: center"><img src="../public/assets/login/img/dfh.png" alt=""></div>
+                <br>
+                <div class="login-body">
+                    <div class="login-title"><strong>Crie</strong> uma conta</div>
+                    <form action="/registo" class="form-horizontal" method="post">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" name="username" class="form-control" placeholder="Nome"/>
                         </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="password" class="form-control border-input" name="password" placeholder="Password" >
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" name="email" class="form-control" placeholder="E-mail"/>
                         </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <label>Repita a password</label>
-                                <input type="password" class="form-control border-input" placeholder="Repita a password">
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="password" name="password" class="form-control" placeholder="Password"/>
                         </div>
-                        <div class="row">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Endereço de Email</label>
-                                <input type="email" class="form-control border-input" name="email" placeholder="Email">
-                            </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="password" name="repassword" class="form-control" placeholder="Repita a password"/>
                         </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-info btn-fill btn-wd" >Criar conta</button>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-4 pull-right" >
+                            <button type="submit" class="btn btn-info btn-block">Registar</button>
                         </div>
-                        <div class="clearfix"></div>
+                    </div>
                     </form>
                 </div>
-            </div>
+                <div class="login-footer">
+                    <div class="pull-left">
+                        <img src="../public/assets/login/img/teamdai.png" alt="" height="50%" width="50%">
+                    </div>
+                    <div class="pull-right">
+                        <a href="#">About</a> |
+                        <a href="#">Privacy</a> |
+                        <a href="#">Contact Us</a>
+                    </div>
+                </div>
+            </div>  
         </div>
-        <div class="col-md-4"></div>
-    </div>
-</body>
-
+    </body>
 </html>
