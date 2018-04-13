@@ -74,5 +74,17 @@ router.get('/:id_divisao', function(request, response){
   })
 })
 });
+router.get('/add', function(request, response){
+  //console.log(request.isAuthenticated());
+
+    sensorModel.listaSensor(function(sensor) {
+	response.set("Content-Type", "text/html");
+	response.render('./adicionar_divisao', {
+        sensor : sensor,
+        divisoes : divisoes
+	})
+})
+
+});
 
 module.exports = router;

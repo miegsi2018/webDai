@@ -3,48 +3,34 @@
 <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-12 col-md-5">
+                    <div class="col-lg-2 col-md-5"></div>
+                <div class="col-lg-8 col-md-5">
                     <div class="card card">
                             <div class="header">
-                                    <h4 class="title">Adicionar sensor a sua casa </h4>
+                                    <h4 class="title">Adicione uma divisão com um sensor a sua casa</h4>
                                 </div>
                                 <div class="content">
                                         <form role= "form" action="/admin/registo"  method="post">
                                                 <div class="row">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-5">
                                                         <div class="form-group">
                                                             <label>Sensor</label>
                                                             <input type="text" class="form-control border-input" name="id_sensor"  placeholder="ID Sensor" >
                                                         </div>
-                                                    </div> 
-                                                    <div class="col-md-8">
+                                                    </div>     <div class="col-md-1"></div>
+                                                    <div class="col-md-6">
                                                         <div class="form-check">
-                                                            <label class="text-center">Divisão:</label>
+                                                            <label class="text-center">Divisão</label>
+                                                            <input type="text" class="form-control border-input" name="id_sensor"  placeholder="ID Sensor" >
                                                             <br>
                                                            
-                                                            <% if (divisoes.length > 1 ) { %>        
-                                                                <% for (var e of divisoes) { %>
-                                                    <label>
-                                                        <input type="radio" class="option-input radio" name="id_tipo"  value="1"  />
-                                                        <%=e.divisao%>
-                                                      </label>
-                                                      <% } %>
-                                                      <% }else { %>
-                                                          <% for (var e of divisoes) { %>
-                                                            <label>
-                                                                <input type="radio" class="option-input radio" name="id_tipo"  value="1"  />
-                                                                <%=divisoes[0].divisao%>
-                                                              </label>
-                                                              <%}%>
-                                                              <%}%>       
-                                                                
+                                                            
                                                         </div>
                                                     </div> 
                                                 </div>
                                                 
                                                     <br>
-                                                    <div class="col-lg-10 col-md-5">
-                                                    </div>
+                                                
                                                     <button type="submit" class="btn btn-info btn-fill btn-wd">Adicionar Sensor</button>
                                                     <br>
                                                     </form>
@@ -58,7 +44,7 @@
                     
                 </div>
         
-
+                <div class="col-lg-2 col-md-5"></div>
 
             </div>
         </div>

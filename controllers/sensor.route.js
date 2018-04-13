@@ -14,7 +14,7 @@ router.get('/', function(request, response){
   divisaoModel.readEmail(id, function(divisoes){  
     sensorModel.listaSensor(function(sensor) {
 	response.set("Content-Type", "text/html");
-	response.render('./adicionar_sensor', {
+	response.render('./adicionar_divisao', {
         sensor : sensor,
         divisoes : divisoes
 	})
