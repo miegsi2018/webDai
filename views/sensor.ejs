@@ -154,11 +154,11 @@
  <% if (divisoes.length > 1 ) { %>        
 <% for (var e of divisoes) { %>
 
- <p id=luzAtual<%=e.divisoes%>></p>
+ <p id=luzAtual></p>
 <% } %>
 <% }else { %>
 
- <p id=luzAtual<%=divisoes[0].sensor%>></p>
+ <p id=luzAtual></p>
 <%}%>
  
                 </div>
@@ -284,7 +284,7 @@
             var movimento = labels["motion"];
             var humidade = labels["humidity"];
             $('#tempAtual<%=e.sensor%>').text('Temperatura atual: ' + temp);
-            $('#luzAtual<%=e.sensor%>').text('Luminuzidade: ' + luz);
+            $('#luzAtual').text('Luminusidade: ' + luz);
             $('#movAtual').text(movimento);
             $('#humAtual').text('Humidade: ' + humidade);
 
@@ -314,7 +314,7 @@ var socket = io.connect('http://localhost:5000');
             var movimento = labels["motion"];
             var humidade = labels["humidity"];
             $('#tempAtual<%=divisoes[0].sensor%>').text('Temperatura atual: ' + temp);
-            $('#luzAtual').text('Luminuzidade: ' + luz);
+            $('#luzAtual').text('Luminusidade: ' + luz);
             $('#movAtual').text(movimento);
             $('#humAtual').text('Humidade: ' + humidade);
 

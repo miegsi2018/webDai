@@ -74,6 +74,7 @@ router.get('/:id_divisao', function(request, response){
   })
 })
 });
+
 router.get('/add', function(request, response){
   //console.log(request.isAuthenticated());
 
