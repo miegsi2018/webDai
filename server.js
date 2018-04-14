@@ -38,6 +38,10 @@ global.secure = function (type) {
 };
 //end of 
 
+
+
+
+
 app.use(validator());
 app.use(bodyParser.json(), bodyParser.urlencoded({
 	extended: true
