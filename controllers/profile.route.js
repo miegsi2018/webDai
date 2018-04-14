@@ -14,6 +14,8 @@ router.get('/', function(request, response){
 });
 router.get('/create', function(request, response){
 	//console.log(request.isAuthenticated());
+	var id = request.user.email;
+
 	divisaoModel.readEmail(id, function(divisoes){  
 		sensorModel.listaSensor(function(sensor) {
 	response.set("Content-Type", "text/html");
