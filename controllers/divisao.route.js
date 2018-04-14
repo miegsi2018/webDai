@@ -14,20 +14,6 @@ router.get('/', function(request, response){
   })
 });
 
-router.get('/add', function(request, response){
-  //console.log(request.isAuthenticated());
-
-    var id = request.user.email;
-  
-  model.readEmail(id, function(divisoes){  
-    response.set("Content-Type", "text/html");
-	  response.render('./adicionar_divisao', {
-      divisoes : divisoes
-	  })
-  })
-
-});
-
 router.get('/:id_divisao', function(request, response){
   var id = request.user.email;
   var sensoresUser = new Array();
@@ -41,6 +27,7 @@ router.get('/:id_divisao', function(request, response){
 
 
     if (divisoes.length > 1) {
+      console.log('###############///////////////////////###################(((((((()))))))))))');
 
       client.on('connect', function() {
         console.log('MQTT IS WORKING' + ' ' + 2)
@@ -49,6 +36,9 @@ router.get('/:id_divisao', function(request, response){
           client.subscribe('dai/' + e.sensor)
         }
         client.publish('presence', 'Hello mqtt')
+
+
+
 
       })
     } else {
@@ -85,6 +75,17 @@ router.get('/:id_divisao', function(request, response){
 })
 });
 
+router.get('/add', function(request, response){
+  //console.log(request.isAuthenticated());
 
+    sensorModel.listaSensor(function(sensor) {
+	response.set("Content-Type", "text/html");
+	response.render('./adicionar_divisao', {
+        sensor : sensor,
+        divisoes : divisoes
+	})
+})
+
+});
 
 module.exports = router;
