@@ -3,11 +3,11 @@ const router = express.Router();
 const model = require('../models/user.model');
 const swal = require('sweetalert2')
 var mqtt = require('mqtt')
-var myNumberSquared = global.myNumber * global.myNumber; //Using the global variable.
+
 
 
 router.get('/', function(request, response) {
-
+  //console.log(request.isAuthenticated());
 
 
   response.set("Content-Type", "text/html");
@@ -20,10 +20,9 @@ router.get('/', function(request, response) {
 
 router.get('/home', function(request, response) {
   //console.log(request.isAuthenticated());
- 
+
   response.set("Content-Type", "text/html");
   response.render('./index', {
-    utilizador: request.utilizador,
 
 
   })
