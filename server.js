@@ -108,5 +108,6 @@ app.use('/profile', require('./controllers/profile.route'));
 app.use('/sensor', require('./controllers/sensor.route'));
 app.use('/room', require('./controllers/divisao.route'));
 app.use('/admin', require('./controllers/admin.route'));
+app.use('/logout', require('./controllers/logout.route'));
 
 //new
