@@ -1,4 +1,4 @@
-const port = 8080;
+const port = 8000;
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
