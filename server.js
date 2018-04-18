@@ -34,7 +34,7 @@ global.secure = function (type) {
 			}
 		}
 		response.redirect('/');
-	}
+	};
 };
 //end of 
 
@@ -60,7 +60,7 @@ passport.serializeUser(function (email, callback) {
 passport.deserializeUser(function (email, callback) {
 	userModel.read(email, function (data) {
 		callback(null, data);
-	})
+	});
 });
 //end of new
 
@@ -99,7 +99,7 @@ app.use(function(request, response, next){
 
 
 
-server.listen(5000)
+server.listen(5000);
 
 
 app.use('/', require('./controllers/index.route'));
