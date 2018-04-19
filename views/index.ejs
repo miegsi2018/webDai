@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <% include partials/header %>        
 <script>
 function start(){
@@ -10,145 +11,174 @@ window.onload = start;
 </script>
         <div class="content">
             <div class="container-fluid">
+=======
+<% include partials/header %>
+
+  <script>
+   	  function start()
+        {
+
+          $.get("http://localhost:8080/utilizador", function(data)
+          {
+            alert("Data Loaded: " + data[0].password);
+          }, "json");
+
+        }
+  window.onload=start();
+
+  </script>
+
+
+
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+
+        <div class="row">
+          <div class="col-lg-6 col-sm-6">
+            <div class="card">
+              <div class="content">
+>>>>>>> 2cc3f42d4842239034f0f3c02b699a2dc59868c0
                 <div class="row">
-                    
-                    <div class="row">
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-warning text-center">
-                                            <i class="fa fa-info-circle" style=" color: green;"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Total de Sensores</p>
-                                            21
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                            </div>
-                        </div>
+                  <div class="col-xs-5">
+                    <div class="icon-big icon-warning text-center">
+                      <i class="fa fa-info-circle" style=" color: green;"></i>
                     </div>
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="card">
-                            <div class="content">
-                                <div class="row">
-                                    <div class="col-xs-5">
-                                        <div class="icon-big icon-danger text-center">
-                                            <i class="fa fa-home" style="color: LightSlateGray  ;"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-7">
-                                        <div class="numbers">
-                                            <p>Total de divisões</p>
-                                            7
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                            </div>
-                        </div>
+                  </div>
+                  <div class="col-xs-7">
+                    <div class="numbers">
+                      <p>Total de Sensores</p>
+                      21
                     </div>
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="card">
-                            <div class="card">
-                                <div class="content">
-                       
-                    
-                          
-                            <div class="dropdown-heading" role="tab" id="heading-1">
-                                
-                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-                                   
-                                    
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <div class="icon-big icon-danger text-center">
-                                                    <i class="fa fa-home" style="color: LightSlateGray  ;"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-7">
-                                                <div class="numbers">
-                                                    <p>Tempuratura da casa</p>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                </a>
-                            </div>
-                        
-                    
-                            <div id="collapse-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-1">
-                                <div class="panel-body">
-                                        <hr>
-                                        <p>Total de sensores de temperatura: 2</p>                                        
-                                        <p>Temperatura media da casa: 23</p>                                        
-                                        <p>Sala: 23</p>      
-                                        <p>Quarto: 23</p>      
-                                </div>
-                            </div>
-                               
-                    
-                        
-                        </div>
-                    </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-6">
-                        <div class="card">
-                            <div class="card">
-                                <div class="content">
-                       
-                    
-                          
-                            <div class="dropdown-heading" role="tab" id="heading-2">
-                                
-                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
-                                   
-                                    
-                                        <div class="row">
-                                            <div class="col-xs-5">
-                                                <div class="icon-big icon-danger text-center">
-                                                    <i class="fa fa-home" style="color: LightSlateGray  ;"></i>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-7">
-                                                <div class="numbers">
-                                                    <p>Total de sensores em cada divisão</p>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                </a>
-                            </div>
-                        
-                    
-                            <div id="collapse-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-2">
-                                <div class="panel-body">
-                                        <hr>
-                                        <p>Sala: 5 </p>                                        
-                                        <p>Quarto: 5</p>      
-                                </div>
-                            </div>
-                               
-                    
-                        
-                        </div>
-                    </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-sm-6">
+            <div class="card">
+              <div class="content">
+                <div class="row">
+                  <div class="col-xs-5">
+                    <div class="icon-big icon-danger text-center">
+                      <i class="fa fa-home" style="color: LightSlateGray"></i>
+                    </div>
+                  </div>
+                  <div class="col-xs-7">
+                    <div class="numbers">
+                      <p>Total de divisões</p>
+                      7
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-sm-6">
+            <div class="card">
+              <div class="card">
+                <div class="content">
+
+
+
+                  <div class="dropdown-heading" role="tab" id="heading-1">
+
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1"
+                      aria-expanded="true" aria-controls="collapse-1">
+
+
+                      <div class="row">
+                        <div class="col-xs-5">
+                          <div class="icon-big icon-danger text-center">
+                            <i class="fa fa-home" style="color: LightSlateGray"></i>
+                          </div>
+                        </div>
+                        <div class="col-xs-7">
+                          <div class="numbers">
+                            <p>Tempuratura da casa</p>
+
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <div id="collapse-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-1">::::::
+                    <div class="panel-body">
+                      <hr>
+                      <p>Total de sensores de temperatura: 2</p>
+                      <p>Temperatura media da casa: 23</p>
+                      <p>Sala: 23</p>
+                      <p>Quarto: 23</p>
+                    </div>
+                  </div>
+
+
+
+                </div>
+<<<<<<< HEAD
                 
                     <div class="row">
                         <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+=======
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-sm-6">
+            <div class="card">
+              <div class="card">
+                <div class="content">
 
+
+
+                  <div class="dropdown-heading" role="tab" id="heading-2">
+
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-2"
+                      aria-expanded="true" aria-controls="collapse-2">
+>>>>>>> 2cc3f42d4842239034f0f3c02b699a2dc59868c0
+
+
+                      <div class="row">
+                        <div class="col-xs-5">
+                          <div class="icon-big icon-danger text-center">
+                            <i class="fa fa-home" style="color: LightSlateGray  ;"></i>
+                          </div>
+                        </div>
+                        <div class="col-xs-7">
+                          <div class="numbers">
+                            <p>Total de sensores em cada divisão</p>
+
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+
+                  <div id="collapse-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-2">
+                    <div class="panel-body">
+                      <hr>
+                      <p>Sala: 5 </p>
+                      <p>Quarto: 5</p>
                     </div>
-                        
-<!--
+                  </div>
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+
+        </div>
+
+        <!--
                 <div class="row">
 
                     <div class="col-md-12">
@@ -220,6 +250,7 @@ window.onload = start;
                             </div>
                         </div>
                     </div>-->
+<<<<<<< HEAD
                 </div>
             </div>
         </div>
@@ -230,4 +261,13 @@ window.onload = start;
         <% include partials/footer %>
     </div>
 </div>
+=======
+      </div>
+    </div>-
+  </div>
 
+
+
+>>>>>>> 2cc3f42d4842239034f0f3c02b699a2dc59868c0
+
+  <% include partials/footer %>
