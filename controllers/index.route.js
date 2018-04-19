@@ -2,14 +2,14 @@ const express = require('express');
 const router = express.Router();
 const model = require('../models/user.model');
 const swal = require('sweetalert2');
-var mqtt = require('mqtt');
+const mqtt = require('mqtt');
+const req = require('request');
+
 
 
 
 router.get('/', function(request, response) {
   //console.log(request.isAuthenticated());
-
-
   response.set("Content-Type", "text/html");
   response.render('./login', {
 
@@ -20,6 +20,18 @@ router.get('/', function(request, response) {
 
 router.get('/home', function(request, response) {
   //console.log(request.isAuthenticated());
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+  var id = request.user.email;
+
+req.get('http://localhost:8080/view/'+ id, function (error, response, body) {
+  console.log('error:', error); // Print the error if one occurred
+  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+  console.log('body:', body); // Print the HTML for the Google homepage.
+});
+
+
 
   response.set("Content-Type", "text/html");
   response.render('./index', {
