@@ -1,48 +1,78 @@
+
 var chart = null;
 var dataPoints = [];
 
 function chartContainer() {
 
-var dps = []; // dataPoints
-var chart = new CanvasJS.Chart("chartContainer", {
-	title :{
-		text: "Dynamic Data"
-	},
-	axisY: {
-		includeZero: false
-	},      
+chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light1",
+	title: {
+        text: "Total de sensores ativos"
+        
+    },
+    axisY: {
+		title: "",
+		titleFontSize: 24
+	},  
 	data: [{
-		type: "line",
-		dataPoints: dps
+		indexLabelFontSize: 16,
+
+        type: "column",
+		yValueFormatString: "##0\" \"",
+            indexLabel: " {y}",
+            dataPoints: [{
+                
+
+                label: "temperatura",
+
+                y: 1,
+                color: "#2196F3",
+
+			},
+			
+			
+            {
+                
+
+                label: "luz",
+
+                y: 2,
+                color: "#2196F3",
+
+			},
+			{
+                
+
+                label: "movimento",
+
+                y: 2,
+                color: "#2196F3",
+
+			},
+			{
+                
+
+                label: "fumo",
+
+                y: 2,
+                color: "#2196F3",
+
+			},
+			{
+                
+
+                label: "Outros",
+
+                y: 2,
+                color: "#2196F3",
+
+            }]
 	}]
 });
 
-var xVal = 0;
-var yVal = 100; 
-var updateInterval = 1000;
-var dataLength = 20; // number of dataPoints visible at any point
 
-var updateChart = function (count) {
 
-	count = count || 1;
-
-	for (var j = 0; j < count; j++) {
-		yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
-		dps.push({
-			x: xVal,
-			y: tempe()  ,
-		});
-		xVal++;
-	}
-
-	if (dps.length > dataLength) {
-		dps.shift();
-	}
-
-	chart.render();
-};
-
-updateChart(dataLength);
-setInterval(function(){updateChart()}, updateInterval);
-
+	
+    chart.render(); 
 }
