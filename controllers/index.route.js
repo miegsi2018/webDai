@@ -24,24 +24,42 @@ router.get('/home', function(request, response) {
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
   var id = request.user.email;
- 
-  req.get('http://localhost:8080/view/' + id, function(error, response, body) {
+  var final = 0;
+  req.get('http://localhost:8080/utilizador', function(error, response, body) {
     var jsonData = JSON.parse(body);
    
     console.log('error:', error);
     console.log('statusCode:', response && response.statusCode);
-    console.log('body:',jsonData );
-    for (var i = 0; i < jsonData.length; i++) {
-      var counter = jsonData[i];
-      console.log(counter.id_casa);
-  }
+
+  for(var i = 0; i < jsonData.length; i++){
+    var oi =0; 
+    if(jsonData[i].email = id ){
+    var u = i;
+    }
+
+    }
+
+    final = oi;
+
+    oi = jsonData[u].email
+    console.log(oi);
+   
     
   });
+
+
+
+
+
+
+  console.log("teste" + final)
+    
  
 
 
   response.set("Content-Type", "text/html");
   response.render('./index', {
+    id : id,
 
 
   });
