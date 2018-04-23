@@ -17,55 +17,56 @@ router.get('/', function(request, response) {
 
 
 });
+req.get('http://localhost:8080/utilizador', function(error, response, body) {
 
-router.get('/home', function(request, response) {
+var jsonData = JSON.parse(body);
+ 
+  console.log('error:', error);
+  console.log('statusCode:', response && response.statusCode);
+
+
+
+ 
+  
+router.get('/home', function(request, response, body) {
   //console.log(request.isAuthenticated());
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
   var id = request.user.email;
-  var final = 0;
-  req.get('http://localhost:8080/utilizador', function(error, response, body) {
-    var jsonData = JSON.parse(body);
-   
-    console.log('error:', error);
-    console.log('statusCode:', response && response.statusCode);
 
-  for(var i = 0; i < jsonData.length; i++){
-    var oi =0; 
-    if(jsonData[i].email = id ){
-    var u = i;
-    }
 
-    }
 
-    final = oi;
+for(var i = 0; i < jsonData.length; i++){
 
-    oi = jsonData[u].email
-    console.log(oi);
-   
-    
-  });
+  if(jsonData[i].email = id ){
+  var u = i;
+ 
 
 
 
 
 
 
-  console.log("teste" + final)
-    
+
+  console.log("teste" + jsonData[u].email)
  
 
 
   response.set("Content-Type", "text/html");
   response.render('./index', {
     id : id,
+    jsonData : jsonData,
+    u : u
 
 
   });
+}
 
+}
 
 });
+});
+
 
 router.get('/registo', function(request, response) {
   //console.log(request.isAuthenticated());
