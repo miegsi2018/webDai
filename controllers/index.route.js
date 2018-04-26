@@ -17,54 +17,38 @@ router.get('/', function(request, response) {
 
 
 });
-req.get('http://localhost:8080/utilizador', function(error, response, body) {
 
-/* var jsonData = JSON.parse(body); */
- //
-  // console.log('error:', error);
-  // console.log('statusCode:', response && response.statusCode);
-  //
-  //
-  //
-/*   */
-  
 router.get('/home', function(request, response, body) {
   //console.log(request.isAuthenticated());
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var id = request.user.email;
 
+  req.get('http://localhost:8080/utilizador', function(error, response, body) {
+
+    /* var jsonData = JSON.parse(body); */
+     //
+      // console.log('error:', error);
+      // console.log('statusCode:', response && response.statusCode);
+      //
+      //
+      //
+    /*   */
+    });
 
 
-for(var i = 0; i < jsonData.length; i++){
-
-  if(jsonData[i].email = id ){
-  var u = i;
- 
-
-
-
-
-
-
-
-  console.log("teste" + jsonData[u].email)
  
 
 
   response.set("Content-Type", "text/html");
   response.render('./index', {
     id : id,
-    jsonData : jsonData,
-    u : u
+
 
 
   });
-}
 
-}
 
-});
 });
 
 
