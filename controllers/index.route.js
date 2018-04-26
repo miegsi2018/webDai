@@ -19,14 +19,14 @@ router.get('/', function(request, response) {
 });
 req.get('http://localhost:8080/utilizador', function(error, response, body) {
 
-var jsonData = JSON.parse(body);
- 
-  console.log('error:', error);
-  console.log('statusCode:', response && response.statusCode);
-
-
-
- 
+/* var jsonData = JSON.parse(body); */
+ //
+  // console.log('error:', error);
+  // console.log('statusCode:', response && response.statusCode);
+  //
+  //
+  //
+/*   */
   
 router.get('/home', function(request, response, body) {
   //console.log(request.isAuthenticated());
