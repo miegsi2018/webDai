@@ -83,44 +83,22 @@ router.post('/registo', function(request, response) {
 
 router.post('/', function(request, response) {
 
-  model.areValidCredentials(request.body.email, request.body.password, function(areValid) {
-    if (areValid) {
-      //Create the login session
+  var data = {
+    'email': request.body.email,
+    'password': request.body.password
+  }
 
-      request.login(request.body.email, function(err) {
+  if(req.post('http://localhost:8080/login', {form: data})){
+    request.login(request.body.email, function(err) {
 
-        response.redirect('/home');
-      });
-    } else {
-      response.json({
-        error: "Updated Successfully",
-        status: 400
-      });
-    }
-  });
+      response.redirect('/home');
+    });
+  } else {
+    response.json({
+      error: "Updated Successfully",
+      status: 400
+    });
+  }
 });
-
-
-/*
-router.post('/', function(request, response) {
-		var errors = request.validationErrors();
-		
-		if (errors) {
-			response.render('login', { errors: errors });
-			return;
-		}
-		model.areValidCredentials(request.body.email, request.body.password, function(areValid) {
-			if (areValid) {
-				//Create the login session
-				request.login(request.body.email, function(err) {
-					response.redirect('/home');
-				});		
-			}else{
-				response.render('login', { errors: [
-					{ msg: 'Invalid credentials provided' }
-				]});
-			}
-		});
-});*/
 
 module.exports = router;
