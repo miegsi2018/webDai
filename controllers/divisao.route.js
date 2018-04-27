@@ -47,7 +47,7 @@ router.get('/:id_divisao', function(request, response){
         console.log('MQTT IS WORKING' + ' ' + 2)
 
         for (var e of divisoes) {
-          client.subscribe('dai/' + e.sensor)
+          client.subscribe('data/' + e.sensor)
         }
         client.publish('presence', 'Hello mqtt')
 
@@ -58,7 +58,7 @@ router.get('/:id_divisao', function(request, response){
     } else {
       client.on('connect', function() {
         console.log('MQTT IS WORKING' + ' ' + 2)
-        client.subscribe('dai/' + divisoes[0].sensor)
+        client.subscribe('data/' + divisoes[0].sensor)
         client.publish('presence', 'Hello mqtt')
       })
     }
@@ -71,7 +71,10 @@ router.get('/:id_divisao', function(request, response){
         console.log(`Received message: '${message}'`);
         socket.emit(topic, message.toString());
         var labels = JSON.parse(message);
-        console.log(labels)
+        //console.log(labels)
+
+        console.log( labels.sensor)
+        
 
 
 
