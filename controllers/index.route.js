@@ -4,6 +4,7 @@ const model = require('../models/user.model');
 const swal = require('sweetalert2');
 const mqtt = require('mqtt');
 const req = require('request');
+var userData;
 
 
 
@@ -23,31 +24,20 @@ router.get('/home', function(request, response, body) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var id = request.user.email;
-
-  req.get('http://localhost:8080/utilizador', function(error, response, body) {
-
-    /* var jsonData = JSON.parse(body); */
-     //
-      // console.log('error:', error);
-      // console.log('statusCode:', response && response.statusCode);
-      //
-      //
-      //
-    /*   */
+  req.get('http://localhost:8080/utilizador', function(error, resp, body) {
+    jsonData = JSON.parse(body);
+    console.log(jsonData[1]);
+    for(var i = 0; i < jsonData.length; i++){
+      if(jsonData[i].email = id ){
+   userData = jsonData[i];
+      }
+      }
+    response.set("Content-Type", "text/html");
+    response.render('./index', {
+      id :id,
+      userData: userData
     });
-
-
- 
-
-
-  response.set("Content-Type", "text/html");
-  response.render('./index', {
-    id : id,
-
-
-
   });
-
 
 });
 

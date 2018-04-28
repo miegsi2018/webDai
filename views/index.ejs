@@ -1,38 +1,12 @@
 
 <% include partials/header %>        
 <script>
-  var body;
-function teste(){
-  {
-var id = "<%= id %>";
-$.get("http://localhost:8080/utilizador", function(data)
-{
-  var i = 0;
-
-for(var i = 0; i < data.length; i++){
-if(data[i].email = id ){
-var u = i;
-}
-}
-body = data[u];
-  alert("Data Loaded: " + data[u].email   );
-}, "json");
-
-
-}
-return body;
-
   
-}
-function letra(){
-  $('#oi').text("Número total de bilhetes: " + body);
-}
 
 function start(){
    
     chartContainer();
-    teste();
-    letra();
+
 }
 window.onload = start;
 </script>
@@ -58,6 +32,7 @@ window.onload = start;
                   <div class="col-xs-7">
                     <div class="numbers">
                       <p>Total de Sensores</p>
+                      <%= userData.email %>
            
                       21
                     </div>
