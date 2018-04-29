@@ -53,26 +53,56 @@ router.get('/registo', function(request, response) {
 
 router.post('/registo', function(request, response) {
   var errors = request.validationErrors();
-  if (errors) {
-    response.render('registo', {
-      isNew: true,
-      user: {},
-      errors: errors
-    });
-  } else {
-    var data = {
-      'username': request.body.username,
-      'password': request.body.password,
-      'email': request.body.email
-    };
-    model.create(data, function() {
-      response.redirect('/profile');
-    });
-  }
+
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+  var options = {
+    uri: 'http://localhost:8080/utilizador',
+    method: 'POST',
+    json : {
+      "username": request.body.username,
+      "password": request.body.password,
+      "email": request.body.email,
+      "type": "user"
+    }
+  };
+
+  req(options, function (error, response, body){  });
+  
+  response.redirect('/');
 });
 
 router.post('/', function(request, response) {
+  /*
+  var verifieduser;
 
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+  var options = {
+    uri: 'http://localhost:8080/login',
+    method: 'POST',
+    json : {
+      "email": request.body.email
+    }
+  };
+  
+  req(options, function (error, response, body){ 
+    if(body.password == request.body.password){
+      verifieduser = true;
+    }else{
+      verifieduser = false;
+    }
+  });
+
+  if(verifieduser == true){
+    request.login(request.body.email, function(err){
+      response.redirect('/home');
+    });
+  }
+
+*/
   var data = {
     'email': request.body.email,
     'password': request.body.password
