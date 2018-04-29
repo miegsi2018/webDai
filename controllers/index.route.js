@@ -68,14 +68,14 @@ router.post('/registo', function(request, response) {
     }
   };
 
-  req(options, function (error, response, body){  });
+  req(options, function (error, resp, body){ 
+    response.redirect('/');
+  });
   
   response.redirect('/');
 });
 
 router.post('/', function(request, response) {
-  /*
-  var verifieduser;
 
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -84,41 +84,24 @@ router.post('/', function(request, response) {
     uri: 'http://localhost:8080/login',
     method: 'POST',
     json : {
-      "email": request.body.email
+      "email": request.body.email,
+      "password": request.body.password
     }
   };
-  
-  req(options, function (error, response, body){ 
+
+
+  req(options, function (error, resp, body){ 
     if(body.password == request.body.password){
-      verifieduser = true;
+      request.login(body.email, function(err){
+        response.redirect('/home');
+      });
     }else{
-      verifieduser = false;
+      response.json({
+        error: "Updated Successfully",
+        status: 400
+      });
     }
   });
-
-  if(verifieduser == true){
-    request.login(request.body.email, function(err){
-      response.redirect('/home');
-    });
-  }
-
-*/
-  var data = {
-    'email': request.body.email,
-    'password': request.body.password
-  }
-
-  if(req.post('http://localhost:8080/login', {form: data})){
-    request.login(request.body.email, function(err) {
-
-      response.redirect('/home');
-    });
-  } else {
-    response.json({
-      error: "Updated Successfully",
-      status: 400
-    });
-  }
 });
 
 module.exports = router;
