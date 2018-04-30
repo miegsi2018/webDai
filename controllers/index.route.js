@@ -5,6 +5,7 @@ const swal = require('sweetalert2');
 const mqtt = require('mqtt');
 const req = require('request');
 var userData;
+var userData2;
 
 
 
@@ -24,20 +25,35 @@ router.get('/home', function(request, response, body) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var id = request.user.email;
+  
   req.get('http://localhost:8080/utilizador', function(error, resp, body) {
+    req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
     jsonData = JSON.parse(body);
-    console.log(jsonData[1]);
-    for(var i = 0; i < jsonData.length; i++){
+    jsonData2 = JSON.parse(body2);
+    console.log(jsonData);
+    console.log(jsonData2);
+    userData = jsonData;
+    userData2 = jsonData2;
+   for(var i = 0; i < jsonData.length; i++){
       if(jsonData[i].email = id ){
    userData = jsonData[i];
       }
       }
+      for(var i = 0; i < jsonData2.length; i++){
+        if(jsonData2[i].email = id ){
+     userData2 = jsonData2[i];
+        }
+        }
     response.set("Content-Type", "text/html");
     response.render('./index', {
       id :id,
-      userData: userData
+      userData: userData,
+      userData2: userData2,
+      jsonData,
+      jsonData2
     });
   });
+});
 
 });
 
