@@ -1,6 +1,6 @@
 module.exports = {
 	listaDivisao(callback) {
-		var sql = 'SELECT * FROM dwpt_dai.contas_v';
+		var sql = 'SELECT * FROM dwpt_dai.v_contas';
 		global.connection.query(sql, function(error, rows, fields){
 			if (error) throw error;
 			callback(rows);
@@ -8,7 +8,7 @@ module.exports = {
 	},
 
 	readDivisao(id_divisao, callback) {
-		var sql = "SELECT * FROM dwpt_dai.contas_v where id_divisao=?";	
+		var sql = "SELECT * FROM dwpt_dai.v_contas where id_divisao=?";	
 		global.connection.query(sql, [id_divisao], function(error, rows, fields) {
 			if (error) throw error;
 			callback(rows[0]);			
@@ -16,7 +16,7 @@ module.exports = {
 	},
 
 	readEmail(email, callback) {
-		var sql = 'SELECT * FROM dwpt_dai.contas_v where email=?';
+		var sql = 'SELECT * FROM dwpt_dai.v_contas where email=?';
 		global.connection.query(sql, [email], function(error, rows, fields) {
 		  if (error) throw error;
 		  callback(rows);
