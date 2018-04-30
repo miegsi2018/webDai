@@ -63,7 +63,7 @@ var casa = [];
 });
 
 
-router.get('/home/ <%= casa[i] %>', function(request, response, body) {
+router.get('/home/:casa[i]', function(request, response, body) {
   //console.log(request.isAuthenticated());
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
