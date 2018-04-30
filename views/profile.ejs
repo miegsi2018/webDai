@@ -3,6 +3,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
+                    <% for (var u of jsonData) { %>
                 <div class="col-lg-4 col-md-5" onclick="location.href='/profile/create';">
                     <div class="card card-user">
                         <div class="image">
@@ -10,8 +11,9 @@
                         </div>
                         <div class="content">
                             <div class="author">
-                                <img class="avatar border-white" src="/public/assets/img/faces/face-2.jpg" alt="..."/>
-                                <h4 class="title">Utilizador<br></h4>
+                                    <img class="avatar border-white" src="/public/assets/img/admin_logo.png" alt="..."/>
+                                <h3 class="title"> <%= u.username %> <br></h3>
+                                <h4  style="margin-left: 0px; display: inline;">type:<h5 style="display: inline-block;">&nbsp&nbsp&nbsp&nbsp <%= u.type %></h5></h4>
                             </div>
                             <hr>
                             <p class="description text-center">
@@ -25,36 +27,15 @@
                         <hr>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-5" onclick="location.href='/profile/create';">
-                    <div class="card card-user">
-                        <div class="image">
-                            <img src="/public/assets/img/background1.jpeg" alt="..."/>
-                        </div>
-                        <div class="content">
-                            <div class="author">
-                                <img class="avatar border-white" src="/public/assets/img/faces/face-3.jpg" alt="..."/>
-                                <h4 class="title">Utilizador<br /></h4>
-                            </div>
-                            <hr>
-                            <p class="description text-center">
-                                Permissões:<br>
-                                Sala: <small> temperatura: <i class="fas fa-ban" style="color: red;"></i>
-                                    Luzes: <i class="fas fa-check" style="color: green;"></i><br>
-                                Quarto 1: <small> temperatura: <i class="fas fa-check" style="color: green;"></i>
-                                    Luzes: <i class="fas fa-ban" style="color: red;"></i></small>
-                            </p>
-                        </div>
-                        <hr>
-                            
-                    </div>
-                </div>
-                
+               
+                <% } %> 
             </div>
             <div id="container-floating">
                 <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" onclick="location.href='/profile/create';">
                   <p class="plus">+</p>
                   
                 </div>
+                
             </div>
         </div>
     </div>
