@@ -1,18 +1,36 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../models/divisao.model');
-var mqtt = require('mqtt')
+var mqtt = require('mqtt');
+const req = require('request');
+var userData;
+var userData2;
 
-router.get('/', function(request, response){
+router.get('/:casa', function(request, response){
   var id = request.user.email;
-  
-  model.readEmail(id, function(divisoes){  
+  var casa1 = request.params.casa;
+	
+  req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
+  jsonData2 = JSON.parse(body2)
+  console.log(jsonData2);
+
+  userData2 = jsonData2;
+    for(var i = 0; i < jsonData2.length; i++){
+    if(jsonData2[i].email = id ){
+   userData2 = jsonData2[i];
+    }
+    }
     response.set("Content-Type", "text/html");
 	  response.render('./divisao', {
-      divisoes : divisoes
-	  })
-  })
-});
+
+      id :id,
+			casa1: casa1,
+		  userData2: userData2,
+		  jsonData2: jsonData2
+		});
+	  });
+  });
+  
 router.get('/add', function(request, response){
   //console.log(request.isAuthenticated());
 
@@ -28,10 +46,20 @@ router.get('/add', function(request, response){
 });
 
 
-router.get('/:id_divisao', function(request, response){
+router.get('/:id_division/:casa', function(request, response){
   var id = request.user.email;
   var sensoresUser = new Array();
-  model.readEmail(id, function(divisoes) {
+  var casa1 = request.params.casa;
+  req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
+    jsonData2 = JSON.parse(body2)
+    console.log(jsonData2);
+  
+    userData2 = jsonData2;
+      for(var i = 0; i < jsonData2.length; i++){
+      if(jsonData2[i].email = id ){
+     userData2 = jsonData2[i];
+      }
+      }
 
     var client = mqtt.connect('mqtt://94.61.10.49:80', {
       username: "dai",
@@ -82,14 +110,17 @@ router.get('/:id_divisao', function(request, response){
       });
     });
 
-  model.readDivisao(request.params.id_divisao, function(divisao){
+
 
       response.set("Content-Type", "text/html");
       response.render('./sensor', {
-        divisoes : divisoes
-      })
-  })
-})
+        id :id,
+        casa1: casa1,
+        userData2: userData2,
+        jsonData2: jsonData2
+   
+  });
+});
 });
 
 
