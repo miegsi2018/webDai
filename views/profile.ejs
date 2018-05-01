@@ -3,8 +3,10 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                    <% for (var u of jsonData) { %>
-                <div class="col-lg-4 col-md-5" onclick="location.href='/profile/create';">
+                    <% for (var u of jsonData2) { %>
+                    <% if (u.house === casa1) { %>
+                        
+                <div class="col-lg-4 col-md-5" onclick="location.href='/profile/<%= casa1 %>/create';">
                     <div class="card card-user">
                         <div class="image">
                             <img src="/public/assets/img/background1.jpeg" alt="..."/>
@@ -28,6 +30,7 @@
                     </div>
                 </div>
                
+                <% } %> 
                 <% } %> 
             </div>
             <div id="container-floating">

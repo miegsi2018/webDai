@@ -27,38 +27,22 @@ router.get('/house', function(request, response, body) {
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var id = request.user.email;
   
-  req.get('http://localhost:8080/utilizador', function(error, resp, body) {
-    req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
-    jsonData = JSON.parse(body);
+  req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
     jsonData2 = JSON.parse(body2);
-    console.log(jsonData);
-    console.log(jsonData2);
-    userData = jsonData;
     userData2 = jsonData2;
     var userData2= [];
 var casa = [];
-   for(var i = 0; i < jsonData.length; i++){
-      if(jsonData[i].email = id ){
-   userData = jsonData[i];
-      }
-      }
       for(var i = 0; i < jsonData2.length; i++){
         if(jsonData2[i].email === id ){
-     userData2= userData2.concat(jsonData2[i]);
  casa.push(jsonData2[i].house);
         }
         }
     response.set("Content-Type", "text/html");
     response.render('./house', {
       id :id,
-      userData: userData,
-      userData2: userData2,
-      jsonData: jsonData,
-      jsonData2: jsonData2, 
       casa :  casa
     });
   });
-});
 
 });
 
@@ -68,38 +52,28 @@ router.get('/home/:casa', function(request, response, body) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var id = request.user.email;
-  
+  var casa1 = request.params.casa;
+
   req.get('http://localhost:8080/utilizador', function(error, resp, body) {
-    req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
+  
     jsonData = JSON.parse(body);
-    jsonData2 = JSON.parse(body2);
-    console.log(jsonData);
-    console.log(jsonData2);
+ 
     userData = jsonData;
-    userData2 = jsonData2;
-    var userData2= [];
-var casa = [];
+   
    for(var i = 0; i < jsonData.length; i++){
       if(jsonData[i].email = id ){
    userData = jsonData[i];
       }
       }
-      for(var i = 0; i < jsonData2.length; i++){
-        if(jsonData2[i].email === id ){
-     userData2= userData2.concat(jsonData2[i]);
- casa.push(jsonData2[i].house);
-        }
-        }
+      
     response.set("Content-Type", "text/html");
     response.render('./index', {
       id :id,
       userData: userData,
-      userData2: userData2,
       jsonData: jsonData,
-      jsonData2: jsonData2, 
-      casa :  casa
+      casa1 :  casa1
     });
-  });
+
 });
 
 });

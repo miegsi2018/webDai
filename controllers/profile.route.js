@@ -6,22 +6,16 @@ const req = require('request');
 var userData;
 var userData2;
 
-router.get('/', function(request, response){
+router.get('/:casa', function(request, response){
 	//console.log(request.isAuthenticated());
 	var id = request.user.email;
-	req.get('http://localhost:8080/utilizador', function(error, resp, body) {
+	var casa1 = request.params.casa;
+	
 		req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
-		jsonData = JSON.parse(body);
-		jsonData2 = JSON.parse(body2);
-		console.log(jsonData);
+		jsonData2 = JSON.parse(body2)
 		console.log(jsonData2);
-		userData = jsonData;
+
 		userData2 = jsonData2;
-	   for(var i = 0; i < jsonData.length; i++){
-		  if(jsonData[i].email = id ){
-	   userData = jsonData[i];
-		  }
-		  }
 		  for(var i = 0; i < jsonData2.length; i++){
 			if(jsonData2[i].email = id ){
 		 userData2 = jsonData2[i];
@@ -30,33 +24,43 @@ router.get('/', function(request, response){
 		response.set("Content-Type", "text/html");
 		response.render('./profile', {
 		  id :id,
-		  userData: userData,
+			casa1: casa1,
 		  userData2: userData2,
-		  jsonData : jsonData,
 		  jsonData2: jsonData2
 		});
 	  });
 	});
 	
-	});
+
 	
 
 
 
-router.get('/create', function(request, response){
+router.get('/:casa/create', function(request, response){
 	//console.log(request.isAuthenticated());
 	var id = request.user.email;
+	var casa1 = request.params.casa;
+	req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
+		jsonData2 = JSON.parse(body2)
+		console.log(jsonData2);
 
-	divisaoModel.readEmail(id, function(divisoes){  
-		sensorModel.listaSensor(function(sensor) {
+		userData2 = jsonData2;
+		  for(var i = 0; i < jsonData2.length; i++){
+			if(jsonData2[i].email = id ){
+		 userData2 = jsonData2[i];
+			}
+			}
 	response.set("Content-Type", "text/html");
 	response.render('./create_user', {
-		divisoes : divisoes,
-		sensor : sensor
-	})
-})
-})
-
-
+		id :id,
+		casa1: casa1,
+	  userData2: userData2,
+	  jsonData2: jsonData2
+	});
+  });
 });
+
+
+
+
 module.exports = router; 

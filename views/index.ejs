@@ -1,54 +1,10 @@
 
 <% include partials/header %>        
 <script>
-  var totalUtilizadores = 0;
-  var totalUserN = 0;
- var totalAdmin = 0;
-                            
-                        function totalUti(){
-                          totalUtilizadores = 0;
-                          <% for (var u of jsonData) { %>
-                            
-                              
-                                
-
-                                totalUtilizadores = totalUtilizadores + 1;
-
-                                <% } %>                            
-                                return totalUtilizadores;
-                 
-
-                        }
-                     
-  function totalUtilizadoresAdmin(){  
-    totalAdmin = 0;
-
-                            <% for (var u of jsonData) { %>
-                            <% if (u.type === 'admin') { %>
-                              
-                                
-
-                                totalAdmin = totalAdmin + 1;
-
-                                <% } %> 
-                                <% } %> 
-
-                                return totalAdmin;
-
-                        }
-                        function totalUser(){
-                          totalUserN= totalUtilizadores - totalAdmin;
-                                return totalUserN;
-                 
-
-                        }
-
 
 function start(){
 
-totalUti();
-totalUtilizadoresAdmin();
-totalUser();
+
     chartContainer();
 
 }
@@ -76,6 +32,7 @@ window.onload = start;
                     <div class="numbers">
                       <p>Total de Sensores</p>
                       21
+                      <%= casa1 %>
                     </div>
                   </div>
                 </div>
