@@ -16,9 +16,9 @@ module.exports = {
 	},	
 
 	createSensor(data, callback) {
-		var sql = "INSERT INTO dwpt_dai.sensor (id_sensor, id_tipo) VALUES (?,?)"; 
+		var sql = "INSERT INTO dwpt_dai.sensor (id_sensor, type) VALUES (?,?)"; 
 		global.connection.query(
-			sql, [data.id_sensor, data.id_tipo], function(error, rows, fields) {
+			sql, [data.id_sensor, data.type], function(error, rows, fields) {
 			if (error) throw error;
 			callback(rows[0]);			
 		});

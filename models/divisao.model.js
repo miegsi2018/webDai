@@ -7,9 +7,9 @@ module.exports = {
 		});
 	},
 
-	readDivisao(id_divisao, callback) {
-		var sql = "SELECT * FROM dwpt_dai.v_contas where id_divisao=?";	
-		global.connection.query(sql, [id_divisao], function(error, rows, fields) {
+	readDivisao(id_division, callback) {
+		var sql = "SELECT * FROM dwpt_dai.v_contas where id_division=?";	
+		global.connection.query(sql, [id_division], function(error, rows, fields) {
 			if (error) throw error;
 			callback(rows[0]);			
 		});
@@ -24,18 +24,18 @@ module.exports = {
 	},	
 
 	createDivisao(data, callback) {
-		var sql = "INSERT INTO dwpt_dai.divisao (id_casa, nome, id_sensor) VALUES (?,?,?)"; 
+		var sql = "INSERT INTO dwpt_dai.division (id_house, name, sensor_id) VALUES (?,?,?)"; 
 		global.connection.query(
-			sql, [data.id_casa, data.nome, data.id_sensor], function(error, rows, fields) {
+			sql, [data.id_house, data.name, data.sensor_id], function(error, rows, fields) {
 			if (error) throw error;
 			callback(rows[0]);			
 		});
 	},
 
-	updateDivisao(id_divisao, data, callback) {
-		var sql = "UPDATE divisao SET id_casa=?,nome=?,id_sensor=? WHERE id_divisao=?"; 
+	updateDivisao(id_division, data, callback) {
+		var sql = "UPDATE division SET id_house=?,name=?,sensor_id=? WHERE id_division=?"; 
 		global.connection.query(
-			sql, [data.id_casa, data.nome, id_divisao], function(error, rows, fields) {
+			sql, [data.id_house, data.name, data.sendor_id, id_division], function(error, rows, fields) {
 			if (error) throw error;
 			callback(rows[0]);			
 		});
