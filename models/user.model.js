@@ -1,6 +1,6 @@
 module.exports = {
   list(callback) {
-    var sql = 'SELECT * FROM dwpt_dai.utilizador';
+    var sql = 'SELECT * FROM dwpt_dai.users';
     global.connection.query(sql, function(error, rows, fields) {
       if (error) throw error;
       callback(rows);
@@ -15,7 +15,7 @@ module.exports = {
     });
   },
   read(email, callback) {
-    var sql = "SELECT * from utilizador where email=?";
+    var sql = "SELECT * from users where email=?";
     global.connection.query(sql, [email], function(error, rows, fields) {
       if (error) throw error;
       callback(rows[0]);
@@ -24,7 +24,7 @@ module.exports = {
 
 
   create(data, callback) {
-    var sql = "INSERT INTO utilizador (username, password, email) VALUES (?,?,?)";
+    var sql = "INSERT INTO users (username, password, email) VALUES (?,?,?)";
     global.connection.query(
       sql, [data.username, data.password, data.email],
       function(error, rows, fields) {

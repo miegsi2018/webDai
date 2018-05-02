@@ -4,6 +4,9 @@ const model = require('../models/user.model');
 const swal = require('sweetalert2');
 const mqtt = require('mqtt');
 const req = require('request');
+var userData;
+var userData2= [];
+var casa = [];
 
 
 
@@ -17,54 +20,62 @@ router.get('/', function(request, response) {
 
 
 });
-req.get('http://localhost:8080/utilizador', function(error, response, body) {
 
-/* var jsonData = JSON.parse(body); */
- //
-  // console.log('error:', error);
-  // console.log('statusCode:', response && response.statusCode);
-  //
-  //
-  //
-/*   */
-  
-router.get('/home', function(request, response, body) {
+router.get('/house', function(request, response, body) {
   //console.log(request.isAuthenticated());
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var id = request.user.email;
-
-
-
-for(var i = 0; i < jsonData.length; i++){
-
-  if(jsonData[i].email = id ){
-  var u = i;
- 
-
-
-
-
-
-
-
-  console.log("teste" + jsonData[u].email)
- 
-
-
-  response.set("Content-Type", "text/html");
-  response.render('./index', {
-    id : id,
-    jsonData : jsonData,
-    u : u
-
-
+  
+  req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
+    jsonData2 = JSON.parse(body2);
+    userData2 = jsonData2;
+    var userData2= [];
+var casa = [];
+      for(var i = 0; i < jsonData2.length; i++){
+        if(jsonData2[i].email === id ){
+ casa.push(jsonData2[i].house);
+        }
+        }
+    response.set("Content-Type", "text/html");
+    response.render('./house', {
+      id :id,
+      casa :  casa
+    });
   });
-}
-
-}
 
 });
+
+
+router.get('/home/:casa', function(request, response, body) {
+  //console.log(request.isAuthenticated());
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  var id = request.user.email;
+  var casa1 = request.params.casa;
+
+  req.get('http://localhost:8080/utilizador', function(error, resp, body) {
+  
+    jsonData = JSON.parse(body);
+ 
+    userData = jsonData;
+   
+   for(var i = 0; i < jsonData.length; i++){
+      if(jsonData[i].email = id ){
+   userData = jsonData[i];
+      }
+      }
+      
+    response.set("Content-Type", "text/html");
+    response.render('./index', {
+      id :id,
+      userData: userData,
+      jsonData: jsonData,
+      casa1 :  casa1
+    });
+
+});
+
 });
 
 
@@ -79,35 +90,49 @@ router.get('/registo', function(request, response) {
 
 router.post('/registo', function(request, response) {
   var errors = request.validationErrors();
-  if (errors) {
-    response.render('registo', {
-      isNew: true,
-      user: {},
-      errors: errors
-    });
-  } else {
-    var data = {
-      'username': request.body.username,
-      'password': request.body.password,
-      'email': request.body.email
-    };
-    model.create(data, function() {
-      response.redirect('/profile');
-    });
-  }
+
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+  var options = {
+    uri: 'http://localhost:8080/utilizador',
+    method: 'POST',
+    json : {
+      "username": request.body.username,
+      "password": request.body.password,
+      "email": request.body.email,
+      "type": "user"
+    }
+  };
+
+  req(options, function (error, resp, body){ 
+    response.redirect('/');
+  });
+  
+  response.redirect('/');
 });
 
 router.post('/', function(request, response) {
 
-  model.areValidCredentials(request.body.email, request.body.password, function(areValid) {
-    if (areValid) {
-      //Create the login session
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-      request.login(request.body.email, function(err) {
+  var options = {
+    uri: 'http://localhost:8080/login',
+    method: 'POST',
+    json : {
+      "email": request.body.email,
+      "password": request.body.password
+    }
+  };
 
-        response.redirect('/home');
+
+  req(options, function (error, resp, body){ 
+    if(body.password == request.body.password){
+      request.login(body.email, function(err){
+        response.redirect('/house');
       });
-    } else {
+    }else{
       response.json({
         error: "Updated Successfully",
         status: 400
@@ -115,28 +140,5 @@ router.post('/', function(request, response) {
     }
   });
 });
-
-
-/*
-router.post('/', function(request, response) {
-		var errors = request.validationErrors();
-		
-		if (errors) {
-			response.render('login', { errors: errors });
-			return;
-		}
-		model.areValidCredentials(request.body.email, request.body.password, function(areValid) {
-			if (areValid) {
-				//Create the login session
-				request.login(request.body.email, function(err) {
-					response.redirect('/home');
-				});		
-			}else{
-				response.render('login', { errors: [
-					{ msg: 'Invalid credentials provided' }
-				]});
-			}
-		});
-});*/
 
 module.exports = router;

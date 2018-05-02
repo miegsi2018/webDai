@@ -3,15 +3,24 @@ const router = express.Router();
 const model = require('../models/user.model');
 const mqtt = require('mqtt')
 const sensorModel = require('../models/sensor.model');
+const req = require('request');
 
 router.get('/', function(request, response){
 	//console.log(request.isAuthenticated());
-	
-	response.set("Content-Type", "text/html");
-	response.render('./admin', {
-	
-	})
-
+	var id = request.user.email;
+	req.get('http://localhost:8080/utilizador', function(error, resp, body) {
+		req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
+		jsonData = JSON.parse(body);
+		jsonData2 = JSON.parse(body2);
+		console.log(jsonData);
+		console.log(jsonData2);
+		response.set("Content-Type", "text/html");
+		response.render('./admin', {
+		  jsonData,
+		  jsonData2
+		});
+	  });
+	});
 	
 	
 });

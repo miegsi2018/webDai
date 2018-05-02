@@ -8,7 +8,7 @@ chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	theme: "light1",
 	title: {
-        text: "Total de sensores ativos"
+        text: "Total de utilizadores"
         
     },
     axisY: {
@@ -24,9 +24,9 @@ chart = new CanvasJS.Chart("chartContainer", {
             dataPoints: [{
                 
 
-                label: "temperatura",
+                label: "Admin",
 
-                y: 1,
+                y: totalUtilizadoresAdmin(),
                 color: "#2196F3",
 
 			},
@@ -35,39 +35,12 @@ chart = new CanvasJS.Chart("chartContainer", {
             {
                 
 
-                label: "luz",
+                label: "Users",
 
-                y: 2,
+                y: totalUser(),
                 color: "#2196F3",
 
-			},
-			{
-                
-
-                label: "movimento",
-
-                y: 2,
-                color: "#2196F3",
-
-			},
-			{
-                
-
-                label: "fumo",
-
-                y: 2,
-                color: "#2196F3",
-
-			},
-			{
-                
-
-                label: "Outros",
-
-                y: 2,
-                color: "#2196F3",
-
-            }]
+			}]
 	}]
 });
 

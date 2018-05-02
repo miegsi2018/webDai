@@ -1,38 +1,12 @@
 
 <% include partials/header %>        
 <script>
-  var body;
-function teste(){
-  {
-var id = "<%= id %>";
-$.get("http://localhost:8080/utilizador", function(data)
-{
-  var i = 0;
-
-for(var i = 0; i < data.length; i++){
-if(data[i].email = id ){
-var u = i;
-}
-}
-body = data[u];
-  alert("Data Loaded: " + data[u].email   );
-}, "json");
-
-
-}
-return body;
-
-  
-}
-function letra(){
-  $('#oi').text("Número total de bilhetes: " + body);
-}
 
 function start(){
-   
+
+
     chartContainer();
-    teste();
-    letra();
+
 }
 window.onload = start;
 </script>
@@ -42,8 +16,7 @@ window.onload = start;
 
   <div class="content">
     <div class="container-fluid">
-      <div class="row">
-
+   
         <div class="row">
           <div class="col-lg-6 col-sm-6">
             <div class="card">
@@ -58,8 +31,8 @@ window.onload = start;
                   <div class="col-xs-7">
                     <div class="numbers">
                       <p>Total de Sensores</p>
-             <%= jsonData[u].email %>
                       21
+                      <%= casa1 %>
                     </div>
                   </div>
                 </div>
@@ -79,6 +52,7 @@ window.onload = start;
                   <div class="col-xs-7">
                     <div class="numbers">
                       <p>Total de divisões</p>
+                      <p id="utiTotal"></p>
                       7
                     </div>
                   </div>
@@ -87,101 +61,150 @@ window.onload = start;
               </div>
             </div>
           </div>
-          <div class="col-lg-6 col-sm-6">
-            <div class="card">
-              <div class="card">
-                <div class="content">
-
-
-
-                  <div class="dropdown-heading" role="tab" id="heading-1">
-
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1"
-                      aria-expanded="true" aria-controls="collapse-1">
-
-
-                      <div class="row">
-                        <div class="col-xs-5">
-                          <div class="icon-big icon-danger text-center">
-                            <i class="fa fa-home" style="color: LightSlateGray"></i>
-                          </div>
-                        </div>
-                        <div class="col-xs-7">
-                          <div class="numbers">
-                            <p>Tempuratura da casa</p>
-
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-
-                  <div id="collapse-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-1">::::::
-                    <div class="panel-body">
-                      <hr>
-                      <p>Total de sensores de temperatura: 2</p>
-                      <p>Temperatura media da casa: 23</p>
-                      <p>Sala: 23</p>
-                      <p>Quarto: 23</p>
-                    </div>
-                  </div>
-
-
-
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 col-sm-6">
-            <div class="card">
-              <div class="card">
-                <div class="content">
-
-
-
-                  <div class="dropdown-heading" role="tab" id="heading-2">
-
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-2"
-                      aria-expanded="true" aria-controls="collapse-2">
-
-
-
-                      <div class="row">
-                        <div class="col-xs-5">
-                          <div class="icon-big icon-danger text-center">
-                            <i class="fa fa-home" style="color: LightSlateGray  ;"></i>
-                          </div>
-                        </div>
-                        <div class="col-xs-7">
-                          <div class="numbers">
-                            <p>Total de sensores em cada divisão</p>
-
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-
-
-                  <div id="collapse-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-2">
-                    <div class="panel-body">
-                      <hr>
-                      <p>Sala: 5 </p>
-                      <p>Quarto: 5</p>
-                    </div>
-                  </div>
-
-
-
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
+
 
         <div class="row">
 
             <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+        </div>
+        <style>
+        .timeline {
+margin-left: 100px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  padding: 0 10px;
+  margin: 0;
+  list-style: none;
+}
+.timeline::before {
+  position: fixed;
+  top: 0;
+
+  padding-right: 11px;
+  border-right: 2px solid #F2F2F2;
+  content: "";
+}
+.timeline__item {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  padding: 10px 0;
+}
+.timeline__step {
+  padding-right: 10px;
+}
+.timeline__step__marker {
+  position: relative;
+  display: table-cell;
+  height: 20px;
+  min-height: 20px;
+  width: 20px;
+  min-width: 20px;
+  border: 4px solid #F2F2F2;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  background-color: white;
+  z-index: 0;
+}
+.timeline__step__marker {
+  border-color: green;
+}
+
+.timeline__time {
+  padding-right: 80px;
+  font-size: 20px;
+}
+.timeline__title {
+  padding-bottom: 26px;
+  font-size: 24px;
+}
+
+
+/* For mobile!
+ */
+@media (max-width: 768px) {
+  .card {
+    max-width: 375;
+  }
+
+  .timeline {
+    padding: 0 35.42857px;
+  }
+  .timeline::before {
+    padding-right: 6.28571px;
+  }
+  .timeline__item {
+    padding: 35.42857px 0;
+  }
+  .timeline__step {
+    padding-right: 35.42857px;
+  }
+  .timeline__step__marker {
+    height: 13.71429px;
+    min-hieght: 13.71429px;
+    width: 13.71429px;
+    min-width: 13.71429px;
+    border-width: 2.28571px;
+  }
+  .timeline__time {
+    padding-right: 72px;
+    font-size: 14.85714px;
+  }
+  .timeline__title {
+    padding-bottom: 14.85714px;
+    font-size: 18.28571px;
+  }
+
+}</style>
+<br>
+        <div class="row" style="margin: 10px">
+               
+                <div class="col-lg-6 col-sm-6">
+                <div class="card">
+                        <ul class="timeline">
+                      <div class="title text-center">
+                          <h2>Ultimas entradas</h2>
+                      </div>
+                          <li class="timeline__item">
+                            <div class="timeline__step">
+                              <div class="timeline__step__marker timeline__step__marker"></div>
+                            </div>
+                            <div class="timeline__time">
+                              5pm
+                            </div>
+                            <div class="timeline__content">
+                              <div class="timeline__title">
+                                New Icons
+                              </div>
+                              
+                            </div>
+                          </li>
+                      
+                          <li class="timeline__item">
+                            <div class="timeline__step">
+                              <div class="timeline__step__marker timeline__step__marker"></div>
+                            </div>
+                            <div class="timeline__time">
+                              4pm
+                            </div>
+                            <div class="timeline__content">
+                              <div class="timeline__title">
+                                Design Stand Up
+                              </div>
+                              
+                            </div>
+                          </li>
+                      
+                          
+                      
+                        </ul>
+                      </div>
+                    </div>
         </div>
 
         <!--
@@ -269,4 +292,3 @@ window.onload = start;
 </div>
 
 
-  <% include partials/footer %>
