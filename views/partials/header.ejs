@@ -78,6 +78,14 @@
                             <p>Divisões</p>
                         </a>
                     </li>
+                    <% if (userData2.type === "admin") {%>
+                        <li>
+                                <a href="/admin">
+                                    <i class="ti-eye"></i>
+                                    <p>admin</p>
+                                </a>
+                            </li>
+                        <%} %>
                 
             </ul>
     	</div>

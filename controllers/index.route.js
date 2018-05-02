@@ -45,6 +45,31 @@ var casa = [];
   });
 
 });
+router.get('/house_create', function(request, response, body) {
+  //console.log(request.isAuthenticated());
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  var id = request.user.email;
+  
+  req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
+
+    jsonData2 = JSON.parse(body2);
+    userData2 = jsonData2;
+    var userData2= [];
+var casa = [];
+      for(var i = 0; i < jsonData2.length; i++){
+        if(jsonData2[i].email === id ){
+ casa.push(jsonData2[i].house);
+        }
+        }
+    response.set("Content-Type", "text/html");
+    response.render('./create_house', {
+      id :id,
+      casa :  casa
+    });
+  });
+
+});
 
 
 router.get('/home/:casa', function(request, response, body) {
@@ -55,6 +80,7 @@ router.get('/home/:casa', function(request, response, body) {
   var casa1 = request.params.casa;
 
   req.get('http://localhost:8080/utilizador', function(error, resp, body) {
+    req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
   
     jsonData = JSON.parse(body);
  
@@ -65,15 +91,28 @@ router.get('/home/:casa', function(request, response, body) {
    userData = jsonData[i];
       }
       }
-      
+      jsonData2 = JSON.parse(body2)
+  console.log(jsonData2);
+
+  userData2 = jsonData2;
+    for(var i = 0; i < jsonData2.length; i++){
+    if(jsonData2[i].email = id ){
+   userData2 = jsonData2[i];
+    }
+    }
+      console.log(userData.type)
+      console.log(userData.email)
     response.set("Content-Type", "text/html");
     response.render('./index', {
       id :id,
       userData: userData,
       jsonData: jsonData,
-      casa1 :  casa1
+      casa1 :  casa1,
+      userData2: userData2,
+		  jsonData2: jsonData2
     });
 
+});
 });
 
 });
