@@ -1,0 +1,110 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.005  000.005: --- VIM STARTING ---
+000.114  000.109: Allocated generic buffers
+000.198  000.084: locale set
+000.201  000.003: clipboard setup
+000.205  000.004: window checked
+000.609  000.404: inits 1
+000.678  000.069: parsing arguments
+000.681  000.003: expanding arguments
+000.702  000.021: shell init
+000.906  000.204: Termcap init
+000.923  000.017: inits 2
+001.082  000.159: init highlight
+001.327  000.169  000.169: sourcing /usr/share/vim/vimfiles/archlinux.vim
+001.364  000.257  000.088: sourcing /etc/vimrc
+003.564  002.130  002.130: sourcing /home/vitor/.vim/autoload/plug.vim
+014.985  000.208  000.208: sourcing /home/vitor/.vim/plugged/vim-javascript/ftdetect/javascript.vim
+015.271  000.061  000.061: sourcing /usr/share/vim/vimfiles/ftdetect/conkyrc.vim
+015.644  009.237  008.968: sourcing /usr/share/vim/vim80/filetype.vim
+015.903  000.082  000.082: sourcing /usr/share/vim/vim80/ftplugin.vim
+016.216  000.127  000.127: sourcing /usr/share/vim/vim80/indent.vim
+018.412  001.466  001.466: sourcing /usr/share/vim/vim80/syntax/syncolor.vim
+018.620  001.985  000.519: sourcing /usr/share/vim/vim80/syntax/synload.vim
+018.666  002.300  000.315: sourcing /usr/share/vim/vim80/syntax/syntax.vim
+019.039  017.647  003.771: sourcing $HOME/.vimrc
+019.045  000.059: sourcing vimrc file(s)
+025.275  005.991  005.991: sourcing /home/vitor/.vim/plugged/nerdcommenter/plugin/NERD_commenter.vim
+025.810  000.399  000.399: sourcing /home/vitor/.vim/plugged/lightline.vim/plugin/lightline.vim
+026.884  001.015  001.015: sourcing /home/vitor/.vim/plugged/YouCompleteMe/plugin/youcompleteme.vim
+027.313  000.184  000.184: sourcing /home/vitor/.vim/plugged/ctrlp.vim/autoload/ctrlp/mrufiles.vim
+027.643  000.691  000.507: sourcing /home/vitor/.vim/plugged/ctrlp.vim/plugin/ctrlp.vim
+028.059  000.231  000.231: sourcing /home/vitor/.vim/plugged/vim-arduino/plugin/vim-arduino.vim
+028.178  000.059  000.059: sourcing /home/vitor/.vim/plugged/matchtagalways/plugin/MatchTagAlways.vim
+028.394  000.169  000.169: sourcing /home/vitor/.vim/plugged/vim-easy-align/plugin/easy_align.vim
+031.447  003.000  003.000: sourcing /home/vitor/.vim/plugged/vim-fugitive/plugin/fugitive.vim
+031.955  000.444  000.444: sourcing /home/vitor/.vim/plugged/vim-surround/plugin/surround.vim
+035.578  001.441  001.441: sourcing /home/vitor/.vim/plugged/vim-jsbeautify/plugin/beautifier.vim
+035.810  000.013  000.013: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/autoloclist.vim
+035.832  000.010  000.010: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/balloons.vim
+035.851  000.008  000.008: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/checker.vim
+035.869  000.008  000.008: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/cursor.vim
+035.888  000.009  000.009: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/highlighting.vim
+035.907  000.009  000.009: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/loclist.vim
+035.924  000.007  000.007: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/modemap.vim
+035.942  000.008  000.008: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/notifiers.vim
+035.960  000.008  000.008: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/registry.vim
+035.978  000.009  000.009: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/signs.vim
+036.523  000.380  000.380: sourcing /home/vitor/.vim/plugged/syntastic/autoload/syntastic/util.vim
+043.974  000.063  000.063: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/autoloclist.vim
+044.049  000.056  000.056: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/balloons.vim
+044.246  000.181  000.181: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/checker.vim
+044.354  000.094  000.094: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/cursor.vim
+044.449  000.081  000.081: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/highlighting.vim
+044.745  000.282  000.282: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/loclist.vim
+044.881  000.095  000.095: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/modemap.vim
+044.948  000.053  000.053: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/notifiers.vim
+045.250  000.289  000.289: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/registry.vim
+045.345  000.078  000.078: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic/signs.vim
+046.152  010.165  008.513: sourcing /home/vitor/.vim/plugged/syntastic/plugin/syntastic.vim
+046.301  000.071  000.071: sourcing /home/vitor/.vim/plugged/YCM-Generator/plugin/ycm-generator.vim
+046.909  000.557  000.557: sourcing /home/vitor/.fzf/plugin/fzf.vim
+047.300  000.090  000.090: sourcing /usr/share/vim/vim80/plugin/getscriptPlugin.vim
+047.602  000.284  000.284: sourcing /usr/share/vim/vim80/plugin/gzip.vim
+047.963  000.341  000.341: sourcing /usr/share/vim/vim80/plugin/logiPat.vim
+048.030  000.045  000.045: sourcing /usr/share/vim/vim80/plugin/manpager.vim
+048.610  000.564  000.564: sourcing /usr/share/vim/vim80/plugin/matchparen.vim
+049.655  001.006  001.006: sourcing /usr/share/vim/vim80/plugin/netrwPlugin.vim
+049.751  000.052  000.052: sourcing /usr/share/vim/vim80/plugin/rrhelper.vim
+049.819  000.043  000.043: sourcing /usr/share/vim/vim80/plugin/spellfile.vim
+050.099  000.244  000.244: sourcing /usr/share/vim/vim80/plugin/tarPlugin.vim
+050.265  000.134  000.134: sourcing /usr/share/vim/vim80/plugin/tohtml.vim
+050.573  000.282  000.282: sourcing /usr/share/vim/vim80/plugin/vimballPlugin.vim
+050.885  000.267  000.267: sourcing /usr/share/vim/vim80/plugin/zipPlugin.vim
+050.893  004.174: loading plugins
+050.982  000.089: loading packages
+051.219  000.129  000.129: sourcing /home/vitor/.vim/plugged/vim/after/plugin/dracula.vim
+051.252  000.141: loading after plugins
+052.064  000.812: inits 3
+052.327  000.263: reading viminfo
+054.618  002.291: setup clipboard
+054.635  000.017: setting raw mode
+054.643  000.008: start termcap
+054.672  000.029: clearing screen
+059.999  000.076  000.076: sourcing /usr/share/vim/vim80/ftplugin/javascript.vim
+060.303  000.050  000.050: sourcing /home/vitor/.vim/plugged/vim-javascript/after/ftplugin/javascript.vim
+060.857  000.378  000.378: sourcing /home/vitor/.vim/plugged/vim-javascript/indent/javascript.vim
+060.942  000.018  000.018: sourcing /usr/share/vim/vim80/indent/javascript.vim
+062.944  001.765  001.765: sourcing /home/vitor/.vim/plugged/vim-javascript/syntax/javascript.vim
+063.083  000.023  000.023: sourcing /usr/share/vim/vim80/syntax/javascript.vim
+064.049  000.702  000.702: sourcing /home/vitor/.vim/plugged/lightline.vim/autoload/lightline.vim
+064.969  000.147  000.147: sourcing /home/vitor/.vim/plugged/lightline.vim/autoload/lightline/tab.vim
+066.042  000.554  000.554: sourcing /home/vitor/.vim/plugged/lightline.vim/autoload/lightline/colorscheme.vim
+069.515  004.241  003.687: sourcing /home/vitor/.vim/plugged/lightline.vim/autoload/lightline/colorscheme/powerline.vim
+069.528  004.361  000.120: sourcing /home/vitor/.vim/plugged/lightline.vim/autoload/lightline/colorscheme/default.vim
+084.294  010.384  010.384: sourcing /home/vitor/.vim/plugged/matchtagalways/autoload/MatchTagAlways.vim
+092.204  000.427  000.427: sourcing /home/vitor/.vim/plugged/syntastic/autoload/syntastic/log.vim
+092.260  019.257: opening buffers
+092.848  000.289  000.289: sourcing /home/vitor/.vim/plugged/ctrlp.vim/autoload/ctrlp/utils.vim
+097.301  004.752: BufEnter autocommands
+097.304  000.003: editing files in windows
+099.825  002.355  002.355: sourcing /home/vitor/.vim/plugged/YouCompleteMe/autoload/youcompleteme.vim
+235.726  136.067: VimEnter autocommands
+235.730  000.004: before starting main loop
+243.891  008.161: first screen update
+243.893  000.002: --- VIM STARTED ---
