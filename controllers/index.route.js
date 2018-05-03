@@ -34,8 +34,10 @@ router.get('/house', function(request, response, body) {
 var casa = [];
       for(var i = 0; i < jsonData2.length; i++){
         if(jsonData2[i].email === id ){
- casa.push(jsonData2[i].house);
+          if(casa !=jsonData2[i].id_house ){
+ casa.push(jsonData2[i].id_house);
         }
+      }
         }
     response.set("Content-Type", "text/html");
     response.render('./house', {
@@ -79,40 +81,29 @@ router.get('/home/:casa', function(request, response, body) {
   var id = request.user.email;
   var casa1 = request.params.casa;
 
-  req.get('http://localhost:8080/utilizador', function(error, resp, body) {
+
     req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
   
-    jsonData = JSON.parse(body);
- 
-    userData = jsonData;
-   
-   for(var i = 0; i < jsonData.length; i++){
-      if(jsonData[i].email = id ){
-   userData = jsonData[i];
-      }
-      }
+
       jsonData2 = JSON.parse(body2)
   console.log(jsonData2);
 
-  userData2 = jsonData2;
+
     for(var i = 0; i < jsonData2.length; i++){
-    if(jsonData2[i].email = id ){
+    if(jsonData2[i].email === id ){
    userData2 = jsonData2[i];
     }
     }
-      console.log(userData.type)
-      console.log(userData.email)
+      console.log(userData2.type)
+      console.log(userData2.email)
     response.set("Content-Type", "text/html");
     response.render('./index', {
       id :id,
-      userData: userData,
-      jsonData: jsonData,
       casa1 :  casa1,
       userData2: userData2,
 		  jsonData2: jsonData2
     });
 
-});
 });
 
 });

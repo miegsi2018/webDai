@@ -3,18 +3,21 @@
     <div class="container-fluid">
         <div class="row">
                  
-                    <% for (var u of jsonData2) { %>
-                        <% if (u.house === casa1) { %>
-                            <% if (u.email === id) { %>
+                   
+                <%  for(var i = 0; i < jsonData2.length; i++){ %>
+                        
+                    
+                    
+                  
                         <li style   ="list-style-type: none;" >
-                                <div class="col-lg-6 col-sm-6" onclick="location.href='/room/<%=u.id_division %>/<%= casa1 %>';">
+                                <div class="col-lg-6 col-sm-6" onclick="location.href='/room/<%=jsonData2[i].id_division %>/<%= casa1 %>';">
                                         <div class="card card-user">
                                             <div class="image">
                                                 <img src="./public/assets/img/sala.jpg" alt="..."/>
                                             </div>
                                             <div class="text-center" style="margin-top: 40px;">
                                                 <div class="row">
-                                                        <h3 class="title"> <%=u.division %></h3>
+                                                        <h3 class="title"> <%=jsonData2[i].division %></h3>
                                                         <hr>
                                                     </div>
                                                 </div>
@@ -42,16 +45,16 @@
                             </div>
                             </li>
                    
+                    
                     <% } %>
-                    <% } %>
-                    <% } %>
+                    
                  
                      
 
 
         </div>
         <div id="container-floating">
-            <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" onclick="location.href='/room/add';">
+            <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" onclick="location.href='/room/<%= casa1 %>/add';">
               <p class="plus">+</p>
             </div>
         </div>

@@ -3,8 +3,10 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                    <% for (var u of jsonData2) { %>
-                    <% if (u.house === casa1) { %>
+                     
+                <%  for(var i = 0; i < userData2.length; i++){ %>
+
+                        
                         
                 <div class="col-lg-4 col-md-5" onclick="location.href='/profile/<%= casa1 %>/create';">
                     <div class="card card-user">
@@ -14,8 +16,8 @@
                         <div class="content">
                             <div class="author">
                                     <img class="avatar border-white" src="/public/assets/img/admin_logo.png" alt="..."/>
-                                <h3 class="title"> <%= u.username %> <br></h3>
-                                <h4  style="margin-left: 0px; display: inline;">type:<h5 style="display: inline-block;">&nbsp&nbsp&nbsp&nbsp <%= u.type %></h5></h4>
+                                <h3 class="title"> <%=  userData2[i].email %> <br></h3>
+                                <h4  style="margin-left: 0px; display: inline;">type:<h5 style="display: inline-block;">&nbsp&nbsp&nbsp&nbsp <%=  userData2[i].type %></h5></h4>
                             </div>
                             <hr>
                             <p class="description text-center">
@@ -30,8 +32,8 @@
                     </div>
                 </div>
                
-                <% } %> 
-                <% } %> 
+                <% } %>
+ 
             </div>
             <div id="container-floating">
                 <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" onclick="location.href='/profile/create';">

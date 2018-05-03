@@ -31,19 +31,29 @@ router.get('/:casa', function(request, response){
 	  });
   });
   
-router.get('/add', function(request, response){
-  //console.log(request.isAuthenticated());
+router.get('/:casa/add', function(request, response){
+  var id = request.user.email;
+  var casa1 = request.params.casa;
+	
+  req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
+  jsonData2 = JSON.parse(body2)
+  console.log(jsonData2);
 
-    var id = request.user.email;
-   
-  model.readEmail(id, function(divisoes){  
+  userData2 = jsonData2;
+    for(var i = 0; i < jsonData2.length; i++){
+    if(jsonData2[i].email = id ){
+   userData2 = jsonData2[i];
+    }
+    }
     response.set("Content-Type", "text/html");
 	  response.render('./adicionar_divisao', {
-      divisoes : divisoes
-	  })
-  })
-
-});
+      id :id,
+			casa1: casa1,
+		  userData2: userData2,
+		  jsonData2: jsonData2
+		});
+	  });
+  });
 
 
 router.get('/:id_division/:casa', function(request, response){
