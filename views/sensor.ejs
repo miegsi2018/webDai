@@ -49,14 +49,14 @@
                 <div class="panel-body">
                   <hr>
                   <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
- <% if (divisoes.length > 1 ) { %>        
-<% for (var e of divisoes) { %>
+ <% if (jsonData2.length > 1 ) { %>        
+<% for (var e of jsonData2) { %>
 
- <p id=tempAtual<%=e.sensor%>></p>
+ <p id=tempAtual<%=e.sensor_id%>></p>
 <% } %>
 <% }else { %>
 
- <p id=tempAtual<%=divisoes[0].sensor%>></p>
+ <p id=tempAtual<%=jsonData2[0].sensor_id%>></p>
 <%}%>
                 </div>
               </div>
@@ -153,8 +153,8 @@
 
                   <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
                   
- <% if (divisoes.length > 1 ) { %>        
-<% for (var e of divisoes) { %>
+ <% if (jsonData2.length > 1 ) { %>        
+<% for (var e of jsonData2) { %>
 
  <p id=luzAtual></p>
 <% } %>
@@ -229,17 +229,18 @@
 
 
         <script>
-<% if (divisoes.length > 1) { %>
-<% for (var e of divisoes){ %>
+<% if (jsonData2.length > 1) { %>
+<% for (var e of jsonData2){ %>
 	
           var socket = io.connect('http://localhost:5000');
-          socket.on('data/<%=e.sensor%>', function(message)
+          socket.on('data/<%=e.sensor_id%>', function(measurements)
           {
-            var labels = JSON.parse(message);
-            var temp = labels.sensor["temperature"]
-            var luz = labels.sensor["ldr"];
-            var movimento = labels.sensor["motion"];
-            var humidade = labels.sensor["humidity"];
+            var labels = JSON.parse(measurements);
+
+            var temp = labels.measurements["temperature"]
+            var luz = labels.measurements["ldr"];
+            var movimento = labels.measurements["motion"];
+            var humidade = labels.measurements["humidity"];
             $('#tempAtual<%=e.sensor%>').text('Temperatura atual: ' + temp);
             $('#luzAtual').text('Luminusidade: ' + luz);
             $('#movAtual').text(movimento);
@@ -262,9 +263,9 @@
 <%}%>
 <%} else {%>
 var socket = io.connect('http://localhost:5000');
-          socket.on('data/<%=divisoes[0].sensor%>', function(message)
+          socket.on('data/<%=djsonData2[0].sensor_id%>', function(measurements)
           {
-            var labels = JSON.parse(message);
+            var labels = JSON.parse(measurements);
 
 
             var temp = labels.sensor["temperature"];

@@ -52,7 +52,7 @@ router.get('/:id_division/:casa', function(request, response){
   var casa1 = request.params.casa;
   req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
     jsonData2 = JSON.parse(body2)
-    console.log(jsonData2);
+  
   
     userData2 = jsonData2;
       for(var i = 0; i < jsonData2.length; i++){
@@ -68,14 +68,14 @@ router.get('/:id_division/:casa', function(request, response){
 
 
 
-    if (divisoes.length > 1) {
+    if (jsonData2.length > 1) {
       console.log('###############///////////////////////###################(((((((()))))))))))');
 
       client.on('connect', function() {
         console.log('MQTT IS WORKING' + ' ' + 2)
 
-        for (var e of divisoes) {
-          client.subscribe('data/' + e.sensor)
+        for (var e of jsonData2) {
+          client.subscribe('data/' + e.sensor_id )
         }
         client.publish('presence', 'Hello mqtt')
 
@@ -86,22 +86,22 @@ router.get('/:id_division/:casa', function(request, response){
     } else {
       client.on('connect', function() {
         console.log('MQTT IS WORKING' + ' ' + 2)
-        client.subscribe('data/' + divisoes[0].sensor)
+        client.subscribe('data/' + jsonData2[0].sensor_id)
         client.publish('presence', 'Hello mqtt')
       })
     }
     io.on('connection', function(socket) {
 
-      client.on('message', (topic, message) => {
+      client.on('message', (topic, measurements) => {
 
 
 
-        console.log(`Received message: '${message}'`);
-        socket.emit(topic, message.toString());
-        var labels = JSON.parse(message);
+        console.log(`Received message: '${measurements}'`);
+        socket.emit(topic, measurements.toString());
+        var labels = JSON.parse(measurements);
         //console.log(labels)
-
-        console.log( labels.sensor)
+       
+        console.log( labels.measurements)
         
 
 
