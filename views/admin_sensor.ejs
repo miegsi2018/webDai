@@ -1,4 +1,4 @@
-<% include partials/header %>
+<% include partials/header2 %>
 
 <div class="content">
         <div class="container-fluid">
@@ -74,22 +74,6 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                                <% for (var u of sensor) { %>     
-                                                <tr>
-                                                    
-                                                   
-                                                    <td><%= u.id_sensor %></td>
-                                                    <% if  (u.id_tipo == 1 ) { %>
-                                                        <td >Temperatura</td>
-                                                        <%}else if(u.id_tipo == 2 ) { %> 
-                                                            <td >tipo2</td>
-                                                            <%}else if(u.id_tipo == 3 ) { %> 
-                                                                <td >tipo3</td>
-                                                                <%}else if(u.id_tipo == 4 ) { %> 
-                                                                    <td >tipo4</td>
-                                                            <%} %>
-                                                </tr>
-                                                <%} %>    
                                         </tbody>
                                         </table>
                                        

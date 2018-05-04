@@ -58,18 +58,33 @@
                     MENU
                 </a>
             </div>
+
             <ul class="nav">
-                    <% if (jsonData2[0].type === "Admin") {%>
+                  
                         <li>
-                                <a href="/admin">
-                                    <i class="ti-eye"></i>
-                                    <p>admin</p>
+                                <a href="./admin">
+                                    <i class="ti-world"></i>
+                                    <p>Index</p>
                                 </a>
                             </li>
-                        <%} %> 
+                            <li>
+                                    <a href="./admin/sensor">
+                                        <i class="ti-plus"></i>
+                                        <p>Adicionar sensor</p>
+                                    </a>
+                                </li>
+                                <li>
+                                        <a href="./house">
+                                            <i class="ti-home"></i>
+                                            <p>Casas</p>
+                                        </a>
+                                    </li>
+                        
+               
+                    
+                        
+                
             </ul>
-
-           
     	</div>
     </div>
 
@@ -87,59 +102,27 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                       
-						
-                        <li>
-                            <a  href="/logout">
-                                <i class="ti-power-off"></i>
-								<p>Logout</p>
-                            </a>
+                        <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-power-off"></i>
+                               
+									<p><%= id %></p>
+									<b class="caret"></b>
+                              </a>
+                              <ul class="dropdown-menu">
+                              
+                                <li><a  href="/logout">  Logout</a></li>
+                            
+                                
+            
+                              
+                              </ul>
                         </li>
+						
+                       
                         
                     </ul>
 
                 </div>
             </div>
         </nav>
-
-<div class="content">
-    <div class="container-fluid">
-        <div class="row">
-                <%  for(var i = 0; i < casa.length; i++){ %>
-                        <li style   ="list-style-type: none;" >
-                                <div class="col-lg-4 col-sm-6" onclick="location.href='./home/<%= casa[i] %>';">
-                                        <div class="card card-user">
-                                            <div class="image">
-                                                <img src="./public/assets/img/house.jpg" alt="..."/>
-                                            </div>
-                                            <div class="text-center" style="margin-top: 40px;">
-                                                <div class="row">
-                                                        <h3 class="title"> <%= jsonData2[i].house %></h3>
-                                                       
-                                                    </div>
-                                                </div>
-                                                
-                                                <br>
-                                            
-                                        
-                                            
-                                        </div>
-                            </div>
-                            </li>
-                            <% } %> 
-                   
-                   
-
-
-        </div>
-        <div id="container-floating">
-            <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" onclick="location.href='/room/add';">
-              <p class="plus">+</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<% include partials/footer %>

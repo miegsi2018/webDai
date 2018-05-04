@@ -8,6 +8,7 @@ const req = require('request');
 router.get('/', function(request, response){
 	//console.log(request.isAuthenticated());
 	var id = request.user.email;
+	var casa1 = request.params.casa;
 	req.get('http://localhost:8080/utilizador', function(error, resp, body) {
 		req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
 		jsonData = JSON.parse(body);
@@ -16,8 +17,10 @@ router.get('/', function(request, response){
 		console.log(jsonData2);
 		response.set("Content-Type", "text/html");
 		response.render('./admin', {
+			id:id,
 		  jsonData,
-		  jsonData2
+		  jsonData2,
+		  casa1:casa1
 		});
 	  });
 	});
@@ -26,12 +29,23 @@ router.get('/', function(request, response){
 });
 router.get('/sensor', function(request, response){
 	//console.log(request.isAuthenticated());
-    sensorModel.listaSensor(function(sensor) {
+	var id = request.user.email;
+	var casa1 = request.params.casa;
+	req.get('http://localhost:8080/utilizador', function(error, resp, body) {
+		req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
+			jsonData = JSON.parse(body);
+		jsonData2 = JSON.parse(body2);
+		console.log(jsonData);
+		console.log(jsonData2);
 	response.set("Content-Type", "text/html");
 	response.render('./admin_sensor', {
-        sensor : sensor
-	})
-})
+        id:id,
+		  jsonData,
+		  jsonData2,
+		  casa1:casa1
+	});
+});
+});
 	
 });
 
