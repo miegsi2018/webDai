@@ -58,6 +58,7 @@ router.get('/house_create', function(request, response, body) {
     jsonData2 = JSON.parse(body2);
     userData2 = jsonData2;
     var userData2= [];
+    
 var casa = [];
       for(var i = 0; i < jsonData2.length; i++){
         if(jsonData2[i].email === id ){
