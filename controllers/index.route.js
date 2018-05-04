@@ -31,17 +31,20 @@ router.get('/house', function(request, response, body) {
     jsonData2 = JSON.parse(body2);
 
 var casa = [];
+var casaN = [];
       for(var i = 0; i < jsonData2.length; i++){
-        if(jsonData2[i].email === id ){
+      
           if(casa !=jsonData2[i].id_house ){
  casa.push(jsonData2[i].id_house);
+ casaN.push(jsonData2[i].house);
         }
       }
-        }
+        console.log(casa)
     response.set("Content-Type", "text/html");
     response.render('./house', {
       id :id,
-      casa :  casa
+      casa :  casa,
+      casaN: casaN
     });
   });
 
