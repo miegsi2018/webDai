@@ -131,236 +131,208 @@
 
         /* For mobile!
  */
+@media (max-width: 768px) {
+  .card {
+    max-width: 375;
+  }
 
-        @media (max-width: 768px) {
-          .card {
-            max-width: 375;
-          }
-          .timeline {
-            padding: 0 35.42857px;
-          }
-          .timeline::before {
-            padding-right: 6.28571px;
-          }
-          .timeline__item {
-            padding: 35.42857px 0;
-          }
-          .timeline__step {
-            padding-right: 35.42857px;
-          }
-          .timeline__step__marker {
-            height: 13.71429px;
-            min-hieght: 13.71429px;
-            width: 13.71429px;
-            min-width: 13.71429px;
-            border-width: 2.28571px;
-          }
-          .timeline__time {
-            padding-right: 72px;
-            font-size: 14.85714px;
-          }
-          .timeline__title {
-            padding-bottom: 14.85714px;
-            font-size: 18.28571px;
-          }
-        }
-      </style>
-      <br>
+  .timeline {
+    padding: 0 35.42857px;
+  }
+  .timeline::before {
+    padding-right: 6.28571px;
+  }
+  .timeline__item {
+    padding: 35.42857px 0;
+  }
+  .timeline__step {
+    padding-right: 35.42857px;
+  }
+  .timeline__step__marker {
+    height: 13.71429px;
+    min-hieght: 13.71429px;
+    width: 13.71429px;
+    min-width: 13.71429px;
+    border-width: 2.28571px;
+  }
+  .timeline__time {
+    padding-right: 72px;
+    font-size: 14.85714px;
+  }
+  .timeline__title {
+    padding-bottom: 14.85714px;
+    font-size: 18.28571px;
+  }
+
+}</style>
+<br>
+-<style>
+    [type="date"] {
+    background:#fffcf5 url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
+    border-color: black;
+  }
+  [type="date"]::-webkit-inner-spin-button {
+    display: none;
+  }
+  [type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+  }
+  input[type=date] {
+    height: 35px;
+    margin: 0 auto;
+    width: 100%;
+    font-family: arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+  
+  }
+    input[type=date]::-webkit-datetime-edit-month-field {
+      color: #66615b;
+    }
+    input[type=date]::-webkit-datetime-edit-day-field {
+      color:#66615b;
+    }
+    input[type=date]::-webkit-datetime-edit-year-field {
+      color: #66615b;
+    }
+    
+    input[type=date]::-webkit-clear-button {
+      font-size: 18px;
+      height: 30px;
+      position: relative;
+      right: 5px;
+      margin-right: 4px;
+    }
+    input[type=date]::-webkit-inner-spin-button {
+      height: 30px;
+    }
+    input[type=date]::-webkit-calendar-picker-indicator {
+      font-size: 18px;
+    }
+          
+      input[type=date]hover {
+        background-color: lighten(#2f2f2f,40%);
+        color: darken(#fff, 10%);
+        cursor: pointer;
+      }
+      input[type=date]active {
+        color: blue;
+      }
+    
+  
+  </style>
+            
+        <div class="row" >
+               
+	       <div class="col-lg-6 col-sm-6">
+		<div class="card">
+			<ul class="timeline">
+		      <div class="title text-center">
+			  <h2>Ultimas entradas</h2>
+		      </div>
+			  <li class="timeline__item">
+			    <div class="timeline__step">
+			      <div class="timeline__step__marker timeline__step__marker"></div>
+			    </div>
+			    <div class="timeline__time">
+			      5pm
+			    </div>
+			    <div class="timeline__content">
+			      <div class="timeline__title">
+				New Icons
+			      </div>
+
+			    </div>
+			  </li>
+
+			  <li class="timeline__item">
+			    <div class="timeline__step">
+			      <div class="timeline__step__marker timeline__step__marker"></div>
+			    </div>
+			    <div class="timeline__time">
+			      4pm
+			    </div>
+			    <div class="timeline__content">
+			      <div class="timeline__title">
+				Design Stand Up
+			      </div>
+
+			    </div>
+			  </li>
 
 
-      <script>
-        function datas()
-        {
 
-          var data = {
+			</ul>
+		      </div>
+		    </div>
+
+		    <div class="col-lg-6 col-sm-6">
+			<div class="card">
+
+			  <div class="content">
+			    <form>
+			    <div class="row">
+			      <div class="col-md-6">
+				<h3>Inicio:</h3>
+				<input class="form-control border-input" id="dataI" name="dataI" type="date">
+			      </div>
+			      <div class="col-md-6">
+				  <h3>Fim:</h3>
+				<input class="form-control border-input" id="dataF" name="dataF" type="date">
+			      </div>
+			      <span id="avg"></span>
+			    </div>
+			    <br>
+			    <div class="row">
+				<div class="col-lg-12 col-sm-6">
+				  <input type="button" class="btn btn-info btn-fill btn-wd" id="avg" style="float: right;" onclick="datas()" >Submeter</input>
+			    </div>
+
+			  </div>
+			</form>
+			</div>
+		      </div>
+
+	</div>
 
 
+
+            </div>
+        </div>
+    
+		<script>
+
+function datas(){
+
+  data = {
 		"dataI": $('#dataI').val(),
 	
 		"dataF": $('#dataF').val()
-          }
+  }
+  
+	$.ajax({
+             type: "POST",
+             url: "http://localhost:8080/avgTemp",
+             data: JSON.stringify(data),
+             contentType: "application/json; charset=utf-8",
+             crossDomain: true,
+             dataType: "json",
+             success: function (data, status, jqXHR) {
 
+                 alert("success" + ' ' + data);    
+	     },
 
-          $.ajax(
-          {
-            type: "POST",
-            url: "http://localhost:8080/avgTemp",
-            data: JSON.stringify(data),
-            contentType: "application/json; charset=utf-8",
-            crossDomain: true,
-            dataType: "json",
-            success: function(data, status, jqXHR)
-            {
-
-              alert("success" + data);
-            },
-
-            error: function(jqXHR, status)
-            {
-              console.log(jqXHR);
-              alert('fail' + status.code);
-            }
+             error: function (jqXHR, status) {
+                 console.log(jqXHR);
+                 alert('fail' + status.code);
+             }
           });
-
-
-
-        }
-      </script>
-
-
-
-
-
-
-      <div class="row">
-
-
-        <div class="col-lg-6 col-sm-6">
-          <div class="card">
-            <ul class="timeline">
-              <div class="title text-center">
-                <h2>Ultimas entradas</h2>
-              </div>
-              <li class="timeline__item">
-                <div class="timeline__step">
-                  <div class="timeline__step__marker timeline__step__marker"></div>
-                </div>
-                <div class="timeline__time">
-                  5pm
-                </div>
-                <div class="timeline__content">
-                  <div class="timeline__title">
-                    New Icons
-                  </div>
-
-                </div>
-              </li>
-
-              <li class="timeline__item">
-                <div class="timeline__step">
-                  <div class="timeline__step__marker timeline__step__marker"></div>
-                </div>
-                <div class="timeline__time">
-                  4pm
-                </div>
-                <div class="timeline__content">
-                  <div class="timeline__title">
-                    Design Stand Up
-                  </div>
-
-                </div>
-              </li>
-
-
-
-            </ul>
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-sm-6">
-          <div class="card">
-
-            <div class="content">
-              <form>
-                <div class="row">
-                  <div class="col-md-6">
-                    <h3>Inicio:</h3>
-                    <input class="form-control border-input" id="dataI" name="dataI" type="date">
-                  </div>
-                  <div class="col-md-6">
-                    <h3>Fim:</h3>
-                    <input class="form-control border-input" id="dataF" name="dataF" type="date">
-                  </div>
-                  <span id="avg"></span>
-                </div>
-                <br>
-                <div class="row">
-                  <div class="col-lg-12 col-sm-6">
-                    <input type="button" class="btn btn-info btn-fill btn-wd"  onclick="datas()"  style="float: right" >Submeter</input>
-                  </div>
-
-                </div>
-              </form>
-            </div>
-          </div>
-
-        </div>
-
-
-        <div class="row">
-
-          <div class="col-md-12">
-            <div class="card">
-              <div class="header">
-                <h4 class="title">Users Behavior</h4>
-                <p class="category">24 Hours performance</p>
-              </div>
-              <div class="content">
-                <div id="chartHours" class="ct-chart"></div>
-                <div class="footer">
-                  <div class="chart-legend">
-                    <i class="fa fa-circle text-info"></i> Open
-                    <i class="fa fa-circle text-danger"></i> Click
-                    <i class="fa fa-circle text-warning"></i> Click Second Time
-                  </div>
-                  <hr>
-                  <div class="stats">
-                    <i class="ti-reload"></i> Updated 3 minutes ago
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card">
-              <div class="header">
-                <h4 class="title">Email Statistics</h4>
-                <p class="category">Last Campaign Performance</p>
-              </div>
-              <div class="content">
-                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
-
-                <div class="footer">
-                  <div class="chart-legend">
-                    <i class="fa fa-circle text-info"></i> Open
-                    <i class="fa fa-circle text-danger"></i> Bounce
-                    <i class="fa fa-circle text-warning"></i> Unsubscribe
-                  </div>
-                  <hr>
-                  <div class="stats">
-                    <i class="ti-timer"></i> Campaign sent 2 days ago
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card ">
-              <div class="header">
-                <h4 class="title">2015 Sales</h4>
-                <p class="category">All products including Taxes</p>
-              </div>
-              <div class="content">
-                <div id="chartActivity" class="ct-chart"></div>
-
-                <div class="footer">
-                  <div class="chart-legend">
-                    <i class="fa fa-circle text-info"></i> Tesla Model S
-                    <i class="fa fa-circle text-warning"></i> BMW 5 Series
-                  </div>
-                  <hr>
-                  <div class="stats">
-                    <i class="ti-check"></i> Data information certified
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
+}
+		</script>
+       
+       
+        <% include partials/footer %>
     </div>
 
 
