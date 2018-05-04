@@ -46,6 +46,7 @@ var casa = [];
   });
 
 });
+
 router.get('/house_create', function(request, response, body) {
   //console.log(request.isAuthenticated());
   response.header("Access-Control-Allow-Origin", "*");
@@ -70,6 +71,27 @@ var casa = [];
     });
   });
 
+});
+
+
+router.post('/house_create', function(request, response, body){
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+  var  id = request.user.id;
+
+  var options = {
+    uri: 'http://localhost:8080/house',
+    method: 'POST',
+    json : {
+      "name": request.body.nameH,
+      "account_id": id
+    }
+  }
+  
+  req(options, function(error, resp, body){
+    response.redirect('/house');
+  })
 });
 
 
