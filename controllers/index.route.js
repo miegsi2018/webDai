@@ -110,12 +110,31 @@ router.get('/home/:casa', function(request, response, body) {
 });
 
 
+router.post('home/:casa', function(request, response, body){
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+  var options = {
+    uri: 'http://localhost:8080/avgTemp',
+    method: 'POST',
+    json : {
+      "dataI": request.body.dataI,
+      "dataF": request.body.dataF
+    }
+  };
+
+  req(options, function(error, resp, body){
+    console.log(body);
+    document.getElementById('avg').innerHTML = body
+  })
+});
+
+
 router.get('/registo', function(request, response) {
   //console.log(request.isAuthenticated());
 
   response.set("Content-Type", "text/html");
   response.render('./registo', {});
-
 
 });
 
