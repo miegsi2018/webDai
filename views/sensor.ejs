@@ -50,15 +50,10 @@
                 <div class="panel-body">
                   <hr>
                   <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
- <% if (jsonData2.length > 1 ) { %>        
-<% for (var e of jsonData2) { %>
 
- <p id=tempAtual<%=e.sensor_id%>></p>
-<% } %>
-<% }else { %>
 
- <p id=tempAtual<%=jsonData2[0].sensor_id%>></p>
-<%}%>
+ <p id="tempAtual"></p>
+
                 </div>
               </div>
 
@@ -153,16 +148,11 @@
                   <hr>
 
                   <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
-                  
- <% if (jsonData2.length > 1 ) { %>        
-<% for (var e of jsonData2) { %>
 
- <p id=luzAtual></p>
-<% } %>
-<% }else { %>
 
- <p id=luzAtual></p>
-<%}%>
+
+ <p id="luzAtual"></p>
+
 <script src="/public/assets/js/jscolor.js"></script>
 
 <div style="position:absolute; left:280px;">
@@ -234,7 +224,7 @@ function update(picker) {
                 <div class="panel-body">
                   <hr>
                   <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
-                  <p id=humAtual></p>
+                  <p id="humAtual"></p>
                 </div>
               </div>
 
@@ -257,11 +247,10 @@ function update(picker) {
 
 
         <script>
-<% if (jsonData2.length > 1) { %>
-<% for (var e of jsonData2){ %>
+
 	
           var socket = io.connect('http://localhost:5000');
-          socket.on('data/<%=e.sensor_id%>', function(measurements)
+          socket.on('data/<%= id_sensor%>', function(measurements)
           {
             var labels = JSON.parse(measurements);
 
@@ -269,7 +258,7 @@ function update(picker) {
             var luz = labels.measurements["ldr"];
             var movimento = labels.measurements["motion"];
             var humidade = labels.measurements["humidity"];
-            $('#tempAtual<%=e.sensor%>').text('Temperatura atual: ' + temp);
+            $('#tempAtual').text('Temperatura atual: ' + temp);
             $('#luzAtual').text('Luminusidade: ' + luz);
             $('#movAtual').text(movimento);
             $('#humAtual').text('Humidade: ' + humidade);
@@ -288,38 +277,7 @@ function update(picker) {
 
 
           })
-<%}%>
-<%} else {%>
-var socket = io.connect('http://localhost:5000');
-          socket.on('data/<%=djsonData2[0].sensor_id%>', function(measurements)
-          {
-            var labels = JSON.parse(measurements);
 
-
-            var temp = labels.sensor["temperature"];
-            var luz = labels["ldr"];
-            var movimento = labels["motion"];
-            var humidade = labels["humidity"];
-            $('#tempAtual<%=divisoes[0].sensor%>').text('Temperatura atual: ' + temp);
-            $('#luzAtual').text('Luminusidade: ' + luz);
-            $('#movAtual').text(movimento);
-            $('#humAtual').text('Humidade: ' + humidade);
-
-
-            if (movimento == "motion detected")
-            {
-              document.getElementById("Movi").style.color = "green";
-              $('#movAtual').text('Com Movimento ');
-            }
-            else
-            {
-              $('#movAtual').text('Sem Movimento ');
-            }
-
-
-
-          })
-<%}%>
         </script>
 
 
