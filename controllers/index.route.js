@@ -5,7 +5,7 @@ const swal = require('sweetalert2');
 const mqtt = require('mqtt');
 const req = require('request');
 var userData;
-var userData2= [];
+
 var casa = [];
 
 
@@ -29,8 +29,7 @@ router.get('/house', function(request, response, body) {
   
   req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
     jsonData2 = JSON.parse(body2);
-    userData2 = jsonData2;
-    var userData2= [];
+
 var casa = [];
       for(var i = 0; i < jsonData2.length; i++){
         if(jsonData2[i].email === id ){
@@ -56,8 +55,7 @@ router.get('/house_create', function(request, response, body) {
   req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
 
     jsonData2 = JSON.parse(body2);
-    userData2 = jsonData2;
-    var userData2= [];
+
     
 var casa = [];
       for(var i = 0; i < jsonData2.length; i++){
@@ -89,19 +87,10 @@ router.get('/home/:casa', function(request, response, body) {
       jsonData2 = JSON.parse(body2)
   console.log(jsonData2);
 
-
-    for(var i = 0; i < jsonData2.length; i++){
-    if(jsonData2[i].email === id ){
-   userData2 = jsonData2[i];
-    }
-    }
-      console.log(userData2.type)
-      console.log(userData2.email)
     response.set("Content-Type", "text/html");
     response.render('./index', {
       id :id,
       casa1 :  casa1,
-      userData2: userData2,
 		  jsonData2: jsonData2
     });
 

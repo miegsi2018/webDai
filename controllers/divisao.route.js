@@ -4,7 +4,7 @@ const model = require('../models/divisao.model');
 var mqtt = require('mqtt');
 const req = require('request');
 var userData;
-var userData2;
+
 
 router.get('/:casa', function(request, response){
   var id = request.user.email;
@@ -14,18 +14,12 @@ router.get('/:casa', function(request, response){
   jsonData2 = JSON.parse(body2)
   console.log(jsonData2);
 
-  userData2 = jsonData2;
-    for(var i = 0; i < jsonData2.length; i++){
-    if(jsonData2[i].email = id ){
-   userData2 = jsonData2[i];
-    }
-    }
+  
     response.set("Content-Type", "text/html");
 	  response.render('./divisao', {
 
       id :id,
 			casa1: casa1,
-		  userData2: userData2,
 		  jsonData2: jsonData2
 		});
 	  });
@@ -39,17 +33,11 @@ router.get('/:casa/add', function(request, response){
   jsonData2 = JSON.parse(body2)
   console.log(jsonData2);
 
-  userData2 = jsonData2;
-    for(var i = 0; i < jsonData2.length; i++){
-    if(jsonData2[i].email = id ){
-   userData2 = jsonData2[i];
-    }
-    }
+
     response.set("Content-Type", "text/html");
 	  response.render('./adicionar_divisao', {
       id :id,
 			casa1: casa1,
-		  userData2: userData2,
 		  jsonData2: jsonData2
 		});
 	  });
@@ -63,14 +51,6 @@ router.get('/:id_division/:casa', function(request, response){
   req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
     jsonData2 = JSON.parse(body2)
   
-  
-    userData2 = jsonData2;
-      for(var i = 0; i < jsonData2.length; i++){
-      if(jsonData2[i].email = id ){
-     userData2 = jsonData2[i];
-      }
-      }
-
     var client = mqtt.connect('mqtt://94.61.10.49:80', {
       username: "dai",
       password: '12345678'
@@ -126,7 +106,6 @@ router.get('/:id_division/:casa', function(request, response){
       response.render('./sensor', {
         id :id,
         casa1: casa1,
-        userData2: userData2,
         jsonData2: jsonData2
    
   });

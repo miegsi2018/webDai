@@ -18,6 +18,7 @@ router.get('/:casa', function(request, response){
 		
 		
 		
+		userData2 = [];
 		console.log(jsonData2);
 		userData2.push(jsonData2[0]);
 		
@@ -57,17 +58,10 @@ router.get('/:casa/create', function(request, response){
 		jsonData2 = JSON.parse(body2)
 		console.log(jsonData2);
 
-		userData2 = jsonData2;
-		  for(var i = 0; i < jsonData2.length; i++){
-			if(jsonData2[i].email = id ){
-		 userData2 = jsonData2[i];
-			}
-			}
 	response.set("Content-Type", "text/html");
 	response.render('./create_user', {
 		id :id,
 		casa1: casa1,
-	  userData2: userData2,
 	  jsonData2: jsonData2
 	});
   });

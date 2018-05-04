@@ -105,7 +105,6 @@ server.listen(5000);
 app.use('/', require('./controllers/index.route'));
 app.use('/public', express.static('public'));
 app.use('/profile', require('./controllers/profile.route'));
-app.use('/sensor', require('./controllers/sensor.route'));
 app.use('/room', require('./controllers/divisao.route'));
 app.use('/admin', require('./controllers/admin.route'));
 app.use('/logout', require('./controllers/logout.route'));
