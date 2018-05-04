@@ -123,6 +123,8 @@ router.post('home/:casa', function(request, response, body){
     }
   };
 
+  console.log(options.json);
+
   req(options, function(error, resp, body){
     console.log(body);
     document.getElementById('avg').innerHTML = body
