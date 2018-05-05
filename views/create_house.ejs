@@ -1,15 +1,16 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-    
-	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="/public/assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="/public/assets/img/logo.png">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Digital Friendly House</title>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/public/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/public/assets/img/logo.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <title>Digital Friendly House</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
 
@@ -19,18 +20,18 @@
     <link href="/public/assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="/public/assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="/public/assets/css/animate.min.css" rel="stylesheet" />
 
     <!--  Paper Dashboard core CSS    -->
-    <link href="/public/assets/css/paper-dashboard.css" rel="stylesheet"/>
+    <link href="/public/assets/css/paper-dashboard.css" rel="stylesheet" />
 
-    <link href="/public/assets/css/costum.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="/public/assets/pretty-checkbox.min.css"/>
-    <link rel="stylesheet" href="/public/assets/dist/pretty-checkbox.css"/>
+    <link href="/public/assets/css/costum.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/public/assets/pretty-checkbox.min.css" />
+    <link rel="stylesheet" href="/public/assets/dist/pretty-checkbox.css" />
 
-<!-- Google Floating Button css -->
-<link href="/public/assets/css/button.css" rel="stylesheet">
-    
+    <!-- Google Floating Button css -->
+    <link href="/public/assets/css/button.css" rel="stylesheet">
+
 
     <!--  Fonts and icons     -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
@@ -42,121 +43,83 @@
 
 
 </head>
+
 <body>
 
-<div class="wrapper">
-    <div class="sidebar" data-background-color="black" data-active-color="warning">
-
-    <!--
-		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-	-->
-
-    	<div class="sidebar-wrapper">
-            <div class="logo">
-                <a class="simple-text">
-                    MENU
-                </a>
-            </div> <ul class="nav">
+    <div class="wrapper">
+        <div class="sidebar" data-background-color="black" data-active-color="warning">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a class="simple-text">
+                        MENU
+                    </a>
+                </div>
+                <ul class="nav">
                     <li>
-                            <a href="./house">
-                                <i class="ti-home"></i>
-                                <p>Voltar</p>
-                            </a>
-                        </li>
-            </ul>
-
-           
-    	</div>
-    </div>
-
-    <div class="main-panel">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <h4></h4>
-                    <button type="button" class="navbar-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar bar1"></span>
-                        <span class="icon-bar bar2"></span>
-                        <span class="icon-bar bar3"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                       
-						
-                        <li>
-                            <a  href="/logout">
-                                <i class="ti-power-off"></i>
-								<p>Logout</p>
-                            </a>
-                        </li>
-                        
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-
-<div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                    <div class="col-lg-2 col-md-5"></div>
-                <div class="col-lg-8 col-md-5">
-                    <div class="card card">
-                            <div class="header">
-                                    <h4 class="title">Adicionar casa a sua conta</h4>
-                                </div>
-                                <div class="content">
-                                        <form role= "form" action="/admin/registo"  method="post">
-                                                <div class="row">
-                                                        <div class="col-md-6">
-                                                                <div class="form-check">
-                                                                    <label class="text-center">Nome da casa:</label>
-                                                                    <input type="text" class="form-control border-input" name="id_sensor"  placeholder="Nome da casa" >
-                                                                    <br>
-                                                                   
-                                                                    
-                                                                </div>
-                                                            </div> 
-                                                            <div class="col-md-1"></div>
-                                                    <div class="col-md-5">
-                                                        <div class="form-group">
-                                                            <label>Sensor:</label>
-                                                            <input type="text" class="form-control border-input" name="id_sensor"  placeholder="ID Sensor" >
-                                                        </div>
-                                                    </div>     
-                                                    
-                                                </div>
-                                                <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Nome da divisão</label>
-                                                        <input type="text" class="form-control border-input" name="id_sensor"  placeholder="Nome da divisão" >
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2"></div>
-                                                  
-                                                
-                                                    <button type="submit" class="btn btn-info btn-fill btn-wd" style="margin-top: 45px; margin-left: 30px;" >Adicionar Casa</button>
-                                                    <br>
-                                                </div>
-                                                    </form>
-                                    </div>
-                       
-                       
-                        
-                    </div>
-                    <!--- Outra div -->
-               
-                    
-                </div>
-        
-                <div class="col-lg-2 col-md-5"></div>
-
+                        <a href="./house">
+                            <i class="ti-home"></i>
+                            <p>Voltar</p>
+                        </a>
+                    </li>
+                </ul>
             </div>
         </div>
-    </div>
 
-<% include partials/footer %>
+        <div class="main-panel">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <h4></h4>
+                        <button type="button" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar bar1"></span>
+                            <span class="icon-bar bar2"></span>
+                            <span class="icon-bar bar3"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="/logout">
+                                    <i class="ti-power-off"></i>
+                                    <p>Logout</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-5"></div>
+                        <div class="col-lg-8 col-md-5">
+                            <div class="card card">
+                                <div class="header">
+                                    <h4 class="title">Adicionar uma casa à sua conta</h4>
+                                </div>
+                                <div class="content">
+                                    <form role="form" action="/house_create" method="post">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-check">
+                                                    <label class="text-center">Nome da casa:</label>
+                                                    <input type="text" class="form-control border-input" name="name" placeholder="Nome da casa">
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2"></div>
+                                            <button type="submit" class="btn btn-info btn-fill btn-wd" style="margin-top: 30px; margin-left: 30px;">Adicionar Casa</button>
+                                            <br>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-5"></div>
+                    </div>
+                </div>
+            </div>
+
+            <% include partials/footer %>

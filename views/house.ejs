@@ -97,6 +97,7 @@
     <div class="container-fluid">
         <div class="row">
                 <%  for(var i = 0; i < casa.length; i++){ %>
+
                         <li style   ="list-style-type: none;" >
                                 <div class="col-lg-4 col-sm-6" onclick="location.href='./home/<%= casa[i] %>';">
                                         <div class="card card-user">
@@ -105,9 +106,9 @@
                                             </div>
                                             <div class="text-center" style="margin-top: 40px;">
                                                 <div class="row">
-                                                        <h3 class="title"> <%= jsonData2[i].house %></h3>
+                                                        <h3 class="title"> <%= casaN[i] %></h3>
                                                        
-                                                    </div>
+                                                     </div>
                                                 </div>
                                                 
                                                 <br>
@@ -117,6 +118,7 @@
                                         </div>
                             </div>
                             </li>
+
                             <% } %> 
                    
                    
