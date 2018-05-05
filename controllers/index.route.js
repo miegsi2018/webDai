@@ -18,7 +18,7 @@ router.get('/', function (request, response) {
 
   });
 
-
+   
 });
 
 router.get('/house', function (request, response, body) {
@@ -31,14 +31,20 @@ router.get('/house', function (request, response, body) {
     jsonData2 = JSON.parse(body2);
 
     var casa = [];
+    casa.push(jsonData2[0].id_house);
     var casaN = [];
-    for (var i = 0; i < jsonData2.length; i++) {
+    casaN.push(jsonData2[0].house);
 
-      if (casa != jsonData2[i].id_house) {
+    for (var i = 1; i < jsonData2.length; i++) {
+      console.log("inico" + jsonData2[i-1].id_house)
+      console.log("fim" + jsonData2[i].id_house)
+      if (jsonData2[i-1].id_house != jsonData2[i].id_house) {
         casa.push(jsonData2[i].id_house);
         casaN.push(jsonData2[i].house);
+
       }
     }
+    
     console.log(casa)
     response.set("Content-Type", "text/html");
     response.render('./house', {

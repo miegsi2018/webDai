@@ -25,6 +25,32 @@ router.get('/:casa', function(request, response){
 	  });
   });
   
+  router.post('/:casa/regi', function (request, response) {
+    var errors = request.validationErrors();
+    var casa1 = request.params.casa;
+  
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  
+    var options = {
+      uri: 'http://localhost:8080/division',
+      method: 'POST',
+      json: {
+        "id_house": request.params.casa,
+        "name": request.body.name,
+        "sensor_id": request.body.sensor_id,
+      
+      }
+    };
+  
+    req(options, function (error, resp, body) {
+      response.redirect('/room/' + casa1);
+
+    });
+  });
+
+  
+
 router.get('/:casa/add', function(request, response){
   var id = request.user.email;
   var casa1 = request.params.casa;
@@ -61,13 +87,13 @@ console.log(division);
       id_sensor = e.sensor_id;
 
 
-
+  
     }else{
 
 
 
     }
-
+  
 
   }
   console.log(id_sensor);
