@@ -49,7 +49,7 @@
               <div id="collapse-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-1">
                 <div class="panel-body">
                   <hr>
-                  <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
+                  <!-- <p>Estado: <i class="fas fa-check" style="color: green;"></i></p> -->
 
 
  <p id="tempAtual"></p>
@@ -98,7 +98,7 @@
               <div id="collapse-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-2">
                 <div class="panel-body">
                   <hr>
-                  <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
+                  <!-- <p>Estado: <i class="fas fa-check" style="color: green;"></i></p> -->
                   <p id="movAtual"></p>
                 </div>
               </div>
@@ -146,24 +146,44 @@
               <div id="collapse-3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-3">
                 <div class="panel-body">
                   <hr>
+                  <div class="col-md-6">
+                      <!-- <p>Estado: <i class="fas fa-check" style="color: green;"></i></p> -->
 
-                  <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
+                      <div class="pretty p-default p-curve p-toggle" >
+                          <input type="checkbox" />
+                          <div class="state p-success p-on">
+                              <label>Ligada</label>
+                          </div>
+                          <div class="state p-danger p-off">
+                              <label>Desligada </label>
+                          </div>
+                 
+              
+               </div>
 
-
-
- <p id="luzAtual"></p>
+                    <br>
+                    <br>
+                    
+                 
 
 <script src="/public/assets/js/jscolor.js"></script>
 
-<div style="position:absolute; left:280px;">
-  R, G, B = <span id="rgb"></span><br />  
-    <span id="hex-str" hidden></span><br />
-    <span id="rgb-str" hidden></span><br />
-    <span id="hsv" hidden></span>
+ <div style="position:absolute; left:280px;" hidden>
+  R, G, B = <span id="rgb" ></span><br />  
+    <span id="hex-str" ></span><br />
+    <span id="rgb-str" ></span><br />
+    <span id="hsv" ></span>
+</div> 
+
+<input class="jscolor {onFineChange:'update(this)'}" style="width: 40px; height: 40px; -webkit-border-radius: 50px; border-radius: 50px;  border: none;text-indent: -99em; display:block;" value="ffcc00">
 </div>
+<div class="col-md-6">
 
-<input class="jscolor {onFineChange:'update(this)'}" value="ffcc00">
+    <p id="luzAtual" style="text-align: center"></p>
 
+       
+
+<button type="submit" class="btn btn-info btn-fill btn-wd" style="float: right; margin-top: 10px;">Mudar Cor</button>
 <script>
 function update(picker) {
     document.getElementById('hex-str').innerHTML = picker.toHEXString();
@@ -181,6 +201,7 @@ function update(picker) {
 }
 </script>
                 </div>
+              </div>
               </div>
 
 
@@ -223,7 +244,7 @@ function update(picker) {
               <div id="collapse-4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-4">
                 <div class="panel-body">
                   <hr>
-                  <p>Estado: <i class="fas fa-check" style="color: green;"></i></p>
+                  <!-- <p>Estado: <i class="fas fa-check" style="color: green;"></i></p> -->
                   <p id="humAtual"></p>
                 </div>
               </div>
@@ -259,7 +280,7 @@ function update(picker) {
             var movimento = labels.measurements["motion"];
             var humidade = labels.measurements["humidity"];
             $('#tempAtual').text('Temperatura atual: ' + temp);
-            $('#luzAtual').text('Luminusidade: ' + luz);
+            $('#luzAtual').text('Luz: ' + luz);
             $('#movAtual').text(movimento);
             $('#humAtual').text('Humidade: ' + humidade);
 
