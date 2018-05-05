@@ -100,11 +100,7 @@ router.get('/house_create', function (request, response, body) {
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var id = request.user.email;
 
-<<<<<<< HEAD
-  req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
-=======
   req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
->>>>>>> 9eb92c0a9e7ef79af3a4640c5c4314e1255bba75
 
     jsonData2 = JSON.parse(body2);
 
@@ -155,15 +151,9 @@ router.get('/home/:casa', function (request, response, body) {
   var casa1 = request.params.casa;
 
 
-<<<<<<< HEAD
-  req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
-
-
-=======
   req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
 
 
->>>>>>> 9eb92c0a9e7ef79af3a4640c5c4314e1255bba75
     jsonData2 = JSON.parse(body2)
     console.log(jsonData2);
 
@@ -179,11 +169,7 @@ router.get('/home/:casa', function (request, response, body) {
 });
 
 
-<<<<<<< HEAD
-router.post('home/:casa', function(request, response, body) {
-=======
 router.post('home/:casa', function (request, response, body) {
->>>>>>> 9eb92c0a9e7ef79af3a4640c5c4314e1255bba75
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
@@ -198,11 +184,7 @@ router.post('home/:casa', function (request, response, body) {
 
   console.log(options.json);
 
-<<<<<<< HEAD
-  req(options, function(error, resp, body) {
-=======
   req(options, function (error, resp, body) {
->>>>>>> 9eb92c0a9e7ef79af3a4640c5c4314e1255bba75
     console.log(body);
     document.getElementById('avg').innerHTML = body
   })
@@ -234,16 +216,9 @@ router.post('/registo', function (request, response) {
     }
   };
 
-<<<<<<< HEAD
-  req(options, function(error, resp, body) {
-    response.redirect('/');
-  });
-
-=======
   req(options, function (error, resp, body) {
 
   });
->>>>>>> 9eb92c0a9e7ef79af3a4640c5c4314e1255bba75
   response.redirect('/');
 });
 
@@ -262,15 +237,9 @@ router.post('/', function (request, response) {
   };
 
 
-<<<<<<< HEAD
-  req(options, function(error, resp, body) {
-    if (body.password == request.body.password) {
-      request.login(body.email, function(err) {
-=======
   req(options, function (error, resp, body) {
     if (body.password == request.body.password) {
       request.login(body.email, function (err) {
->>>>>>> 9eb92c0a9e7ef79af3a4640c5c4314e1255bba75
         response.redirect('/house');
       });
     } else {
