@@ -13,6 +13,50 @@ var casa = [];
 
 router.get('/', function (request, response) {
   //console.log(request.isAuthenticated());
+
+  var inicial = new Date();
+
+  var final = new Date();
+
+  inicial.setDate(inicial.getDate() - 1);
+  var final2 = final.getMilliseconds();
+  var graph = [];
+  console.log(inicial);
+  console.log(final);
+
+
+var i = 0;
+
+  var options = {
+    uri: 'http://localhost:8080/returnGraph',
+    method: 'POST',
+    json: {
+      "dataI": inicial,
+      "dataF": final
+    }
+  };
+
+  console.log(options.json);
+
+  req(options, function(error, resp, body) {
+          console.log(body);
+	var a = body;
+	  for (var t = 0; t < body.temp.length;t++){
+		console.log( 'fds');
+		console.log(body.data[i]);
+		  i++;
+		graph.push({
+                    'data': body.data[i],
+                    'temperature':body.temp[t] 
+                  });
+
+console.log(graph);
+	  }
+  })
+
+
+
+
   response.set("Content-Type", "text/html");
   response.render('./login', {
 
