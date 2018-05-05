@@ -10,20 +10,43 @@ router.get('/:casa', function(request, response) {
   var id = request.user.email;
   var casa1 = request.params.casa;
 
-  req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
-    jsonData2 = JSON.parse(body2)
-    console.log(jsonData2);
+  req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
+  jsonData2 = JSON.parse(body2)
+  console.log(jsonData2);
 
-
+  
     response.set("Content-Type", "text/html");
-    response.render('./divisao', {
+	  response.render('./divisao', {
 
-      id: id,
-      casa1: casa1,
-      jsonData2: jsonData2
-    });
+      id :id,
+			casa1: casa1,
+		  jsonData2: jsonData2
+		});
+	  });
   });
-});
+  router.post('/:casa/regi', function (request, response) {
+    var errors = request.validationErrors();
+    var casa1 = request.params.casa;
+  
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  
+    var options = {
+      uri: 'http://localhost:8080/division',
+      method: 'POST',
+      json: {
+        "id_house": request.params.casa,
+        "name": request.body.name,
+        "sensor_id": request.body.sensor_id,
+      
+      }
+    };
+
+
+  
+    req(options, function (error, resp, body) {
+      response.redirect('/room/' + casa1);
+    });  });
 
 router.get('/:casa/add', function(request, response) {
   var id = request.user.email;
