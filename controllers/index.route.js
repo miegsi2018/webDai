@@ -13,6 +13,50 @@ var casa = [];
 
 router.get('/', function(request, response) {
   //console.log(request.isAuthenticated());
+
+  var inicial = new Date();
+
+  var final = new Date();
+
+  inicial.setDate(inicial.getDate() - 1);
+  var final2 = final.getMilliseconds();
+  var graph = [];
+  console.log(inicial);
+  console.log(final);
+
+
+var i = 0;
+
+  var options = {
+    uri: 'http://localhost:8080/returnGraph',
+    method: 'POST',
+    json: {
+      "dataI": inicial,
+      "dataF": final
+    }
+  };
+
+  console.log(options.json);
+
+  req(options, function(error, resp, body) {
+          console.log(body);
+	var a = body;
+	  for (var t = 0; t < body.temp.length;t++){
+		console.log( 'fds');
+		console.log(body.data[i]);
+		  i++;
+		graph.push({
+                    'data': body.data[i],
+                    'temperature':body.temp[t] 
+                  });
+
+console.log(graph);
+	  }
+  })
+
+
+
+
   response.set("Content-Type", "text/html");
   response.render('./login', {
 
@@ -26,22 +70,22 @@ router.get('/house', function(request, response, body) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var id = request.user.email;
-  
-  req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
+
+  req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
     jsonData2 = JSON.parse(body2);
 
-var casa = [];
-      for(var i = 0; i < jsonData2.length; i++){
-        if(jsonData2[i].email === id ){
-          if(casa !=jsonData2[i].id_house ){
- casa.push(jsonData2[i].id_house);
+    var casa = [];
+    for (var i = 0; i < jsonData2.length; i++) {
+      if (jsonData2[i].email === id) {
+        if (casa != jsonData2[i].id_house) {
+          casa.push(jsonData2[i].id_house);
         }
       }
-        }
+    }
     response.set("Content-Type", "text/html");
     response.render('./house', {
-      id :id,
-      casa :  casa
+      id: id,
+      casa: casa
     });
   });
 
@@ -51,22 +95,22 @@ router.get('/house_create', function(request, response, body) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   var id = request.user.email;
-  
-  req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
+
+  req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
 
     jsonData2 = JSON.parse(body2);
 
-    
-var casa = [];
-      for(var i = 0; i < jsonData2.length; i++){
-        if(jsonData2[i].email === id ){
- casa.push(jsonData2[i].house);
-        }
-        }
+
+    var casa = [];
+    for (var i = 0; i < jsonData2.length; i++) {
+      if (jsonData2[i].email === id) {
+        casa.push(jsonData2[i].house);
+      }
+    }
     response.set("Content-Type", "text/html");
     response.render('./create_house', {
-      id :id,
-      casa :  casa
+      id: id,
+      casa: casa
     });
   });
 
@@ -81,32 +125,32 @@ router.get('/home/:casa', function(request, response, body) {
   var casa1 = request.params.casa;
 
 
-    req.get('http://localhost:8080/view/'+ id, function(error, resp, body2) {
-  
+  req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
 
-      jsonData2 = JSON.parse(body2)
-  console.log(jsonData2);
+
+    jsonData2 = JSON.parse(body2)
+    console.log(jsonData2);
 
     response.set("Content-Type", "text/html");
     response.render('./index', {
-      id :id,
-      casa1 :  casa1,
-		  jsonData2: jsonData2
+      id: id,
+      casa1: casa1,
+      jsonData2: jsonData2
     });
 
-});
+  });
 
 });
 
 
-router.post('home/:casa', function(request, response, body){
+router.post('home/:casa', function(request, response, body) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
   var options = {
     uri: 'http://localhost:8080/avgTemp',
     method: 'POST',
-    json : {
+    json: {
       "dataI": request.body.dataI,
       "dataF": request.body.dataF
     }
@@ -114,7 +158,7 @@ router.post('home/:casa', function(request, response, body){
 
   console.log(options.json);
 
-  req(options, function(error, resp, body){
+  req(options, function(error, resp, body) {
     console.log(body);
     document.getElementById('avg').innerHTML = body
   })
@@ -138,7 +182,7 @@ router.post('/registo', function(request, response) {
   var options = {
     uri: 'http://localhost:8080/utilizador',
     method: 'POST',
-    json : {
+    json: {
       "username": request.body.username,
       "password": request.body.password,
       "email": request.body.email,
@@ -146,10 +190,10 @@ router.post('/registo', function(request, response) {
     }
   };
 
-  req(options, function (error, resp, body){ 
+  req(options, function(error, resp, body) {
     response.redirect('/');
   });
-  
+
   response.redirect('/');
 });
 
@@ -161,19 +205,19 @@ router.post('/', function(request, response) {
   var options = {
     uri: 'http://localhost:8080/login',
     method: 'POST',
-    json : {
+    json: {
       "email": request.body.email,
       "password": request.body.password
     }
   };
 
 
-  req(options, function (error, resp, body){ 
-    if(body.password == request.body.password){
-      request.login(body.email, function(err){
+  req(options, function(error, resp, body) {
+    if (body.password == request.body.password) {
+      request.login(body.email, function(err) {
         response.redirect('/house');
       });
-    }else{
+    } else {
       response.json({
         error: "Updated Successfully",
         status: 400
