@@ -14,47 +14,6 @@ var casa = [];
 router.get('/', function (request, response) {
   //console.log(request.isAuthenticated());
 
-  var inicial = new Date();
-
-  var final = new Date();
-
-  inicial.setDate(inicial.getDate() - 1);
-  var final2 = final.getMilliseconds();
-  var graph = [];
-  console.log(inicial);
-  console.log(final);
-
-
-var i = 0;
-
-  var options = {
-    uri: 'http://localhost:8080/returnGraph',
-    method: 'POST',
-    json: {
-      "dataI": inicial,
-      "dataF": final
-    }
-  };
-
-  console.log(options.json);
-
-  req(options, function(error, resp, body) {
-          console.log(body);
-	var a = body;
-	  for (var t = 0; t < body.temp.length;t++){
-		console.log( 'fds');
-		console.log(body.data[i]);
-		  i++;
-		graph.push({
-                    'data': body.data[i],
-                    'temperature':body.temp[t] 
-                  });
-
-console.log(graph);
-	  }
-  })
-
-
 
 
   response.set("Content-Type", "text/html");
@@ -62,7 +21,7 @@ console.log(graph);
 
   });
 
-   
+
 });
 
 router.get('/house', function (request, response, body) {
@@ -75,20 +34,14 @@ router.get('/house', function (request, response, body) {
     jsonData2 = JSON.parse(body2);
 
     var casa = [];
-    casa.push(jsonData2[0].id_house);
     var casaN = [];
-    casaN.push(jsonData2[0].house);
+    for (var i = 0; i < jsonData2.length; i++) {
 
-    for (var i = 1; i < jsonData2.length; i++) {
-      console.log("inico" + jsonData2[i-1].id_house)
-      console.log("fim" + jsonData2[i].id_house)
-      if (jsonData2[i-1].id_house != jsonData2[i].id_house) {
+      if (casa != jsonData2[i].id_house) {
         casa.push(jsonData2[i].id_house);
         casaN.push(jsonData2[i].house);
-
       }
     }
-    
     console.log(casa)
     response.set("Content-Type", "text/html");
     response.render('./house', {
