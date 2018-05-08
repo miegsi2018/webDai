@@ -128,35 +128,40 @@ router.get('/:id_division/:casa', function(request, response) {
 
     console.log(options.json);
 
+    var finalVar;
     req(options, function(error, resp, body) {
       console.log(body);
       var a = body;
       for (var t = 0; t < body.temp.length; t++) {
-        console.log('fds');
-        console.log(body.data[i]);
-        i++;
+	finalVar = body.temp[t];
+	finalVar = finalVar.replace(/^"(.*)"$/, '$1');
+	console.log(finalVar);
+
         graph.push({
           'data': body.data[i],
-          'temperature': body.temp[t]
+          'temperature':finalVar 
         });
 
-        console.log(graph);
+        i++;
       }
-    })
+
+      console.log(graph);
 
 
 
-
-
-    response.set("Content-Type", "text/html");
-    response.render('./sensor', {
-      id: id,
-      casa1: casa1,
-      jsonData2: jsonData2,
-      id_sensor: id_sensor
-
+      response.set("Content-Type", "text/html");
+      response.render('./sensor', {
+        id: id,
+        casa1: casa1,
+        jsonData2: jsonData2,
+        id_sensor: id_sensor,
+        graph: graph
+      });
     });
+
   });
+
+
 });
 
 

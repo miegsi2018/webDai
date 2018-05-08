@@ -9,7 +9,57 @@
       color: black;
     }
   </style>
+  <script>
+    window.onload = function()
+    {
 
+      var chart = new CanvasJS.Chart("chartContainer",
+      {
+        animationEnabled: true,
+        title:
+        {
+          text: "Temperatura nas últimas 24 horas"
+        },
+        axisX:
+        {
+          minimum: new Date(2015, 01, 25),
+          maximum: new Date(2017, 02, 15),
+          valueFormatString: "MMM YY"
+        },
+        axisY:
+        {
+          title: "Number of Sales",
+          titleFontColor: "#4F81BC",
+          suffix: "mn"
+        },
+        data: [
+        {
+          indexLabelFontColor: "darkSlateGray",
+          name: "views",
+          type: "area",
+          yValueFormatString: "#,##0.0mn",
+          dataPoints: [
+            <% for (var e of graph) { %>
+            {
+              x: "<%=e.data %>",
+              y: <%=e.temperature %>,
+              label: "Q1-2015"
+            },
+            <% } %>
+            {
+		    x: "<%= graph[graph.length - 1].data %>",
+      		    y: <%= graph[graph.length - 1].temperature %>,
+              label: "Q1-2017",
+              indexLabel: "Highest",
+              markerColor: "red"
+            }
+          ]
+        }]
+      });
+      chart.render();
+
+    }
+  </script>
   <div class="content">
     <div class="container-fluid">
       <div class="row">
@@ -52,7 +102,7 @@
                   <!-- <p>Estado: <i class="fas fa-check" style="color: green;"></i></p> -->
 
 
- <p id="tempAtual"></p>
+                  <p id="tempAtual"></p>
 
                 </div>
               </div>
@@ -109,7 +159,7 @@
           </div>
         </div>
       </div>
-        <div class="row">
+      <div class="row">
         <div class="col-lg-6 col-sm-6">
           <div class="card">
             <div class="content">
@@ -147,61 +197,65 @@
                 <div class="panel-body">
                   <hr>
                   <div class="col-md-6">
-                      <!-- <p>Estado: <i class="fas fa-check" style="color: green;"></i></p> -->
+                    <!-- <p>Estado: <i class="fas fa-check" style="color: green;"></i></p> -->
 
-                      <div class="pretty p-default p-curve p-toggle" >
-                          <input type="checkbox" />
-                          <div class="state p-success p-on">
-                              <label>Ligada</label>
-                          </div>
-                          <div class="state p-danger p-off">
-                              <label>Desligada </label>
-                          </div>
-                 
-              
-               </div>
+                    <div class="pretty p-default p-curve p-toggle">
+                      <input type="checkbox" />
+                      <div class="state p-success p-on">
+                        <label>Ligada</label>
+                      </div>
+                      <div class="state p-danger p-off">
+                        <label>Desligada </label>
+                      </div>
+
+
+                    </div>
 
                     <br>
                     <br>
-                    
-                 
 
-<script src="/public/assets/js/jscolor.js"></script>
 
- <div style="position:absolute; left:280px;" hidden>
-  R, G, B = <span id="rgb" ></span><br />  
-    <span id="hex-str" ></span><br />
-    <span id="rgb-str" ></span><br />
-    <span id="hsv" ></span>
-</div> 
 
-<input class="jscolor {onFineChange:'update(this)'}" style="width: 40px; height: 40px; -webkit-border-radius: 50px; border-radius: 50px;  border: none;text-indent: -99em; display:block;" value="ffcc00">
-</div>
-<div class="col-md-6">
+                    <script src="/public/assets/js/jscolor.js"></script>
 
-    <p id="luzAtual" style="text-align: center"></p>
+                    <div style="position:absolute; left:280px;" hidden>
+                      R, G, B = <span id="rgb"></span><br />
+                      <span id="hex-str"></span><br />
+                      <span id="rgb-str"></span><br />
+                      <span id="hsv"></span>
+                    </div>
 
-       
+                    <input class="jscolor {onFineChange:'update(this)'}" style="width: 40px; height: 40px; -webkit-border-radius: 50px; border-radius: 50px;  border: none;text-indent: -99em; display:block;"
+                      value="ffcc00">
+                  </div>
+                  <div class="col-md-6">
 
-<button type="submit" class="btn btn-info btn-fill btn-wd" style="float: right; margin-top: 10px;">Mudar Cor</button>
-<script>
-function update(picker) {
-    document.getElementById('hex-str').innerHTML = picker.toHEXString();
-    document.getElementById('rgb-str').innerHTML = picker.toRGBString();
+                    <p id="luzAtual" style="text-align: center"></p>
 
-    document.getElementById('rgb').innerHTML =
-        Math.round(picker.rgb[0]) + ', ' +
-        Math.round(picker.rgb[1]) + ', ' +
-        Math.round(picker.rgb[2]);
 
-    document.getElementById('hsv').innerHTML =
-        Math.round(picker.hsv[0]) + '&deg;, ' +
-        Math.round(picker.hsv[1]) + '%, ' +
-        Math.round(picker.hsv[2]) + '%';
-}
-</script>
+
+                    <button type="submit" class="btn btn-info btn-fill btn-wd" style="float: right; margin-top: 10px;">Mudar Cor</button>
+                    <script>
+                      function update(picker)
+                      {
+                        document.getElementById('hex-str').innerHTML = picker
+                          .toHEXString();
+                        document.getElementById('rgb-str').innerHTML = picker
+                          .toRGBString();
+
+                        document.getElementById('rgb').innerHTML =
+                          Math.round(picker.rgb[0]) + ', ' +
+                          Math.round(picker.rgb[1]) + ', ' +
+                          Math.round(picker.rgb[2]);
+
+                        document.getElementById('hsv').innerHTML =
+                          Math.round(picker.hsv[0]) + '&deg;, ' +
+                          Math.round(picker.hsv[1]) + '%, ' +
+                          Math.round(picker.hsv[2]) + '%';
+                      }
+                    </script>
+                  </div>
                 </div>
-              </div>
               </div>
 
 
@@ -209,7 +263,7 @@ function update(picker) {
             </div>
           </div>
         </div>
-        
+
         <div class="col-lg-6 col-sm-6">
           <div class="card">
             <div class="content">
@@ -217,7 +271,8 @@ function update(picker) {
 
 
               <div class="dropdown-heading" role="tab" id="heading-4">
-<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-4" aria-expanded="true" aria-controls="collapse-4">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-4"
+                  aria-expanded="true" aria-controls="collapse-4">
 
 
                   <div class="row">
@@ -239,7 +294,7 @@ function update(picker) {
                   </div>
                 </a>
               </div>
-              
+
 
               <div id="collapse-4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-4">
                 <div class="panel-body">
@@ -249,61 +304,80 @@ function update(picker) {
                 </div>
               </div>
 
-            
+
 
             </div>
-            
+
           </div>
         </div>
 
-   
-
-      </div>
-
-      <div class="row">
-
-        <script src="/socket.io/socket.io.js"></script>
-
-
-
-
-        <script>
-
-	
-          var socket = io.connect('http://localhost:5000');
-          socket.on('data/<%= id_sensor%>', function(measurements)
-          {
-            var labels = JSON.parse(measurements);
-
-            var temp = labels.measurements["temperature"]
-            var luz = labels.measurements["ldr"];
-            var movimento = labels.measurements["motion"];
-            var humidade = labels.measurements["humidity"];
-            $('#tempAtual').text('Temperatura atual: ' + temp);
-            $('#luzAtual').text('Luz: ' + luz);
-            $('#movAtual').text(movimento);
-            $('#humAtual').text('Humidade: ' + humidade);
-
-
-            if (movimento == "motion detected")
-            {
-              document.getElementById("Movi").style.color = "green";
-              $('#movAtual').text('Com Movimento ');
-            }
-            else
-            {
-              $('#movAtual').text('Sem Movimento ');
-            }
-
-
-
-          })
-
-        </script>
 
 
       </div>
-    </div>
-  </div>
 
-  <% include partials/footer %>
+      <div class="col-lg-6 col-sm-6">
+        <div class="card">
+          <div class="content">
+
+
+
+            <div class="shit-heading">
+
+
+
+              <div class="row">
+                <h3 style="text-align: center;">O puto do grafico</h3>
+
+
+                <div id="chartContainer" style="height: 100%; width: 100%;"></div>
+                <div class="col-xs-4">
+                </div>
+                <div class="col-xs-4">
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+
+              <script src="/socket.io/socket.io.js"></script>
+
+
+
+
+              <script>
+                var socket = io.connect('http://localhost:5000');
+                socket.on('data/<%= id_sensor%>', function(measurements)
+                {
+                  var labels = JSON.parse(measurements);
+
+                  var temp = labels.measurements["temperature"]
+                  var luz = labels.measurements["ldr"];
+                  var movimento = labels.measurements["motion"];
+                  var humidade = labels.measurements["humidity"];
+                  $('#tempAtual').text('Temperatura atual: ' + temp);
+                  $('#luzAtual').text('Luz: ' + luz);
+                  $('#movAtual').text(movimento);
+                  $('#humAtual').text('Humidade: ' + humidade);
+
+
+                  if (movimento == "motion detected")
+                  {
+                    document.getElementById("Movi").style.color = "green";
+                    $('#movAtual').text('Com Movimento ');
+                  }
+                  else
+                  {
+                    $('#movAtual').text('Sem Movimento ');
+                  }
+
+
+
+                })
+              </script>
+
+
+            </div>
+          </div>
+        </div>
+
+        <% include partials/footer %>

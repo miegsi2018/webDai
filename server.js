@@ -17,8 +17,6 @@ const userModel = require('./models/user.model');
 
 
 
-
-
 //This function will allow us to retrict the access to the routes
 global.secure = function (type) {
 	return function (request, response, next) {
@@ -37,6 +35,12 @@ global.secure = function (type) {
 	};
 };
 //end of 
+
+
+
+
+
+
 
 app.use(validator());
 app.use(bodyParser.json(), bodyParser.urlencoded({

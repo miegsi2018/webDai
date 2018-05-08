@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../models/user.model');
-const mqtt = require('mqtt')
+const mqtt = require('mqtt');
 const sensorModel = require('../models/sensor.model');
 const req = require('request');
 
