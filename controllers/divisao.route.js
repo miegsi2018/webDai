@@ -129,9 +129,8 @@ router.get('/:id_division/:casa', function(request, response) {
     var inicial = new Date();
 
     var final = new Date();
-
+	final.setDate(final.getDate() +1)
     inicial.setDate(inicial.getDate() - 1);
-    var final2 = final.getMilliseconds();
     var graph = [];
     console.log(inicial);
     console.log(final);
