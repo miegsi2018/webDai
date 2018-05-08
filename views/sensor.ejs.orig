@@ -195,6 +195,35 @@
                 <div class="panel-body">
                   <hr>
                   <div class="col-md-6">
+<<<<<<< HEAD
+                    <!-- <p>Estado: <i class="fas fa-check" style="color: green;"></i></p> -->
+
+                    <div class="pretty p-default p-curve p-toggle">
+                      <input type="checkbox" />
+                      <div class="state p-success p-on">
+                        <label>Ligada</label>
+                      </div>
+                      <div class="state p-danger p-off">
+                        <label>Desligada </label>
+                      </div>
+
+
+                    </div>
+||||||| merged common ancestors
+                      <!-- <p>Estado: <i class="fas fa-check" style="color: green;"></i></p> -->
+
+                      <div class="pretty p-default p-curve p-toggle" >
+                          <input type="checkbox" />
+                          <div class="state p-success p-on">
+                              <label>Ligada</label>
+                          </div>
+                          <div class="state p-danger p-off">
+                              <label>Desligada </label>
+                          </div>
+                 
+              
+               </div>
+=======
                     <!-- <p>Estado: <i class="fas fa-check" style="color: green;"></i></p> -->
 
                     <div class="pretty p-default p-curve p-toggle">
@@ -207,9 +236,92 @@
                       </div>
 
                     </div>
+>>>>>>> 87cbfd61763e7b8543f17333f5bc1cec7c9a185d
 
                     <br>
                     <br>
+<<<<<<< HEAD
+
+
+
+                    <script src="/public/assets/js/jscolor.js"></script>
+
+                    <div style="position:absolute; left:280px;" hidden>
+                      R, G, B = <span id="rgb"></span><br />
+                      <span id="hex-str"></span><br />
+                      <span id="rgb-str"></span><br />
+                      <span id="hsv"></span>
+                    </div>
+
+                    <input class="jscolor {onFineChange:'update(this)'}" style="width: 40px; height: 40px; -webkit-border-radius: 50px; border-radius: 50px;  border: none;text-indent: -99em; display:block;"
+                      value="ffcc00">
+                  </div>
+                  <div class="col-md-6">
+
+                    <p id="luzAtual" style="text-align: center"></p>
+
+
+
+                    <button type="submit" class="btn btn-info btn-fill btn-wd" style="float: right; margin-top: 10px;">Mudar Cor</button>
+                    <script>
+                      function update(picker)
+                      {
+                        document.getElementById('hex-str').innerHTML = picker
+                          .toHEXString();
+                        document.getElementById('rgb-str').innerHTML = picker
+                          .toRGBString();
+
+                        document.getElementById('rgb').innerHTML =
+                          Math.round(picker.rgb[0]) + ', ' +
+                          Math.round(picker.rgb[1]) + ', ' +
+                          Math.round(picker.rgb[2]);
+
+                        document.getElementById('hsv').innerHTML =
+                          Math.round(picker.hsv[0]) + '&deg;, ' +
+                          Math.round(picker.hsv[1]) + '%, ' +
+                          Math.round(picker.hsv[2]) + '%';
+                      }
+                    </script>
+                  </div>
+||||||| merged common ancestors
+                    
+                 
+
+<script src="/public/assets/js/jscolor.js"></script>
+
+ <div style="position:absolute; left:280px;" hidden>
+  R, G, B = <span id="rgb" ></span><br />  
+    <span id="hex-str" ></span><br />
+    <span id="rgb-str" ></span><br />
+    <span id="hsv" ></span>
+</div> 
+
+<input class="jscolor {onFineChange:'update(this)'}" style="width: 40px; height: 40px; -webkit-border-radius: 50px; border-radius: 50px;  border: none;text-indent: -99em; display:block;" value="ffcc00">
+</div>
+<div class="col-md-6">
+
+    <p id="luzAtual" style="text-align: center"></p>
+
+       
+
+<button type="submit" class="btn btn-info btn-fill btn-wd" style="float: right; margin-top: 10px;">Mudar Cor</button>
+<script>
+function update(picker) {
+    document.getElementById('hex-str').innerHTML = picker.toHEXString();
+    document.getElementById('rgb-str').innerHTML = picker.toRGBString();
+
+    document.getElementById('rgb').innerHTML =
+        Math.round(picker.rgb[0]) + ', ' +
+        Math.round(picker.rgb[1]) + ', ' +
+        Math.round(picker.rgb[2]);
+
+    document.getElementById('hsv').innerHTML =
+        Math.round(picker.hsv[0]) + '&deg;, ' +
+        Math.round(picker.hsv[1]) + '%, ' +
+        Math.round(picker.hsv[2]) + '%';
+}
+</script>
+=======
 
 
 
@@ -253,6 +365,7 @@
                       }
                     </script>
                   </div>
+>>>>>>> 87cbfd61763e7b8543f17333f5bc1cec7c9a185d
                 </div>
               </div>
 
@@ -269,7 +382,14 @@
 
 
               <div class="dropdown-heading" role="tab" id="heading-4">
+<<<<<<< HEAD
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-4"
+                  aria-expanded="true" aria-controls="collapse-4">
+||||||| merged common ancestors
+<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-4" aria-expanded="true" aria-controls="collapse-4">
+=======
                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-4" aria-expanded="true" aria-controls="collapse-4">
+>>>>>>> 87cbfd61763e7b8543f17333f5bc1cec7c9a185d
 
 
                   <div class="row">
@@ -321,10 +441,24 @@
             <div class="shit-heading">
 
 
+<<<<<<< HEAD
+
+              <div class="row">
+                <h3 style="text-align: center;">O puto do grafico</h3>
+||||||| merged common ancestors
+        <script>
+
+	
+          var socket = io.connect('http://localhost:5000');
+          socket.on('data/<%= id_sensor%>', function(measurements)
+          {
+            var labels = JSON.parse(measurements);
+=======
         <script>
           var socket = io.connect('http://localhost:5000');
           socket.on('data/<%= id_sensor%>', function (measurements) {
             var labels = JSON.parse(measurements);
+>>>>>>> 87cbfd61763e7b8543f17333f5bc1cec7c9a185d
 
 
                 <div id="chartContainer" style="height: 100%; width: 100%;"></div>
@@ -334,19 +468,43 @@
                 </div>
               </div>
 
+<<<<<<< HEAD
+            </div>
+            <div class="row">
+||||||| merged common ancestors
+            if (movimento == "motion detected")
+            {
+              document.getElementById("Movi").style.color = "green";
+              $('#movAtual').text('Com Movimento ');
+            }
+            else
+            {
+              $('#movAtual').text('Sem Movimento ');
+            }
+=======
             if (movimento == "motion detected") {
               document.getElementById("Movi").style.color = "green";
               $('#movAtual').text('Com Movimento ');
             } else {
               $('#movAtual').text('Sem Movimento ');
             }
+>>>>>>> 87cbfd61763e7b8543f17333f5bc1cec7c9a185d
 
               <script src="/socket.io/socket.io.js"></script>
 
 
+<<<<<<< HEAD
+||||||| merged common ancestors
+          })
+=======
           })
         </script>
+>>>>>>> 87cbfd61763e7b8543f17333f5bc1cec7c9a185d
 
+<<<<<<< HEAD
+||||||| merged common ancestors
+        </script>
+=======
         <script>
           function state() {
 
@@ -366,6 +524,7 @@
             
           }
         </script>
+>>>>>>> 87cbfd61763e7b8543f17333f5bc1cec7c9a185d
 
               <script>
                 var socket = io.connect('http://localhost:5000');
@@ -403,4 +562,10 @@
           </div>
         </div>
 
+<<<<<<< HEAD
+        <% include partials/footer %>
+||||||| merged common ancestors
   <% include partials/footer %>
+=======
+  <% include partials/footer %>
+>>>>>>> 87cbfd61763e7b8543f17333f5bc1cec7c9a185d
