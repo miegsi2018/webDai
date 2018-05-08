@@ -10,8 +10,10 @@
     }
   </style>
   <script>
-    window.onload = function()
+    function whynot()
     {
+
+
 
       google.charts.load('current',
       {
@@ -30,11 +32,14 @@
         ]);
 
         var options = {
-		legend: {position: 'none'},
+          legend:
+          {
+            position: 'none'
+          },
           title: 'Temperatura nas últimas 24 Horas',
           hAxis:
           {
-		  slantedText:1,
+            slantedText: 1,
             showTextEvery: 300,
             title: 'ºC',
             titleTextStyle:
@@ -52,6 +57,18 @@
           'chartContainer'));
         chart.draw(data, options);
       }
+
+    }
+    window.onload = function()
+    {
+
+      whynot();
+    }
+    
+    function refresh()
+    {
+      $('#chartContainer').load( '/room/<%=division%>/<%=casa1%> #chartContainer > * ');
+      whynot();
     }
   </script>
   <div class="content">
@@ -309,12 +326,12 @@
 
       </div>
 
-      <div class="col-lg-12 col-sm-12">
+      <div class="col-lg-12 col-sm-12" id="graphDiv">
         <div class="card">
           <div class="content" style="height:400px">
 
 
-                <div id="chartContainer" style="height: 100%; width: 100%;"></div>
+            <div id="chartContainer" style="height: 100%; width: 100%;"></div>
             <div class="row">
 
               <script src="/socket.io/socket.io.js"></script>
@@ -336,8 +353,6 @@
                   $('#luzAtual').text('Luz: ' + luz);
                   $('#movAtual').text(movimento);
                   $('#humAtual').text('Humidade: ' + humidade);
-
-
                   if (movimento == "motion detected")
                   {
                     document.getElementById("Movi").style.color = "green";

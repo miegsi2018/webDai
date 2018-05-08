@@ -175,6 +175,7 @@ router.get('/:id_division/:casa', function(request, response) {
       response.render('./sensor', {
         id: id,
         casa1: casa1,
+	      division: division,
         jsonData2: jsonData2,
         id_sensor: id_sensor,
         graph: graph

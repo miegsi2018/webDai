@@ -12,250 +12,250 @@ var casa = [];
 
 
 router.get('/', function (request, response) {
-  //console.log(request.isAuthenticated());
+	//console.log(request.isAuthenticated());
 
-  var inicial = new Date();
+	var inicial = new Date();
 
-  var final = new Date();
+	var final = new Date();
 
-  inicial.setDate(inicial.getDate() - 1);
-  var final2 = final.getMilliseconds();
-  var graph = [];
-  console.log(inicial);
-  console.log(final);
+	inicial.setDate(inicial.getDate() - 1);
+	var final2 = final.getMilliseconds();
+	var graph = [];
+	console.log(inicial);
+	console.log(final);
 
 
-var i = 0;
+	var i = 0;
 
-  var options = {
-    uri: 'http://localhost:8080/returnGraph',
-    method: 'POST',
-    json: {
-      "dataI": inicial,
-      "dataF": final
-    }
-  };
+	var options = {
+		uri: 'http://localhost:8080/returnGraph',
+		method: 'POST',
+		json: {
+			"dataI": inicial,
+			"dataF": final
+		}
+	};
 
-  console.log(options.json);
+	console.log(options.json);
 
-  req(options, function(error, resp, body) {
-          console.log(body);
-	var a = body;
-	  for (var t = 0; t < body.temp.length;t++){
-		console.log( 'fds');
-		console.log(body.data[i]);
-		  i++;
-		graph.push({
-                    'data': body.data[i],
-                    'temperature':body.temp[t] 
-                  });
+	req(options, function (error, resp, body) {
+		console.log(body);
+		var a = body;
+		for (var t = 0; t < body.temp.length; t++) {
+			console.log('fds');
+			console.log(body.data[i]);
+			i++;
+			graph.push({
+				'data': body.data[i],
+				'temperature': body.temp[t]
+			});
 
-console.log(graph);
-	  }
-  })
+			console.log(graph);
+		}
+	})
 
-  response.set("Content-Type", "text/html");
-  response.render('./login', {
+	response.set("Content-Type", "text/html");
+	response.render('./login', {
 
-  });
+	});
 
 
 });
 
 router.get('/house', function (request, response, body) {
-  //console.log(request.isAuthenticated());
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  var id = request.user.email;
+	//console.log(request.isAuthenticated());
+	response.header("Access-Control-Allow-Origin", "*");
+	response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	var id = request.user.email;
 
-  req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
-    jsonData2 = JSON.parse(body2);
+	req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
+		jsonData2 = JSON.parse(body2);
 
-     var casa = [];
-    casa.push(jsonData2[0].id_house);
-    var casaN = [];
-    casaN.push(jsonData2[0].house);
-    for (var i = 0; i < jsonData2.length; i++) {
+		var casa = [];
+		casa.push(jsonData2[0].id_house);
+		var casaN = [];
+		casaN.push(jsonData2[0].house);
+		for (var i = 0; i < jsonData2.length; i++) {
 
-    for (var i = 1; i < jsonData2.length; i++) {
-      console.log("inico" + jsonData2[i-1].id_house)
-      console.log("fim" + jsonData2[i].id_house)
-      if (jsonData2[i-1].id_house != jsonData2[i].id_house) {
-      if (casa != jsonData2[i].id_house) {
-        casa.push(jsonData2[i].id_house);
-        casaN.push(jsonData2[i].house);
+			for (var i = 1; i < jsonData2.length; i++) {
+				console.log("inico" + jsonData2[i - 1].id_house)
+				console.log("fim" + jsonData2[i].id_house)
+				if (jsonData2[i - 1].id_house != jsonData2[i].id_house) {
+					if (casa != jsonData2[i].id_house) {
+						casa.push(jsonData2[i].id_house);
+						casaN.push(jsonData2[i].house);
 
-      }
-    }
-  }
-}
-    console.log(casa)
-    response.set("Content-Type", "text/html");
-    response.render('./house', {
-      id: id,
-      casa: casa,
-      casaN: casaN
-    });
-    });
-  });
+					}
+				}
+			}
+		}
+		console.log(casa)
+		response.set("Content-Type", "text/html");
+		response.render('./house', {
+			id: id,
+			casa: casa,
+			casaN: casaN
+		});
+	});
+});
 
 
 
 router.get('/house_create', function (request, response, body) {
-  //console.log(request.isAuthenticated());
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  var id = request.user.email;
+	//console.log(request.isAuthenticated());
+	response.header("Access-Control-Allow-Origin", "*");
+	response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	var id = request.user.email;
 
-  req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
+	req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
 
-    jsonData2 = JSON.parse(body2);
+		jsonData2 = JSON.parse(body2);
 
 
-    var casa = [];
-    for (var i = 0; i < jsonData2.length; i++) {
-      if (jsonData2[i].email === id) {
-        casa.push(jsonData2[i].house);
-      }
-    }
-    response.set("Content-Type", "text/html");
-    response.render('./create_house', {
-      id: id,
-      casa: casa
-    });
-  });
+		var casa = [];
+		for (var i = 0; i < jsonData2.length; i++) {
+			if (jsonData2[i].email === id) {
+				casa.push(jsonData2[i].house);
+			}
+		}
+		response.set("Content-Type", "text/html");
+		response.render('./create_house', {
+			id: id,
+			casa: casa
+		});
+	});
 
 });
 
 
 router.post('/house_create', function (request, response, body) {
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	response.header("Access-Control-Allow-Origin", "*");
+	response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-  var id = request.user.account;
+	var id = request.user.account;
 
-  var options = {
-    uri: 'http://localhost:8080/house',
-    method: 'POST',
-    json: {
-      "name": request.body.name,
-      "account_id": id
-    }
-  }
+	var options = {
+		uri: 'http://localhost:8080/house',
+		method: 'POST',
+		json: {
+			"name": request.body.name,
+			"account_id": id
+		}
+	}
 
-  req(options, function (error, resp, body) {
+	req(options, function (error, resp, body) {
 
-  })
-  response.redirect('/house');
+	})
+	response.redirect('/house');
 });
 
 
 router.get('/home/:casa', function (request, response, body) {
-  //console.log(request.isAuthenticated());
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  var id = request.user.email;
-  var casa1 = request.params.casa;
+	//console.log(request.isAuthenticated());
+	response.header("Access-Control-Allow-Origin", "*");
+	response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	var id = request.user.email;
+	var casa1 = request.params.casa;
 
 
-  req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
+	req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
 
 
-    jsonData2 = JSON.parse(body2)
-    console.log(jsonData2);
+		jsonData2 = JSON.parse(body2)
+		console.log(jsonData2);
 
-    response.set("Content-Type", "text/html");
-    response.render('./index', {
-      id: id,
-      casa1: casa1,
-      jsonData2: jsonData2
-    });
+		response.set("Content-Type", "text/html");
+		response.render('./index', {
+			id: id,
+			casa1: casa1,
+			jsonData2: jsonData2
+		});
 
-  });
+	});
 
 });
 
 
 router.post('home/:casa', function (request, response, body) {
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	response.header("Access-Control-Allow-Origin", "*");
+	response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-  var options = {
-    uri: 'http://localhost:8080/avgTemp',
-    method: 'POST',
-    json: {
-      "dataI": request.body.dataI,
-      "dataF": request.body.dataF
-    }
-  };
+	var options = {
+		uri: 'http://localhost:8080/avgTemp',
+		method: 'POST',
+		json: {
+			"dataI": request.body.dataI,
+			"dataF": request.body.dataF
+		}
+	};
 
-  console.log(options.json);
+	console.log(options.json);
 
-  req(options, function (error, resp, body) {
-    console.log(body);
-    document.getElementById('avg').innerHTML = body
-  })
+	req(options, function (error, resp, body) {
+		console.log(body);
+		document.getElementById('avg').innerHTML = body
+	})
 });
 
 
 router.get('/registo', function (request, response) {
-  //console.log(request.isAuthenticated());
+	//console.log(request.isAuthenticated());
 
-  response.set("Content-Type", "text/html");
-  response.render('./registo', {});
+	response.set("Content-Type", "text/html");
+	response.render('./registo', {});
 
 });
 
 router.post('/registo', function (request, response) {
-  var errors = request.validationErrors();
+	var errors = request.validationErrors();
 
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	response.header("Access-Control-Allow-Origin", "*");
+	response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-  var options = {
-    uri: 'http://localhost:8080/utilizador',
-    method: 'POST',
-    json: {
-      "username": request.body.username,
-      "password": request.body.password,
-      "email": request.body.email,
-      "type": "user"
-    }
-  };
+	var options = {
+		uri: 'http://localhost:8080/utilizador',
+		method: 'POST',
+		json: {
+			"username": request.body.username,
+			"password": request.body.password,
+			"email": request.body.email,
+			"type": "user"
+		}
+	};
 
-  req(options, function (error, resp, body) {
+	req(options, function (error, resp, body) {
 
-  });
-  response.redirect('/');
+	});
+	response.redirect('/');
 });
 
 router.post('/', function (request, response) {
 
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	response.header("Access-Control-Allow-Origin", "*");
+	response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-  var options = {
-    uri: 'http://localhost:8080/login',
-    method: 'POST',
-    json: {
-      "email": request.body.email,
-      "password": request.body.password
-    }
-  };
+	var options = {
+		uri: 'http://localhost:8080/login',
+		method: 'POST',
+		json: {
+			"email": request.body.email,
+			"password": request.body.password
+		}
+	};
 
 
-  req(options, function (error, resp, body) {
-    if (body.password == request.body.password) {
-      request.login(body.email, function (err) {
-        response.redirect('/house');
-      });
-    } else {
-      response.json({
-        error: "Updated Successfully",
-        status: 400
-      });
-    }
-  });
+	req(options, function (error, resp, body) {
+		if (body.password == request.body.password) {
+			request.login(body.email, function (err) {
+				response.redirect('/house');
+			});
+		} else {
+			response.json({
+				error: "Updated Successfully",
+				status: 400
+			});
+		}
+	});
 });
 
 module.exports = router;
