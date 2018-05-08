@@ -93,7 +93,7 @@
         <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <h4><%= jsonData2[0].house %></h4>
+                    <h4><%=casa1 %></h4>
                     <button type="button" class="navbar-toggle">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar bar1"></span>
@@ -103,23 +103,25 @@
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
+                        <li >
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-power-off"></i>
+                                 
                                
 									<p><%= id %></p>
-									<b class="caret"></b>
+									
                               </a>
-                              <ul class="dropdown-menu">
                               
-                                <li><a  href="/logout">  Logout</a></li>
-                            
-                                
-            
-                              
-                              </ul>
                         </li>
-						
+                        <li >
+                            <a  href="/logout"> 
+                                  <i class="ti-power-off"></i>
+                             
+                                  <p>Logout</p>
+                                  
+                            </a>
+                            
+                      </li>
+                      
                        
                         
                     </ul>
