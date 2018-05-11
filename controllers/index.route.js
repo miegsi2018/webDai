@@ -160,7 +160,17 @@ router.get('/home/:casa', function (request, response, body) {
 
 	req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
 
+var nTotal = 0;
+for (var e of jsonData2) {
+	if(casa1 == e.id_house){
 
+	
+
+	  nTotal = nTotal + 1;
+
+
+	}
+	}
 		jsonData2 = JSON.parse(body2)
 		console.log(jsonData2);
 
@@ -168,7 +178,8 @@ router.get('/home/:casa', function (request, response, body) {
 		response.render('./index', {
 			id: id,
 			casa1: casa1,
-			jsonData2: jsonData2
+			jsonData2: jsonData2,
+			nTotal
 		});
 
 	});
