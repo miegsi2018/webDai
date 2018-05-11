@@ -72,8 +72,10 @@ router.get('/house', function (request, response, body) {
 		jsonData2 = JSON.parse(body2);
 
 		var casa = [];
-		casa.push(jsonData2[0].id_house);
 		var casaN = [];
+		if(jsonData2[0].id_house){
+		casa.push(jsonData2[0].id_house);
+	
 		casaN.push(jsonData2[0].house);
 		for (var i = 0; i < jsonData2.length; i++) {
 
@@ -89,6 +91,7 @@ router.get('/house', function (request, response, body) {
 				}
 			}
 		}
+	}
 		console.log(casa)
 		response.set("Content-Type", "text/html");
 		response.render('./house', {
