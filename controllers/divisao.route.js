@@ -186,6 +186,49 @@ router.get('/:id_division/:casa', function(request, response) {
 
 
 });
+router.get('/:id_division/:casa/edit', function(request, response) {
+  var id = request.user.email;
+  var sensoresUser = new Array();
+  var casa1 = request.params.casa;
+  var division = request.params.id_division;
+
+  req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
+    jsonData2 = JSON.parse(body2)
+    console.log(division);
+    var id_sensor;
+    var nome_divisao;
+    for (var e of jsonData2) {
+
+      if (division == e.id_division) {
+
+        id_sensor = e.sensor_id;
+        nome_divisao = e.division
+
+
+      } 
+       
+
+
+    }
+    console.log(id_sensor);
+    console.log(nome_divisao);
+
+
+      response.set("Content-Type", "text/html");
+      response.render('./editar_divisao', {
+        id: id,
+        casa1: casa1,
+	      division: division,
+        jsonData2: jsonData2,
+        id_sensor: id_sensor, 
+        nome_divisao: nome_divisao
+      });
+    });
+
+  });
+
+
+
 
 
 module.exports = router;

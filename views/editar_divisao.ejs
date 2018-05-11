@@ -1,0 +1,54 @@
+<% include partials/header %>
+
+<div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                    <div class="col-lg-1 col-md-5"></div>
+                <div class="col-lg-9 col-md-5">
+                    <div class="card card">
+                            <div class="header">
+                                    <h4 class="title">Editar uma divisão da sua casa</h4>
+                                </div>
+                                <div class="content">
+                                        <form role= "form" action="/room/<%= casa1 %>/regi"  method="post">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="form-group">
+                                                            <label>Sensor</label>
+                                                            <input type="text" class="form-control border-input" name="id_sensor"  placeholder="ID Sensor" value="<%= id_sensor  %>" >
+                                                        </div>
+                                                    </div>     <div class="col-md-1"></div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-check">
+                                                            <label class="text-center">Divisão</label>
+                                                            <input type="text" class="form-control border-input" name="name"  placeholder="Nome da Divisão" value="<%= nome_divisao %>" >
+                                                            <br>
+                                                           
+                                                            
+                                                        </div>
+                                                    </div> 
+                                                </div>
+                                                
+                                                    <br>
+                                                
+                                                    <button type="submit" class="btn btn-info btn-fill btn-wd" style="float: right; ">Adicionar Divisão</button>
+                                                    <br>
+                                                    <br>
+                                                    </form>
+                                    </div>
+                       
+                       
+                        
+                    </div>
+                    <!--- Outra div -->
+               
+                    
+                </div>
+        
+                <div class="col-lg-1 col-md-5"></div>
+
+            </div>
+        </div>
+    </div>
+
+<% include partials/footer %>
