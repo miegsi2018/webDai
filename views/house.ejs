@@ -1,15 +1,17 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-    
-	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="/public/assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="/public/assets/img/logo.png">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Digital Friendly House</title>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/public/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/public/assets/img/logo.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <title>Digital Friendly House</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
+        name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
 
@@ -19,120 +21,146 @@
     <link href="/public/assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="/public/assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="/public/assets/css/animate.min.css" rel="stylesheet" />
 
     <!--  Paper Dashboard core CSS    -->
-    <link href="/public/assets/css/paper-dashboard.css" rel="stylesheet"/>
+    <link href="/public/assets/css/paper-dashboard.css" rel="stylesheet" />
 
-    <link href="/public/assets/css/costum.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="/public/assets/pretty-checkbox.min.css"/>
-    <link rel="stylesheet" href="/public/assets/dist/pretty-checkbox.css"/>
+    <link href="/public/assets/css/costum.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/public/assets/pretty-checkbox.min.css" />
+    <link rel="stylesheet" href="/public/assets/dist/pretty-checkbox.css" />
 
-<!-- Google Floating Button css -->
-<link href="/public/assets/css/button.css" rel="stylesheet">
-    
+    <!-- Google Floating Button css -->
+    <link href="/public/assets/css/button.css" rel="stylesheet">
+
 
     <!--  Fonts and icons     -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+        rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet'
+        type='text/css'>
     <link href="/public/assets/css/themify-icons.css" rel="stylesheet">
     <link href="/public/assets/css/style_radio.css" rel="stylesheet">
 
 
 
 </head>
+
 <body>
 
-<div class="wrapper">
-    <div class="sidebar" data-background-color="black" data-active-color="warning">
-
-    <!--
-		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-	-->
-
-    	<div class="sidebar-wrapper">
-            <div class="logo">
-                <a class="simple-text">
+    <div class="wrapper">
+        <div class="sidebar" data-background-color="black" data-active-color="warning">
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a class="simple-text">
                     MENU
                 </a>
+                </div>
+
+
+
             </div>
-     
+        </div>
 
-           
-    	</div>
-    </div>
-
-    <div class="main-panel">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <h4></h4>
-                    <button type="button" class="navbar-toggle">
+        <div class="main-panel">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <h4></h4>
+                        <button type="button" class="navbar-toggle">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar bar1"></span>
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                       
-						
-                        <li>
-                            <a  href="/logout">
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+
+
+                            <li>
+                                <a href="/logout">
                                 <i class="ti-power-off"></i>
 								<p>Logout</p>
                             </a>
-                        </li>
-                        
-                    </ul>
+                            </li>
 
+                        </ul>
+
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
-<div class="content">
-    <div class="container-fluid">
-        <div class="row">
-                <%  for(var i = 0; i < casa.length; i++){ %>
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <% if (casa.length >= 1) { %>
+                            <% for(var i = 0; i < casa.length; i++){ %>
 
-                        <li style   ="list-style-type: none;" >
-                                <div class="col-lg-4 col-sm-6" onclick="location.href='./home/<%= casa[i] %>';">
+                                <li style="list-style-type: none;">
+                                    <div class="col-lg-4 col-sm-6" onclick="location.href='./home/<%= casa[i] %>';">
                                         <div class="card card-user">
                                             <div class="image">
-                                                <img src="./public/assets/img/house.jpg" alt="..."/>
+                                                <img src="./public/assets/img/house.jpg" alt="..." />
                                             </div>
                                             <div class="text-center" style="margin-top: 40px;">
                                                 <div class="row">
-                                                        <h3 class="title"> <%= casaN[i] %></h3>
-                                                       
-                                                     </div>
+                                                    <h3 class="title">
+                                                        <%= casaN[i] %>
+                                                    </h3>
+
                                                 </div>
-                                                
-                                                <br>
-                                            
-                                        
-                                            
+                                            </div>
+
+                                            <br>
+
+
+
                                         </div>
-                            </div>
-                            </li>
+                                    </div>
+                                </li>
 
-                            <% } %> 
-                   
-                   
+                                <% } %>
+
+                                    <% }else{ %>
 
 
-        </div>
-        <div id="container-floating">
-            <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" onclick="location.href='/house_create';">
-              <p class="plus">+</p>
+
+                                        <div class="col-lg-12">
+                                            <div class="card card-user">
+                                                <div class="text-center" style="margin-top: 40px;">
+                                                    <div class="row">
+                                                        <h3 class="title">
+
+                                                            Ainda não tem casas!
+                                                        </h3>
+
+                                                    </div>
+                                                </div>
+
+                                                <br>
+
+
+
+                                            </div>
+                                        </div>
+                                        </li>
+
+
+
+
+                                        <% } %>
+                    </div>
+                    <div id="container-floating">
+                        <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create"
+                            onclick="location.href='/house_create';">
+                            <p class="plus">+</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
 
 
 
-<% include partials/footer %>
+            <% include partials/footer %>
