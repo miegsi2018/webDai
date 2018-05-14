@@ -172,10 +172,11 @@ router.get('/home/:casa', function(request, response, body) {
     req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
 
         var nTotal = 0;
+        var Ncasa;
         for (var e of jsonData2) {
             if (casa1 == e.id_house) {
 
-
+                Ncasa = e.house;
 
                 nTotal = nTotal + 1;
 
@@ -190,7 +191,8 @@ router.get('/home/:casa', function(request, response, body) {
             id: id,
             casa1: casa1,
             jsonData2: jsonData2,
-            nTotal
+            nTotal,
+            Ncasa
         });
 
     });

@@ -3,8 +3,9 @@ const router = express.Router();
 const model = require('../models/divisao.model');
 var mqtt = require('mqtt');
 const req = require('request');
+const fileUpload = require('express-fileupload');
 var userData;
-
+router.use(fileUpload());
 
 router.get('/:casa', function(request, response) {
   var id = request.user.email;
@@ -14,13 +15,25 @@ router.get('/:casa', function(request, response) {
   jsonData2 = JSON.parse(body2)
   console.log(jsonData2);
 
-  
+  var nTotal = 0;
+  var Ncasa;
+  for (var e of jsonData2) {
+      if (casa1 == e.id_house) {
+
+          Ncasa = e.house;
+
+          nTotal = nTotal + 1;
+
+
+      }
+  }
     response.set("Content-Type", "text/html");
 	  response.render('./divisao', {
 
       id :id,
 			casa1: casa1,
-		  jsonData2: jsonData2
+      jsonData2: jsonData2,
+      Ncasa
 		});
 	  });
   });
@@ -30,6 +43,7 @@ router.get('/:casa', function(request, response) {
   
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  console.log(request.files);
   
     var options = {
       uri: 'http://localhost:8080/division',
@@ -41,8 +55,33 @@ router.get('/:casa', function(request, response) {
       
       }
     };
+  if (!request.files)
+    return response.status(400).send('No files were uploaded.');
+    var fields = request.files;
+    console.log(fields);
 
 
+	let sampleFile = request.files.sampleFile;
+console.log(request.body.sensor_id);
+	sampleFile.mv('./public/assets/img/'+ request.body.name + "-" + request.params.casa +'.jpg', function(err) {
+		if (err)
+		  return response.status(500).send(err);
+	 
+	  });
+
+
+      function pics(oldpath, newpath){
+
+        Jimp.read(oldpath, function (err, lenna) {		
+          
+          if (err) throw err;
+          lenna.resize(1024, 768)            // resize 
+             .quality(100)               
+                           
+             .write(newpath); // save 
+        });
+        
+      }
   
     req(options, function (error, resp, body) {
       response.redirect('/room/' + casa1);
@@ -55,13 +94,25 @@ router.get('/:casa/add', function(request, response) {
   req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
     jsonData2 = JSON.parse(body2)
     console.log(jsonData2);
+    var nTotal = 0;
+    var Ncasa;
+    for (var e of jsonData2) {
+        if (casa1 == e.id_house) {
 
+            Ncasa = e.house;
+
+            nTotal = nTotal + 1;
+
+
+        }
+    }
 
     response.set("Content-Type", "text/html");
     response.render('./adicionar_divisao', {
       id: id,
       casa1: casa1,
-      jsonData2: jsonData2
+      jsonData2: jsonData2,
+      Ncasa
     });
   });
 });
@@ -77,6 +128,18 @@ router.get('/:id_division/:casa', function(request, response) {
     jsonData2 = JSON.parse(body2)
     console.log(division);
     var id_sensor;
+    var nTotal = 0;
+    var Ncasa;
+    for (var e of jsonData2) {
+        if (casa1 == e.id_house) {
+
+            Ncasa = e.house;
+
+            nTotal = nTotal + 1;
+
+
+        }
+    }
     for (var e of jsonData2) {
 
       if (division == e.id_division) {
@@ -178,7 +241,8 @@ router.get('/:id_division/:casa', function(request, response) {
 	      division: division,
         jsonData2: jsonData2,
         id_sensor: id_sensor,
-        graph: graph
+        graph: graph,
+        Ncasa
       });
     });
 
@@ -197,6 +261,18 @@ router.get('/:id_division/:casa/edit', function(request, response) {
     console.log(division);
     var id_sensor;
     var nome_divisao;
+    var nTotal = 0;
+    var Ncasa;
+    for (var e of jsonData2) {
+        if (casa1 == e.id_house) {
+
+            Ncasa = e.house;
+
+            nTotal = nTotal + 1;
+
+
+        }
+    }
     for (var e of jsonData2) {
 
       if (division == e.id_division) {
@@ -221,7 +297,8 @@ router.get('/:id_division/:casa/edit', function(request, response) {
 	      division: division,
         jsonData2: jsonData2,
         id_sensor: id_sensor, 
-        nome_divisao: nome_divisao
+        nome_divisao: nome_divisao,
+        Ncasa
       });
     });
 
