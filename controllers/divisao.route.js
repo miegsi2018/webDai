@@ -55,10 +55,16 @@ router.get('/:casa', function(request, response) {
       
       }
     };
-  if (!request.files)
-    return response.status(400).send('No files were uploaded.');
-    var fields = request.files;
-    console.log(fields);
+  if (!request.files){
+    let sampleFile = '/public/assets/img/deafult.jpg';
+    console.log(request.body.sensor_id);
+	sampleFile.mv('./public/assets/img/'+ request.body.name + "-" + request.params.casa +'.jpg', function(err) {
+		if (err)
+		  return response.status(500).send(err);
+	 
+	  });
+  }else{
+
 
 
 	let sampleFile = request.files.sampleFile;
@@ -69,7 +75,7 @@ console.log(request.body.sensor_id);
 	 
 	  });
 
-
+  }
       function pics(oldpath, newpath){
 
         Jimp.read(oldpath, function (err, lenna) {		
