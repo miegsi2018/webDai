@@ -114,5 +114,6 @@ app.use('/profile', require('./controllers/profile.route'));
 app.use('/room', require('./controllers/divisao.route'));
 app.use('/admin', require('./controllers/admin.route'));
 app.use('/logout', require('./controllers/logout.route'));
+app.use('/card', require('./controllers/card.route'));
 
 //new

@@ -44,21 +44,26 @@ router.post('/:casa/regi', function (request, response) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   console.log(request.files);
-
-  var options = {
-    uri: 'http://localhost:8080/division',
-    method: 'POST',
-    json: {
-      "id_house": request.params.casa,
-      "name": request.body.name,
-      "sensor_id": request.body.sensor_id,
-
-    }
-  };
-  if (!request.files)
-    return response.status(400).send('No files were uploaded.');
-  var fields = request.files;
-  console.log(fields);
+  
+    var options = {
+      uri: 'http://localhost:8080/division',
+      method: 'POST',
+      json: {
+        "id_house": request.params.casa,
+        "name": request.body.name,
+        "sensor_id": request.body.sensor_id,
+      
+      }
+    };
+  if (!request.files){
+    let sampleFile = '/public/assets/img/deafult.jpg';
+    console.log(request.body.sensor_id);
+	sampleFile.mv('./public/assets/img/'+ request.body.name + "-" + request.params.casa +'.jpg', function(err) {
+		if (err)
+		  return response.status(500).send(err);
+	 
+	  });
+  }else{
 
 
   let sampleFile = request.files.sampleFile;
@@ -69,8 +74,8 @@ router.post('/:casa/regi', function (request, response) {
 
   });
 
-
-  function pics(oldpath, newpath) {
+  }
+      function pics(oldpath, newpath){
 
     Jimp.read(oldpath, function (err, lenna) {
 
