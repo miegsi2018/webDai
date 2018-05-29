@@ -14,6 +14,8 @@ const session = require('express-session');
 const passport = require('passport');
 const userModel = require('./models/user.model');
 
+var restServer = 'http://localhost:8080/';
+
 
 
 

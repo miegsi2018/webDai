@@ -1,37 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" class="body-full-height">
-    <head>        
-        <!-- META SECTION -->
-        <title>Digital Friendly House</title>            
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
 
-        <!-- END META SECTION -->
-        
-        <!-- CSS INCLUDE -->        
-        <link rel="stylesheet" type="text/css" id="theme" href="../public/assets/login/css/theme-default.css"/>
-        <!-- EOF CSS INCLUDE -->                                    
-    </head>
-    <body>
-        
-        <div class="login-container">
-        
-            <div class="login-box animated fadeInDown">
-                <div class="login" style="text-align: center"><img src="../public/assets/login/img/dfh.png" alt=""></div>
-                <br>
-                <div class="login-body">
-                    <div class="login-title"><strong>Entre</strong> na sua conta</div>
-                    <form action="/" class="form-horizontal" method="post">
+<head>
+    <!-- META SECTION -->
+    <title>Digital Friendly House</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+    <!-- END META SECTION -->
+
+    <!-- CSS INCLUDE -->
+    <link rel="stylesheet" type="text/css" id="theme" href="../public/assets/login/css/theme-default.css" />
+    <!-- EOF CSS INCLUDE -->
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="login-box animated fadeInDown">
+            <div class="login" style="text-align: center">
+                <img src="../public/assets/login/img/dfh.png" alt="">
+            </div>
+            <br>
+            <div class="login-body">
+                <div class="login-title">
+                    <strong>Entre</strong> na sua conta</div>
+                <form action="/" class="form-horizontal" method="post">
                     <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="text" name="email" class="form-control" placeholder="E-mail"/>
+                        <div class="col-md-12" id="email_div">
+                            <input type="text" id="email" name="email" class="form-control" placeholder="E-mail" />
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="password" name="password" class="form-control" placeholder="Password"/>
+                        <div class="col-md-12" id="password_div">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Password" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -39,37 +44,61 @@
                             <a href="#" class="btn btn-link btn-block">Esqueceu-se da password?</a>
                         </div>
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-info btn-block">Log In</button>
+                            <button type="submit" class="btn btn-info btn-block" onsubmit="return Validate()">Log In</button>
                         </div>
                     </div>
                     <div class="login-or">OU</div>
                     <div class="form-group">
                         <div class="col-md-4">
-                            <button class="btn btn-info btn-block btn-twitter"><span class="fa fa-twitter"></span> Twitter</button>
+                            <button class="btn btn-info btn-block btn-twitter">
+                                <span class="fa fa-twitter"></span> Twitter</button>
                         </div>
                         <div class="col-md-4">
-                            <button class="btn btn-info btn-block btn-facebook"><span class="fa fa-facebook"></span> Facebook</button>
+                            <button class="btn btn-info btn-block btn-facebook">
+                                <span class="fa fa-facebook"></span> Facebook</button>
                         </div>
-                        <div class="col-md-4">                            
-                            <button class="btn btn-info btn-block btn-google"><span class="fa fa-google-plus"></span> Google</button>
+                        <div class="col-md-4">
+                            <button class="btn btn-info btn-block btn-google">
+                                <span class="fa fa-google-plus"></span> Google</button>
                         </div>
                     </div>
                     <div class="login-subtitle">
-                        Não tem conta ainda? <a href="/registo">Crie uma</a>
+                        Não tem conta ainda?
+                        <a href="/registo">Crie uma</a>
                     </div>
-                    </form>
+                </form>
+            </div>
+            <div class="login-footer">
+                <div class="pull-left">
+                    <img src="../public/assets/login/img/teamdai.png" alt="" height="50%" width="50%">
                 </div>
-                <div class="login-footer">
-                    <div class="pull-left">
-                        <img src="../public/assets/login/img/teamdai.png" alt="" height="50%" width="50%">
-                    </div>
-                    <div class="pull-right">
-                        <a href="#">About</a> |
-                        <a href="#">Privacy</a> |
-                        <a href="#">Contact Us</a>
-                    </div>
+                <div class="pull-right">
+                    <a href="#">About</a> |
+                    <a href="#">Privacy</a> |
+                    <a href="#">Contact Us</a>
                 </div>
-            </div>  
+            </div>
         </div>
-    </body>
+    </div>
+</body>
+<script>
+    function Validate() {
+        var email = document.getElementById('email');
+        var password = document.getElementById('password');
+
+        if (email.value == "") {
+            email.style.border = "1px solid red";
+            document.getElementById('email_div').style.color = "red";
+            password.focus();
+            return false;
+        }
+        if (password.value == "") {
+            password.style.border = "1px solid red";
+            document.getElementById('password_div').style.color = "red";
+            password.focus();
+            return false;
+        }
+    }
+</script>
+
 </html>
