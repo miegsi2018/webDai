@@ -106,7 +106,8 @@ router.get('/house', function(request, response, body) {
         response.render('./house', {
             id: id,
             casa: casa,
-            casaN: casaN
+            casaN: casaN,
+            jsonData2: jsonData2
         });
     });
 
