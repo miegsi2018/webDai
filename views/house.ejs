@@ -57,6 +57,16 @@
                     MENU
                 </a>
                 </div>
+                <ul class="nav">
+                    <li>
+                        <% if(jsonData2[0].type === "Admin"){ %>
+                        <a href="./admin">
+                            <i class="ti-home"></i>
+                            <p>Admin</p>
+                        </a>
+                        <% } %>
+                    </li>
+                </ul>
 
 
 
@@ -65,7 +75,7 @@
 
         <div class="main-panel">
             <nav class="navbar navbar-default">
-                <div class="container-fluid">
+                <div class="container-fluid"> 
                     <div class="navbar-header">
                         <h4></h4>
                         <button type="button" class="navbar-toggle">
@@ -145,7 +155,7 @@
                     </div>
                     <div id="container-floating">
                         <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create"
-                            onclick="location.href='/house_create';">
+                            onclick="location.href='/house/create';">
                             <p class="plus">+</p>
                         </div>
                     </div>

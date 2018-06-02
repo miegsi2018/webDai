@@ -10,7 +10,7 @@ var casa = [];
 
 
 
-
+// ROTA DA FRONT PAGE
 router.get('/', function(request, response) {
     //console.log(request.isAuthenticated());
 
@@ -62,12 +62,13 @@ router.get('/', function(request, response) {
 
 });
 
+// ROTA DA PAGINA DAS CASAS DO UTILIZADOR
 router.get('/house', function(request, response, body) {
     //console.log(request.isAuthenticated());
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var id = request.user.email;
-
+    
     req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
         jsonData2 = JSON.parse(body2);
 
@@ -105,14 +106,16 @@ router.get('/house', function(request, response, body) {
         response.render('./house', {
             id: id,
             casa: casa,
-            casaN: casaN
+            casaN: casaN,
+            jsonData2: jsonData2
         });
     });
+
 });
 
 
 
-router.get('/house_create', function(request, response, body) {
+router.get('/house/create', function(request, response, body) {
     //console.log(request.isAuthenticated());
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -139,7 +142,7 @@ router.get('/house_create', function(request, response, body) {
 });
 
 
-router.post('/house_create', function(request, response, body) {
+router.post('/house/create', function(request, response, body) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 

@@ -11,7 +11,7 @@
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-
+    
 
     <!-- Bootstrap core CSS     -->
 
@@ -62,19 +62,19 @@
             <ul class="nav">
                   
                         <li>
-                                <a href="./admin">
+                                <a href="/admin">
                                     <i class="ti-world"></i>
                                     <p>Index</p>
                                 </a>
                             </li>
                             <li>
-                                    <a href="./admin/sensor">
+                                    <a href="/admin/sensor">
                                         <i class="ti-plus"></i>
                                         <p>Adicionar sensor</p>
                                     </a>
                                 </li>
                                 <li>
-                                        <a href="./house">
+                                        <a href="/house">
                                             <i class="ti-home"></i>
                                             <p>Casas</p>
                                         </a>
@@ -111,11 +111,25 @@
                               </a>
                               <ul class="dropdown-menu">
                               
-                                <li><a  href="/logout">  Logout</a></li>
-                            
-                                
-            
-                              
+                                    <li >
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                               
+                                             
+                                                  <p><%= id %></p>
+                                                  
+                                            </a>
+                                            
+                                      </li>
+                                      <li >
+                                          <a  href="/logout"> 
+                                                <i class="ti-power-off"></i>
+                                           
+                                                <p>Logout</p>
+                                                
+                                          </a>
+                                          
+                                    </li>
+                                    
                               </ul>
                         </li>
 						
