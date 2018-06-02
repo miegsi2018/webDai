@@ -112,7 +112,7 @@ router.get('/house', function(request, response, body) {
 
 
 
-router.get('/house_create', function(request, response, body) {
+router.get('/house/create', function(request, response, body) {
     //console.log(request.isAuthenticated());
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -139,7 +139,7 @@ router.get('/house_create', function(request, response, body) {
 });
 
 
-router.post('/house_create', function(request, response, body) {
+router.post('/house/create', function(request, response, body) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 

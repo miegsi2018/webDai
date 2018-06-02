@@ -15,7 +15,7 @@ module.exports = {
     });
   },
   read(email, callback) {
-    var sql = "SELECT * FROM dwpt_dai.users where email=?";
+    var sql = "SELECT * FROM dwpt_dai.v_account_user where email=?";
     global.connection.query(sql, [email], function(error, rows, fields) {
       if (error) throw error;
       callback(rows[0]);

@@ -44,49 +44,51 @@ router.post('/:casa/regi', function (request, response) {
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   console.log(request.files);
-  
-    var options = {
-      uri: 'http://localhost:8080/division',
-      method: 'POST',
-      json: {
-        "id_house": request.params.casa,
-        "name": request.body.name,
-        "sensor_id": request.body.sensor_id,
-      
-      }
-    };
-  if (!request.files){
-    let sampleFile = '/public/assets/img/deafult.jpg';
-    console.log(request.body.sensor_id);
-	sampleFile.mv('./public/assets/img/'+ request.body.name + "-" + request.params.casa +'.jpg', function(err) {
-		if (err)
-		  return response.status(500).send(err);
-	 
-	  });
-  }else{
+
+  var options = {
+    uri: 'http://localhost:8080/division',
+    method: 'POST',
+    json: {
+      "id_house": casa1,
+      "name": request.body.name,
+      "sensor_id": request.body.sensor_id,
+
+    }
+  };
+  /*
+    if (!request.files) {
+      let sampleFile = '/public/assets/img/deafult.jpg';
+      console.log(request.body.sensor_id);
+      sampleFile.mv('./public/assets/img/' + request.body.name + "-" + request.params.casa + '.jpg', function (err) {
+        if (err)
+          return response.status(500).send(err);
+
+      });
+    } else {
 
 
-  let sampleFile = request.files.sampleFile;
-  console.log(request.body.sensor_id);
-  sampleFile.mv('./public/assets/img/' + request.body.name + "-" + request.params.casa + '.jpg', function (err) {
-    if (err)
-      return response.status(500).send(err);
+      let sampleFile = request.files.sampleFile;
+      console.log(request.body.sensor_id);
+      sampleFile.mv('./public/assets/img/' + request.body.name + "-" + request.params.casa + '.jpg', function (err) {
+        if (err)
+          return response.status(500).send(err);
 
-  });
+      });
 
-  }
-      function pics(oldpath, newpath){
+    }
 
-    Jimp.read(oldpath, function (err, lenna) {
+    function pics(oldpath, newpath) {
 
-      if (err) throw err;
-      lenna.resize(1024, 768) // resize 
-        .quality(100)
+      Jimp.read(oldpath, function (err, lenna) {
 
-        .write(newpath); // save 
-    });
+        if (err) throw err;
+        lenna.resize(1024, 768) // resize 
+          .quality(100)
 
-  }
+          .write(newpath); // save 
+      });
+
+    }*/
 
   req(options, function (error, resp, body) {
     response.redirect('/room/' + casa1);
@@ -138,30 +140,19 @@ router.get('/:id_division/:casa', function (request, response) {
     var Ncasa;
     for (var e of jsonData2) {
       if (casa1 == e.id_house) {
-
         Ncasa = e.house;
-
         nTotal = nTotal + 1;
-
-
       }
     }
     for (var e of jsonData2) {
-
       if (division == e.id_division) {
-
         id_sensor = e.sensor_id;
-
-
-
       } else {
-
-
 
       }
 
-
     }
+
     console.log(id_sensor);
     var client = mqtt.connect('mqtt://94.61.10.49:80', {
       username: "dai",
@@ -177,26 +168,15 @@ router.get('/:id_division/:casa', function (request, response) {
     io.on('connection', function (socket) {
 
       client.on('message', (topic, measurements) => {
-
-
-
         console.log(`Received message: '${measurements}'`);
         socket.emit(topic, measurements.toString());
         var labels = JSON.parse(measurements);
-        //console.log(labels)
-
         console.log(labels.measurements)
-
-
-
-
-
       });
     });
 
 
     var inicial = new Date();
-
     var final = new Date();
     final.setDate(final.getDate() + 1)
     inicial.setDate(inicial.getDate() - 1);
@@ -238,8 +218,6 @@ router.get('/:id_division/:casa', function (request, response) {
 
       console.log(graph);
 
-
-
       response.set("Content-Type", "text/html");
       response.render('./sensor', {
         id: id,
@@ -251,11 +229,9 @@ router.get('/:id_division/:casa', function (request, response) {
         Ncasa
       });
     });
-
   });
-
-
 });
+
 router.get('/:id_division/:casa/edit', function (request, response) {
   var id = request.user.email;
   var sensoresUser = new Array();

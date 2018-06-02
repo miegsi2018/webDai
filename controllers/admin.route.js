@@ -54,7 +54,7 @@ router.post('/registo', function(request, response) {
 
     var data = {
         'id_sensor': request.body.id_sensor,
-        'id_tipo': request.body.id_tipo
+        'id_card': request.body.id_card
 
     };
     sensorModel.createSensor(data, function() {
