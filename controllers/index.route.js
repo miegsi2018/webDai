@@ -6,7 +6,7 @@ const mqtt = require('mqtt');
 const req = require('request');
 var userData;
 var Jimp = require("jimp");
-router.use(fileUpload());
+
 var casa = [];
 
 
