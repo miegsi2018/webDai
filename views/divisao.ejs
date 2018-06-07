@@ -4,21 +4,23 @@
         <div class="row">
                  
                    
-                <%  for(var i = 0; i < jsonData2.length; i++){ %>
-                    <%  if(jsonData2[i].id_house == casa1){ %>
+                <%  for(var i = 0; i < jsonDiv.length; i++){ %>
+                    <%  if(jsonDiv[i].id_house == casa1){ %>
+                        <%  if(jsonDiv[i].path == 1){ %>
                         
                     
-                    
+                     
                   
                         <li style   ="list-style-type: none; z-index: 1;" >
-                                <div class="col-lg-4 col-sm-6" onclick="location.href='/room/<%=jsonData2[i].id_division %>/<%= casa1 %>';">
-                                        <div class="card card-user">
-                                            <div class="image">
-                                                <img src="/public/assets/img/<%= jsonData2[i].division %>-<%= casa1 %>.jpg" alt="..."/>
-                                            </div>
-                                            <div class="text-center" style="">
+                                <div class="col-lg-4 col-sm-6" onclick="location.href='/room/<%=jsonDiv[i].id_division %>/<%= casa1 %>';">
+                                    
+                                        <div class="card card-user" >
+                                            <div class="image" style="background: url('/public/assets/img/<%= jsonDiv[i].name %>-<%= casa1 %>.jpg');  background-repeat: no-repeat; background-size: 100% 100%;">
+                                                </div>
+                                            <div class="text-center">
                                                 <div class="row">
-                                                        <h3 class="title"> <%=jsonData2[i].division %></h3>
+                                              
+                                                        <h3 class="title"> <%=jsonDiv[i].name %></h3>
                                                       <!--  <hr> -->
                                                     </div>
                                                 </div>
@@ -45,8 +47,45 @@
                                         </div>
                             </div>
                             </li>
+                            <% }else{ %>
                    
+                                <li style   ="list-style-type: none; z-index: 1;" >
+                                    <div class="col-lg-4 col-sm-6" onclick="location.href='/room/<%=jsonDiv[i].id_division %>/<%= casa1 %>';">
+                                            <div class="card card-user">
+                                                <div class="image">
+                                                    <img src="/public/assets/img/deafult.jpg" alt="..."/>
+                                                </div>
+                                                <div class="text-center" style="">
+                                                    <div class="row">
+                                                            <h3 class="title"> <%=jsonDiv[i].name %></h3>
+                                                          <!--  <hr> -->
+                                                        </div>
+                                                    </div>
+                                                 <!--   <div class="row">
+                                                            <h5 >Sensores</h5>
+                                                        <div class="col-md-6">
+                                                                <h5 >Temperatura:</h5>
+                                                                <h5 >Movimento:</h5>
+                                                                <h5 >Iluminação:</h5>
+                                                                <h5 >Alarme incendio:</h5>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <h5> <i class="fas fa-check" style="color: green;"></i></h5>
+                                                            <h5> <i class="fas fa-check" style="color: green;"></i></h5>
+                                                            <h5> <i class="fas fa-check" style="color: green;"></i></h5>
+                                                            <h5> <i class="fas fa-check" style="color: green;"></i></h5>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                    <br>
+                                                -->
+                                            
+                                                
+                                            </div>
+                                </div>
+                                </li>
                     
+                            <% } %>
                             <% } %>
                             <% } %>
                     
