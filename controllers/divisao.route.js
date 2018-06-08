@@ -5,15 +5,19 @@ var mqtt = require('mqtt');
 const req = require('request');
 const fileUpload = require('express-fileupload');
 var userData;
+var Jimp = require("jimp");
 router.use(fileUpload());
+
 
 router.get('/:casa', function (request, response) {
   var id = request.user.email;
   var casa1 = request.params.casa;
 
   req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
-    jsonData2 = JSON.parse(body2)
-    console.log(jsonData2);
+    req.get('http://localhost:8080/division/', function (error, resp, body) {
+    jsonData2 = JSON.parse(body2);
+    jsonDiv = JSON.parse(body);
+    console.log(jsonDiv);
 
     var nTotal = 0;
     var Ncasa;
@@ -33,9 +37,11 @@ router.get('/:casa', function (request, response) {
       id: id,
       casa1: casa1,
       jsonData2: jsonData2,
-      Ncasa
+      Ncasa,
+      jsonDiv: jsonDiv
     });
   });
+});
 });
 router.post('/:casa/regi', function (request, response) {
   var errors = request.validationErrors();
@@ -45,36 +51,31 @@ router.post('/:casa/regi', function (request, response) {
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   console.log(request.files);
 
-  var options = {
-    uri: 'http://localhost:8080/division',
-    method: 'POST',
-    json: {
-      "id_house": casa1,
-      "name": request.body.name,
-      "sensor_id": request.body.sensor_id,
-
-    }
-  };
-  /*
-    if (!request.files) {
-      let sampleFile = '/public/assets/img/deafult.jpg';
-      console.log(request.body.sensor_id);
-      sampleFile.mv('./public/assets/img/' + request.body.name + "-" + request.params.casa + '.jpg', function (err) {
-        if (err)
-          return response.status(500).send(err);
-
-      });
-    } else {
-
+ 
+  var path;
+   var teste ;
+console.log(request.files.length )  
+    if (request.files.sampleFile !== teste) {
+   
 
       let sampleFile = request.files.sampleFile;
-      console.log(request.body.sensor_id);
+
       sampleFile.mv('./public/assets/img/' + request.body.name + "-" + request.params.casa + '.jpg', function (err) {
         if (err)
           return response.status(500).send(err);
 
       });
-
+      Jimp.read('./public/assets/img/' + request.body.name + "-" + request.params.casa + '.jpg', function (err, lenna) {
+        if (err) throw err;
+        lenna.resize(480, 320)            // resize
+             .quality(10)                 // set JPEG quality
+             .greyscale()                 // set greyscale
+             .write("lena-small-bw.jpg"); // save
+             console.log("imagem resized")
+    });
+      path = 1;
+    } else {
+      path = 0;
     }
 
     function pics(oldpath, newpath) {
@@ -88,7 +89,18 @@ router.post('/:casa/regi', function (request, response) {
           .write(newpath); // save 
       });
 
-    }*/
+    }
+    var options = {
+      uri: 'http://localhost:8080/division',
+      method: 'POST',
+      json: {
+        "id_house": casa1,
+        "name": request.body.name,
+        "sensor_id": request.body.sensor_id,
+        "path": path,
+        
+      }
+    };
 
   req(options, function (error, resp, body) {
     response.redirect('/room/' + casa1);

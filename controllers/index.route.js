@@ -5,6 +5,7 @@ const swal = require('sweetalert2');
 const mqtt = require('mqtt');
 const req = require('request');
 var userData;
+var Jimp = require("jimp");
 
 var casa = [];
 
@@ -31,7 +32,7 @@ router.get('/', function(request, response) {
         uri: 'http://localhost:8080/returnGraph',
         method: 'POST',
         json: {
-            "dataI": inicial,
+            "dataI": inicial, 
             "dataF": final
         }
     };
