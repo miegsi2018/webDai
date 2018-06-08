@@ -101,57 +101,95 @@
                     </div>
                 </div>
             </nav>
+            <style>
+                card{
+                    position: relative;
+                }
+                .lel{
+	position : absolute;
+	left : 10px;
+	top : -10px;
+	box-sizing: border-box;
+	padding-top: 18px;
+    background-color: rgb(247, 1, 1);
+	width : 30px;
+	height : 30px;
+	color : black;
+	text-align : center;
+	border-radius : 50%;
+    z-index: 2000;
+ }
+ .editar{
+ color: black;
+    position: absolute;
+    top: -20px;
+    display: block;
 
+    left: 0;
+    right: -3px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 55px;
+    font-size: 38px;
+    font-family: 'Roboto';
+    font-weight: 900;
+
+
+
+}
+            </style>
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <% if (casa.length >= 1) { %>
-                            <% for(var i = 0; i < casa.length; i++){ %>
-
-                                <li style="list-style-type: none;">
-                                    <div class="col-lg-4 col-sm-6" onclick="location.href='./home/<%= casa[i] %>';">
-                                        <div class="card card-user">
-                                            <div class="image">
-                                                <img src="./public/assets/img/house.jpg" alt="..." />
+                       
+                            <% for(var i = 0; i < jsonCasa.length; i++){ %>
+                                <% if(jsonCasa[i].account_id === account){ %>
+                                    <%  if(jsonCasa[i].path == 1){ %>
+                            
+                                <li style   ="list-style-type: none; z-index: 1;" >
+                               
+                                    <div class="col-lg-4 col-sm-6" >
+                                            <div class="lel"><p class="editar">
+                                                    <i class="fas fa-edit " style="	width : 20px;height : 20px;	left : 20px; top : -10px;"> </i>
+                                                </p>
                                             </div>
-                                            <div class="text-center" style="margin-top: 40px;">
-                                                <div class="row">
-                                                    <h3 class="title">
-                                                        <%= casaN[i] %>
-                                                    </h3>
-
+                                            <div class="card card-user"  onclick="location.href='./home/<%= jsonCasa[i].id_house %>';">
+                                                <div class="image" style="background: url('/public/assets/img/casas/<%= account %>-<%= jsonCasa[i].name %>.jpg');  background-repeat: no-repeat; background-size: 100% 100%;">
                                                 </div>
+                                                <div class="text-center">
+                                                    <div class="row">
+                                                  
+                                                            <h3 class="title">  <%= jsonCasa[i].name %></h3>
+                                                      
+                                                        </div>
+                                                    </div>
                                             </div>
-
-                                            <br>
-
-
-
-                                        </div>
-                                    </div>
+                                </div>
                                 </li>
 
+                                <% }else{ %>
+                                    <li style   ="list-style-type: none; z-index: 1;" >
+                                        <div class="col-lg-4 col-sm-6" onclick="location.href='./home/<%= jsonCasa[i].id_house %>';">
+                                            
+                                                <div class="card card-user" >
+                                                    <div class="image" style="background: url('/public/assets/img/casas/default.jpg');  background-repeat: no-repeat; background-size: 100% 100%;">
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div class="row">
+                                                      
+                                                                <h3 class="title">  <%= jsonCasa[i].name %></h3>
+                                                     
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                    </div>
+                                    </li>
+                                <% } %>
+                                <% } %>
                                 <% } %>
 
-                                    <% }else{ %>
-
-
-
-                                        <div class="col-lg-12">
-                                         
-                                                        <h3 class="title text-center">
-
-                                                            Ainda não tem casas!
-                                                        </h3>
-
-                                          
-                                        </div>
-                                  
-
-
-
-
-                                        <% } %>
+                               
                     </div>
                     <div id="container-floating">
                         <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create"

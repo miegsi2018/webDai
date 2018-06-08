@@ -46,11 +46,9 @@ router.get('/:casa', function (request, response) {
 router.post('/:casa/regi', function (request, response) {
   var errors = request.validationErrors();
   var casa1 = request.params.casa;
-
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   console.log(request.files);
-
  
   var path;
    var teste ;
@@ -60,12 +58,12 @@ console.log(request.files.length )
 
       let sampleFile = request.files.sampleFile;
 
-      sampleFile.mv('./public/assets/img/' + request.body.name + "-" + request.params.casa + '.jpg', function (err) {
+      sampleFile.mv('./public/assets/img/div/' + request.body.name + "-" + request.params.casa + '.jpg', function (err) {
         if (err)
           return response.status(500).send(err);
 
       });
-      Jimp.read('./public/assets/img/' + request.body.name + "-" + request.params.casa + '.jpg', function (err, lenna) {
+      Jimp.read('./public/assets/img/div/' + request.body.name + "-" + request.params.casa + '.jpg', function (err, lenna) {
         if (err) throw err;
         lenna.resize(480, 320)            // resize
              .quality(10)                 // set JPEG quality
