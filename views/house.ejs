@@ -60,8 +60,8 @@
                 <ul class="nav">
                     <li>
                         <% if(jsonData2[0].type === "Admin"){ %>
-                        <a href="./admin">
-                            <i class="ti-home"></i>
+                        <a href="/admin">
+                            <i class="ti-crown"></i>
                             <p>Admin</p>
                         </a>
                         <% } %>
@@ -111,9 +111,9 @@
 	top : -10px;
 	box-sizing: border-box;
 	padding-top: 18px;
-    background-color: rgb(247, 1, 1);
+    background-color: #68B3C8;
 	width : 30px;
-	height : 30px;
+	height : 30px; 
 	color : black;
 	text-align : center;
 	border-radius : 50%;
@@ -151,9 +151,10 @@
                                
                                     <div class="col-lg-4 col-sm-6" >
                                             <div class="lel"><p class="editar">
-                                                    <i class="fas fa-edit " style="	width : 20px;height : 20px;	left : 20px; top : -10px;"> </i>
+                                                    <i class="fas fa-edit " style="	width : 20px;height : 20px;	left : 20px; top : -10px;" onclick="location.href='./house/edit/<%= jsonCasa[i].id_house %>';"> </i>
                                                 </p>
                                             </div>
+                                            
                                             <div class="card card-user"  onclick="location.href='./home/<%= jsonCasa[i].id_house %>';">
                                                 <div class="image" style="background: url('/public/assets/img/casas/<%= account %>-<%= jsonCasa[i].name %>.jpg');  background-repeat: no-repeat; background-size: 100% 100%;">
                                                 </div>
@@ -170,9 +171,13 @@
 
                                 <% }else{ %>
                                     <li style   ="list-style-type: none; z-index: 1;" >
-                                        <div class="col-lg-4 col-sm-6" onclick="location.href='./home/<%= jsonCasa[i].id_house %>';">
+                                        <div class="col-lg-4 col-sm-6" >
+                                            <div class="lel"><p class="editar">
+                                                <i class="fas fa-edit " style="	width : 20px;height : 20px;	left : 20px; top : -10px;" onclick="location.href='./house/edit/<%= jsonCasa[i].id_house %>';"> </i>
+                                            </p>
+                                        </div>
                                             
-                                                <div class="card card-user" >
+                                                <div class="card card-user"  onclick="location.href='./home/<%= jsonCasa[i].id_house %>';">
                                                     <div class="image" style="background: url('/public/assets/img/casas/default.jpg');  background-repeat: no-repeat; background-size: 100% 100%;">
                                                     </div>
                                                     <div class="text-center">

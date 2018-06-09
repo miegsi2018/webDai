@@ -56,12 +56,7 @@
                     </a>
                 </div> 
                 <ul class="nav">
-                    <li>
-                        <a href="/house">
-                            <i class="ti-home"></i>
-                            <p>Voltar</p>
-                        </a>
-                    </li>
+                   
                 </ul>
             </div>
         </div>
@@ -90,13 +85,15 @@
                     </div>
                 </div>
             </nav>
+            <% if (isNew){ %>
 
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-2 col-md-5"></div>
                         <div class="col-lg-8 col-md-5">
-                            <div class="card card">
+                            <div class="card card-user">
+                                
                                 <div class="header">
                                     <h4 class="title">Adicionar uma casa à sua conta</h4>
                                 </div>
@@ -129,17 +126,9 @@
                                             </div>
                                             <div class="col-md-2"></div>
                                         </div>
-                                        <div class="row">
-                                                <div class="col-md-5">
-                                            </div>
-                                            <div class="col-md-2">
-                                                <button type="submit" class="btn btn-info btn-fill btn-wd" style="margin-top: 30px;float: right;">Adicionar Casa</button>
-                                            </div>
-                                                <div class="col-md-5"></div>
-                                            </div>
-                                           
-                                         
-                                        </div>
+                                        <button type="submit" class="btn btn-info btn-fill btn-wd" style=" margin: 5px; float: right;">Adicionar Perfil</button>
+                                        <a class="btn btn-info btn btn" style=" margin: 5px; float: right;" onclick="location.href='/house';">Cancel</a>
+                                        
                                     </form>
                                 </div>
                             </div>
@@ -148,5 +137,45 @@
                     </div>
                 </div>
             </div>
+            <% }else{ %>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-5"></div>
+                            <div class="col-lg-6 col-md-5">
+                                <div class="card card-user">
+                                    
+                                    <div class="header">
+                                        <h4 class="title">Edite a sua casa</h4>
+                                    </div>
+                                    <div class="content">
+                                        <form role="form" action="/house/edit/<%= editavel[0].id_house %>" method="post"  encType="multipart/form-data">
+                                            <div class="row"> 
+                                                   
+                                                            
+                                            
+                                                
+                                                    
+                                                <div class="col-md-12">
+                                                    <div class="form-check">
+                                                        <label class="text-center">Nome da casa:</label>
+                                                        <input type="text" class="form-control border-input" name="name" placeholder="Nome da casa" value="<%= editavel[0].name%>">
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                              
+                                            </div>
+                                            <button type="submit" class="btn btn-info btn-fill btn-wd" style=" margin: 5px; float: right;">Editar Perfil</button>
+                                            <a class="btn btn-info btn btn" style=" margin: 5px; float: right;" onclick="location.href='/house';">Cancel</a>
+                                            
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-5"></div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
 
             <% include partials/footer %>

@@ -3,7 +3,10 @@
     <div class="container-fluid">
         <div class="row">
                  
-                   
+                <%  if(jsonDiv.length === 0){ %>           
+    <h1>Nao tem casas</h1>
+                    <% }else{ %>
+                         
                 <%  for(var i = 0; i < jsonDiv.length; i++){ %>
                     <%  if(jsonDiv[i].id_house == casa1){ %>
                         <%  if(jsonDiv[i].path == 1){ %>
@@ -85,6 +88,7 @@
                                 </div>
                                 </li>
                     
+                            <% } %>
                             <% } %>
                             <% } %>
                             <% } %>
