@@ -2,28 +2,68 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-                 
-                <%  if(jsonDiv.length === 0){ %>           
-    <h1>Nao tem casas</h1>
+                <style>
+                        card{
+                            position: relative;
+                        }
+                        .lel{
+            position : absolute;
+            left : 10px;
+            top : -10px;
+            box-sizing: border-box;
+            padding-top: 18px;
+            background-color: #68B3C8;
+            width : 30px;
+            height : 30px; 
+            color : black;
+            text-align : center;
+            border-radius : 50%;
+            z-index: 2000;
+         }
+         .editar{
+         color: black;
+            position: absolute;
+            top: -20px;
+            display: block;
+        
+            left: 0;
+            right: -3px;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            line-height: 55px;
+            font-size: 38px;
+            font-family: 'Roboto';
+            font-weight: 900;
+        
+        
+        
+        }
+                    </style>
+              
+                <%  if(divi.length == 0){ %>
+                    <h1>Não Tem Divisões Ainda. Por Favor Crie Uma Divisão</h1>
                     <% }else{ %>
-                         
-                <%  for(var i = 0; i < jsonDiv.length; i++){ %>
-                    <%  if(jsonDiv[i].id_house == casa1){ %>
-                        <%  if(jsonDiv[i].path == 1){ %>
+                <%  for(var i = 0; i < divi.length; i++){ %>
+                   
+                            <%  if(divi[i].path == 1){ %>
                         
                     
                      
                   
                         <li style   ="list-style-type: none; z-index: 1;" >
-                                <div class="col-lg-4 col-sm-6" onclick="location.href='/room/div/<%=jsonDiv[i].id_division %>/<%= casa1 %>';">
-                                    
+                                <div class="col-lg-4 col-sm-6">
+                                    <div class="lel"><p class="editar">
+                                            <i class="fas fa-edit " style="	width : 20px;height : 20px;	left : 20px; top : -10px;" onclick="location.href='./house/edit/<%= jsonCasa[i].id_house %>';"> </i>
+                                        </p>
+                                    </div>
                                         <div class="card card-user" >
-                                            <div class="image" style="background: url('/public/assets/img/<%= jsonDiv[i].name %>-<%= casa1 %>.jpg');  background-repeat: no-repeat; background-size: 100% 100%;">
+                                            <div class="image" style="background: url('/public/assets/img/<%= divi[i].name %>-<%= casa1 %>.jpg');  background-repeat: no-repeat; background-size: 100% 100%;">
                                                 </div>
                                             <div class="text-center">
                                                 <div class="row">
                                               
-                                                        <h3 class="title"> <%=jsonDiv[i].name %></h3>
+                                                          <h3 class="title"> <%=divi[i].name %></h3>
                                                       <!--  <hr> -->
                                                     </div>
                                                 </div>
@@ -53,14 +93,14 @@
                             <% }else{ %>
                    
                                 <li style   ="list-style-type: none; z-index: 1;" >
-                                    <div class="col-lg-4 col-sm-6" onclick="location.href='/room/<%=jsonDiv[i].id_division %>/<%= casa1 %>';">
+                                    <div class="col-lg-4 col-sm-6" onclick="location.href='/room/<%=divi[i].id_division %>/<%= casa1 %>';">
                                             <div class="card card-user">
                                                 <div class="image">
                                                     <img src="/public/assets/img/div/deafult.jpg" alt="..."/>
                                                 </div>
                                                 <div class="text-center" style="">
                                                     <div class="row">
-                                                            <h3 class="title"> <%=jsonDiv[i].name %></h3>
+                                                            <h3 class="title"> <%=divi[i].name %></h3>
                                                           <!--  <hr> -->
                                                         </div>
                                                     </div>
@@ -88,9 +128,10 @@
                                 </div>
                                 </li>
                     
+                      
                             <% } %>
                             <% } %>
-                            <% } %>
+                      
                             <% } %>
                     
                  
