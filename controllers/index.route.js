@@ -96,17 +96,23 @@ router.get('/add/:id_sensor', global.secure(), function (request, response) {
     var id_user = request.user.email;
 
     console.log(id_user);
+	
+	
 
 
+	
+        var graph = [];
 
-    req.get('http://localhost:8080/view/' + id_user, function (error, resp, body2) {
-        jsonData2 = JSON.parse(body2);
+    req.get('http://localhost:8080/view/' + id_user, function (error, resp, body) {
+
+
+	    console.log(body.division.length);
 
 
 
         response.set("Content-Type", "text/html");
         response.render('./adicionar_sensor', {
-            array: jsonData2,
+            array: body2,
             casa1: "Nova Casa",
             id: id_user,
             Ncasa: "Nova Casa"
