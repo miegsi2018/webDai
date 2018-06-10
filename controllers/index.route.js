@@ -64,7 +64,7 @@ router.get('/', function(request, response) {
 });
 
 // ROTA DA PAGINA DAS CASAS DO UTILIZADOR
-router.get('/house', function(request, response, body) {
+router.get('/house',global.secure(), function(request, response, body) {
     //console.log(request.isAuthenticated());
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -272,10 +272,13 @@ router.post('/', function(request, response) {
     };
 
 
-    req(options, function(error, resp, body) {
+        req(options, function(error, resp, body) {
         if (body.password == request.body.password) {
             request.login(body.email, function(err) {
-                response.redirect('/house');
+	response.redirect(request.session.returnTo || '/');
+    delete request.session.returnTo;
+
+
             });
         } else {
             response.json({
@@ -284,6 +287,9 @@ router.post('/', function(request, response) {
             });
         }
     });
+
+
+
 });
 
 module.exports = router;
