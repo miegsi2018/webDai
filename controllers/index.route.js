@@ -64,6 +64,73 @@ router.get('/', function(request, response) {
 
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+router.get('/add/:id_sensor', global.secure(), function(request, response) {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    var id_user = request.user.email;
+	
+    console.log(id_user);
+
+
+
+    req.get('http://localhost:8080/view/' + id_user, function(error, resp, body2) {
+            jsonData2 = JSON.parse(body2);
+
+
+
+            response.set("Content-Type", "text/html");
+            response.render('./adicionar_sensor', {
+		    array: jsonData2,
+		    casa1: "Nova Casa",
+		    id: id_user,
+		    Ncasa: "Nova Casa"
+        });
+    
+});
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ROTA DA PAGINA DAS CASAS DO UTILIZADOR
 router.get('/house', global.secure(), function(request, response, body) {
     //console.log(request.isAuthenticated());
@@ -124,7 +191,7 @@ router.get('/house', global.secure(), function(request, response, body) {
 
 
 
-router.get('/house/create',global.secure(), function(request, response, body) {
+router.get('/house/create', global.secure(), function(request, response, body) {
     //console.log(request.isAuthenticated());
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
