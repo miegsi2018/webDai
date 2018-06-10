@@ -12,16 +12,16 @@ router.use(fileUpload());
 
 
 
-router.get('/teste', function(request, response) {
+router.get('/', function(request, response) {
     
     response.set("Content-Type", "text/html");
     response.render('./frontpage', {
     });
-    
+
 });
 
 // ROTA DA FRONT PAGE
-router.get('/', function(request, response) {
+router.get('/login', function(request, response) {
     //console.log(request.isAuthenticated());
 
     var inicial = new Date();
@@ -459,7 +459,7 @@ router.post('/registo', function(request, response) {
     response.redirect('/');
 });
 
-router.post('/', function(request, response) {
+router.post('/login', function(request, response) {
 
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
