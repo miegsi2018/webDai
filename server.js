@@ -28,7 +28,7 @@ global.secure = function() {
         } else {
 
             request.session.returnTo = request.path;
-            response.redirect('/');
+            response.redirect('/login');
         }
 };
 };
