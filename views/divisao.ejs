@@ -51,80 +51,86 @@
                             <%  if(divi[i].path == 1){ %>
 
                                 <li style="list-style-type: none; z-index: 1;">
-                                        <div class="col-lg-4 col-sm-6"role="tab" id="heading-<%= i  %>">
-                                            <div class="card card-user" role="tab" id="heading-<%= i  %>">
-                                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= i  %>" aria-expanded="true" aria-controls="collapse-<%= i  %>">
-                            
-
-
-                                                        <div class="image">
-                                                                <div class="image" style="background: url('/public/assets/img/<%= divi[i].name %>-<%= casa1 %>.jpg');  background-repeat: no-repeat; background-size: 100% 100%;">
-                                                            </div>
-                                                   
-
-                                                       
-
-                                                          
-                                                            <div class="text-center" style="">
-                                                                    <div class="row">
-                                                                        <h3 class="title">
-                                                                            <%=divi[i].name %>
-                                                                        </h3>
-                                                                      
-                                                                    </div>
-                                                                </div>
+                                    <div class="col-lg-4 col-sm-6" role="tab" id="heading-<%= i  %>">
+                                            <div class="lel">
+                                                    <p class="editar">
+                                                        <i class="fas fa-edit " style="	width : 20px;height : 20px;	left : 20px; top : -10px;" onclick="location.href='./house/edit';">
+                                                        </i>
+                                                    </p>
+                                                </div>
+                                        <div class="card card-user" role="tab" id="heading-<%= i  %>">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= i  %>" aria-expanded="true" aria-controls="collapse-<%= i  %>">
 
 
 
-                                                         
-                                                        </a>
-                                                
-
-                                                    <div id="collapse-<%= i  %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<%= i  %>">
-                                                        <div class="panel-body">
-                                                            <hr>
-                                                           <P>Temperatura</P>
-                                                           <P>Humidade</P>
-                                                           <div class="pretty p-default p-curve p-toggle">
-                                                                <input type="checkbox" />
-                                                                <div class="state p-success p-on">
-                                                                  <label>Relay Ligada</label>
-                                                                </div>
-                                                                <div class="state p-danger p-off">
-                                                                  <label>Relay Desligada </label>
-                                                                </div>
-                                          
-                                          
-                                                              </div>
-                                                              <br>
-                                                              <div class="pretty p-default p-curve p-toggle">
-                                                                    <input type="checkbox" />
-                                                                    <div class="state p-success p-on">
-                                                                      <label>Relay Ligada</label>
-                                                                    </div>
-                                                                    <div class="state p-danger p-off">
-                                                                      <label>Relay Desligada </label>
-                                                                    </div>
-                                              
-                                              
-                                                                  </div>
+                                                <div class="image">
+                                                    <div class="image" style="background: url('/public/assets/img/<%= divi[i].name %>-<%= casa1 %>.jpg');  background-repeat: no-repeat; background-size: 100% 100%;">
+                                                    </div>
 
 
-                                                          
+
+
+
+                                                    <div class="text-center" style="">
+                                                        <div class="row">
+                                                            <h3 class="title">
+                                                                <%=divi[i].name %>
+                                                            </h3>
 
                                                         </div>
                                                     </div>
 
 
 
-                                             
+
+                                            </a>
+
+
+                                            <div id="collapse-<%= i  %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<%= i  %>">
+                                                <div class="panel-body">
+                                                    <hr>
+                                                    <P>Temperatura</P>
+                                                    <P>Humidade</P>
+                                                    <div class="pretty p-default p-curve p-toggle">
+                                                        <input type="checkbox" />
+                                                        <div class="state p-success p-on">
+                                                            <label>Relay Ligada</label>
+                                                        </div>
+                                                        <div class="state p-danger p-off">
+                                                            <label>Relay Desligada </label>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <br>
+                                                    <div class="pretty p-default p-curve p-toggle">
+                                                        <input type="checkbox" />
+                                                        <div class="state p-success p-on">
+                                                            <label>Relay Ligada</label>
+                                                        </div>
+                                                        <div class="state p-danger p-off">
+                                                            <label>Relay Desligada </label>
+                                                        </div>
+
+
+                                                    </div>
+
+
+
+
+                                                </div>
+                                            </div>
+
+
+
+
                                             </div>
                                         </div>
-                                        </li>
+                                </li>
 
 
 
-                               
+
                                 <% }else{ %>
 
                                     <!-- <li style="list-style-type: none; z-index: 1;">
@@ -165,96 +171,103 @@
                                         </div>
                                     </li> -->
                                     <li style="list-style-type: none; z-index: 1;">
-                                        <div class="col-lg-4 col-sm-6"role="tab" id="heading-<%= i  %>">
+                                        <div class="col-lg-4 col-sm-6" role="tab" id="heading-<%= i  %>">
+                                                <div class="lel">
+                                                        <p class="editar">
+                                                            <i class="fas fa-edit " style="	width : 20px;height : 20px;	left : 20px; top : -10px;" onclick="location.href='./house/edit';">
+                                                            </i>
+                                                        </p>
+                                                    </div>
                                             <div class="card card-user" role="tab" id="heading-<%= i  %>">
-                                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= i  %>" aria-expanded="true" aria-controls="collapse-<%= i  %>">
-                            
-
-
-                                                        <div class="image">
-                                                                <img src="/public/assets/img/div/deafult.jpg" alt="..." />
-                                                            </div>
-                                                   
-
-                                                       
-
-                                                          
-                                                            <div class="text-center" style="">
-                                                                    <div class="row">
-                                                                        <h3 class="title">
-                                                                            <%=divi[i].name %>
-                                                                        </h3>
-                                                                      
-                                                                    </div>
-                                                                </div>
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= i  %>" aria-expanded="true" aria-controls="collapse-<%= i  %>">
 
 
 
-                                                         
-                                                        </a>
-                                                
-
-                                                    <div id="collapse-<%= i  %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<%= i  %>">
-                                                        <div class="panel-body">
-                                                            <hr>
-                                                           <P>Temperatura</P>
-                                                           <P>Humidade</P>
-                                                           <div class="pretty p-default p-curve p-toggle">
-                                                                <input type="checkbox" />
-                                                                <div class="state p-success p-on">
-                                                                  <label>Relay Ligada</label>
-                                                                </div>
-                                                                <div class="state p-danger p-off">
-                                                                  <label>Relay Desligada </label>
-                                                                </div>
-                                          
-                                          
-                                                              </div>
-                                                              <br>
-                                                              <div class="pretty p-default p-curve p-toggle">
-                                                                    <input type="checkbox" />
-                                                                    <div class="state p-success p-on">
-                                                                      <label>Relay Ligada</label>
-                                                                    </div>
-                                                                    <div class="state p-danger p-off">
-                                                                      <label>Relay Desligada </label>
-                                                                    </div>
-                                              
-                                              
-                                                                  </div>
+                                                    <div class="image">
+                                                        <img src="/public/assets/img/div/deafult.jpg" alt="..." />
+                                                    </div>
 
 
-                                                          
+
+
+
+                                                    <div class="text-center" style="">
+                                                        <div class="row">
+                                                            <h3 class="title">
+                                                                <%=divi[i].name %>
+                                                            </h3>
 
                                                         </div>
                                                     </div>
 
 
 
-                                             
+
+                                                </a>
+
+
+                                                <div id="collapse-<%= i  %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<%= i  %>">
+                                                    <div class="panel-body text-center">
+                                                        <hr>
+                                                        <P>Temperature</P>
+                                                        <P>Humidity</P>
+                                                        <div class="pretty p-default p-curve p-toggle">
+                                                            <input type="checkbox" />
+                                                            <div class="state p-success p-on">
+                                                                <label>Relay On</label>
+                                                            </div>
+                                                            <div class="state p-danger p-off">
+                                                                <label>Relay Off </label>
+                                                            </div>
+
+
+                                                        </div>
+                                                        
+                                                        <div class="pretty p-default p-curve p-toggle">
+                                                            <input type="checkbox" />
+                                                            <div class="state p-success p-on">
+                                                                <label>Relay On</label>
+                                                            </div>
+                                                            <div class="state p-danger p-off">
+                                                                <label>Relay Off </label>
+                                                            </div>
+
+
+                                                        </div>
+                                                        <hr>
+                                                        <button class="btn btn-info btn-fill btn-wd" style="width: 100%" onclick="location.href='/room/<%=divi[i].id_division %>/<%= casa1 %>';">Go to <%=divi[i].name %></button>
+
+
+
+                                                    </div>
+                                                </div>
+
+
+
+
                                             </div>
                                         </div>
-                                        </li>
+                                    </li>
 
 
+                                    <% } %>
                                         <% } %>
+
                                             <% } %>
 
-                                                <% } %>
 
 
 
 
-
-            </div>
-            <div id="container-floating">
-                <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" onclick="location.href='/room/<%= casa1 %>/add';">
-                    <p class="plus">+</p>
-                </div>
+                                                </div>
+                                                <div id="container-floating">
+                                                    <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" onclick="location.href='/room/<%= casa1 %>/add';">
+                                                        <p class="plus">+</p>
+                                                    </div>
+                                                </div>
             </div>
         </div>
-    </div>
 
 
 
-    <% include partials/footer %>
+        <% include partials/footer %>

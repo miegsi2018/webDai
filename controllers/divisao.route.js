@@ -139,15 +139,14 @@ router.get('/:id_division/:casa', function (request, response) {
         jsonCasa = JSON.parse(body);
         jsonDivi = JSON.parse(body3);
         var divi = [];
-        console.log("fase 1" + jsonCasa.name);
+
         var nTotal = 0;
         var Ncasa = jsonCasa.name;
-        console.log("fase 3" + division);
+
         var id_sensor;
-        var nTotal = 0;
         var Ncasa;
         for (var e of jsonDivi) {
-          console.log("fase 4: " + e.id_division)
+
           if (division == e.id_division) {
             console.log("it workt:" + e.sensor_id);
             id_sensor = e.sensor_id;
@@ -156,17 +155,18 @@ router.get('/:id_division/:casa', function (request, response) {
         }
         console.log("acabou fazes iniciais")
         console.log(id_sensor);
-        var client = mqtt.connect('mqtt://94.61.10.49:80', {
+        var client = mqtt.connect('mqtt://alvesvitor.ddns.net:80', {
           username: "dai",
           password: '12345678'
         })
-
+        console.log("Inicio faze cliente")
         client.on('connect', function () {
           console.log('MQTT IS WORKING' + ' ' + 2)
           client.subscribe('data/' + id_sensor)
           console.log('data/' + id_sensor);
           client.publish('presence', 'Hello mqtt')
         })
+        console.log("Log intermedio")
         io.on('connection', function (socket) {
 
           client.on('message', (topic, measurements) => {
