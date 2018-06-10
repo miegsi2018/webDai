@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../models/divisao.model');
+const fileUpload = require('express-fileupload');
 var mqtt = require('mqtt');
 const req = require('request');
-const fileUpload = require('express-fileupload');
 var userData;
-var Jimp = require("jimp");
 router.use(fileUpload());
 
 
@@ -74,31 +73,20 @@ router.post('/:casa/regi', function (request, response) {
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
   var path;
-  var teste ;
-console.log(request.files.sampleFile)
-  if (request.files.sampleFile !== teste) {
+  var teste = 0;
+  if (!request.files)
+    return response.status(400).send('No files were uploaded.');
  
-
-    let sampleFile = request.files.sampleFile;
-console.log("Fase1")
-    sampleFile.mv('./public/assets/img/div/' + request.body.name + "-" + request.params.casa + '.jpg', function (err) {
-      if (err)
-        return response.status(500).send(err);
-        console.log("Fase2")
-
-    });
-    Jimp.read('./public/assets/img/div/' + request.body.name + "-" + request.params.casa + '.jpg', function (err, lenna) {
-      if (err) throw err;
-      lenna.resize(480, 320)            // resize
-           .quality(100)                 // set JPEG quality
-             // set greyscale
-           .write('./public/assets/img/div/' + request.body.name + "-" + request.params.casa + '.jpg'); // save
-           console.log("imagem resized")
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+  let sampleFile = request.files.sampleFile;
+ 
+  // Use the mv() method to place the file somewhere on your server
+  sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
+    if (err)
+      return response.status(500).send(err);
+ 
+    response.send('File uploaded!');
   });
-    path = 1;
-  } else {
-    path = 0;
-  }
     var options = {
       uri: 'http://localhost:8080/division',
       method: 'POST',
