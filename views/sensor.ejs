@@ -383,7 +383,7 @@ Checkbox: <input type="checkbox" id="myCheck">
 
 
               <script>
-                var socket = io.connect('http://localhost:5000');
+                  var socket = io.connect('http://localhost:5000');
                 socket.on('data/<%= id_sensor%>', function (measurements) {
                   var labels = JSON.parse(measurements);
 
