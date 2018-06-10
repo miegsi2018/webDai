@@ -41,7 +41,7 @@ router.get('/', function(request, response) {
         uri: 'http://localhost:8080/returnGraph',
         method: 'POST',
         json: {
-            "dataI": inicial, 
+            "dataI": inicial,
             "dataF": final
         }
     };
@@ -62,7 +62,7 @@ router.get('/', function(request, response) {
 
             console.log(graph);
         }
-    })
+    });
 
     response.set("Content-Type", "text/html");
     response.render('./login', {
@@ -72,67 +72,134 @@ router.get('/', function(request, response) {
 
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+router.get('/add/:id_sensor', global.secure(), function(request, response) {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    var id_user = request.user.email;
+	
+    console.log(id_user);
+
+
+
+    req.get('http://localhost:8080/view/' + id_user, function(error, resp, body2) {
+            jsonData2 = JSON.parse(body2);
+
+
+
+            response.set("Content-Type", "text/html");
+            response.render('./adicionar_sensor', {
+		    array: jsonData2,
+		    casa1: "Nova Casa",
+		    id: id_user,
+		    Ncasa: "Nova Casa"
+        });
+    
+});
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ROTA DA PAGINA DAS CASAS DO UTILIZADOR
-router.get('/house',global.secure(), function(request, response, body) {
+router.get('/house', global.secure(), function(request, response, body) {
     //console.log(request.isAuthenticated());
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    
+
     var id = request.user.email;
-    var account =request.user.account;
-    
+    var account = request.user.account;
+
     req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
         req.get('http://localhost:8080/house/', function(error, resp, body) {
-        jsonData2 = JSON.parse(body2);
-        jsonCasa = JSON.parse(body);
+            jsonData2 = JSON.parse(body2);
+            jsonCasa = JSON.parse(body);
 
-        var casa = [];
-        var casaN = [];
-        if (jsonData2.length >= 1) {
-            casa.push(jsonData2[0].id_house);
+            var casa = [];
+            var casaN = [];
+            if (jsonData2.length >= 1) {
+                casa.push(jsonData2[0].id_house);
 
-            casaN.push(jsonData2[0].house);
-            for (var i = 0; i < jsonData2.length; i++) {
+                casaN.push(jsonData2[0].house);
+                for (var i = 0; i < jsonData2.length; i++) {
 
-                for (var i = 1; i < jsonData2.length; i++) {
-                    console.log("inico" + jsonData2[i - 1].id_house)
-                    console.log("fim" + jsonData2[i].id_house)
-                    if (jsonData2[i - 1].id_house != jsonData2[i].id_house) {
-                        if (casa != jsonData2[i].id_house) {
-                            casa.push(jsonData2[i].id_house);
-                            casaN.push(jsonData2[i].house);
+                    for (var i = 1; i < jsonData2.length; i++) {
+                        console.log("inico" + jsonData2[i - 1].id_house)
+                        console.log("fim" + jsonData2[i].id_house)
+                        if (jsonData2[i - 1].id_house != jsonData2[i].id_house) {
+                            if (casa != jsonData2[i].id_house) {
+                                casa.push(jsonData2[i].id_house);
+                                casaN.push(jsonData2[i].house);
+
+                            }
 
                         }
-
                     }
                 }
+            } else {
+
             }
-        } else {
-
-        }
 
 
 
 
 
 
-        response.set("Content-Type", "text/html");
-        response.render('./house', {
-            id: id,
-            casa: casa,
-            casaN: casaN,
-            jsonData2: jsonData2,
-            jsonCasa : jsonCasa,
-            account : account
+            response.set("Content-Type", "text/html");
+            response.render('./house', {
+                id: id,
+                casa: casa,
+                casaN: casaN,
+                jsonData2: jsonData2,
+                jsonCasa: jsonCasa,
+                account: account
+            });
         });
     });
-});
 
 });
 
 
 
-router.get('/house/create', function(request, response, body) {
+router.get('/house/create', global.secure(), function(request, response, body) {
     //console.log(request.isAuthenticated());
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -152,8 +219,8 @@ router.get('/house/create', function(request, response, body) {
         response.set("Content-Type", "text/html");
         response.render('./create_house', {
             id: id,
-            isNew : true,
-            
+            isNew: true,
+
             casa: casa
         });
     });
@@ -167,31 +234,31 @@ router.post('/house/create', function(request, response, body) {
     var errors = request.validationErrors();
     var id = request.user.account;
     var path;
-    var teste ;
- console.log(request.files )  
-     if (request.files.sampleFile !== teste) {
-    
- 
-       let sampleFile = request.files.sampleFile;
- console.log("Fase1")
-       sampleFile.mv('./public/assets/img/casas/' + request.user.account + "-" + request.body.name + '.jpg', function (err) {
-         if (err)
-           return response.status(500).send(err);
-           console.log("Fase2")
- 
-       });
-       Jimp.read('./public/assets/img/casas/' + request.user.account  + "-" + request.body.name + '.jpg', function (err, lenna) {
-         if (err) throw err;
-         lenna.resize(480, 320)            // resize
-              .quality(100)                 // set JPEG quality
+    var teste;
+    console.log(request.files)
+    if (request.files.sampleFile !== teste) {
+
+
+        let sampleFile = request.files.sampleFile;
+        console.log("Fase1")
+        sampleFile.mv('./public/assets/img/casas/' + request.user.account + "-" + request.body.name + '.jpg', function(err) {
+            if (err)
+                return response.status(500).send(err);
+            console.log("Fase2")
+
+        });
+        Jimp.read('./public/assets/img/casas/' + request.user.account + "-" + request.body.name + '.jpg', function(err, lenna) {
+            if (err) throw err;
+            lenna.resize(480, 320) // resize
+                .quality(100) // set JPEG quality
                 // set greyscale
-              .write('./public/assets/img/casas/' + request.user.account  + "-" + request.body.name + '.jpg'); // save
-              console.log("imagem resized")
-     });
-       path = 1;
-     } else {
-       path = 0;
-     }
+                .write('./public/assets/img/casas/' + request.user.account + "-" + request.body.name + '.jpg'); // save
+            console.log("imagem resized")
+        });
+        path = 1;
+    } else {
+        path = 0;
+    }
     var options = {
         uri: 'http://localhost:8080/house',
         method: 'POST',
@@ -203,7 +270,7 @@ router.post('/house/create', function(request, response, body) {
     }
     console.log("Fase1")
     console.log(request.body.name)
-    console.log( id)
+    console.log(id)
     console.log(path)
 
     req(options, function(error, resp, body) {
@@ -222,28 +289,28 @@ router.get('/house/edit/:casa', function(request, response, body) {
 
     req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
         req.get('http://localhost:8080/house/', function(error, resp, body) {
-        jsonData2 = JSON.parse(body2);
-        jsonCasa = JSON.parse(body);
-var editavel = [];
-        for(var c of jsonCasa){
-            if(casa1 == c.id_house)
-            editavel.push(c);
-            
+            jsonData2 = JSON.parse(body2);
+            jsonCasa = JSON.parse(body);
+            var editavel = [];
+            for (var c of jsonCasa) {
+                if (casa1 == c.id_house)
+                    editavel.push(c);
 
-        }
 
-      console.log(editavel);
-        response.set("Content-Type", "text/html");
-        response.render('./create_house', {
-            isNew : false,
-            id: id,
-            casa1: casa1,
-            editavel: editavel
-            
-            
-        }); 
+            }
+
+            console.log(editavel);
+            response.set("Content-Type", "text/html");
+            response.render('./create_house', {
+                isNew: false,
+                id: id,
+                casa1: casa1,
+                editavel: editavel
+
+
+            });
+        });
     });
-});
 
 });
 
@@ -256,12 +323,12 @@ router.post('/house/edit/:casa', function(request, response, body) {
     var casa1 = request.params.casa;
     req.get('http://localhost:8080/house/', function(error, resp, body) {
         jsonCasa = JSON.parse(body);
-var editavel = [];
-        for(var c of jsonCasa){
-            if(casa1 == c.id_house)
-            editavel.push(c);
+        var editavel = [];
+        for (var c of jsonCasa) {
+            if (casa1 == c.id_house)
+                editavel.push(c);
             console.log("funciona")
-            
+
 
         }
         console.log(editavel)
@@ -276,32 +343,32 @@ var editavel = [];
 
 
 
-        
-        Jimp.read('./public/assets/img/casas/' + account  + "-" + nome + '.jpg', function (err, lenna) {
+
+        Jimp.read('./public/assets/img/casas/' + account + "-" + nome + '.jpg', function(err, lenna) {
             if (err) throw err;
-            lenna.resize(480, 320)            // resize
-                 .quality(100)                 // set JPEG quality
+            lenna.resize(480, 320) // resize
+                .quality(100) // set JPEG quality
                 // set greyscale
-                 .write('./public/assets/img/casas/' + account  + "-" + request.body.name + '.jpg'); // save
-                 console.log("imagem resized")
+                .write('./public/assets/img/casas/' + account + "-" + request.body.name + '.jpg'); // save
+            console.log("imagem resized")
         });
-        
-    var options = {
-        uri: 'http://localhost:8080/house/' + casa1,
-        method: 'POST',
-        json: {
-            "id_house": casa1,
-            "name": request.body.name,
-            "account_id": account,
-            "path": path,
+
+        var options = {
+            uri: 'http://localhost:8080/house/' + casa1,
+            method: 'POST',
+            json: {
+                "id_house": casa1,
+                "name": request.body.name,
+                "account_id": account,
+                "path": path,
+            }
         }
-    }
 
-    req(options, function(error, resp, body) {
+        req(options, function(error, resp, body) {
 
-    })
-    response.redirect('/house');
-});
+        })
+        response.redirect('/house');
+    });
 });
 
 
@@ -318,28 +385,28 @@ router.get('/home/:casa', function(request, response, body) {
             jsonData2 = JSON.parse(body2);
             jsonCasa = JSON.parse(body);
             console.log(jsonCasa.name);
-        var nTotal = 0;
-        var Ncasa = jsonCasa.name;
-    
-        jsonData2 = JSON.parse(body2)
-        console.log(jsonData2);
+            var nTotal = 0;
+            var Ncasa = jsonCasa.name;
 
-        response.set("Content-Type", "text/html");
-        response.render('./index', {
-            id: id,
-            casa1: casa1,
-            jsonData2: jsonData2,
-            nTotal,
-            Ncasa
+            jsonData2 = JSON.parse(body2)
+            console.log(jsonData2);
+
+            response.set("Content-Type", "text/html");
+            response.render('./index', {
+                id: id,
+                casa1: casa1,
+                jsonData2: jsonData2,
+                nTotal,
+                Ncasa
+            });
+
         });
-
     });
-});
 
 });
 
 
-router.post('home/:casa', function(request, response, body) {
+router.post('home/:casa', global.secure(), function(request, response, body) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
@@ -356,8 +423,8 @@ router.post('home/:casa', function(request, response, body) {
 
     req(options, function(error, resp, body) {
         console.log(body);
-        document.getElementById('avg').innerHTML = body
-    })
+        document.getElementById('avg').innerHTML = body;
+    });
 });
 
 
@@ -407,13 +474,20 @@ router.post('/', function(request, response) {
     };
 
 
-        req(options, function(error, resp, body) {
+    req(options, function(error, resp, body) {
         if (body.password == request.body.password) {
             request.login(body.email, function(err) {
-	response.redirect(request.session.returnTo || '/');
-    delete request.session.returnTo;
+
+                console.log(request.session.returnTo);
+                if (request.session.returnTo) {
+                    response.redirect(request.session.returnTo || '/');
+                    delete request.session.returnTo;
 
 
+                } else {
+
+                    response.redirect('/house');
+                }
             });
         } else {
             response.json({
