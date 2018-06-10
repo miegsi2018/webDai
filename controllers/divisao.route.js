@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const model = require('../models/divisao.model');
+const fileUpload = require('express-fileupload');
 var mqtt = require('mqtt');
 const req = require('request');
-const fileUpload = require('express-fileupload');
 var userData;
-var Jimp = require("jimp");
 router.use(fileUpload());
 
 
@@ -14,13 +13,25 @@ router.get('/:casa', function (request, response) {
   var casa1 = request.params.casa;
 
   req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
-    req.get('http://localhost:8080/division/', function (error, resp, body) {
+    req.get('http://localhost:8080/house/' + casa1, function(error, resp, body3) {
+    
+    req.get('http://localhost:8080/division', function (error, resp, body) {
+      
+      jsonCasa = JSON.parse(body3);
+      console.log(jsonCasa.name);
+  var nTotal = 0;
+  var Ncasa = jsonCasa.name;
+
+  jsonData2 = JSON.parse(body2)
+  console.log(jsonData2);
+
     jsonData2 = JSON.parse(body2);
     jsonDiv = JSON.parse(body);
-    console.log(jsonDiv);
+    console.log("divisões" );
 
     var nTotal = 0;
     var Ncasa;
+    var divi = [];
     for (var e of jsonData2) {
       if (casa1 == e.id_house) {
 
@@ -31,6 +42,16 @@ router.get('/:casa', function (request, response) {
 
       }
     }
+
+    for(var d of jsonDiv){
+if(d.id_house == casa1){
+      divi.push(d);
+
+
+    }
+  }
+  console.log("Todas as div da casa" + divi);
+  console.log( divi.length == 0 );
     response.set("Content-Type", "text/html");
     response.render('./divisao', {
 
@@ -38,58 +59,34 @@ router.get('/:casa', function (request, response) {
       casa1: casa1,
       jsonData2: jsonData2,
       Ncasa,
-      jsonDiv: jsonDiv
+      jsonDiv: jsonDiv, 
+      divi, divi
     });
   });
+});
 });
 });
 router.post('/:casa/regi', function (request, response) {
   var errors = request.validationErrors();
   var casa1 = request.params.casa;
-
   response.header("Access-Control-Allow-Origin", "*");
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  console.log(request.files);
 
- 
   var path;
-   var teste ;
-console.log(request.files.length )  
-    if (request.files.sampleFile !== teste) {
-   
-
-      let sampleFile = request.files.sampleFile;
-
-      sampleFile.mv('./public/assets/img/' + request.body.name + "-" + request.params.casa + '.jpg', function (err) {
-        if (err)
-          return response.status(500).send(err);
-
-      });
-      Jimp.read('./public/assets/img/' + request.body.name + "-" + request.params.casa + '.jpg', function (err, lenna) {
-        if (err) throw err;
-        lenna.resize(480, 320)            // resize
-             .quality(10)                 // set JPEG quality
-             .greyscale()                 // set greyscale
-             .write("lena-small-bw.jpg"); // save
-             console.log("imagem resized")
-    });
-      path = 1;
-    } else {
-      path = 0;
-    }
-
-    function pics(oldpath, newpath) {
-
-      Jimp.read(oldpath, function (err, lenna) {
-
-        if (err) throw err;
-        lenna.resize(1024, 768) // resize 
-          .quality(100)
-
-          .write(newpath); // save 
-      });
-
-    }
+  var teste = 0;
+  if (!request.files)
+    return response.status(400).send('No files were uploaded.');
+ 
+  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+  let sampleFile = request.files.sampleFile;
+ 
+  // Use the mv() method to place the file somewhere on your server
+  sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
+    if (err)
+      return response.status(500).send(err);
+ 
+    response.send('File uploaded!');
+  });
     var options = {
       uri: 'http://localhost:8080/division',
       method: 'POST',
@@ -112,50 +109,51 @@ router.get('/:casa/add', function (request, response) {
   var casa1 = request.params.casa;
 
   req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
-    jsonData2 = JSON.parse(body2)
-    console.log(jsonData2);
-    var nTotal = 0;
-    var Ncasa;
-    for (var e of jsonData2) {
-      if (casa1 == e.id_house) {
+    req.get('http://localhost:8080/house/' + casa1, function(error, resp, body) {
+      jsonData2 = JSON.parse(body2);
+      jsonCasa = JSON.parse(body);
+      console.log(jsonCasa.name);
+  var nTotal = 0;
+  var Ncasa = jsonCasa.name;
 
-        Ncasa = e.house;
-
-        nTotal = nTotal + 1;
-
-
-      }
-    }
+  jsonData2 = JSON.parse(body2)
+  console.log(jsonData2);
 
     response.set("Content-Type", "text/html");
     response.render('./adicionar_divisao', {
-      id: id,
+      id: id, 
       casa1: casa1,
       jsonData2: jsonData2,
       Ncasa
     });
   });
+  });
 });
 
 
 router.get('/:id_division/:casa', function (request, response) {
+  
   var id = request.user.email;
   var sensoresUser = new Array();
   var casa1 = request.params.casa;
   var division = request.params.id_division;
+  
 
   req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
+            req.get('http://localhost:8080/house/' + casa1, function(error, resp, body) {
+            jsonData2 = JSON.parse(body2);
+            jsonCasa = JSON.parse(body);
+            console.log(jsonCasa.name);
+        var nTotal = 0;
+        var Ncasa = jsonCasa.name;
+    
+        jsonData2 = JSON.parse(body2)
+        console.log(jsonData2);
     jsonData2 = JSON.parse(body2)
     console.log(division);
     var id_sensor;
     var nTotal = 0;
     var Ncasa;
-    for (var e of jsonData2) {
-      if (casa1 == e.id_house) {
-        Ncasa = e.house;
-        nTotal = nTotal + 1;
-      }
-    }
     for (var e of jsonData2) {
       if (division == e.id_division) {
         id_sensor = e.sensor_id;
@@ -241,6 +239,7 @@ router.get('/:id_division/:casa', function (request, response) {
         Ncasa
       });
     });
+  });
   });
 });
 

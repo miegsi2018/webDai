@@ -4,10 +4,11 @@ const model = require('../models/user.model');
 const swal = require('sweetalert2');
 const mqtt = require('mqtt');
 const req = require('request');
+const fileUpload = require('express-fileupload');
 var userData;
-var Jimp = require("jimp");
-
 var casa = [];
+var Jimp = require("jimp");
+router.use(fileUpload());
 
 
 
@@ -68,10 +69,14 @@ router.get('/house',global.secure(), function(request, response, body) {
     //console.log(request.isAuthenticated());
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    
     var id = request.user.email;
+    var account =request.user.account;
     
     req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
+        req.get('http://localhost:8080/house/', function(error, resp, body) {
         jsonData2 = JSON.parse(body2);
+        jsonCasa = JSON.parse(body);
 
         var casa = [];
         var casaN = [];
@@ -108,9 +113,12 @@ router.get('/house',global.secure(), function(request, response, body) {
             id: id,
             casa: casa,
             casaN: casaN,
-            jsonData2: jsonData2
+            jsonData2: jsonData2,
+            jsonCasa : jsonCasa,
+            account : account
         });
     });
+});
 
 });
 
@@ -136,6 +144,8 @@ router.get('/house/create', function(request, response, body) {
         response.set("Content-Type", "text/html");
         response.render('./create_house', {
             id: id,
+            isNew : true,
+            
             casa: casa
         });
     });
@@ -146,15 +156,136 @@ router.get('/house/create', function(request, response, body) {
 router.post('/house/create', function(request, response, body) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
+    var errors = request.validationErrors();
     var id = request.user.account;
-
+    var path;
+    var teste ;
+ console.log(request.files )  
+     if (request.files.sampleFile !== teste) {
+    
+ 
+       let sampleFile = request.files.sampleFile;
+ console.log("Fase1")
+       sampleFile.mv('./public/assets/img/casas/' + request.user.account + "-" + request.body.name + '.jpg', function (err) {
+         if (err)
+           return response.status(500).send(err);
+           console.log("Fase2")
+ 
+       });
+       Jimp.read('./public/assets/img/casas/' + request.user.account  + "-" + request.body.name + '.jpg', function (err, lenna) {
+         if (err) throw err;
+         lenna.resize(480, 320)            // resize
+              .quality(100)                 // set JPEG quality
+                // set greyscale
+              .write('./public/assets/img/casas/' + request.user.account  + "-" + request.body.name + '.jpg'); // save
+              console.log("imagem resized")
+     });
+       path = 1;
+     } else {
+       path = 0;
+     }
     var options = {
         uri: 'http://localhost:8080/house',
         method: 'POST',
         json: {
             "name": request.body.name,
-            "account_id": id
+            "account_id": id,
+            "path": path
+        }
+    }
+    console.log("Fase1")
+    console.log(request.body.name)
+    console.log( id)
+    console.log(path)
+
+    req(options, function(error, resp, body) {
+
+    })
+    response.redirect('/house');
+});
+
+
+router.get('/house/edit/:casa', function(request, response, body) {
+    //console.log(request.isAuthenticated());
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    var id = request.user.email;
+    var casa1 = request.params.casa;
+
+    req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
+        req.get('http://localhost:8080/house/', function(error, resp, body) {
+        jsonData2 = JSON.parse(body2);
+        jsonCasa = JSON.parse(body);
+var editavel = [];
+        for(var c of jsonCasa){
+            if(casa1 == c.id_house)
+            editavel.push(c);
+            
+
+        }
+
+      console.log(editavel);
+        response.set("Content-Type", "text/html");
+        response.render('./create_house', {
+            isNew : false,
+            id: id,
+            casa1: casa1,
+            editavel: editavel
+            
+            
+        }); 
+    });
+});
+
+});
+
+
+router.post('/house/edit/:casa', function(request, response, body) {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    var errors = request.validationErrors();
+    var id = request.user.account;
+    var casa1 = request.params.casa;
+    req.get('http://localhost:8080/house/', function(error, resp, body) {
+        jsonCasa = JSON.parse(body);
+var editavel = [];
+        for(var c of jsonCasa){
+            if(casa1 == c.id_house)
+            editavel.push(c);
+            console.log("funciona")
+            
+
+        }
+        console.log(editavel)
+        console.log(casa1)
+        console.log(jsonCasa[0].account_id)
+        var account = editavel[0].account_id;
+        var path = editavel[0].path;
+        var nome = editavel[0].name;
+        console.log(request.body.name)
+
+
+
+
+
+        
+        Jimp.read('./public/assets/img/casas/' + account  + "-" + nome + '.jpg', function (err, lenna) {
+            if (err) throw err;
+            lenna.resize(480, 320)            // resize
+                 .quality(100)                 // set JPEG quality
+                // set greyscale
+                 .write('./public/assets/img/casas/' + account  + "-" + request.body.name + '.jpg'); // save
+                 console.log("imagem resized")
+        });
+        
+    var options = {
+        uri: 'http://localhost:8080/house/' + casa1,
+        method: 'POST',
+        json: {
+            "id_house": casa1,
+            "name": request.body.name,
+            "account_id": account,
+            "path": path,
         }
     }
 
@@ -162,6 +293,7 @@ router.post('/house/create', function(request, response, body) {
 
     })
     response.redirect('/house');
+});
 });
 
 
@@ -174,19 +306,13 @@ router.get('/home/:casa', function(request, response, body) {
 
 
     req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
-
+        req.get('http://localhost:8080/house/' + casa1, function(error, resp, body) {
+            jsonData2 = JSON.parse(body2);
+            jsonCasa = JSON.parse(body);
+            console.log(jsonCasa.name);
         var nTotal = 0;
-        var Ncasa;
-        for (var e of jsonData2) {
-            if (casa1 == e.id_house) {
-
-                Ncasa = e.house;
-
-                nTotal = nTotal + 1;
-
-
-            }
-        }
+        var Ncasa = jsonCasa.name;
+    
         jsonData2 = JSON.parse(body2)
         console.log(jsonData2);
 
@@ -200,6 +326,7 @@ router.get('/home/:casa', function(request, response, body) {
         });
 
     });
+});
 
 });
 
