@@ -1,5 +1,78 @@
 <%  include partials/header %>
 
+
+    <style>
+        /*the container must be positioned relative:*/
+
+        .custom-select {
+            position: relative;
+            font-family: Arial;
+        }
+
+        .custom-select select {
+            display: none;
+            /*hide original SELECT element:*/
+        }
+
+        .select-selected {
+            background-color: DodgerBlue;
+        }
+
+        /*style the arrow inside the select element:*/
+
+        .select-selected:after {
+            position: absolute;
+            content: "";
+            top: 14px;
+            right: 10px;
+            width: 0;
+            height: 0;
+            border: 6px solid transparent;
+            border-color: #fff transparent transparent transparent;
+        }
+
+        /*point the arrow upwards when the select box is open (active):*/
+
+        .select-selected.select-arrow-active:after {
+            border-color: transparent transparent #fff transparent;
+            top: 7px;
+        }
+
+        /*style the items (options), including the selected item:*/
+
+        .select-items div,
+        .select-selected {
+            color: #ffffff;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+            cursor: pointer;
+        }
+
+        /*style items (options):*/
+
+        .select-items {
+            position: absolute;
+            background-color: DodgerBlue;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 99;
+        }
+
+        /*hide the items when the select box is closed:*/
+
+        .select-hide {
+            display: none;
+        }
+
+        .select-items div:hover,
+        .same-as-selected {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    </style>
+
+
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -12,71 +85,71 @@
                         </div>
 
                         <div class="content">
-                            <script>
-                                function alert(mes)
-                                {
-                                    window.alert(mes);
+
+                            <form role="form" action="add/<%= id_sensor %>" method="post" encType="multipart/form-data"
 
 
-                                }
-                            </script>
-                            <form role="form" action="/room/<%= casa1 %>/regi" method="post" encType="multipart/form-data"
-                                <% for (var i=0 ; i <= array.lenght ; i++) { %>
+                                <div class="form-group">
+                                <label for="sel1">Selecione a Casa:</label>
+                                <select class="form-control" name="house" id="sel1">
 
-                                <script>
-                                   alert("<%= array[i].division %>")
-                                </script>
-                                <div class="pretty p-default p-curve p-fill">
+  
 
-                                    <input type="radio" name="speaker" value="<%= array[i].division %>" />
-                                    <div class="state">
+                                <% for (var i=0 ; i <= id_division.length -1; i++) { %>
 
-                                        <label>
-						<%= array[i].division %>
-                                        </label>
-                                    </div>
-                                </div>
+
+				 <option value="id_house"><%= house[i] %></option>
+					
 
 
 
                                 <% } %>
 
-                                    <div class="col-md-1"></div>
-                                    <div class="col-md-5">
-                                        <div class="form-check">
-                                            <label class="text-center">Divisão</label>
-                                            <input type="text" class="form-control border-input" name="name" placeholder="Nome da Divisão">
-                                            <br>
-
-
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-info btn-fill btn-wd" value='Upload!' style="margin: 5px; float: right; margin-right: 10px;"
-                                        value='Upload!'>Adicionar Divisão</button>
-                                    <button type="submit" class="btn btn-info btn btn" style=" margin: 5px; float: right;">Cancel</button>
+</select>
                         </div>
 
 
 
+                        <div class="form-group">
+                            <label for="sel1">Selecione a Divisão:</label>
+                            <select class="form-control"  name="division" id="sel1">
+
+  
+
+                                <% for (var i=0 ; i <= division.length -1; i++) { %>
 
 
 
+				<option value="id_division[i]"><%= division[i] %></option>
+					
 
 
-                        </form>
 
-                    </div>
+                                <% } %>
 
+</select>
+                        </div>
+
+                        <button type="submit" class="btn btn-info btn-fill btn-wd" value='Upload!' style="margin: 5px; float: right; margin-right: 10px;"
+                            value='Upload!'>Adicionar Divisão</button>
+                        <button type="submit" class="btn btn-info btn btn" style=" margin: 5px; float: right;">Cancel</button>
+
+
+
+                    </form>
 
                 </div>
+                )
+
             </div>
-
-            <!--- Outra div -->
-
-
         </div>
 
-        <div class="col-lg-1 col-md-5"></div>
+        <!--- Outra div -->
+
+
+    </div>
+
+    <div class="col-lg-1 col-md-5"></div>
 
     </div>
     </div>

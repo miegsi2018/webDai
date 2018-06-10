@@ -118,17 +118,26 @@
             <div class="content">
             <div class="col-lg-6 col-sm-6" >              
 <h3 style="display: inline;">Alarme</h3>
+<p id="alar"></p>
+Checkbox: <input type="checkbox" id="myCheck">
 </div>
 <div class="col-lg-6 col-sm-6">
 
             <div class="onoffswitch">
-
-    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+                <form id="form_myonoffswitch" method="post" action="">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" >
     <label class="onoffswitch-label" for="myonoffswitch">
         <span class="onoffswitch-inner"></span>
         <span class="onoffswitch-switch" style="height: 23px;"></span>
     </label>
-
+  </form> 
+  <script type="text/javascript">  
+        $(function(){
+         $('.myonoffswitch').on('change',function(){
+            $('#form_myonoffswitch').submit();
+            });
+        });
+    </script>
     
     
 </div>
@@ -374,11 +383,11 @@
 
 
               <script>
-                var socket = io.connect('http://localhost:5000');
+                  var socket = io.connect('http://localhost:5000');
                 socket.on('data/<%= id_sensor%>', function (measurements) {
                   var labels = JSON.parse(measurements);
 
-                  var temp = labels.measurements["temperature"]
+                  var temp = labels.measurements.temperature
                   var luz = labels.measurements["ldr"];
                   var movimento = labels.measurements["motion"];
                   var humidade = labels.measurements["humidity"];
@@ -387,6 +396,13 @@
                   $('#luzAtual').text('Luz: ' + luz);
                   $('#movAtual').text(movimento);
                   $('#humAtual').text('Humidade: ' + humidade);
+                  $('#alar').text('State alarm: ' + alarme);
+
+                  if(alarme =="OFF"){
+                    document.getElementById("myonoffswitch").checked = false;
+                  }else{
+                    document.getElementById("myonoffswitch").checked = true;
+                  }
                   if (movimento == "motion detected") {
                     document.getElementById("Movi").style.color = "green";
                     $('#movAtual').text('Com Movimento ');
@@ -397,6 +413,7 @@
 
 
                 })
+                
               </script>
 
 

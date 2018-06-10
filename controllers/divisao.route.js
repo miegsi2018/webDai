@@ -48,6 +48,37 @@ router.get('/:casa', function(request, response) {
 
                     }
                 }
+                for (var e of jsonDivi) {
+
+                    if (division == e.id_division) {
+                      console.log("it workt:" + e.sensor_id);
+                      id_sensor = e.sensor_id;
+                    }
+          
+                  }    console.log("acabou fazes iniciais")
+                  console.log(id_sensor);
+                  var client = mqtt.connect('mqtt://alvesvitor.ddns.net:80', {
+                    username: "dai",
+                    password: '12345678'
+                  })
+                  console.log("Inicio faze cliente")
+                  client.on('connect', function () {
+                    console.log('MQTT IS WORKING' + ' ' + 2)
+                    client.subscribe('data/' + id_sensor)
+                    console.log('data/' + id_sensor);
+                    client.publish('presence', 'Hello mqtt')
+                  })
+                  console.log("Log intermedio")
+                  io.on('connection', function (socket) {
+          
+                    client.on('message', (topic, measurements) => {
+                      console.log(`Received message: '${measurements}'`);
+                      socket.emit(topic, measurements.toString());
+                      var labels = JSON.parse(measurements);
+                      console.log(labels.measurements)
+                    });
+                  });
+          
                 console.log("Todas as div da casa" + divi);
                 console.log(divi.length == 0);
                 response.set("Content-Type", "text/html");
