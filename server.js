@@ -6,7 +6,7 @@ const app = express();
 const validator = require('express-validator');
 const engines = require('consolidate');
 
-var server = require('http').createServer(app);  
+var server = require('http').createServer(app);
 global.io = require('socket.io')(server);
 
 const cookieParser = require('cookie-parser');
@@ -18,23 +18,19 @@ var restServer = 'http://localhost:8080/';
 
 
 
-
 //This function will allow us to retrict the access to the routes
-global.secure = function (type) {
-	return function (request, response, next) {
-		if (request.isAuthenticated()) {
-			if (type) {
-				if (type === request.user.type) {
-					return next();
-				} else {
-					response.redirect('/');
-				}
-			} else {
-				return next();
-			}
-		}
-		response.redirect('/');
-	};
+global.secure = function() {
+    return function(request, response, next) {
+        if (request.isAuthenticated()) {
+
+            return next();
+
+        } else {
+
+            request.session.returnTo = request.path;
+            response.redirect('/');
+        }
+};
 };
 //end of 
 
@@ -43,30 +39,29 @@ global.secure = function (type) {
 
 
 
-
 app.use(validator());
 app.use(bodyParser.json(), bodyParser.urlencoded({
-	extended: true
+    extended: true
 }));
 
 //new
 app.use(cookieParser());
 app.use(session({
-	secret: 'someRandomSecretKey',
-	resave: false,
-	saveUninitialized: false
+    secret: 'someRandomSecretKey',
+    resave: false,
+    saveUninitialized: false
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function (email, callback) {
-	callback(null, email);
+passport.serializeUser(function(email, callback) {
+    callback(null, email);
 });
 
-passport.deserializeUser(function (email, callback) {
-	userModel.read(email, function (data) {
-		callback(null, data);
-	});
+passport.deserializeUser(function(email, callback) {
+    userModel.read(email, function(data) {
+        callback(null, data);
+    });
 });
 //end of new
 
@@ -74,31 +69,31 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 global.connection = mysql.createConnection({
-	host: 'darkredman-casa.dyndns.org',
-	user: 'dai',
-	password: 'mypass',
-	database: 'dwpt_dai'
-}).on('enqueue', function (sequence) {
-	if ('Query' === sequence.constructor.name) {
-		console.log(sequence.sql);
-	}
+    host: 'darkredman-casa.dyndns.org',
+    user: 'dai',
+    password: 'mypass',
+    database: 'dwpt_dai'
+}).on('enqueue', function(sequence) {
+    if ('Query' === sequence.constructor.name) {
+        console.log(sequence.sql);
+    }
 });
 
-app.listen(port, function () {
+app.listen(port, function() {
 
 
 
 
-	console.log('Server started at: ' + port);
+    console.log('Server started at: ' + port);
 
 });
 
 //Midleware that sets the isAuthenticated variable in all views
 
-app.use(function(request, response, next){
-	response.locals.user = request.user;
-	response.locals.isAuthenticated = request.isAuthenticated();
-	next();
+app.use(function(request, response, next) {
+    response.locals.user = request.user;
+    response.locals.isAuthenticated = request.isAuthenticated();
+    next();
 });
 
 

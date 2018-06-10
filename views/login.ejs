@@ -27,8 +27,8 @@
             <br>
             <div class="login-body">
                 <div class="login-title">
-                    <strong>Entre</strong> na sua conta</div>
-                <form action="/" class="form-horizontal" method="post">
+                    <strong>Log in</strong> into your account</div>
+                <form action="/login" class="form-horizontal" method="post">
                     <div class="form-group">
                         <div class="col-md-12" id="email_div">
                             <input type="text" id="email" name="email" class="form-control" placeholder="E-mail" />
@@ -41,41 +41,31 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-6">
-                            <a href="#" class="btn btn-link btn-block">Esqueceu-se da password?</a>
+                            <a href="#" class="btn btn-link btn-block">Forgot your password?</a>
                         </div>
                         <div class="col-md-6">
                             <button type="submit" class="btn btn-info btn-block" onsubmit="return Validate()">Log In</button>
                         </div>
                     </div>
-                    <div class="login-or">OU</div>
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <button class="btn btn-info btn-block btn-twitter">
-                                <span class="fa fa-twitter"></span> Twitter</button>
-                        </div>
-                        <div class="col-md-4">
-                            <button class="btn btn-info btn-block btn-facebook">
-                                <span class="fa fa-facebook"></span> Facebook</button>
-                        </div>
-                        <div class="col-md-4">
-                            <button class="btn btn-info btn-block btn-google">
-                                <span class="fa fa-google-plus"></span> Google</button>
-                        </div>
-                    </div>
-                    <div class="login-subtitle">
-                        Não tem conta ainda?
-                        <a href="/registo">Crie uma</a>
-                    </div>
                 </form>
+                    <div class="login-or">OR</div>
+                    <div class="login-title">
+                        <center>
+                        <strong>You don't have an account?</strong>
+                    </center>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6" style="padding-top: 10px">
+                            <button class="btn btn-info btn-block" onclick="location.href='/registo'"><strong>Create one right now</strong></button>
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
             </div>
             <div class="login-footer">
                 <div class="pull-left">
                     <img src="../public/assets/login/img/teamdai.png" alt="" height="50%" width="50%">
                 </div>
                 <div class="pull-right">
-                    <a href="#">About</a> |
-                    <a href="#">Privacy</a> |
-                    <a href="#">Contact Us</a>
+                    <a href="/">Go back</a>
                 </div>
             </div>
         </div>
