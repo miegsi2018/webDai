@@ -10,19 +10,16 @@
     }
   </style>
   <script>
-    function whynot()
-    {
+    function whynot() {
 
 
 
-      google.charts.load('current',
-      {
+      google.charts.load('current', {
         'packages': ['corechart']
       });
       google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart()
-      {
+      function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['data', 'temperature'],
           <% for (var e =0 ; e < graph.length -2; e++) { %>
@@ -32,23 +29,19 @@
         ]);
 
         var options = {
-          legend:
-          {
+          legend: {
             position: 'none'
           },
           title: 'Temperatura nas últimas 24 Horas',
-          hAxis:
-          {
+          hAxis: {
             slantedText: 1,
             showTextEvery: 300,
             title: 'ºC',
-            titleTextStyle:
-            {
+            titleTextStyle: {
               color: '#333'
             }
           },
-          vAxis:
-          {
+          vAxis: {
             minValue: 0
           }
         };
@@ -59,20 +52,28 @@
       }
 
     }
-    window.onload = function()
-    {
+    window.onload = function () {
 
       whynot();
     }
-    
-    function refresh()
-    {
-      $('#chartContainer').load( '/room/<%=division%>/<%=casa1%> #chartContainer > * ');
+
+    function refresh() {
+      $('#chartContainer').load('/room/<%=division%>/<%=casa1%> #chartContainer > * ');
       whynot();
     }
   </script>
   <div class="content">
     <div class="container-fluid">
+        <div class="row">
+          
+          <div class="pretty p-switch p-fill">
+        <input type="checkbox " style="width: 600px; height: 340px;" />
+        <div class="state">
+            <label>Fill</label>
+        </div>
+    </div>
+          </div>
+      
       <div class="row">
         <div class="col-lg-6 col-sm-6">
           <div class="card">
@@ -82,8 +83,7 @@
 
               <div class="dropdown-heading" role="tab" id="heading-1">
 
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1"
-                  aria-expanded="true" aria-controls="collapse-1">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
 
 
                   <div class="row">
@@ -95,7 +95,8 @@
                     </div>
                     <div class="col-xs-4">
                       <div class="icon-big icon-warning text-center">
-                        <i class="fas fa-thermometer-half" style="color: RoyalBlue ;"></i></i>
+                        <i class="fas fa-thermometer-half" style="color: RoyalBlue ;"></i>
+                        </i>
                       </div>
                     </div>
                     <div class="col-xs-4">
@@ -131,8 +132,7 @@
 
               <div class="dropdown-heading" role="tab" id="heading-2">
 
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-2"
-                  aria-expanded="true" aria-controls="collapse-2">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
 
 
                   <div class="row">
@@ -179,12 +179,11 @@
 
               <div class="dropdown-heading" role="tab" id="heading-3">
 
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-3"
-                  aria-expanded="true" aria-controls="collapse-3">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-3" aria-expanded="true" aria-controls="collapse-3">
 
 
                   <div class="row">
-                    <h3 style="text-align: center;">Iluminação</h3>
+                    <h3 style="text-align: center;">Realay</h3>
 
 
                     <div class="col-xs-4">
@@ -205,67 +204,37 @@
 
 
               <div id="collapse-3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-3">
-                <div class="panel-body">
+                <div class="panel-body text-center">
                   <hr>
-                  <div class="col-md-6">
-                    <!-- <p>Estado: <i class="fas fa-check" style="color: green;"></i></p> -->
 
-                    <div class="pretty p-default p-curve p-toggle">
-                      <input type="checkbox" />
-                      <div class="state p-success p-on">
-                        <label>Ligada</label>
-                      </div>
-                      <div class="state p-danger p-off">
-                        <label>Desligada </label>
-                      </div>
-
-
+                  <div class="pretty p-default p-curve p-toggle">
+                    <input type="checkbox" />
+                    <div class="state p-success p-on">
+                      <label>Relay On</label>
+                    </div>
+                    <div class="state p-danger p-off">
+                      <label>Relay Off </label>
                     </div>
 
-                    <br>
-                    <br>
 
-
-
-                    <script src="/public/assets/js/jscolor.js"></script>
-
-                    <div style="position:absolute; left:280px;" hidden>
-                      R, G, B = <span id="rgb"></span><br />
-                      <span id="hex-str"></span><br />
-                      <span id="rgb-str"></span><br />
-                      <span id="hsv"></span>
+                  </div>
+               
+                  <div class="pretty p-default p-curve p-toggle">
+                    <input type="checkbox" />
+                    <div class="state p-success p-on">
+                      <label>Relay On</label>
+                    </div>
+                    <div class="state p-danger p-off">
+                      <label>Relay Off </label>
                     </div>
 
-                    <input class="jscolor {onFineChange:'update(this)'}" style="width: 40px; height: 40px; -webkit-border-radius: 50px; border-radius: 50px;  border: none;text-indent: -99em; display:block;"
-                      value="ffcc00">
+
                   </div>
-                  <div class="col-md-6">
+              
+                  
+       
 
-                    <p id="luzAtual" style="text-align: center"></p>
 
-
-
-                    <button type="submit" class="btn btn-info btn-fill btn-wd" style="float: right; margin-top: 10px;">Mudar Cor</button>
-                    <script>
-                      function update(picker)
-                      {
-                        document.getElementById('hex-str').innerHTML = picker
-                          .toHEXString();
-                        document.getElementById('rgb-str').innerHTML = picker
-                          .toRGBString();
-
-                        document.getElementById('rgb').innerHTML =
-                          Math.round(picker.rgb[0]) + ', ' +
-                          Math.round(picker.rgb[1]) + ', ' +
-                          Math.round(picker.rgb[2]);
-
-                        document.getElementById('hsv').innerHTML =
-                          Math.round(picker.hsv[0]) + '&deg;, ' +
-                          Math.round(picker.hsv[1]) + '%, ' +
-                          Math.round(picker.hsv[2]) + '%';
-                      }
-                    </script>
-                  </div>
                 </div>
               </div>
 
@@ -282,8 +251,7 @@
 
 
               <div class="dropdown-heading" role="tab" id="heading-4">
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-4"
-                  aria-expanded="true" aria-controls="collapse-4">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-4" aria-expanded="true" aria-controls="collapse-4">
 
 
                   <div class="row">
@@ -319,11 +287,7 @@
 
 
             </div>
-            <div id="container-floating">
-            <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" onclick="location.href='/room/<%= division %>/<%= casa1 %>/edit ';" >
-              <p class="plus">+</p>
-            </div>
-        </div>
+   
 
           </div>
         </div>
@@ -347,8 +311,7 @@
 
               <script>
                 var socket = io.connect('http://localhost:5000');
-                socket.on('data/<%= id_sensor%>', function(measurements)
-                {
+                socket.on('data/<%= id_sensor%>', function (measurements) {
                   var labels = JSON.parse(measurements);
 
                   var temp = labels.measurements["temperature"]
@@ -359,13 +322,10 @@
                   $('#luzAtual').text('Luz: ' + luz);
                   $('#movAtual').text(movimento);
                   $('#humAtual').text('Humidade: ' + humidade);
-                  if (movimento == "motion detected")
-                  {
+                  if (movimento == "motion detected") {
                     document.getElementById("Movi").style.color = "green";
                     $('#movAtual').text('Com Movimento ');
-                  }
-                  else
-                  {
+                  } else {
                     $('#movAtual').text('Sem Movimento ');
                   }
 
