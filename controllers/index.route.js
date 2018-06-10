@@ -12,16 +12,15 @@ router.use(fileUpload());
 
 
 
-router.get('/', function(request, response) {
-    
+router.get('/', function (request, response) {
+
     response.set("Content-Type", "text/html");
-    response.render('./frontpage', {
-    });
+    response.render('./frontpage', {});
 
 });
 
 // ROTA DA FRONT PAGE
-router.get('/login', function(request, response) {
+router.get('/login', function (request, response) {
     //console.log(request.isAuthenticated());
 
     var inicial = new Date();
@@ -48,7 +47,7 @@ router.get('/login', function(request, response) {
 
     console.log(options.json);
 
-    req(options, function(error, resp, body) {
+    req(options, function (error, resp, body) {
         console.log(body);
         var a = body;
         for (var t = 0; t < body.temp.length; t++) {
@@ -66,7 +65,7 @@ router.get('/login', function(request, response) {
 
     response.set("Content-Type", "text/html");
     response.render('./login', {
-
+        error: ""
     });
 
 
@@ -91,29 +90,29 @@ router.get('/login', function(request, response) {
 
 
 
-router.get('/add/:id_sensor', global.secure(), function(request, response) {
+router.get('/add/:id_sensor', global.secure(), function (request, response) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var id_user = request.user.email;
-	
+
     console.log(id_user);
 
 
 
-    req.get('http://localhost:8080/view/' + id_user, function(error, resp, body2) {
-            jsonData2 = JSON.parse(body2);
+    req.get('http://localhost:8080/view/' + id_user, function (error, resp, body2) {
+        jsonData2 = JSON.parse(body2);
 
 
 
-            response.set("Content-Type", "text/html");
-            response.render('./adicionar_sensor', {
-		    array: jsonData2,
-		    casa1: "Nova Casa",
-		    id: id_user,
-		    Ncasa: "Nova Casa"
+        response.set("Content-Type", "text/html");
+        response.render('./adicionar_sensor', {
+            array: jsonData2,
+            casa1: "Nova Casa",
+            id: id_user,
+            Ncasa: "Nova Casa"
         });
-    
-});
+
+    });
 
 });
 
@@ -140,7 +139,7 @@ router.get('/add/:id_sensor', global.secure(), function(request, response) {
 
 
 // ROTA DA PAGINA DAS CASAS DO UTILIZADOR
-router.get('/house', global.secure(), function(request, response, body) {
+router.get('/house', global.secure(), function (request, response, body) {
     //console.log(request.isAuthenticated());
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -148,8 +147,8 @@ router.get('/house', global.secure(), function(request, response, body) {
     var id = request.user.email;
     var account = request.user.account;
 
-    req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
-        req.get('http://localhost:8080/house/', function(error, resp, body) {
+    req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
+        req.get('http://localhost:8080/house/', function (error, resp, body) {
             jsonData2 = JSON.parse(body2);
             jsonCasa = JSON.parse(body);
 
@@ -199,13 +198,13 @@ router.get('/house', global.secure(), function(request, response, body) {
 
 
 
-router.get('/house/create', global.secure(), function(request, response, body) {
+router.get('/house/create', global.secure(), function (request, response, body) {
     //console.log(request.isAuthenticated());
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var id = request.user.email;
 
-    req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
+    req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
 
         jsonData2 = JSON.parse(body2);
 
@@ -228,7 +227,7 @@ router.get('/house/create', global.secure(), function(request, response, body) {
 });
 
 
-router.post('/house/create', function(request, response, body) {
+router.post('/house/create', function (request, response, body) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var errors = request.validationErrors();
@@ -241,13 +240,13 @@ router.post('/house/create', function(request, response, body) {
 
         let sampleFile = request.files.sampleFile;
         console.log("Fase1")
-        sampleFile.mv('./public/assets/img/casas/' + request.user.account + "-" + request.body.name + '.jpg', function(err) {
+        sampleFile.mv('./public/assets/img/casas/' + request.user.account + "-" + request.body.name + '.jpg', function (err) {
             if (err)
                 return response.status(500).send(err);
             console.log("Fase2")
 
         });
-        Jimp.read('./public/assets/img/casas/' + request.user.account + "-" + request.body.name + '.jpg', function(err, lenna) {
+        Jimp.read('./public/assets/img/casas/' + request.user.account + "-" + request.body.name + '.jpg', function (err, lenna) {
             if (err) throw err;
             lenna.resize(480, 320) // resize
                 .quality(100) // set JPEG quality
@@ -273,22 +272,22 @@ router.post('/house/create', function(request, response, body) {
     console.log(id)
     console.log(path)
 
-    req(options, function(error, resp, body) {
+    req(options, function (error, resp, body) {
 
     })
     response.redirect('/house');
 });
 
 
-router.get('/house/edit/:casa', function(request, response, body) {
+router.get('/house/edit/:casa', function (request, response, body) {
     //console.log(request.isAuthenticated());
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var id = request.user.email;
     var casa1 = request.params.casa;
 
-    req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
-        req.get('http://localhost:8080/house/', function(error, resp, body) {
+    req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
+        req.get('http://localhost:8080/house/', function (error, resp, body) {
             jsonData2 = JSON.parse(body2);
             jsonCasa = JSON.parse(body);
             var editavel = [];
@@ -315,13 +314,13 @@ router.get('/house/edit/:casa', function(request, response, body) {
 });
 
 
-router.post('/house/edit/:casa', function(request, response, body) {
+router.post('/house/edit/:casa', function (request, response, body) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var errors = request.validationErrors();
     var id = request.user.account;
     var casa1 = request.params.casa;
-    req.get('http://localhost:8080/house/', function(error, resp, body) {
+    req.get('http://localhost:8080/house/', function (error, resp, body) {
         jsonCasa = JSON.parse(body);
         var editavel = [];
         for (var c of jsonCasa) {
@@ -344,7 +343,7 @@ router.post('/house/edit/:casa', function(request, response, body) {
 
 
 
-        Jimp.read('./public/assets/img/casas/' + account + "-" + nome + '.jpg', function(err, lenna) {
+        Jimp.read('./public/assets/img/casas/' + account + "-" + nome + '.jpg', function (err, lenna) {
             if (err) throw err;
             lenna.resize(480, 320) // resize
                 .quality(100) // set JPEG quality
@@ -364,7 +363,7 @@ router.post('/house/edit/:casa', function(request, response, body) {
             }
         }
 
-        req(options, function(error, resp, body) {
+        req(options, function (error, resp, body) {
 
         })
         response.redirect('/house');
@@ -372,7 +371,7 @@ router.post('/house/edit/:casa', function(request, response, body) {
 });
 
 
-router.get('/home/:casa', function(request, response, body) {
+router.get('/home/:casa', function (request, response, body) {
     //console.log(request.isAuthenticated());
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -380,8 +379,8 @@ router.get('/home/:casa', function(request, response, body) {
     var casa1 = request.params.casa;
 
 
-    req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
-        req.get('http://localhost:8080/house/' + casa1, function(error, resp, body) {
+    req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
+        req.get('http://localhost:8080/house/' + casa1, function (error, resp, body) {
             jsonData2 = JSON.parse(body2);
             jsonCasa = JSON.parse(body);
             console.log(jsonCasa.name);
@@ -406,7 +405,7 @@ router.get('/home/:casa', function(request, response, body) {
 });
 
 
-router.post('home/:casa', global.secure(), function(request, response, body) {
+router.post('home/:casa', global.secure(), function (request, response, body) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
@@ -421,22 +420,24 @@ router.post('home/:casa', global.secure(), function(request, response, body) {
 
     console.log(options.json);
 
-    req(options, function(error, resp, body) {
+    req(options, function (error, resp, body) {
         console.log(body);
         document.getElementById('avg').innerHTML = body;
     });
 });
 
 
-router.get('/registo', function(request, response) {
+router.get('/registo', function (request, response) {
     //console.log(request.isAuthenticated());
 
     response.set("Content-Type", "text/html");
-    response.render('./registo', {});
+    response.render('./registo', {
+        error: ""
+    });
 
 });
 
-router.post('/registo', function(request, response) {
+router.post('/registo', function (request, response) {
     var errors = request.validationErrors();
 
     response.header("Access-Control-Allow-Origin", "*");
@@ -453,13 +454,21 @@ router.post('/registo', function(request, response) {
         }
     };
 
-    req(options, function(error, resp, body) {
-
+    req(options, function (error, resp, body) {
+        if(resp.statusCode == 201) {
+            response.redirect('/login');
+        }else if(resp.statusCode == 200){
+            response.set("Content-Type", "text/html");
+            response.render('./registo', {
+                error: "email"
+            });
+        }
     });
-    response.redirect('/');
+    
 });
 
-router.post('/login', function(request, response) {
+router.post('/login', function (request, response) {
+
 
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -474,13 +483,13 @@ router.post('/login', function(request, response) {
     };
 
 
-    req(options, function(error, resp, body) {
-        if (body.password == request.body.password) {
-            request.login(body.email, function(err) {
+    req(options, function (error, resp, body) {
+        if (resp.statusCode == 200) {
+            request.login(body.email, function (err) {
 
                 console.log(request.session.returnTo);
                 if (request.session.returnTo) {
-                    response.redirect(request.session.returnTo || '/');
+                    response.redirect(request.session.returnTo || '/login');
                     delete request.session.returnTo;
 
 
@@ -489,15 +498,21 @@ router.post('/login', function(request, response) {
                     response.redirect('/house');
                 }
             });
+        } else if (resp.statusCode == 401) {
+            var error = "password";
+            response.set("Content-Type", "text/html");
+            response.render('./login', {
+                error: "password"
+            });
         } else {
-            response.json({
-                error: "Updated Successfully",
-                status: 400
+            var error = "email";
+            response.set("Content-Type", "text/html");
+            response.render('./login', {
+                error: "email"
             });
         }
+
     });
-
-
 
 });
 
