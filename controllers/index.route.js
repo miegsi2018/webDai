@@ -86,28 +86,18 @@ router.post('/add/add/:id_sensor', global.secure(), function(request, response) 
         uri: 'http://localhost:8080/division'+ request.body.division,
         method: 'POST',
         json: {
-            "id_sensor": request.body.name,
+            "id_sensor": request.params.id_sensor,
             "id_house": request.body.house,
             "id_division": request.body.division
         }
-    }
+    };
 
     req.post('http://localhost:8080/view2/' + id_user, function(error, resp, body) {
 
 
 
-        response.render('./adicionar_sensor', {
-            house: house,
-
-            id_house: id_house,
-            division: division,
-            id_division: division,
-            id_sensor: id_sensor,
-
-            casa1: "Nova Casa",
-            id: id_user,
-            Ncasa: "Nova Casa"
-        });
+        response.redirect('./house', {
+                    });
 
     });
 
