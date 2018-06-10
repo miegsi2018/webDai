@@ -44,7 +44,7 @@ body {
   min-height: 100%;
   padding: 0px;
   margin: 0px;
-  background: #f5f5f5 url('../img/bg.png') left top repeat;
+  background: #f5f5f5 url('../img/bground.jpg') left top repeat;
   position: relative;
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
@@ -105,7 +105,7 @@ body {
 .page-container .page-content {
   min-height: 100%;
   margin-left: 220px;
-  background: #f5f5f5 url('../img/bg.png') left top repeat;
+  background: #f5f5f5 url('../img/bground.jpg') left top repeat;
   position: relative;
   zoom: 1;
 }
@@ -121,7 +121,7 @@ body {
   float: left;
   width: 100%;
   position: relative;
-  background: #f5f5f5 url('../img/bg.png') left top repeat;
+  background: #f5f5f5 url('../img/bground.jpg') left top repeat;
 }
 .page-container .page-content .content-frame .content-frame-top {
   float: left;
@@ -2048,21 +2048,21 @@ ul.panel-controls > li > .dropdown-menu:before {
   border-color: #2c313b;
 }
 .btn-info {
-  background-color: #1caf9a;
-  border-color: #1caf9a;
+  background-color: #3091b2;
+  border-color: #3091b2;
 }
 .btn-info:hover,
 .btn-info:focus,
 .btn-info:active,
 .btn-info.active,
 .open > .dropdown-toggle.btn-info {
-  background-color: #29b2e1;
-  border-color: #29b2e1;
+  background-color: #3091b2;
+  border-color: #3091b2;
 }
 .btn-info[disabled],
 .btn-info.disabled {
-  background: #6ccaea;
-  border-color: #63c7e9;
+  background: #3091b2;
+  border-color: #3091b2;
 }
 .btn-link {
   font-weight: 600;

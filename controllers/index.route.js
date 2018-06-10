@@ -12,6 +12,14 @@ router.use(fileUpload());
 
 
 
+router.get('/teste', function(request, response) {
+    
+    response.set("Content-Type", "text/html");
+    response.render('./frontpage', {
+    });
+    
+});
+
 // ROTA DA FRONT PAGE
 router.get('/', function(request, response) {
     //console.log(request.isAuthenticated());
