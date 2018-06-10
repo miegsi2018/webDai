@@ -468,6 +468,8 @@ router.post('/registo', function (request, response) {
             response.render('./registo', {
                 error: "email"
             });
+        }else {
+            
         }
     });
     
