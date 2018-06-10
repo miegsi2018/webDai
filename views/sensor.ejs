@@ -8,6 +8,52 @@
     a:focus {
       color: black;
     }
+
+    .onoffswitch {
+    position: relative; width: 90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    border: 2px solid #999999; border-radius: 20px;
+}
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+    content: "ON";
+    padding-left: 10px;
+    background-color: green; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+    content: "OFF";
+    padding-right: 10px;
+    background-color: red; color: black;
+    text-align: right;
+}
+.onoffswitch-switch {
+    display: block; width: 18px; margin: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; bottom: 0;
+    right: 56px;
+    border: 2px solid #999999; border-radius: 20px;
+    transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
   </style>
   <script>
     function whynot() {
@@ -65,13 +111,40 @@
   <div class="content">
     <div class="container-fluid">
         <div class="row">
-          
-          <div class="pretty p-switch p-fill">
-        <input type="checkbox " style="width: 600px; height: 340px;" />
-        <div class="state">
-            <label>Fill</label>
+            <div class="col-lg-6 col-sm-6">
+</div>          
+            <div class="col-lg-8 col-sm-6">
+            <div class="card" style="float: right;">
+            <div class="content">
+            <div class="col-lg-6 col-sm-6" >              
+<h3 style="display: inline;">Alarme</h3>
+<p id="alar"></p>
+Checkbox: <input type="checkbox" id="myCheck">
+</div>
+<div class="col-lg-6 col-sm-6">
+
+            <div class="onoffswitch">
+                <form id="form_myonoffswitch" method="post" action="">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" >
+    <label class="onoffswitch-label" for="myonoffswitch">
+        <span class="onoffswitch-inner"></span>
+        <span class="onoffswitch-switch" style="height: 23px;"></span>
+    </label>
+  </form> 
+  <script type="text/javascript">  
+        $(function(){
+         $('.myonoffswitch').on('change',function(){
+            $('#form_myonoffswitch').submit();
+            });
+        });
+    </script>
+    
+    
+</div>
+          </div>
+          </div>
         </div>
-    </div>
+          </div>
           </div>
       
       <div class="row">
@@ -314,14 +387,22 @@
                 socket.on('data/<%= id_sensor%>', function (measurements) {
                   var labels = JSON.parse(measurements);
 
-                  var temp = labels.measurements["temperature"]
+                  var temp = labels.measurements.temperature
                   var luz = labels.measurements["ldr"];
                   var movimento = labels.measurements["motion"];
                   var humidade = labels.measurements["humidity"];
+                  var alarme = labels.alarm["state"];
                   $('#tempAtual').text('Temperatura atual: ' + temp);
                   $('#luzAtual').text('Luz: ' + luz);
                   $('#movAtual').text(movimento);
                   $('#humAtual').text('Humidade: ' + humidade);
+                  $('#alar').text('State alarm: ' + alarme);
+
+                  if(alarme =="OFF"){
+                    document.getElementById("myonoffswitch").checked = false;
+                  }else{
+                    document.getElementById("myonoffswitch").checked = true;
+                  }
                   if (movimento == "motion detected") {
                     document.getElementById("Movi").style.color = "green";
                     $('#movAtual').text('Com Movimento ');
@@ -332,6 +413,7 @@
 
 
                 })
+                
               </script>
 
 
