@@ -255,13 +255,13 @@ console.log("--------Divisao--------Divisao--------Divisao--------Divisao-------
     //     response.send('File uploaded!');
     // });
     var options = {
-        uri: 'http://localhost:8080/division/' + divisao,
+        uri: 'http://localhost:8080/division/name' ,
         method: 'POST',
         json: {
             "id_division": divisao,
             "name": request.body.name,
             "sensor_id": request.body.sensor,
-            "path": path,
+          
 
         }
     };
@@ -292,11 +292,13 @@ router.get('/:id_division/:casa', function (request, response) {
 
         var id_sensor;
         var Ncasa;
+        var arm;
         for (var e of jsonDivi) {
 
           if (division == e.id_division) {
             console.log("it workt:" + e.sensor_id);
             id_sensor = e.sensor_id;
+            arm = e.armed;
           }
 
         }
@@ -375,7 +377,8 @@ router.get('/:id_division/:casa', function (request, response) {
             jsonData2: jsonData2,
             id_sensor: id_sensor,
             graph: graph,
-            Ncasa
+            Ncasa,
+            arm: arm
           });
         });
       });
