@@ -19,8 +19,8 @@
                                         </div>
                                         <div class="col-md-4">
                                                <div class="form-check">
-                                                       <label class="text-center">Sensor</label>
-                                                       <input type="text" class="form-control border-input" name="sensor" placeholder=" sensor" >
+                                                       <label class="text-center">Sensor(1-20)</label>
+                                                       <input type="text" class="form-control border-input" id="sensor" name="sensor"pattern="[a-zA-Z0-9-]{3,20}" placeholder=" sensor" required>
                                                        <br>
            
            
@@ -29,8 +29,8 @@
                                 
                                    <div class="col-md-6">
                                        <div class="form-check">
-                                           <label class="text-center">Divison</label>
-                                           <input type="text" class="form-control border-input" name="name" placeholder="Divisions name" >
+                                           <label class="text-center">Divison(4-45)</label>
+                                           <input type="text" class="form-control border-input" id="name" name="name" pattern="[a-zA-Z0-9-]{4,45}" placeholder="Divisions name" required>
                                            <br>
 
 
@@ -76,8 +76,8 @@
                                          </div>
                                          <div class="col-md-4">
                                                 <div class="form-check">
-                                                        <label class="text-center">Sensor</label>
-                                                        <input type="text" class="form-control border-input" name="sensor" placeholder=" sensor" value="<%= sensor %>">
+                                                        <label class="text-center">Sensor(1-20)</label>
+                                                        <input type="text" class="form-control border-input" name="sensor" placeholder=" sensor" pattern="[a-zA-Z0-9-]{3,20}" value="<%= sensor %>" required>
                                                         <br>
             
             
@@ -86,8 +86,8 @@
                                  
                                     <div class="col-md-6">
                                         <div class="form-check">
-                                            <label class="text-center">Divison</label>
-                                            <input type="text" class="form-control border-input" name="name" placeholder="Divisions name" value="<%= nome %>">
+                                            <label class="text-center">Divison(4-45)</label>
+                                            <input type="text" class="form-control border-input" name="name" placeholder="Divisions name" pattern="[a-zA-Z0-9-]{4,45}" value="<%= nome %>" required>
                                             <br>
 
 

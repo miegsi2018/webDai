@@ -119,8 +119,8 @@
                                                 
                                             <div class="col-md-6">
                                                 <div class="form-check">
-                                                    <label class="text-center">House:</label>
-                                                    <input type="text" class="form-control border-input"  pattern="[0-9]{9}" name="name" placeholder="House name">
+                                                    <label class="text-center">House (4-45):</label>
+                                                    <input type="text" class="form-control border-input"  pattern="[a-zA-Z0-9-]{4,45}" name="name" placeholder="House name" required>
                                                     <br>
                                                 </div>
                                             </div>
@@ -161,8 +161,8 @@
                                                     
                                                 <div class="col-md-12">
                                                     <div class="form-check">
-                                                        <label class="text-center">House :</label>
-                                                        <input type="text" class="form-control border-input" name="name" placeholder="House name" value="<%= editavel[0].name%>">
+                                                        <label class="text-center">House(4-45) :</label>
+                                                        <input type="text" class="form-control border-input" name="name" placeholder="House name" pattern="[a-zA-Z0-9-]{4,45}" value="<%= editavel[0].name%>" required>
                                                         <br>
                                                     </div>
                                                 </div>
