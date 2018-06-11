@@ -11,18 +11,17 @@
                             <img src="/public/assets/img/background1.jpeg" alt="..." />
                         </div>
                         <div class="content">
-                            <form role="form" action="add/<%= id_sensor %>" method="post" encType="multipart/form-data">
+                            <form role="form">
                                 <div class="form-group">
                                     <label for="sel1">Select the room that you want:</label>
                                     <select class="form-control" name="division" id="sel1" onclick="myfunction()">
                                         <% for (var i=0 ; i <= division.length -1; i++) { %>
-                                            <option value="<%= id_division[i] %>" selected>
+                                            <option value="<%= id_division[i] %>" id="id_division" selected>
                                                 <%= house[i] %> -
                                                     <%= division[i] %>
                                             </option>
                                             <% } %>
                                                 <option id="new">New room</option>
-                                                <option id="fak">Teste </option>
                                     </select>
                                 </div>
                                 <hr>
@@ -50,7 +49,10 @@
                                     </div>
                                 </div>
                                 <br>
-                                <input type="button" class="btn btn-info btn-fill btn-wd" style="margin: 5px; float: right; margin-right: 10px;" value='Add sensor' onclick="submit()">
+                                <input type="button" id="submit" class="btn btn-info btn-fill btn-wd" style="margin: 5px; float: right; margin-right: 10px;"
+                                    value='Add sensor' onclick="submitWhithQR()">
+
+
                                 <button type="submit" class="btn btn-info btn btn" style=" margin: 5px; float: right;">Cancel</button>
                             </form>
                         </div>
@@ -64,15 +66,43 @@
     </div>
 
     <script>
+        // Funcao para mudar a pagina consoante aquilo que esta selecionado no primeiro dropdown
+        // Basicamente quando esta selecionada uma coisa mostra campos que estao escondidos e altera o que o botão de submeter faz
         function myfunction() {
+
             if (document.getElementById('new').selected == true) {
                 document.getElementById('target').style = "visibility: visible";
+                document.getElementById('submit').setAttribute("onClick", "javascript: createRoom();");
+
+                return true;
             } else {
                 document.getElementById('target').style = "visibility: hidden";
+                return false;
             }
         };
 
-        function submit() {
+        // Funcao que faz um post em AJAX para adicionar uma divisão nova com um sensor atraves de QR Code
+        function submitWhithQR() {
+            data = {
+                "sensor_id": document.getElementById("sensor_id").value,
+                "id_division": document.getElementById("id_division").value
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/division/" + data.id_division,
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+
+                dataType: "json",
+                success: function () {}
+            })
+            window.location = '/house';
+        };
+
+
+        // Funcao que faz um post em AJAX para adicionar uma divisão nova com um sensor pelo metodo tradicional
+        function createRoom() {
             data = {
                 "id_house": document.getElementById("id_house").value,
                 "name": document.getElementById("room").value,
@@ -84,14 +114,12 @@
                 url: "http://localhost:8080/division",
                 data: JSON.stringify(data),
                 contentType: "application/json; charset=utf-8",
-                crossDomain: true,
+
                 dataType: "json",
-                success: function (data, status, jqXHR) {
-                },
-                error: function (jqXHR, status) {
-                    alert('fail' + status.code);
-                }
+                success: function () {}
             });
+            window.location = '/house';
+
         };
     </script>
 

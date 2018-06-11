@@ -10,8 +10,52 @@
                         
 <br>
                         <div class="content">
-
+                                <% if (isNew){ %> 
                             <form role="form" action="/room/<%= casa1 %>/regi" method="post" encType="multipart/form-data"
+                                ref='uploadForm' id='uploadForm'>
+                                <div class="row">
+                                  
+                                     <div class="col-md-1">
+                                        </div>
+                                        <div class="col-md-4">
+                                               <div class="form-check">
+                                                       <label class="text-center">Sensor</label>
+                                                       <input type="text" class="form-control border-input" name="sensor" placeholder=" sensor" >
+                                                       <br>
+           
+           
+                                                   </div>
+                                           </div>
+                                
+                                   <div class="col-md-6">
+                                       <div class="form-check">
+                                           <label class="text-center">Divison</label>
+                                           <input type="text" class="form-control border-input" name="name" placeholder="Divisions name" >
+                                           <br>
+
+
+                                       </div>
+                                   </div>
+                             
+                                    
+                                   
+                            </div>
+                            <div class="row">
+                                    <div class="col-md-2">
+                                        </div>
+                                
+                                <div class="col-md-8 text-center" style="margin-top: 20px;">
+                                        <button type="submit" class="btn btn-info btn btn" style=" margin: 5px;">Cancel</button>
+                                    <button type="submit" class="btn btn-info btn-fill btn-wd" value='Upload!' style="margin: 5px;  margin-right: 10px;"
+                                        value='Upload!'>Edit Division</button>
+                                    
+                                </div>
+                            </div>
+                            </form>
+
+                        </div>
+                        <% }else{ %>
+                            <form role="form" action="/room/<%= casa1 %>/<%= divisao %>/edit" method="post" encType="multipart/form-data"
                                 ref='uploadForm' id='uploadForm'>
                                 <div class="row">
                                     <!-- <div class="col-md-2">
@@ -28,13 +72,22 @@
                                         </div>
                                     </div>
                                      -->
-                                     <div class="col-md-2">
+                                     <div class="col-md-1">
                                          </div>
+                                         <div class="col-md-4">
+                                                <div class="form-check">
+                                                        <label class="text-center">Sensor</label>
+                                                        <input type="text" class="form-control border-input" name="sensor" placeholder=" sensor" value="<%= sensor %>">
+                                                        <br>
+            
+            
+                                                    </div>
+                                            </div>
                                  
-                                    <div class="col-md-8">
+                                    <div class="col-md-6">
                                         <div class="form-check">
                                             <label class="text-center">Divison</label>
-                                            <input type="text" class="form-control border-input" name="name" placeholder="Divisions name">
+                                            <input type="text" class="form-control border-input" name="name" placeholder="Divisions name" value="<%= nome %>">
                                             <br>
 
 
@@ -51,13 +104,14 @@
                                 <div class="col-md-8 text-center" style="margin-top: 20px;">
                                         <button type="submit" class="btn btn-info btn btn" style=" margin: 5px;">Cancel</button>
                                     <button type="submit" class="btn btn-info btn-fill btn-wd" value='Upload!' style="margin: 5px;  margin-right: 10px;"
-                                        value='Upload!'>Add Division</button>
+                                        value='Upload!'>Edit Division</button>
                                     
                                 </div>
                             </div>
                             </form>
 
                         </div>
+                            <% } %>
 
 
                     </div>

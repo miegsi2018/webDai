@@ -129,7 +129,7 @@ router.post('/:casa/regi', function(request, response) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-    var path;
+    var path = 0;
     var teste = 0;
     // if (!request.files)
     //     return response.status(400).send('No files were uploaded.');
@@ -150,7 +150,7 @@ router.post('/:casa/regi', function(request, response) {
         json: {
             "id_house": casa1,
             "name": request.body.name,
-            "sensor_id": 0,
+            "sensor_id": request.body.sensor,
             "path": path,
 
         }
@@ -191,17 +191,29 @@ router.get('/:casa/add', function (request, response) {
 router.get('/:casa/:id_division/edit', function (request, response) {
     var id = request.user.email;
     var casa1 = request.params.casa;
+    var divisao = request.params.id_division;
   
     req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
-      req.get('http://localhost:8080/house/' + casa1, function (error, resp, body) {
+      req.get('http://localhost:8080/division' , function (error, resp, body) {
+      req.get('http://localhost:8080/house/' + casa1, function (error, resp, body3) {
+          
         jsonData2 = JSON.parse(body2);
-        jsonCasa = JSON.parse(body);
-        console.log(jsonCasa.name);
-        var nTotal = 0;
+        jsonDivi = JSON.parse(body);
+        jsonCasa = JSON.parse(body3);
         var Ncasa = jsonCasa.name;
-  
-        jsonData2 = JSON.parse(body2)
-        console.log(jsonData2);
+        var editavel = [];
+        for (var c of jsonDivi) {
+            if (divisao == c.id_division)
+                editavel.push(c);
+            console.log("funciona")
+
+
+        }
+        console.log(editavel)
+        console.log(casa1)
+        var nome = editavel[0].name;
+        var sensor = editavel[0].sensor_id;
+
   
         response.set("Content-Type", "text/html");
         response.render('./adicionar_divisao', {
@@ -209,10 +221,54 @@ router.get('/:casa/:id_division/edit', function (request, response) {
           isNew: false,
           casa1: casa1,
           jsonData2: jsonData2,
-          Ncasa
+          Ncasa,
+          nome: nome,
+          sensor: sensor, 
+          divisao: divisao
         });
     });
 });
+});
+});
+
+
+router.post('/:casa/:id_division/edit', function(request, response) {
+    var errors = request.validationErrors();
+    var casa1 = request.params.casa;
+    var divisao = request.params.id_division;
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+console.log("--------Divisao--------Divisao--------Divisao--------Divisao----------" + divisao)
+    var path = 0;
+    var teste = 0;
+    // if (!request.files)
+    //     return response.status(400).send('No files were uploaded.');
+
+    // // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    // let sampleFile = request.files.sampleFile;
+
+    // // Use the mv() method to place the file somewhere on your server
+    // sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
+    //     if (err)
+    //         return response.status(500).send(err);
+
+    //     response.send('File uploaded!');
+    // });
+    var options = {
+        uri: 'http://localhost:8080/division/name' ,
+        method: 'POST',
+        json: {
+            "id_division": divisao,
+            "name": request.body.name,
+            "sensor_id": request.body.sensor,
+          
+
+        }
+    };
+
+    req(options, function(error, resp, body) {
+        response.redirect('/room/' + casa1);
+    });
 });
 
 router.get('/:id_division/:casa', function (request, response) {
@@ -236,11 +292,13 @@ router.get('/:id_division/:casa', function (request, response) {
 
         var id_sensor;
         var Ncasa;
+        var arm;
         for (var e of jsonDivi) {
 
           if (division == e.id_division) {
             console.log("it workt:" + e.sensor_id);
             id_sensor = e.sensor_id;
+            arm = e.armed;
           }
 
         }
@@ -319,7 +377,8 @@ router.get('/:id_division/:casa', function (request, response) {
             jsonData2: jsonData2,
             id_sensor: id_sensor,
             graph: graph,
-            Ncasa
+            Ncasa,
+            arm: arm
           });
         });
       });
