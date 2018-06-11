@@ -1,4 +1,70 @@
 <%  include partials/header %>
+    <script>
+        // Funcao para mudar a pagina consoante aquilo que esta selecionado no primeiro dropdown
+        // Basicamente quando esta selecionada uma coisa mostra campos que estao escondidos e altera o que o botão de submeter faz
+        function myfunction() {
+
+            if (document.getElementById('new').selected == true) {
+                document.getElementById('target').style = "visibility: visible";
+                document.getElementById('submit').setAttribute("onClick", "javascript: createRoom();");
+
+                return true;
+            } else {
+                document.getElementById('target').style = "visibility: hidden";
+                return false;
+            }
+        };
+
+        // Funcao que faz um post em AJAX para adicionar uma divisão nova com um sensor atraves de QR Code
+        function submitWhithQR() {
+            data = {
+		    "sensor_id": "<%=id_sensor%>",
+                "id_division":  $('#sel1').val(),
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/division/" + data.id_division,
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+
+                dataType: "json",
+                success: function () {}
+            })
+
+				redirect()
+
+        };
+
+
+        // Funcao que faz um post em AJAX para adicionar uma divisão nova com um sensor pelo metodo tradicional
+        function createRoom() {
+            data = {
+                "id_house": $('#sel2').val(),
+                "name": document.getElementById("room").value,
+		    "sensor_id": "<%=id_sensor%>"
+            }
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/division",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+
+                dataType: "json",
+                success: function () {}
+            });
+
+
+		redirect()
+        };
+
+	function redirect(){
+
+            window.location.replace('/house');
+
+	}
+    </script>
+
 
     <div class="content">
         <div class="container-fluid">
@@ -64,63 +130,5 @@
     </div>
     </div>
     </div>
-
-    <script>
-        // Funcao para mudar a pagina consoante aquilo que esta selecionado no primeiro dropdown
-        // Basicamente quando esta selecionada uma coisa mostra campos que estao escondidos e altera o que o botão de submeter faz
-        function myfunction() {
-
-            if (document.getElementById('new').selected == true) {
-                document.getElementById('target').style = "visibility: visible";
-                document.getElementById('submit').setAttribute("onClick", "javascript: createRoom();");
-
-                return true;
-            } else {
-                document.getElementById('target').style = "visibility: hidden";
-                return false;
-            }
-        };
-
-        // Funcao que faz um post em AJAX para adicionar uma divisão nova com um sensor atraves de QR Code
-        function submitWhithQR() {
-            data = {
-                "sensor_id": document.getElementById("sensor_id").value,
-                "id_division":  $('#sel1').val(),
-            }
-
-            $.ajax({
-                type: "POST",
-                url: "http://localhost:8080/division/" + data.id_division,
-                data: JSON.stringify(data),
-                contentType: "application/json; charset=utf-8",
-
-                dataType: "json",
-                success: function () {}
-            })
-            window.location = '/house';
-        };
-
-
-        // Funcao que faz um post em AJAX para adicionar uma divisão nova com um sensor pelo metodo tradicional
-        function createRoom() {
-            data = {
-                "id_house": $('#sel2').val(),
-                "name": document.getElementById("room").value,
-                "sensor_id": document.getElementById("sensor_id").value
-            }
-alert(data.id_house)
-            $.ajax({
-                type: "POST",
-                url: "http://localhost:8080/division",
-                data: JSON.stringify(data),
-                contentType: "application/json; charset=utf-8",
-
-                dataType: "json",
-                success: function () {}
-            });
-            window.location = '/house';
-
-        };
-    </script>
 
     <% include partials/footer %>
