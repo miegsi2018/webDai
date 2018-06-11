@@ -59,10 +59,8 @@ passport.serializeUser(function(email, callback) {
 });
 
 passport.deserializeUser(function(email, callback) {
-    userModel.read(email, function(data) {
-        callback(null, data);
-    });
-});
+        callback(null, email);
+ });
 //end of new
 
 app.set('view engine', 'ejs');
