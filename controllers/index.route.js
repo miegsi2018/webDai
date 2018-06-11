@@ -137,6 +137,7 @@ router.get('/add/:id_sensor', global.secure(), function(request, response) {
     var graph = [];
 
     req.get('http://localhost:8080/view2/' + id_user + '/' + id_account, function(error, resp, body) {
+        
 
 
         parsed = JSON.parse(body);
@@ -147,6 +148,7 @@ router.get('/add/:id_sensor', global.secure(), function(request, response) {
         var id_division = parsed.id_division;
 
         var house = parsed.array2.houses;
+        console.log(house);
 
         var division = parsed.division;
 

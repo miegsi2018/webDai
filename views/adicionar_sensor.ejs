@@ -17,7 +17,7 @@
                                     <select class="form-control" name="division" id="sel1" onclick="myfunction()">
                                         <% for (var i=0 ; i <= division.length -1; i++) { %>
                                             <option value="<%= id_division[i] %>" id="id_division" selected>
-                                                <%= house[i] %> -
+                                              
                                                     <%= division[i] %> 
                                             </option>
                                             <% } %>
@@ -30,12 +30,12 @@
                                         <div class="form-group">
                                             <label>Select the house that you want:</label>
                                             <select class="form-control" name="house" id="sel2">
-                                                <% for(var i=0; i<= house.length -1; i++) { %>
-                                                    <% if( house[i] != house[i-1]) { %>
-                                                        <option id="id_house" value="<%= id_house[i] %>">
-                                                            <%= house[0] %>
+                                                <% for(var i=0; i<= house.length; i++) { %>
+                                                   
+                                                        <option value="<%= id_house[i] %>">
+                                                            <%= house[i] %>
                                                         </option>
-                                                        <% } %>
+                                                   
                                                             <% } %>
                                             </select>
                                         </div>
@@ -85,7 +85,7 @@
         function submitWhithQR() {
             data = {
                 "sensor_id": document.getElementById("sensor_id").value,
-                "id_division": document.getElementById("id_division").value
+                "id_division":  $('#sel1').val(),
             }
 
             $.ajax({
@@ -104,11 +104,11 @@
         // Funcao que faz um post em AJAX para adicionar uma divisão nova com um sensor pelo metodo tradicional
         function createRoom() {
             data = {
-                "id_house": document.getElementById("id_house").value,
+                "id_house": $('#sel2').val(),
                 "name": document.getElementById("room").value,
                 "sensor_id": document.getElementById("sensor_id").value
             }
-
+alert(data.id_house)
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8080/division",
