@@ -136,7 +136,11 @@
                     <div class="row">
 
                         <% for(var i = 0; i < jsonCasa.length; i++){ %>
+                            
                             <% if(jsonCasa[i].account_id === account){ %>
+                                <%  if(jsonCasa.length == 0){ %>
+                                    <h1>Não Tem Divisões Ainda. Por Favor Crie Uma Divisão</h1>
+                                    <% }else{ %>
                                 <%  if(jsonCasa[i].path == 1){ %>
 
                                     <li style="list-style-type: none; z-index: 1;">
@@ -192,6 +196,7 @@
                                         </li>
                                         <% } %>
                                             <% } %>
+                                                <% } %>
                                                 <% } %>
 
 

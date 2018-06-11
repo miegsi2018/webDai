@@ -48,93 +48,8 @@
                     <% }else{ %>
                         <%  for(var i = 0; i < divi.length; i++){ %>
 
-                            <%  if(divi[i].path == 1){ %>
-
-                                <li style="list-style-type: none; z-index: 1;">
-                                    <div class="col-lg-4 col-sm-6" role="tab" id="heading-<%= i  %>">
-                                            <div class="lel">
-                                                    <p class="editar">
-                                                        <i class="fas fa-edit " style="	width : 20px;height : 20px;	left : 20px; top : -10px;" onclick="location.href='./house/edit';">
-                                                        </i>
-                                                    </p>
-                                                </div>
-                                        <div class="card card-user" role="tab" id="heading-<%= i  %>">
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= i  %>" aria-expanded="true" aria-controls="collapse-<%= i  %>">
-
-
-
-                                                <div class="image">
-                                                    <div class="image" style="background: url('/public/assets/img/<%= divi[i].name %>-<%= casa1 %>.jpg');  background-repeat: no-repeat; background-size: 100% 100%;">
-                                                    </div>
-
-
-
-
-
-                                                    <div class="text-center" style="">
-                                                        <div class="row">
-                                                            <h3 class="title">
-                                                                <%=divi[i].name %>
-                                                            </h3>
-
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                            </a>
-
-
-                                            <div id="collapse-<%= i  %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<%= i  %>">
-                                                <div class="panel-body">
-                                                    <hr>
-                                                    <p id="tempAtual<%= jsonDivi[i].id_sensor%>"></p>
-                                                    
-                                                    <P>Humidade</P>
-                                                    <div class="pretty p-default p-curve p-toggle">
-                                                        <input type="checkbox" />
-                                                        <div class="state p-success p-on">
-                                                            <label>Relay Ligada</label>
-                                                        </div>
-                                                        <div class="state p-danger p-off">
-                                                            <label>Relay Desligada </label>
-                                                        </div>
-
-
-                                                    </div>
-                                                    <br>
-                                                    <div class="pretty p-default p-curve p-toggle">
-                                                        <input type="checkbox" />
-                                                        <div class="state p-success p-on">
-                                                            <label>Relay Ligada</label>
-                                                        </div>
-                                                        <div class="state p-danger p-off">
-                                                            <label>Relay Desligada </label>
-                                                        </div>
-
-
-                                                    </div>
-
-
-
-
-                                                </div>
-                                            </div>
-
-
-
-
-                                            </div>
-                                        </div>
-                                </li>
-
-
-
-
-                                <% }else{ %>
-
-                                    <!-- <li style="list-style-type: none; z-index: 1;">
+                           
+                                    <li style="list-style-type: none; z-index: 1;">
                                         <div class="col-lg-4 col-sm-6" onclick="location.href='/room/<%=divi[i].id_division %>/<%= casa1 %>';">
                                             <div class="card card-user">
                                                 <div class="image">
@@ -145,117 +60,22 @@
                                                         <h3 class="title">
                                                             <%=divi[i].name %>
                                                         </h3>
-                                                         <hr>
+                                                      
                                                     </div>
                                                 </div>
-                                                  <div class="row">
-                                                            <h5 >Sensores</h5>
-                                                        <div class="col-md-6">
-                                                                <h5 >Temperatura:</h5>
-                                                                <h5 >Movimento:</h5>
-                                                                <h5 >Iluminação:</h5>
-                                                                <h5 >Alarme incendio:</h5>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <h5> <i class="fas fa-check" style="color: green;"></i></h5>
-                                                            <h5> <i class="fas fa-check" style="color: green;"></i></h5>
-                                                            <h5> <i class="fas fa-check" style="color: green;"></i></h5>
-                                                            <h5> <i class="fas fa-check" style="color: green;"></i></h5>
-                                                            
-                                                        </div>
-                                                    </div>
-                                                    <br>
+                                                  
                                                
 
 
                                             </div>
                                         </div>
-                                    </li> -->
-                                    <li style="list-style-type: none; z-index: 1;">
-                                        <div class="col-lg-4 col-sm-6" role="tab" id="heading-<%= i  %>">
-                                                <div class="lel">
-                                                        <p class="editar">
-                                                            <i class="fas fa-edit " style="	width : 20px;height : 20px;	left : 20px; top : -10px;" onclick="location.href='./house/edit';">
-                                                            </i>
-                                                        </p>
-                                                    </div>
-                                            <div class="card card-user" role="tab" id="heading-<%= i  %>">
-                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-<%= i  %>" aria-expanded="true" aria-controls="collapse-<%= i  %>">
-
-
-
-                                                    <div class="image">
-                                                        <img src="/public/assets/img/div/deafult.jpg" alt="..." />
-                                                    </div>
-
-
-
-
-
-                                                    <div class="text-center" style="">
-                                                        <div class="row">
-                                                            <h3 class="title">
-                                                                <%=divi[i].name %>
-                                                            </h3>
-
-                                                        </div>
-                                                    </div>
-
-
-
-
-                                                </a>
-
-
-                                                <div id="collapse-<%= i  %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<%= i  %>">
-                                                    <div class="panel-body text-center">
-                                                        <hr>
-                                                        <p id="tempAtual<%= divi[i].id_sensor%>"></p>
-                                                        <P>Humidity</P>
-                                                        <div class="pretty p-default p-curve p-toggle">
-                                                            <input type="checkbox" />
-                                                            <div class="state p-success p-on">
-                                                                <label>Relay On</label>
-                                                            </div>
-                                                            <div class="state p-danger p-off">
-                                                                <label>Relay Off </label>
-                                                            </div>
-
-
-                                                        </div>
-                                                        
-                                                        <div class="pretty p-default p-curve p-toggle">
-                                                            <input type="checkbox" />
-                                                            <div class="state p-success p-on">
-                                                                <label>Relay On</label>
-                                                            </div>
-                                                            <div class="state p-danger p-off">
-                                                                <label>Relay Off </label>
-                                                            </div>
-
-
-                                                        </div>
-                                                        <hr>
-                                                        <button class="btn btn-info btn-fill btn-wd" style="width: 100%" onclick="location.href='/room/<%=divi[i].id_division %>/<%= casa1 %>';">Go to <%=divi[i].name %></button>
-
-
-
-                                                    </div>
-                                                </div>
-
-
-
-
-                                            </div>
-                                        </div>
                                     </li>
-
+                                  
 
                                     <% } %>
                                         <% } %>
 
-                                            <% } %>
-
+                                          
 
 
 
@@ -268,31 +88,7 @@
                                                 </div>
             </div>
         </div>
-        <script src="/socket.io/socket.io.js"></script>
-        
-        <script>
-              <%  for(var e = 0; e < divi.length; e++){ %>
-
-                
-            var socket = io.connect('http://localhost:5000');
-          socket.on('data/<%= divi[e].id_sensor%>', function (measurements) {
-            var labels = JSON.parse(measurements);
-
-            var temp<%= divi[e].id_sensor%> = labels.measurements.temperature
-            var humidade<%= divi[e].id_sensor%> = labels.measurements["humidity"];
-            $('#tempAtual<%= divi[e].id_sensor%>').text('Temperatura atual: ' + temp);
-            $('#humAtual<%= divi[e].id_sensor%>').text('Humidade: ' + humidade);
-
-
-
-
-          })
-
-          
-
-<% } %>
-          
-        </script>
+       
 
 
 

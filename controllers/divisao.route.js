@@ -25,10 +25,9 @@ router.get('/:casa', function(request, response) {
                 jsonData2 = JSON.parse(body2)
                 console.log(jsonData2);
 
-                jsonData2 = JSON.parse(body2);
-                jsonDivi = JSON.parse(body);
+                jsonDivi = JSON.parse(body); 
                 console.log("divisões");
-
+var id_sensor;
                 var divi = [];
                 for (var e of jsonData2) {
                     if (casa1 == e.id_house) {
@@ -57,32 +56,37 @@ router.get('/:casa', function(request, response) {
           
                 //   }    console.log("acabou fazes iniciais")
                
-                  var client = mqtt.connect('mqtt://alvesvitor.ddns.net:80', {
-                    username: "dai",
-                    password: '12345678'
-                  })
-                  console.log(divi)
-                  for(var d of divi){
-                  console.log("Inicio faze cliente")
-                  client.on('connect', function () {
-                 console.log("it workt:" + d.sensor_id);
+            //       var client = mqtt.connect('mqtt://alvesvitor.ddns.net:80', {
+            //         username: "dai",
+            //         password: '12345678'
+            //       })
+                 
+
+            //     for(var i = 0; i < jsonData2.length; i++){
+            //         if(jsonData2[i].id_house == casa1){
+            //             console.log("sensor: " + jsonData2[i].sensor_id)
+            //             id_sensor = e.sensor_id;
+            //       console.log("Inicio faze cliente")
+            //       client.on('connect', function () {
+            //      console.log("it workt:" + id_sensor);
                       
-                    console.log('MQTT IS WORKING' + ' ' + 2)
-                    client.subscribe('data/' + d.sensor_id)
-                    console.log('data/' + d.sensor_id);
-                    client.publish('presence', 'Hello mqtt')
-                  })
+            //         console.log('MQTT IS WORKING' + ' ' + 2)
+            //         client.subscribe('data/' +id_sensor)
+            //         console.log('data/' + id_sensor);
+            //         client.publish('presence', 'Hello mqtt')
+            //       })
                
-                  io.on('connection', function (socket) {
+            //       io.on('connection', function (socket) {
           
-                    client.on('message', (topic, measurements) => {
-                      console.log(`Received message: '${measurements}'`);
-                      socket.emit(topic, measurements.toString());
-                      var labels = JSON.parse(measurements);
-                      console.log(labels.measurements)
-                    });
-                  });
-                }
+            //         client.on('message', (topic, measurements) => {
+            //           console.log(`Received message: '${measurements}'`);
+            //           socket.emit(topic, measurements.toString());
+            //           var labels = JSON.parse(measurements);
+            //           console.log(labels.measurements)
+            //         });
+            //       });
+            //     }
+            // }
           
               
                 response.set("Content-Type", "text/html");
@@ -146,7 +150,7 @@ router.post('/:casa/regi', function(request, response) {
         json: {
             "id_house": casa1,
             "name": request.body.name,
-       
+            "sensor_id": 0,
             "path": path,
 
         }
@@ -176,6 +180,33 @@ router.get('/:casa/add', function (request, response) {
         response.set("Content-Type", "text/html");
         response.render('./adicionar_divisao', {
           id: id,
+          isNew: true,
+          casa1: casa1,
+          jsonData2: jsonData2,
+          Ncasa
+        });
+    });
+});
+});
+router.get('/:casa/:id_division/edit', function (request, response) {
+    var id = request.user.email;
+    var casa1 = request.params.casa;
+  
+    req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
+      req.get('http://localhost:8080/house/' + casa1, function (error, resp, body) {
+        jsonData2 = JSON.parse(body2);
+        jsonCasa = JSON.parse(body);
+        console.log(jsonCasa.name);
+        var nTotal = 0;
+        var Ncasa = jsonCasa.name;
+  
+        jsonData2 = JSON.parse(body2)
+        console.log(jsonData2);
+  
+        response.set("Content-Type", "text/html");
+        response.render('./adicionar_divisao', {
+          id: id,
+          isNew: false,
           casa1: casa1,
           jsonData2: jsonData2,
           Ncasa

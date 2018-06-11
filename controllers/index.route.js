@@ -53,7 +53,7 @@ router.get('/login', function(request, response) {
         for (var t = 0; t < body.temp.length; t++) {
             console.log('fds');
             console.log(body.data[i]);
-            i++;
+            i++;     
             graph.push({
                 'data': body.data[i],
                 'temperature': body.temp[t]
@@ -144,7 +144,6 @@ router.get('/add/:id_sensor', global.secure(), function(request, response) {
 
         var division = parsed.division;
 
-        console.log(id_division[0]);
         response.set("Content-Type", "text/html");
 
         response.render('./adicionar_sensor', {
@@ -209,21 +208,18 @@ router.get('/house', global.secure(), function(request, response, body) {
                 for (var i = 0; i < jsonData2.length; i++) {
 
                     for (var i = 1; i < jsonData2.length; i++) {
-                        console.log("inico" + jsonData2[i - 1].id_house)
-                        console.log("fim" + jsonData2[i].id_house)
+
                         if (jsonData2[i - 1].id_house != jsonData2[i].id_house) {
                             if (casa != jsonData2[i].id_house) {
                                 casa.push(jsonData2[i].id_house);
                                 casaN.push(jsonData2[i].house);
-
+                                
                             }
 
                         }
                     }
                 }
-            } else {
-
-            }
+            } 
 
 
 
@@ -387,7 +383,7 @@ router.post('/house/edit/:casa', function(request, response, body) {
         console.log(request.body.name)
 
 
-
+ 
 
 
 
@@ -434,9 +430,24 @@ router.get('/home/:casa', function(request, response, body) {
             console.log(jsonCasa.name);
             var nTotal = 0;
             var Ncasa = jsonCasa.name;
+    var totalSensores = 0;
+    var totalDivi = 0;
 
             jsonData2 = JSON.parse(body2)
-            console.log(jsonData2);
+            for(var v of jsonData2 ){
+                if(v.id_house == casa1){
+                    totalDivi= totalDivi + 1;
+                    console.log(v.sensor_id)
+                    if(v.sensor_id == 0){
+                       
+
+                    }else{
+                        totalSensores = totalSensores + 1
+                    }
+
+                }
+
+            }
 
             response.set("Content-Type", "text/html");
             response.render('./index', {
@@ -444,7 +455,9 @@ router.get('/home/:casa', function(request, response, body) {
                 casa1: casa1,
                 jsonData2: jsonData2,
                 nTotal,
-                Ncasa
+                Ncasa,
+                totalSensores: totalSensores,
+                totalDivi: totalDivi
             });
 
         });
