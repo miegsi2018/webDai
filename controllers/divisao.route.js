@@ -26,7 +26,7 @@ router.get('/:casa', function(request, response) {
                 console.log(jsonData2);
 
                 jsonData2 = JSON.parse(body2);
-                jsonDiv = JSON.parse(body);
+                jsonDivi = JSON.parse(body);
                 console.log("divisões");
 
                 var divi = [];
@@ -41,31 +41,32 @@ router.get('/:casa', function(request, response) {
                     }
                 }
 
-                for (var d of jsonDiv) {
+                for (var d of jsonDivi) {
                     if (d.id_house == casa1) {
                         divi.push(d);
 
 
                     }
                 }
-                for (var e of jsonDivi) {
+                // for (var e of jsonDivi) {
 
-                    if (division == e.id_division) {
-                      console.log("it workt:" + e.sensor_id);
-                      id_sensor = e.sensor_id;
-                    }
+                //     if (division == e.id_division) {
+                //       console.log("it workt:" + e.sensor_id);
+                //       id_sensor = e.sensor_id;
+                //     }
           
-                  }    console.log("acabou fazes iniciais")
-                  console.log(id_sensor);
+                //   }    console.log("acabou fazes iniciais")
+               
                   var client = mqtt.connect('mqtt://alvesvitor.ddns.net:80', {
                     username: "dai",
                     password: '12345678'
                   })
+                  for(var d of jsonDivi){
                   console.log("Inicio faze cliente")
                   client.on('connect', function () {
                     console.log('MQTT IS WORKING' + ' ' + 2)
-                    client.subscribe('data/' + id_sensor)
-                    console.log('data/' + id_sensor);
+                    client.subscribe('data/' + d.sensor_id)
+                    console.log('data/' + d.sensor_id);
                     client.publish('presence', 'Hello mqtt')
                   })
                   console.log("Log intermedio")
@@ -78,6 +79,7 @@ router.get('/:casa', function(request, response) {
                       console.log(labels.measurements)
                     });
                   });
+                }
           
                 console.log("Todas as div da casa" + divi);
                 console.log(divi.length == 0);
@@ -88,7 +90,7 @@ router.get('/:casa', function(request, response) {
                     casa1: casa1,
                     jsonData2: jsonData2,
                     Ncasa,
-                    jsonDiv: jsonDiv,
+                    jsonDivi: jsonDivi,
                     divi
                 });
             });

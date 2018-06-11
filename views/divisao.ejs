@@ -267,39 +267,7 @@
                                                 </div>
             </div>
         </div>
-        <script>
-                var socket = io.connect('http://localhost:5000');
-                socket.on('data/<%= id_sensor%>', function (measurements) {
-                  var labels = JSON.parse(measurements);
-
-                  var temp = labels.measurements.temperature
-                  var luz = labels.measurements["ldr"];
-                  var movimento = labels.measurements["motion"];
-                  var humidade = labels.measurements["humidity"];
-                  var alarme = labels.alarm["state"];
-                  $('#tempAtual').text('Temperatura atual: ' + temp);
-                  $('#luzAtual').text('Luz: ' + luz);
-                  $('#movAtual').text(movimento);
-                  $('#humAtual').text('Humidade: ' + humidade);
-                  $('#alar').text('State alarm: ' + alarme);
-
-                  if(alarme =="OFF"){
-                    document.getElementById("myonoffswitch").checked = false;
-                  }else{
-                    document.getElementById("myonoffswitch").checked = true;
-                  }
-                  if (movimento == "motion detected") {
-                    document.getElementById("Movi").style.color = "green";
-                    $('#movAtual').text('Com Movimento ');
-                  } else {
-                    $('#movAtual').text('Sem Movimento ');
-                  }
-
-
-
-                })
-                
-              </script>
+   
 
 
 
