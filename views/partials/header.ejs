@@ -1,15 +1,16 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-    
-	<meta charset="utf-8" />
-	<link rel="shortcut icon" href="/public/assets/frontpage/images/favicon.png" >
+
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/public/assets/frontpage/images/favicon.png">
     <link rel="icon" href="/public/assets/frontpage/images/favicon.png">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Digital Friendly House</title>
+    <title>Digital Friendly House</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
 
@@ -19,15 +20,15 @@
     <link href="/public/assets/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="/public/assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="/public/assets/css/animate.min.css" rel="stylesheet" />
 
     <!--  Paper Dashboard core CSS    -->
-    <link href="/public/assets/css/paper-dashboard.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="/public/assets/dist/pretty-checkbox.css"/>
+    <link href="/public/assets/css/paper-dashboard.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/public/assets/dist/pretty-checkbox.css" />
 
-<!-- Google Floating Button css -->
-<link href="/public/assets/css/button.css" rel="stylesheet">
-    
+    <!-- Google Floating Button css -->
+    <link href="/public/assets/css/button.css" rel="stylesheet">
+
 
 
     <!--  Fonts and icons     -->
@@ -42,102 +43,116 @@
     <link rel="stylesheet" type="text/css" href="/public/assets/css/component.css" />
     <link rel="stylesheet" type="text/css" href="/public/assets/css/custom.css" />
 
-    
+
 
 </head>
+
 <body>
 
-<div class="wrapper">
-    <div class="sidebar" data-background-color="black" data-active-color="warning">
+    <div class="wrapper">
+        <div class="sidebar" data-background-color="black" data-active-color="warning">
 
-    <!--
+            <!--
 		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
 		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
 	-->
 
-    	<div class="sidebar-wrapper">
-            <div class="logo">
-                <a class="simple-text">
-                    MENU
-                </a>
-            </div>
+            <div class="sidebar-wrapper">
+                <div class="logo">
+                    <a class="simple-text">
+                        MENU
+                    </a>
+                </div>
 
-            <ul class="nav">
+                <ul class="nav">
                     <li>
-                            <a href="/house">
-                                <i class="ti-home"></i>
-                                <p>Casas</p>
-                            </a>
-                        </li>
-                <li>
-                    <a href="/home/<%= casa1 %>">
-                        <i class="ti-info-alt"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/profile/<%= casa1 %>">
-                        <i class="ti-user"></i>
-                        <p>Utilizadores</p>
-                    </a>
-                </li>
-                <li>
-                        <a href="/room/<%= casa1 %>">
-                            <i class="ti-layout-grid2"></i>
-                            <p>Divisões</p>
+                        <a href="/house">
+                            <i class="ti-home"></i>
+                            <p>Houses</p>
                         </a>
                     </li>
-                   
+                    <li>
+                        <a href="/home/<%= casa1 %>">
+                            <i class="ti-info-alt"></i>
+                            <p>Dashboard</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/profile/<%= casa1 %>">
+                            <i class="ti-user"></i>
+                            <p>Users</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/room/<%= casa1 %>">
+                            <i class="ti-layout-grid2"></i>
+                            <p>Rooms</p>
+                        </a>
+                    </li>
+
                     <li>
                         <a href="/card/<%= casa1 %>">
                             <i class="ti-layout-grid2"></i>
-                            <p>Cartões</p>
+                            <p>Cards</p>
                         </a>
                     </li>
-                   
-                        
-                
-            </ul>
-    	</div>
-    </div>
 
-    <div class="main-panel">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <h4><%=Ncasa %></h4>
-                    <button type="button" class="navbar-toggle">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar bar1"></span>
-                        <span class="icon-bar bar2"></span>
-                        <span class="icon-bar bar3"></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li >
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                 
-                               
-									<p><%= id %></p>
-									
-                              </a>
-                              
-                        </li>
-                        <li >
-                            <a  href="/logout"> 
-                                  <i class="ti-power-off"></i>
-                             
-                                  <p>Logout</p>
-                                  
-                            </a>
-                            
-                      </li>
-                      
-                       
-                        
-                    </ul>
 
-                </div>
+
+                </ul>
             </div>
-        </nav>
+        </div>
+
+        <div class="main-panel">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <h4>
+                            <%=Ncasa %>
+                        </h4>
+                        <button type="button" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar bar1"></span>
+                            <span class="icon-bar bar2"></span>
+                            <span class="icon-bar bar3"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" >
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+
+                                    <p>
+                                        <%= id %>
+                                    </p>
+
+                                </a>
+
+                            </li>
+                            <li>
+                                <a href="/profile/<%= casa1 %>/create">
+                                    <i class="ti-id-badge"></i>
+
+                                    <p>Edit Account</p>
+
+                                </a>
+
+                            </li>
+                            <li>
+                                    <a href="/logout">
+                                        <i class="ti-power-off"></i>
+    
+                                        <p>Logout</p>
+    
+                                    </a>
+    
+                                </li>
+
+
+
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
