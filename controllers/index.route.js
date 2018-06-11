@@ -89,6 +89,8 @@ router.post('/add/add/:id_sensor', global.secure(), function(request, response) 
         uri: 'http://localhost:8080/division/' + request.body.division,
         method: 'POST',
         json: {
+	
+	
             "sensor_id": id_sensor,
             "id_house": request.body.house,
             "id_division": request.body.division
@@ -123,8 +125,10 @@ router.get('/add/:id_sensor', global.secure(), function(request, response) {
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var id_user = request.user.email;
     var id_sensor = request.params.id_sensor;
+    var id_account = request.user.account;
     console.log(id_user);
 
+    console.log(id_account);
     console.log(id_sensor);
 
 
@@ -132,15 +136,17 @@ router.get('/add/:id_sensor', global.secure(), function(request, response) {
 
     var graph = [];
 
-    req.get('http://localhost:8080/view2/' + id_user, function(error, resp, body) {
+    req.get('http://localhost:8080/view2/' + id_user + '/' + id_account, function(error, resp, body) {
 
 
         parsed = JSON.parse(body);
-        var id_house = parsed.id_house;
+	console.log(parsed);
+        var id_house = parsed.array2.id_houses;
+	console.log(id_house);
 
         var id_division = parsed.id_division;
 
-        var house = parsed.house;
+        var house = parsed.array2.houses;
 
         var division = parsed.division;
 

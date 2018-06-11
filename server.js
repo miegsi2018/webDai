@@ -55,14 +55,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser(function(username, callback) {
-	console.log("Logged in"+ username);
     callback(null, username);
 
 });
 
 passport.deserializeUser(function(username, callback) {
     userModel.read(username, function(data) {
-console.log("hoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooly here "+username +"        "+ data);
 	callback(null, data);
     });
 });
