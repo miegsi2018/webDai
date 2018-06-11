@@ -62,7 +62,7 @@ passport.serializeUser(function(username, callback) {
 
 passport.deserializeUser(function(username, callback) {
     userModel.read(username, function(data) {
-console.log("hoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooly here "+username);
+console.log("hoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooly here "+username +"        "+ data);
 	callback(null, data);
     });
 });
