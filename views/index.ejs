@@ -1,7 +1,14 @@
 <% include partials/header %>
 
 
+<script>
 
+    function start(){
+
+ $('#table_id').DataTable();
+ fixedColumns: true
+    }
+</script>
 
 
   <div class="content">
@@ -54,273 +61,107 @@
         </div>
 
       </div>
+<style>
+  div.dataTables_wrapper div.dataTables_filter input {
+    margin-left: 0.5em;
+    display: inline-block;
+    width: 50%;
+    margin-top: 5px;
+    height: 20px;
+}
+div.dataTables_wrapper div.dataTables_length select {
+    width: 75px;
+    display: inline-block;
+    margin-top: 10px;
+    height: 30px;
+}
 
+  .form-control{
+    background-color: #337ab7;
+border: medium none;
+border-radius: 4px;
+color: black;
+font-size: 14px;
 
-      <div class="row">
+padding: 7px 18px;
 
+-webkit-box-shadow: none;
+box-shadow: none;
+  }
+  table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled {
 
-      </div>
-      <style>
-        .timeline {
-          margin-left: 100px;
-          display: -webkit-flex;
-          display: flex;
-          -webkit-flex-direction: column;
-          flex-direction: column;
-          padding: 0 10px;
-          margin: 0;
-          list-style: none;
-        }
+cursor: pointer;
+height: 40px;
+color: rgb(0, 0, 0);
+background-color: #337ab7;
 
-        .timeline::before {
-          position: fixed;
-          top: 0;
-          padding-right: 11px;
-          border-right: 2px solid #F2F2F2;
-          content: "";
-        }
-
-        .timeline__item {
-          display: -webkit-flex;
-          display: flex;
-          -webkit-align-items: stretch;
-          align-items: stretch;
-          padding: 10px 0;
-        }
-
-        .timeline__step {
-          padding-right: 10px;
-        }
-
-        .timeline__step__marker {
-          position: relative;
-          display: table-cell;
-          height: 20px;
-          min-height: 20px;
-          width: 20px;
-          min-width: 20px;
-          border: 4px solid #F2F2F2;
-          -moz-border-radius: 50%;
-          -webkit-border-radius: 50%;
-          border-radius: 50%;
-          background-color: white;
-          z-index: 0;
-        }
-
-        .timeline__step__marker {
-          border-color: green;
-        }
-
-        .timeline__time {
-          padding-right: 80px;
-          font-size: 20px;
-        }
-
-        .timeline__title {
-          padding-bottom: 26px;
-          font-size: 24px;
-        }
-
-        @media (max-width: 768px) {
-          .card {
-            max-width: 375;
-          }
-
-          .timeline {
-            padding: 0 35.42857px;
-          }
-          .timeline::before {
-            padding-right: 6.28571px;
-          }
-          .timeline__item {
-            padding: 35.42857px 0;
-          }
-          .timeline__step {
-            padding-right: 35.42857px;
-          }
-          .timeline__step__marker {
-            height: 13.71429px;
-            min-hieght: 13.71429px;
-            width: 13.71429px;
-            min-width: 13.71429px;
-            border-width: 2.28571px;
-          }
-          .timeline__time {
-            padding-right: 72px;
-            font-size: 14.85714px;
-          }
-          .timeline__title {
-            padding-bottom: 14.85714px;
-            font-size: 18.28571px;
-          }
-
-        }
-      </style>
-      <br>
-      <style>
-        [type="date"] {
-          background: #fffcf5 url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
-          border-color: black;
-        }
-
-        [type="date"]::-webkit-inner-spin-button {
-          display: none;
-        }
-
-        [type="date"]::-webkit-calendar-picker-indicator {
-          opacity: 0;
-        }
-
-        input[type=date] {
-          height: 35px;
-          margin: 0 auto;
-          width: 100%;
-          font-family: arial, sans-serif;
-          font-size: 16px;
-          font-weight: bold;
-          text-transform: uppercase;
-
-        }
-
-        input[type=date]::-webkit-datetime-edit-month-field {
-          color: #66615b;
-        }
-
-        input[type=date]::-webkit-datetime-edit-day-field {
-          color: #66615b;
-        }
-
-        input[type=date]::-webkit-datetime-edit-year-field {
-          color: #66615b;
-        }
-
-        input[type=date]::-webkit-clear-button {
-          font-size: 18px;
-          height: 30px;
-          position: relative;
-          right: 5px;
-          margin-right: 4px;
-        }
-
-        input[type=date]::-webkit-inner-spin-button {
-          height: 30px;
-        }
-
-        input[type=date]::-webkit-calendar-picker-indicator {
-          font-size: 18px;
-        }
-
-        input[type=date]hover {
-          background-color: lighten(#2f2f2f, 40%);
-          color: darken(#fff, 10%);
-          cursor: pointer;
-        }
-
-        input[type=date]active {
-          color: blue;
-        }
-      </style>
+}
+table.dataTable td, table.dataTable th {
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    background-color: lightgray;
+    color: black;
+    margin: 5px;
+}
+</style>
 
       <div class="row">
-        <div class="col-lg-6 col-sm-6">
-          <div class="card">
-            <ul class="timeline">
-              <div class="title text-center">
-                <h2>Last entries</h2>
-              </div>
-              <li class="timeline__item">
-                <div class="timeline__step">
-                  <div class="timeline__step__marker timeline__step__marker"></div>
-                </div>
-                <div class="timeline__time">
-                  5pm
-                </div>
-                <div class="timeline__content">
-                  <div class="timeline__title">
-                    New Icons
-                  </div>
-                </div>
-              </li>
-              <li class="timeline__item">
-                <div class="timeline__step">
-                  <div class="timeline__step__marker timeline__step__marker"></div>
-                </div>
-                <div class="timeline__time">
-                  4pm
-                </div>
-                <div class="timeline__content">
-                  <div class="timeline__title">
-                    Design Stand Up
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- <div class="col-lg-6 col-sm-6">
-          <div class="card">
-
-            <div class="content">
-              <form>
-                <div class="row">
-                  <div class="col-md-6">
-                    <h3>Inicio:</h3>
-                    <input class="form-control border-input" id="dataI" name="dataI" type="date">
-                  </div>
-                  <div class="col-md-6">
-                    <h3>Fim:</h3>
-                    <input class="form-control border-input" id="dataF" name="dataF" type="date">
-                  </div>
-                  <span id="avg"></span>
-                </div>
-                <br>
-                <div class="row">
-                  <div class="col-lg-12 col-sm-6">
-                    <input type="button" class="btn btn-info btn-fill btn-wd" id="avg" style="float: right;" onclick="datas()" value="submeter"></input>
-                  </div>
-                </div>
-              </form>
+          <div class="col-lg-1 col-sm-6 ">
             </div>
-          </div>
-        </div> -->
+          <div class="col-lg-10 col-sm-6 " style="background-color: white">
+<h3 class="text-center">Last entries in your house</h3>
+        <table id="example" class="display" style="width:100%">
+          <br>
+        <thead>
+            <tr>
+                <th class="text-center">Casa</th>
+                <th class="text-center">Entrada</th>
+    
+            </tr>
+            
+        </thead>
+     
+        <tbody>
+          
+ 
+          
+          
+            
+            <tr>
+                <%  for(var i = 0; i < jsonEntradas.length; i++){ %>
+            
+                  
+                  
+                <td  class="text-center">as</td>
+                <td  class="text-center"><%= jsonEntradas[i].reg_date %></td>
+
+            </tr>
+             
+
+                <% } %>
+                
+                                
+                            
+            </tr>
+            
+        </tbody>
+      
+    </table>
+    <br>
+	
+
       </div>
     </div>
 
-    <script>
-      function datas() {
+  
+  
 
-        data = {
-          "dataI": $('#dataI').val(),
+    </div>
 
-          "dataF": $('#dataF').val()
-        }
-
-        $.ajax({
-          type: "POST",
-          url: "http://localhost:8080/avgTemp",
-          data: JSON.stringify(data),
-          contentType: "application/json; charset=utf-8",
-          crossDomain: true,
-          dataType: "json",
-          success: function (data, status, jqXHR) {
-
-            alert("success" + ' ' + data);
-          },
-
-          error: function (jqXHR, status) {
-            console.log(jqXHR);
-            alert('fail' + status.code);
-          }
-        });
-
-      }
-    </script>
-
+    
 
     <% include partials/footer %>
   </div>
 
 
-  <% include partials/footer %>
-    </div>
-    </div>
+ 

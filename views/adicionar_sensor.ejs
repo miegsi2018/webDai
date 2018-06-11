@@ -11,14 +11,14 @@
                             <img src="/public/assets/img/background1.jpeg" alt="..." />
                         </div>
                         <div class="content">
-                            <form role="form">
+                            <form role="form" >
                                 <div class="form-group">
                                     <label for="sel1">Select the room that you want:</label>
                                     <select class="form-control" name="division" id="sel1" onclick="myfunction()">
                                         <% for (var i=0 ; i <= division.length -1; i++) { %>
                                             <option value="<%= id_division[i] %>" id="id_division" selected>
                                                 <%= house[i] %> -
-                                                    <%= division[i] %>
+                                                    <%= division[i] %> 
                                             </option>
                                             <% } %>
                                                 <option id="new">New room</option>
