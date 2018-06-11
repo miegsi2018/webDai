@@ -1,78 +1,5 @@
 <%  include partials/header %>
 
-
-    <style>
-        /*the container must be positioned relative:*/
-
-        .custom-select {
-            position: relative;
-            font-family: Arial;
-        }
-
-        .custom-select select {
-            display: none;
-            /*hide original SELECT element:*/
-        }
-
-        .select-selected {
-            background-color: DodgerBlue;
-        }
-
-        /*style the arrow inside the select element:*/
-
-        .select-selected:after {
-            position: absolute;
-            content: "";
-            top: 14px;
-            right: 10px;
-            width: 0;
-            height: 0;
-            border: 6px solid transparent;
-            border-color: #fff transparent transparent transparent;
-        }
-
-        /*point the arrow upwards when the select box is open (active):*/
-
-        .select-selected.select-arrow-active:after {
-            border-color: transparent transparent #fff transparent;
-            top: 7px;
-        }
-
-        /*style the items (options), including the selected item:*/
-
-        .select-items div,
-        .select-selected {
-            color: #ffffff;
-            padding: 8px 16px;
-            border: 1px solid transparent;
-            border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-            cursor: pointer;
-        }
-
-        /*style items (options):*/
-
-        .select-items {
-            position: absolute;
-            background-color: DodgerBlue;
-            top: 100%;
-            left: 0;
-            right: 0;
-            z-index: 99;
-        }
-
-        /*hide the items when the select box is closed:*/
-
-        .select-hide {
-            display: none;
-        }
-
-        .select-items div:hover,
-        .same-as-selected {
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-    </style>
-
-
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -83,76 +10,89 @@
                         <div class="image">
                             <img src="/public/assets/img/background1.jpeg" alt="..." />
                         </div>
-
                         <div class="content">
-
-                            <form role="form" action="add/<%= id_sensor %>" method="post" encType="multipart/form-data"
-
-
+                            <form role="form" action="add/<%= id_sensor %>" method="post" encType="multipart/form-data">
                                 <div class="form-group">
-                                <label for="sel1">Selecione a Casa:</label>
-                                <select class="form-control" name="house" id="sel1">
-
-  
-
-                                <% for (var i=0 ; i <= id_division.length -1; i++) { %>
-
-
-				<option value="<%=id_house[i]%>"><%= house[i] %></option>
-					
-
-
-
-                                <% } %>
-
-</select>
+                                    <label for="sel1">Select the room that you want:</label>
+                                    <select class="form-control" name="division" id="sel1" onclick="myfunction()">
+                                        <% for (var i=0 ; i <= division.length -1; i++) { %>
+                                            <option value="<%= id_division[i] %>" selected>
+                                                <%= house[i] %> -
+                                                    <%= division[i] %>
+                                            </option>
+                                            <% } %>
+                                                <option id="new">New room</option>
+                                                <option id="fak">Teste </option>
+                                    </select>
+                                </div>
+                                <hr>
+                                <div class="form-group" id="target" style="visibility: hidden">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Select the house that you want:</label>
+                                            <select class="form-control" name="house" id="sel2">
+                                                <% for(var i=0; i<= house.length -1; i++) { %>
+                                                    <% if( house[i] != house[i-1]) { %>
+                                                        <option id="id_house" value="<%= id_house[i] %>">
+                                                            <%= house[0] %>
+                                                        </option>
+                                                        <% } %>
+                                                            <% } %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>New room:</label>
+                                            <input type="text" class="form-control border-input" id="room" name="room" placeholder="Name">
+                                            <input type="text" class="form-control border-input" id="sensor_id" name="sensor_id" value="<%= id_sensor %>" hidden>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <input type="button" class="btn btn-info btn-fill btn-wd" style="margin: 5px; float: right; margin-right: 10px;" value='Add sensor' onclick="submit()">
+                                <button type="submit" class="btn btn-info btn btn" style=" margin: 5px; float: right;">Cancel</button>
+                            </form>
                         </div>
-
-
-
-                        <div class="form-group">
-                            <label for="sel1">Selecione a Divisão:</label>
-                            <select class="form-control"  name="division" id="sel1">
-
-  
-
-                                <% for (var i=0 ; i <= division.length -1; i++) { %>
-
-
-
-				<option value="<%= id_division[i] %>"><%=division[i] %></option>
-					
-
-
-
-                                <% } %>
-
-</select>
-                        </div>
-
-                        <button type="submit" class="btn btn-info btn-fill btn-wd" value='Upload!' style="margin: 5px; float: right; margin-right: 10px;"
-                            value='Upload!'>Adicionar Divisão</button>
-                        <button type="submit" class="btn btn-info btn btn" style=" margin: 5px; float: right;">Cancel</button>
-
-
-
-                    </form>
-
+                    </div>
                 </div>
-                )
-
             </div>
         </div>
-
-        <!--- Outra div -->
-
-
-    </div>
-
-    <div class="col-lg-1 col-md-5"></div>
-
+        <div class="col-lg-1 col-md-5"></div>
     </div>
     </div>
     </div>
+
+    <script>
+        function myfunction() {
+            if (document.getElementById('new').selected == true) {
+                document.getElementById('target').style = "visibility: visible";
+            } else {
+                document.getElementById('target').style = "visibility: hidden";
+            }
+        };
+
+        function submit() {
+            data = {
+                "id_house": document.getElementById("id_house").value,
+                "name": document.getElementById("room").value,
+                "sensor_id": document.getElementById("sensor_id").value
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/division",
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                crossDomain: true,
+                dataType: "json",
+                success: function (data, status, jqXHR) {
+                },
+                error: function (jqXHR, status) {
+                    alert('fail' + status.code);
+                }
+            });
+        };
+    </script>
 
     <% include partials/footer %>
