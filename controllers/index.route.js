@@ -466,8 +466,8 @@ router.get('/home/:casa', global.secure(), function(request, response, body) {
                     console.log(finalVar);
 
                     graph.push({
-                        'data': entradas.id_account[i],
-                        'account': finalVar
+                        'account': entradas.id_account[i],
+                        'data': finalVar
                     });
 
                     i++;
