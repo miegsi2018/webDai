@@ -89,7 +89,8 @@
                                             <div id="collapse-<%= i  %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<%= i  %>">
                                                 <div class="panel-body">
                                                     <hr>
-                                                    <P>Temperatura</P>
+                                                    <p id="tempAtual<%= jsonDivi[i].id_sensor%>"></p>
+                                                    
                                                     <P>Humidade</P>
                                                     <div class="pretty p-default p-curve p-toggle">
                                                         <input type="checkbox" />
@@ -209,7 +210,7 @@
                                                 <div id="collapse-<%= i  %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-<%= i  %>">
                                                     <div class="panel-body text-center">
                                                         <hr>
-                                                        <P>Temperature</P>
+                                                        <p id="tempAtual<%= divi[i].id_sensor%>"></p>
                                                         <P>Humidity</P>
                                                         <div class="pretty p-default p-curve p-toggle">
                                                             <input type="checkbox" />
@@ -267,39 +268,32 @@
                                                 </div>
             </div>
         </div>
+        <script src="/socket.io/socket.io.js"></script>
+        
         <script>
-                var socket = io.connect('http://localhost:5000');
-                socket.on('data/<%= id_sensor%>', function (measurements) {
-                  var labels = JSON.parse(measurements);
+              <%  for(var e = 0; e < divi.length; e++){ %>
 
-                  var temp = labels.measurements.temperature
-                  var luz = labels.measurements["ldr"];
-                  var movimento = labels.measurements["motion"];
-                  var humidade = labels.measurements["humidity"];
-                  var alarme = labels.alarm["state"];
-                  $('#tempAtual').text('Temperatura atual: ' + temp);
-                  $('#luzAtual').text('Luz: ' + luz);
-                  $('#movAtual').text(movimento);
-                  $('#humAtual').text('Humidade: ' + humidade);
-                  $('#alar').text('State alarm: ' + alarme);
-
-                  if(alarme =="OFF"){
-                    document.getElementById("myonoffswitch").checked = false;
-                  }else{
-                    document.getElementById("myonoffswitch").checked = true;
-                  }
-                  if (movimento == "motion detected") {
-                    document.getElementById("Movi").style.color = "green";
-                    $('#movAtual').text('Com Movimento ');
-                  } else {
-                    $('#movAtual').text('Sem Movimento ');
-                  }
-
-
-
-                })
                 
-              </script>
+            var socket = io.connect('http://localhost:5000');
+          socket.on('data/<%= divi[e].id_sensor%>', function (measurements) {
+            var labels = JSON.parse(measurements);
+
+            var temp<%= divi[e].id_sensor%> = labels.measurements.temperature
+            var humidade<%= divi[e].id_sensor%> = labels.measurements["humidity"];
+            $('#tempAtual<%= divi[e].id_sensor%>').text('Temperatura atual: ' + temp);
+            $('#humAtual<%= divi[e].id_sensor%>').text('Humidade: ' + humidade);
+
+
+
+
+          })
+
+          
+
+<% } %>
+          
+        </script>
+
 
 
 

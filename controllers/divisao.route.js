@@ -26,7 +26,7 @@ router.get('/:casa', function(request, response) {
                 console.log(jsonData2);
 
                 jsonData2 = JSON.parse(body2);
-                jsonDiv = JSON.parse(body);
+                jsonDivi = JSON.parse(body);
                 console.log("divisões");
 
                 var divi = [];
@@ -41,34 +41,38 @@ router.get('/:casa', function(request, response) {
                     }
                 }
 
-                for (var d of jsonDiv) {
+                for (var d of jsonDivi) {
                     if (d.id_house == casa1) {
                         divi.push(d);
 
 
                     }
                 }
-                for (var e of jsonDivi) {
+                // for (var e of jsonDivi) {
 
-                    if (division == e.id_division) {
-                      console.log("it workt:" + e.sensor_id);
-                      id_sensor = e.sensor_id;
-                    }
+                //     if (division == e.id_division) {
+                //       console.log("it workt:" + e.sensor_id);
+                //       id_sensor = e.sensor_id;
+                //     }
           
-                  }    console.log("acabou fazes iniciais")
-                  console.log(id_sensor);
+                //   }    console.log("acabou fazes iniciais")
+               
                   var client = mqtt.connect('mqtt://alvesvitor.ddns.net:80', {
                     username: "dai",
                     password: '12345678'
                   })
+                  console.log(divi)
+                  for(var d of divi){
                   console.log("Inicio faze cliente")
                   client.on('connect', function () {
+                 console.log("it workt:" + d.sensor_id);
+                      
                     console.log('MQTT IS WORKING' + ' ' + 2)
-                    client.subscribe('data/' + id_sensor)
-                    console.log('data/' + id_sensor);
+                    client.subscribe('data/' + d.sensor_id)
+                    console.log('data/' + d.sensor_id);
                     client.publish('presence', 'Hello mqtt')
                   })
-                  console.log("Log intermedio")
+               
                   io.on('connection', function (socket) {
           
                     client.on('message', (topic, measurements) => {
@@ -78,9 +82,9 @@ router.get('/:casa', function(request, response) {
                       console.log(labels.measurements)
                     });
                   });
+                }
           
-                console.log("Todas as div da casa" + divi);
-                console.log(divi.length == 0);
+              
                 response.set("Content-Type", "text/html");
                 response.render('./divisao', {
 
@@ -88,7 +92,7 @@ router.get('/:casa', function(request, response) {
                     casa1: casa1,
                     jsonData2: jsonData2,
                     Ncasa,
-                    jsonDiv: jsonDiv,
+                    jsonDivi: jsonDivi,
                     divi
                 });
             });
@@ -123,26 +127,26 @@ router.post('/:casa/regi', function(request, response) {
 
     var path;
     var teste = 0;
-    if (!request.files)
-        return response.status(400).send('No files were uploaded.');
+    // if (!request.files)
+    //     return response.status(400).send('No files were uploaded.');
 
-    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-    let sampleFile = request.files.sampleFile;
+    // // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    // let sampleFile = request.files.sampleFile;
 
-    // Use the mv() method to place the file somewhere on your server
-    sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
-        if (err)
-            return response.status(500).send(err);
+    // // Use the mv() method to place the file somewhere on your server
+    // sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
+    //     if (err)
+    //         return response.status(500).send(err);
 
-        response.send('File uploaded!');
-    });
+    //     response.send('File uploaded!');
+    // });
     var options = {
         uri: 'http://localhost:8080/division',
         method: 'POST',
         json: {
             "id_house": casa1,
             "name": request.body.name,
-            "sensor_id": request.body.sensor_id,
+       
             "path": path,
 
         }
@@ -154,6 +158,31 @@ router.post('/:casa/regi', function(request, response) {
 });
 
 
+router.get('/:casa/add', function (request, response) {
+    var id = request.user.email;
+    var casa1 = request.params.casa;
+  
+    req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
+      req.get('http://localhost:8080/house/' + casa1, function (error, resp, body) {
+        jsonData2 = JSON.parse(body2);
+        jsonCasa = JSON.parse(body);
+        console.log(jsonCasa.name);
+        var nTotal = 0;
+        var Ncasa = jsonCasa.name;
+  
+        jsonData2 = JSON.parse(body2)
+        console.log(jsonData2);
+  
+        response.set("Content-Type", "text/html");
+        response.render('./adicionar_divisao', {
+          id: id,
+          casa1: casa1,
+          jsonData2: jsonData2,
+          Ncasa
+        });
+    });
+});
+});
 
 router.get('/:id_division/:casa', function (request, response) {
 
