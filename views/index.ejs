@@ -108,6 +108,7 @@ table.dataTable td, table.dataTable th {
       <div class="row">
           <div class="col-lg-1 col-sm-6 ">
             </div>
+            <form action="home/<%= casa1 %>"></form>
           <div class="col-lg-10 col-sm-6 " style="background-color: white">
 <h3 class="text-center">Last entries in your house</h3>
         <table id="example" class="display" style="width:100%">
@@ -128,17 +129,15 @@ table.dataTable td, table.dataTable th {
           
             
             <tr>
-                <%  for(var i = 0; i < jsonEntradas.length; i++){ %>
             
                   
                   
                 <td  class="text-center">as</td>
-                <td  class="text-center"><%= jsonEntradas[i].reg_date %></td>
+                <td  class="text-center" id="tabela"></td>
 
             </tr>
              
 
-                <% } %>
                 
                                 
                             

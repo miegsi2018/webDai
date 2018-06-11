@@ -457,6 +457,9 @@ router.get('/home/:casa', function(request, response, body) {
 
             }
 
+
+            
+
             response.set("Content-Type", "text/html");
             response.render('./index', {
                 id: id,
@@ -474,16 +477,36 @@ router.get('/home/:casa', function(request, response, body) {
 });
 
 
+// router.post('home/:casa', global.secure(), function(request, response, body) {
+//     response.header("Access-Control-Allow-Origin", "*");
+//     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+//     var options = {
+//         uri: 'http://localhost:8080/avgTemp',
+//         method: 'POST',
+//         json: {
+//             "dataI": request.body.dataI,
+//             "dataF": request.body.dataF
+//         }
+//     };
+
+//     console.log(options.json);
+
+//     req(options, function(error, resp, body) {
+//         console.log(body);
+//         document.getElementById('avg').innerHTML = body;
+//     });
+// });
 router.post('home/:casa', global.secure(), function(request, response, body) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-
+var casa1 = request.params.casa;
     var options = {
-        uri: 'http://localhost:8080/avgTemp',
+        uri: 'http://localhost:8080/Entradas',
         method: 'POST',
         json: {
-            "dataI": request.body.dataI,
-            "dataF": request.body.dataF
+            "id_house": casa1
+     
         }
     };
 
@@ -491,9 +514,10 @@ router.post('home/:casa', global.secure(), function(request, response, body) {
 
     req(options, function(error, resp, body) {
         console.log(body);
-        document.getElementById('avg').innerHTML = body;
+        document.getElementById('tabela').innerHTML = body;
     });
 });
+
 
 
 router.get('/registo', function(request, response) {
