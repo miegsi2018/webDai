@@ -61,15 +61,18 @@ router.get('/:casa', function(request, response) {
                     username: "dai",
                     password: '12345678'
                   })
-                  for(var d of jsonDivi){
+                  console.log(divi)
+                  for(var d of divi){
                   console.log("Inicio faze cliente")
                   client.on('connect', function () {
+                 console.log("it workt:" + d.sensor_id);
+                      
                     console.log('MQTT IS WORKING' + ' ' + 2)
                     client.subscribe('data/' + d.sensor_id)
                     console.log('data/' + d.sensor_id);
                     client.publish('presence', 'Hello mqtt')
                   })
-                  console.log("Log intermedio")
+               
                   io.on('connection', function (socket) {
           
                     client.on('message', (topic, measurements) => {
@@ -81,8 +84,7 @@ router.get('/:casa', function(request, response) {
                   });
                 }
           
-                console.log("Todas as div da casa" + divi);
-                console.log(divi.length == 0);
+              
                 response.set("Content-Type", "text/html");
                 response.render('./divisao', {
 
@@ -125,26 +127,26 @@ router.post('/:casa/regi', function(request, response) {
 
     var path;
     var teste = 0;
-    if (!request.files)
-        return response.status(400).send('No files were uploaded.');
+    // if (!request.files)
+    //     return response.status(400).send('No files were uploaded.');
 
-    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-    let sampleFile = request.files.sampleFile;
+    // // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    // let sampleFile = request.files.sampleFile;
 
-    // Use the mv() method to place the file somewhere on your server
-    sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
-        if (err)
-            return response.status(500).send(err);
+    // // Use the mv() method to place the file somewhere on your server
+    // sampleFile.mv('/somewhere/on/your/server/filename.jpg', function(err) {
+    //     if (err)
+    //         return response.status(500).send(err);
 
-        response.send('File uploaded!');
-    });
+    //     response.send('File uploaded!');
+    // });
     var options = {
         uri: 'http://localhost:8080/division',
         method: 'POST',
         json: {
             "id_house": casa1,
             "name": request.body.name,
-            "sensor_id": request.body.sensor_id,
+       
             "path": path,
 
         }
@@ -156,6 +158,31 @@ router.post('/:casa/regi', function(request, response) {
 });
 
 
+router.get('/:casa/add', function (request, response) {
+    var id = request.user.email;
+    var casa1 = request.params.casa;
+  
+    req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
+      req.get('http://localhost:8080/house/' + casa1, function (error, resp, body) {
+        jsonData2 = JSON.parse(body2);
+        jsonCasa = JSON.parse(body);
+        console.log(jsonCasa.name);
+        var nTotal = 0;
+        var Ncasa = jsonCasa.name;
+  
+        jsonData2 = JSON.parse(body2)
+        console.log(jsonData2);
+  
+        response.set("Content-Type", "text/html");
+        response.render('./adicionar_divisao', {
+          id: id,
+          casa1: casa1,
+          jsonData2: jsonData2,
+          Ncasa
+        });
+    });
+});
+});
 
 router.get('/:id_division/:casa', function (request, response) {
 
