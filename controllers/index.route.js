@@ -434,6 +434,7 @@ router.get('/home/:casa', global.secure(), function(request, response, body) {
     var casa1 = request.params.casa;
 
 
+    var finalGraph = [];
     req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
         req.get('http://localhost:8080/house/' + casa1, function(error, resp, body) {
             jsonData2 = JSON.parse(body2);
@@ -456,32 +457,6 @@ router.get('/home/:casa', global.secure(), function(request, response, body) {
             console.log(casa1);
 
             console.log(options.json);
-            var graph = [];
-            req(options, function(error, resp, entradas) {
-                var finalVar;
-                var a = entradas;
-                var i = 0;
-                for (var t = 0; t < entradas.reg_date.length; t++) {
-                    finalVar = entradas.reg_date[t];
-                    console.log(finalVar);
-
-                    graph.push({
-                        'account': entradas.id_account[i],
-                        'data': finalVar
-                    });
-
-                    i++;
-                }
-
-                console.log(graph);
-
-
-
-
-
-
-
-            });
 
 
 
@@ -503,24 +478,51 @@ router.get('/home/:casa', global.secure(), function(request, response, body) {
 
 
 
+            var graph = [];
+            req(options, function(error, resp, entradas) {
+                var finalVar;
+                var a = entradas;
+                var i = 0;
+                for (var t = 0; t < entradas.reg_date.length; t++) {
+                    finalVar = entradas.reg_date[t];
 
-            response.set("Content-Type", "text/html");
-            response.render('./index', {
-                id: id,
-                casa1: casa1,
-                jsonData2: jsonData2,
-                nTotal,
-                Ncasa,
-                totalSensores: totalSensores,
-		graph: graph,
-                totalDivi: totalDivi
+                    graph.push({
+                        'account': entradas.id_account[i],
+                        'data': finalVar
+                    });
+
+                    i++;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+                response.set("Content-Type", "text/html");
+                response.render('./index', {
+                    id: id,
+                    casa1: casa1,
+                    jsonData2: jsonData2,
+                    nTotal,
+                    Ncasa,
+                    totalSensores: totalSensores,
+                    graph: graph,
+                    totalDivi: totalDivi
+                });
+
             });
-
         });
+
     });
 
 });
-
 
 // router.post('home/:casa', global.secure(), function(request, response, body) {
 //     response.header("Access-Control-Allow-Origin", "*");

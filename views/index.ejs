@@ -128,11 +128,12 @@
               </tr>
             </thead>
             <tbody>
-              <% for(i=0; i =< graph[i].length ;i++ ) { %>
+              <% for(i=0; i < graph.length ;i++ ) { %>
               <tr>
                 <td class="text-center"><%=graph[i].account%></td>
                 <td class="text-center"><%=graph[i].data%></td>
               </tr>
+	      <% } %>
             </tbody>
           </table>
           <br>
