@@ -80,26 +80,27 @@ router.get('/login', function(request, response) {
 router.post('/add/add/:id_sensor', global.secure(), function(request, response) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	
 
+	console.log(request.params.id_sensor);
 
+	var id_sensor = request.params.id_sensor;
     var options = {
-        uri: 'http://localhost:8080/division'+ request.body.division,
+	    uri: 'http://localhost:8080/division/'+ request.body.division,
         method: 'POST',
         json: {
-            "id_sensor": request.params.id_sensor,
+            "sensor_id":id_sensor,
             "id_house": request.body.house,
             "id_division": request.body.division
         }
     };
 
-    req.post('http://localhost:8080/view2/' + id_user, function(error, resp, body) {
+	console.log(options.uri);
 
-
-
-        response.redirect('./house', {
-                    });
-
+    req(options, function() {
     });
+
+	response.redirect('/house');
 
 });
 
@@ -144,6 +145,7 @@ router.get('/add/:id_sensor', global.secure(), function(request, response) {
 
         var division = parsed.division;
 
+	    console.log(id_division[0]);
         response.set("Content-Type", "text/html");
 
         response.render('./adicionar_sensor', {
@@ -151,7 +153,7 @@ router.get('/add/:id_sensor', global.secure(), function(request, response) {
 
             id_house: id_house,
             division: division,
-            id_division: division,
+            id_division: id_division,
             id_sensor: id_sensor,
 
             casa1: "Nova Casa",
