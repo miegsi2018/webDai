@@ -189,18 +189,18 @@
                     </form>
                     <script type="text/javascript">
                       function alarm() {
-              
-                        if(document.getElementById("myonoffswitch").checked == false){
+
+                        if (document.getElementById("myonoffswitch").checked == false) {
                           var armed = "false";
-                        }else{
+                        } else {
                           var armed = "true";
-                          
+
                         }
                         data = {
                           "id_division": document.getElementById("division").value,
                           "armed": armed
                         }
-                       
+
                         $.ajax({
                           type: "POST",
                           url: "http://localhost:8080/division/arm",
@@ -366,27 +366,26 @@
                   <hr>
 
                   <div class="pretty p-default p-curve p-toggle">
-                    <input type="checkbox" />
-                    <div class="state p-success p-on">
+                    <input type="checkbox" onchange="turnRelay1()" id="relay1"/>
+                    <div class="state p-success p-on" >
                       <label>Relay On</label>
                     </div>
                     <div class="state p-danger p-off">
                       <label>Relay Off </label>
                     </div>
-
-
                   </div>
 
+                 
                   <div class="pretty p-default p-curve p-toggle">
-                    <input type="checkbox" />
-                    <div class="state p-success p-on">
+                    <input type="checkbox" onclick="turnRelay2()" id="relay2"/>
+                    <div class="state p-success p-on" >
                       <label>Relay On</label>
                     </div>
                     <div class="state p-danger p-off">
                       <label>Relay Off </label>
                     </div>
 
-
+                    <input type="text" id="id_sensor" value="<%= id_sensor %>" hidden>
                   </div>
 
 
@@ -396,7 +395,53 @@
                 </div>
               </div>
 
+              <script>
+                function turnRelay1() {
+                  
+                  if (document.getElementById("relay1").checked == false) {
+                    var message = "1";
+                  } else {
+                    var message = "0";
+                  }
 
+                  data = {
+                    "topic": document.getElementById("id_sensor").value,
+                    "message": message
+                  }
+                  
+                  $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8080/changeLight",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function () {}
+                  });
+                };
+
+                function turnRelay2() {
+
+                  if (document.getElementById("relay2").checked == false) {
+                    var message = "3";
+                  } else {
+                    var message = "2";
+                  }
+
+                  data = {
+                    "topic": document.getElementById("id_sensor").value,
+                    "message": message
+                  }
+
+                  $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8080/changeLight",
+                    data: JSON.stringify(data),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function () {}
+                  });
+                };
+              </script>
 
             </div>
           </div>
@@ -468,7 +513,6 @@
 
 
               <script>
-                
                 if (document.getElementById("armed").value == "false") {
                   document.getElementById("myonoffswitch").checked = false;
                 } else {
