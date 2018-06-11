@@ -14,7 +14,7 @@
     <div class="container-fluid">
 
       <div class="row">
-        <div class="col-lg-6 col-sm-6">
+        <div class="col-lg-3 col-sm-3">
           <div class="card">
             <div class="content">
 
@@ -36,7 +36,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-6 col-sm-6">
+        <div class="col-lg-3 col-sm-3">
           <div class="card">
             <div class="content">
               <div class="row">
@@ -48,6 +48,51 @@
                 <div class="col-xs-7">
                   <div class="numbers">
                     <p>Number of rooms</p>
+                    <p id="utiTotal"></p>
+                    <%= totalDivi %>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-3">
+          <div class="card">
+            <div class="content">
+              <div class="row">
+                <div class="col-xs-5">
+                  <div class="icon-big icon-warning text-center">
+                    <i class="fas fa-thermometer-half" style="color: rgb(225, 97, 65) ;"></i>
+                    </i>
+                  </div>
+                </div>
+                <div class="col-xs-7">
+                  <div class="numbers">
+                    <p>Average temperature</p>
+                    <p id="utiTotal"></p>
+                    <%= totalDivi %>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-3">
+          <div class="card">
+            <div class="content">
+              <div class="row">
+                <div class="col-xs-5">
+                  <div class="icon-big icon-warning text-center">
+                    <i class="fas fa-tint" style="color: DeepSkyBlue   ;"></i>
+                  </div>
+                </div>
+                <div class="col-xs-7">
+                  <div class="numbers">
+                    <p>Average humidity</p>
                     <p id="utiTotal"></p>
                     <%= totalDivi %>
 
@@ -70,7 +115,7 @@
         }
 
         div.dataTables_wrapper div.dataTables_length select {
-          width: 75px;
+          width: 100px;
           display: inline-block;
           margin-top: 10px;
           height: 30px;
@@ -123,17 +168,21 @@
             <thead>
               <tr>
                 <th class="text-center">User</th>
-                <th class="text-center"><%= graph[0].account %></th>
+                <th class="text-center">Date</th>
 
               </tr>
             </thead>
             <tbody>
               <% for(i=0; i < graph.length ;i++ ) { %>
-              <tr>
-                <td class="text-center"><%=graph[i].account%></td>
-                <td class="text-center"><%=graph[i].data%></td>
-              </tr>
-	      <% } %>
+                <tr>
+                  <td class="text-center">
+                    <%=graph[i].account%>
+                  </td>
+                  <td class="text-center">
+                    <%=graph[i].data%>
+                  </td>
+                </tr>
+                <% } %>
             </tbody>
           </table>
           <br>

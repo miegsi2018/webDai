@@ -14,7 +14,7 @@
     <!-- CSS INCLUDE -->
     <link rel="stylesheet" type="text/css" id="theme" href="../public/assets/login/css/theme-default.css" />
 
-    <link rel="shortcut icon" href="/public/assets/frontpage/images/favicon.png" >
+    <link rel="shortcut icon" href="/public/assets/frontpage/images/favicon.png">
     <link rel="icon" href="/public/assets/frontpage/images/favicon.png">
 
 </head>
@@ -39,36 +39,40 @@
                         <div id="username_error" style="text-align: center"></div>
                     </div>
                     <% if(error == "email") {%>
-                    <div class="form-group" id="email_div">
-                        <div class="col-md-12">
-                            <input type="email" style="color: red; border: 1px solid red" id="email" name="email" class="form-control" placeholder="E-mail" required/>
+                        <div class="form-group" id="email_div">
+                            <div class="col-md-12">
+                                <input type="email" style="color: red; border: 1px solid red" id="email" name="email" class="form-control" placeholder="E-mail (example@email.com)"
+                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required/>
+                            </div>
+                            <div id="email_error" style="text-align: center; color: red">
+                                <p>That email already exists</p>
+                            </div>
                         </div>
-                        <div id="email_error" style="text-align: center; color: red"><p>That email already exists</p></div>
-                    </div>
-                    <% } else { %>
-                    <div class="form-group" id="email_div">
-                        <div class="col-md-12">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="E-mail" required/>
-                        </div>
-                        <div id="email_error" style="text-align: center"></div>
-                    </div>
-                    <% } %>
-                    <div class="form-group" id="password_div">
-                        <div class="col-md-12">
-                            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required/>
-                        </div>
-                    </div>
-                    <div class="form-group" id="pass_confirm_div">
-                        <div class="col-md-12">
-                            <input type="password" id="repassword" name="repassword" class="form-control" placeholder="Repeat password" required/>
-                        </div>
-                        <div id="password_error" style="text-align: center"></div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-4 pull-right">
-                            <input type="submit" class="btn btn-info btn-block" value="Sign in" />
-                        </div>
-                    </div>
+                        <% } else { %>
+                            <div class="form-group" id="email_div">
+                                <div class="col-md-12">
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="E-mail (example@email.com)" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                                        required/>
+                                </div>
+                                <div id="email_error" style="text-align: center"></div>
+                            </div>
+                            <% } %>
+                                <div class="form-group" id="password_div">
+                                    <div class="col-md-12">
+                                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required/>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="pass_confirm_div">
+                                    <div class="col-md-12">
+                                        <input type="password" id="repassword" name="repassword" class="form-control" placeholder="Repeat password" required/>
+                                    </div>
+                                    <div id="password_error" style="text-align: center"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4 pull-right">
+                                        <input type="submit" class="btn btn-info btn-block" value="Sign in" />
+                                    </div>
+                                </div>
                 </form>
             </div>
             <div class="login-footer">
