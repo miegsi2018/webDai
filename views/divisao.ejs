@@ -48,50 +48,57 @@
                     <% }else{ %>
                         <%  for(var i = 0; i < divi.length; i++){ %>
 
-                           
-                                    <li style="list-style-type: none; z-index: 1;">
-                                        <div class="col-lg-4 col-sm-6" onclick="location.href='/room/<%=divi[i].id_division %>/<%= casa1 %>';">
-                                            <div class="card card-user">
-                                                <div class="image">
-                                                    <img src="/public/assets/img/div/deafult.jpg" alt="..." />
-                                                </div>
-                                                <div class="text-center">
-                                                    <div class="row">
-                                                        <h3 class="title">
-                                                            <%=divi[i].name %>
-                                                        </h3>
-                                                      
-                                                    </div>
-                                                </div>
-                                                  
-                                               
 
+                            <li style="list-style-type: none; z-index: 1;">
+                                    
+                                <div class="col-lg-4 col-sm-6" >
+                                    <div class="lel">
+                                            <p class="editar">
+                                                <i class="fas fa-edit " style="	width : 20px;height : 20px;	left : 20px; top : -10px;"  onclick="location.href='/room/<%= casa1 %>/<%=divi[i].id_division %>/edit';">
+                                                </i>
+                                            </p>
+                                        </div>
+                                    <div class="card card-user" onclick="location.href='/room/<%=divi[i].id_division %>/<%= casa1 %>';">
+                                        <div class="image">
+                                            <img src="/public/assets/img/div/deafult.jpg" alt="..." />
+                                        </div>
+                                        <div class="text-center">
+                                            <div class="row">
+                                                <h3 class="title">
+                                                    <%=divi[i].name %>
+                                                </h3>
 
                                             </div>
                                         </div>
-                                    </li>
-                                  
-
-                                    <% } %>
-                                        <% } %>
-
-                                          
 
 
 
 
-                                                </div>
-                                                <div id="container-floating">
-                                                    <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" onclick="location.href='/room/<%= casa1 %>/add';">
-                                                        <p class="plus">+</p>
-                                                    </div>
-                                                </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+                            <% } %>
+                                <% } %>
+
+
+
+
+
+
+            </div>
+            <div id="container-floating">
+                <div id="floating-button" data-toggle="tooltip" data-placement="left" data-original-title="Create" onclick="location.href='/room/<%= casa1 %>/add';">
+                    <p class="plus">+</p>
+                </div>
             </div>
         </div>
-       
+    </div>
 
 
 
 
 
-        <% include partials/footer %>
+
+    <% include partials/footer %>
