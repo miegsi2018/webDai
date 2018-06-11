@@ -145,7 +145,6 @@ router.get('/add/:id_sensor', global.secure(), function(request, response) {
 
         var division = parsed.division;
 
-	    console.log(id_division[0]);
         response.set("Content-Type", "text/html");
 
         response.render('./adicionar_sensor', {
