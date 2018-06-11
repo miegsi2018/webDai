@@ -66,6 +66,8 @@
     </div>
 
     <script>
+        // Funcao para mudar a pagina consoante aquilo que esta selecionado no primeiro dropdown
+        // Basicamente quando esta selecionada uma coisa mostra campos que estao escondidos e altera o que o botão de submeter faz
         function myfunction() {
 
             if (document.getElementById('new').selected == true) {
@@ -79,6 +81,7 @@
             }
         };
 
+        // Funcao que faz um post em AJAX para adicionar uma divisão nova com um sensor atraves de QR Code
         function submitWhithQR() {
             data = {
                 "sensor_id": document.getElementById("sensor_id").value,
@@ -97,6 +100,8 @@
             window.location = '/house';
         };
 
+
+        // Funcao que faz um post em AJAX para adicionar uma divisão nova com um sensor pelo metodo tradicional
         function createRoom() {
             data = {
                 "id_house": document.getElementById("id_house").value,
