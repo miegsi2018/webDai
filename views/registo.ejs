@@ -96,21 +96,21 @@
         if (username.value == "") {
             username.style.border = "1px solid red";
             document.getElementById('username_div').style.color = "red";
-            username_error.innerHTML = "É necessário um nome";
+            username_error.innerHTML = "You need to insert a mail";
             username.focus();
             return false;
         }
         if (email.value == "") {
             email.style.border = "1px solid red";
             document.getElementById('email_div').style.color = "red";
-            email_error.innerHTML = "É necessário um email";
+            email_error.innerHTML = "You need to insert a email";
             password.focus();
             return false;
         }
         if (password.value == "") {
             password.style.border = "1px solid red";
             document.getElementById('password_div').style.color = "red";
-            password_error.innerHTML = "É necessário uma password";
+            password_error.innerHTML = "You need to insert a password";
             password.focus();
             return false;
         }
@@ -118,7 +118,7 @@
             password.style.border = "1px solid red";
             repassword.style.border = "1px solid red";
             document.getElementById('pass_confirm_div').style.color = "red";
-            password_error.innerHTML = "As passwords não conbinam";
+            password_error.innerHTML = "Passwords don't match";
             return false;
         }
     }
