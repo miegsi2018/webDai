@@ -157,6 +157,9 @@ router.post('/:casa/regi', function(request, response) {
     };
 
     req(options, function(error, resp, body) {
+
+
+	console.log(resp);
         response.redirect('/room/' + casa1);
     });
 });

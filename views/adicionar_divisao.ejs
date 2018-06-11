@@ -7,15 +7,14 @@
                 </div>
                 <div class="col-lg-8 col-md-5">
                     <div class="card card-user">
-                        
-<br>
+
+                        <br>
                         <div class="content">
-                                <% if (isNew){ %> 
-                            <form role="form" action="/room/<%= casa1 %>/regi" method="post" encType="multipart/form-data"
-                                ref='uploadForm' id='uploadForm'>
-                                <div class="row">
-                                  
-                                     <div class="col-md-1">
+                            <% if (isNew){ %>
+                                <form role="form" action="/room/<%= casa1 %>/regi" method="post" encType="multipart/form-data" ref='uploadForm' id='uploadForm'>
+                                    <div class="row">
+
+                                        <div class="col-md-1">
                                         </div>
                                         <div class="col-md-4">
                                                <div class="form-check">
@@ -43,20 +42,36 @@
                             <div class="row">
                                     <div class="col-md-2">
                                         </div>
-                                
-                                <div class="col-md-8 text-center" style="margin-top: 20px;">
-                                        <button type="submit" class="btn btn-info btn btn" style=" margin: 5px;">Cancel</button>
-                                    <button type="submit" class="btn btn-info btn-fill btn-wd" value='Upload!' style="margin: 5px;  margin-right: 10px;"
-                                        value='Upload!'>Add Division</button>
-                                    
-                                </div>
-                            </div>
-                            </form>
+
+                                        <div class="col-md-6">
+                                            <div class="form-check">
+                                                <label class="text-center">Room name</label>
+                                                <input type="text" class="form-control border-input" name="name" placeholder="Name">
+                                                <br>
+
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                        </div>
+
+                                        <div class="col-md-8 text-center" style="margin-top: 20px;">
+                                            <button type="submit" class="btn btn-info btn btn" style=" margin: 5px;">Cancel</button>
+                                            <button type="submit" class="btn btn-info btn-fill btn-wd" value='Upload!' style="margin: 5px;  margin-right: 10px;" value='Upload!'>Add Room</button>
+
+                                        </div>
+                                    </div>
+                                </form>
 
                         </div>
                         <% }else{ %>
-                            <form role="form" action="/room/<%= casa1 %>/<%= divisao %>/edit" method="post" encType="multipart/form-data"
-                                ref='uploadForm' id='uploadForm'>
+                            <form role="form" action="/room/<%= casa1 %>/<%= divisao %>/edit" method="post" encType="multipart/form-data" ref='uploadForm'
+                                id='uploadForm'>
                                 <div class="row">
                                     <!-- <div class="col-md-2">
 
@@ -93,38 +108,37 @@
 
                                         </div>
                                     </div>
-                             
-                                    
-                                   
-                            </div>
-                            <div class="row">
-                                    <div class="col-md-2">
-                                        </div>
-                                
-                                <div class="col-md-8 text-center" style="margin-top: 20px;">
-                                        <button type="submit" class="btn btn-info btn btn" style=" margin: 5px;">Cancel</button>
-                                    <button type="submit" class="btn btn-info btn-fill btn-wd" value='Upload!' style="margin: 5px;  margin-right: 10px;"
-                                        value='Upload!'>Edit Division</button>
-                                    
+
+
+
                                 </div>
-                            </div>
+                                <div class="row">
+                                    <div class="col-md-2">
+                                    </div>
+
+                                    <div class="col-md-8 text-center" style="margin-top: 20px;">
+                                        <button type="submit" class="btn btn-info btn btn" style=" margin: 5px;">Cancel</button>
+                                        <button type="submit" class="btn btn-info btn-fill btn-wd" value='Upload!' style="margin: 5px;  margin-right: 10px;" value='Upload!'>Edit Room</button>
+
+                                    </div>
+                                </div>
                             </form>
 
-                        </div>
-                            <% } %>
-
-
                     </div>
+                    <% } %>
+
+
                 </div>
-
-                <!--- Outra div -->
-
-
             </div>
 
-            <div class="col-lg-1 col-md-5"></div>
+            <!--- Outra div -->
+
 
         </div>
+
+        <div class="col-lg-1 col-md-5"></div>
+
+    </div>
     </div>
     </div>
 
