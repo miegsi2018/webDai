@@ -289,48 +289,29 @@ router.post('/house/create', function(request, response, body) {
     var id = request.user.account;
     var path;
     var teste;
-    console.log(request.files)
-    if (request.files.sampleFile !== teste) {
 
+    var name = request.body.name;
+    var newName = name.replace(/\s+/g, '');
+      var newAccount = request.user.account;
 
-        let sampleFile = request.files.sampleFile;
-        console.log("Fase1")
-        sampleFile.mv('./public/assets/img/casas/' + request.user.account + "-" + request.body.name + '.jpg', function(err) {
-            if (err)
-                return response.status(500).send(err);
-            console.log("Fase2")
-
-        });
-        Jimp.read('./public/assets/img/casas/' + request.user.account + "-" + request.body.name + '.jpg', function(err, lenna) {
-            if (err) throw err;
-            lenna.resize(480, 320) // resize
-                .quality(100) // set JPEG quality
-                // set greyscale
-                .write('./public/assets/img/casas/' + request.user.account + "-" + request.body.name + '.jpg'); // save
-            console.log("imagem resized")
-        });
-        path = 1;
-    } else {
-        path = 0;
-    }
     var options = {
         uri: 'http://localhost:8080/house',
         method: 'POST',
         json: {
             "name": request.body.name,
             "account_id": id,
-            "path": path
+            "path": 0
         }
     }
-    console.log("Fase1")
-    console.log(request.body.name)
-    console.log(id)
-    console.log(path)
+	
+	
+	req(options, function(error, resp, body) {
+		console.log(resp);
 
-    req(options, function(error, resp, body) {
+   response.redirect('/house');
 
     })
-    response.redirect('/house');
+
 });
 
 
