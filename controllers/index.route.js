@@ -310,7 +310,7 @@ router.post('/house/create', function(request, response, body) {
 
    response.redirect('/house');
 
-    })
+    });
 
 });
 
