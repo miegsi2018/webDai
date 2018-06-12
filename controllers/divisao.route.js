@@ -491,5 +491,23 @@ console.log("tentativa final")
 
 });
 
+router.post('/addQR', function(request, response){
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    console.log('---------------------------------------------------' + request.body.id_division + '\\\\\\' + request.body.sensor_id);
+    var options = {
+        uri: "http://localhost:8080/division/" + request.body.id_division,
+        method: "POST",    
+        json: {
+            "sensor_id": requess.body.sensor_id,
+            "id_division": request.body.id_division
+        }
+    }
+
+    req(options, function(error, resp, body) {
+
+    })
+})
+
 
 module.exports = router;

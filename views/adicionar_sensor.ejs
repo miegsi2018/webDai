@@ -17,14 +17,14 @@
 
         // Funcao que faz um post em AJAX para adicionar uma divisão nova com um sensor atraves de QR Code
         function submitWhithQR() {
-            data = {
-		    "sensor_id": "<%=id_sensor%>",
-                "id_division":  $('#sel1').val(),
-            }
+             data = {
+		     "sensor_id": "<%=id_sensor%>",
+                 "id_division":  $('#sel1').val(),
+             }
 
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/division/" + data.id_division,
+                url: "/room/addQR",
                 data: JSON.stringify(data),
                 contentType: "application/json; charset=utf-8",
 
