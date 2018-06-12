@@ -598,6 +598,25 @@ router.post('/registo', function(request, response) {
 
 });
 
+
+
+
+router.post('/house/edit/:casa/delete', function(request, response) {
+
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    var id_casa = request.params.casa;
+    var options = {
+        uri: 'http://localhost:8080/house/delete/'+ id_casa,
+        method: 'POST',
+       
+    };
+
+    response.redirect('/house')
+
+});
+
+
 router.post('/login', function(request, response) {
 
 

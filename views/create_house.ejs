@@ -60,7 +60,22 @@
                 </ul>
             </div>
         </div>
+        <script type="text/javascript">
+            function removeRecord() {
+                if (confirm('Pretende mesmo eliminar?')) {
 
+                    $.post("house/delete/<%=casa1%>",
+                {}
+                );
+                   
+                       
+
+                }
+            
+
+
+}
+        </script>
         <div class="main-panel">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -128,6 +143,7 @@
                                         </div>
                                         
                                         <div class="row text-center"> 
+                                                
                                                 <button type="submit" class="btn btn-info btn-fill btn-wd" style=" margin: 5px; float: right;">Add Home</button>
                                                 <a class="btn btn-info btn btn" style=" margin: 5px; float: right;" onclick="location.href='/house';">Cancel</a>
                                                 
@@ -163,6 +179,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row text-center">
+                                                        <button type="button" class="btn btn-danger  btn-fill btn-wd" onclick="removeRecord()"  style=" margin: 5px; float: left;">Delete</button>
                                                     <button type="submit" class="btn btn-info btn-fill btn-wd" style=" margin: 5px; float: right;">Edit</button>
                                                     <a class="btn btn-info btn btn" style=" margin: 5px; float: right;" onclick="location.href='/house';">Cancel</a>
                                                 </div>
