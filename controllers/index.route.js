@@ -468,7 +468,7 @@ router.get('/home/:casa', global.secure(), function(request, response, body) {
                     finalVar = entradas.reg_date[t];
 
                     graph.push({
-                        'account': entradas.id_account[i],
+                        'account': entradas.username[i],
                         'data': finalVar
                     });
 
