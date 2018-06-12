@@ -472,11 +472,11 @@ router.post('/:id_division/:casa/delete', function(request, response) {
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var id_casa = request.params.casa;
     var id_division = request.params.id_division;
-    console.log("tentativa inicial")
+    console.log("tentativa inicial" + id_division)
 
     var options = {
-        uri: 'http://localhost:8080/division/'+ id_division,
-        method: 'DELETE',
+        uri: 'http://localhost:8080/division/delete/'+ id_division,
+        method: 'POST',
         json: {
             
 
@@ -487,7 +487,7 @@ router.post('/:id_division/:casa/delete', function(request, response) {
 
     })
 console.log("tentativa final")
-    response.redirect('/room/' + id_division)
+    response.redirect('/room/' + id_casa)
 
 });
 

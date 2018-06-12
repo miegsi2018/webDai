@@ -157,40 +157,21 @@
         }
       </style>
 
-      <div class="row">
-        <div class="col-lg-1 col-sm-6 ">
-        </div>
-        <form action="home/<%= casa1 %>"></form>
-        <div class="col-lg-10 col-sm-6 " style="background-color: white">
-          <h3 class="text-center">Last entries in your house</h3>
-          <table id="example" class="display" style="width:100%">
-            <br>
-            <thead>
-              <tr>
-                <th class="text-center">User</th>
-                <th class="text-center">Date</th>
-
-              </tr>
-            </thead>
-            <tbody>
-              <% for(i=0; i < graph.length ;i++ ) { %>
-                <tr>
-                  <td class="text-center">
-                    <%=graph[i].account%>
-                  </td>
-                  <td class="text-center">
-                    <%=graph[i].data%>
-                  </td>
-                </tr>
-                <% } %>
-            </tbody>
-          </table>
-          <br>
-        </div>
-      </div>
+ <br>
+    </div>
+    <div class="row">
+      <div id="teste"></div>
     </div>
 
+   
 
+<script>
+  function refresh(){
+    $('#teste').load('/room/<%= casa1 %>  #room');
+
+
+  }
+</script>
 
     <% include partials/footer %>
   </div>

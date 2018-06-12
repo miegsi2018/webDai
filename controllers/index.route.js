@@ -468,7 +468,7 @@ router.get('/home/:casa', global.secure(), function(request, response, body) {
                     finalVar = entradas.reg_date[t];
 
                     graph.push({
-                        'account': entradas.id_account[i],
+                        'account': entradas.username[i],
                         'data': finalVar
                     });
 
@@ -675,6 +675,89 @@ router.post('/login', function(request, response) {
 
     });
 
+});
+router.get('/log/:casa', global.secure(), function(request, response, body) {
+    //console.log(request.isAuthenticated());
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    var id = request.user.email;
+    var casa1 = request.params.casa;
+
+
+    var finalGraph = [];
+    req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
+        req.get('http://localhost:8080/log/' + casa1, function(error, resp, body) {
+            jsonData2 = JSON.parse(body2);
+            jsonCasa = JSON.parse(body);
+            console.log(jsonCasa.name);
+            var nTotal = 0;
+            var Ncasa = jsonCasa.name;
+            var totalSensores = 0;
+            var totalDivi = 0;
+
+            var options = {
+                uri: 'http://localhost:8080/Entradas',
+                method: 'POST',
+                json: {
+
+                    "id_house": casa1
+
+                }
+            };
+            console.log(casa1);
+
+            console.log(options.json);
+
+
+
+            jsonData2 = JSON.parse(body2);
+            for (var v of jsonData2) {
+                if (v.id_house == casa1) {
+                    totalDivi = totalDivi + 1;
+                    console.log(v.sensor_id)
+                    if (v.sensor_id == 0) {
+
+
+                    } else {
+                        totalSensores = totalSensores + 1
+                    }
+
+                }
+
+            }
+
+            var graph = [];
+            req(options, function(error, resp, entradas) {
+                var finalVar;
+                var a = entradas;
+                var i = 0;
+                for (var t = 0; t < entradas.reg_date.length; t++) {
+                    finalVar = entradas.reg_date[t];
+
+                    graph.push({
+                        'account': entradas.username[i],
+                        'data': finalVar
+                    });
+
+                    i++;
+                }
+
+                response.set("Content-Type", "text/html");
+                response.render('./log', {
+                    id: id,
+                    casa1: casa1,
+                    jsonData2: jsonData2,
+                    nTotal,
+                    Ncasa,
+                    totalSensores: totalSensores,
+                    graph: graph,
+                    totalDivi: totalDivi
+                });
+
+            });
+        });
+
+    });
 });
 
 module.exports = router;

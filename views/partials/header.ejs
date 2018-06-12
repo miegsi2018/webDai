@@ -50,7 +50,7 @@
 
 </head>
 
-<body>
+<body onload="refresh()">
 
     <div class="wrapper">
         <div class="sidebar" data-background-color="black" data-active-color="warning">
@@ -87,7 +87,7 @@
                         </a>
                     </li> -->
                     <li>
-                        <a href="/room/<%= casa1 %>">
+                        <a href="/room/<%= casa1 %>" style="display: none">
                             <i class="ti-layout-grid2"></i>
                             <p>Rooms</p>
                         </a>
@@ -97,6 +97,13 @@
                         <a href="/card/<%= casa1 %>">
                             <i class="ti-layout-grid2"></i>
                             <p>Cards</p>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/log/<%= casa1 %>">
+                            <i class="ti-credit-card"></i>
+                            <p>Logs</p>
                         </a>
                     </li>
 
@@ -133,15 +140,7 @@
                                 </a>
 
                             </li>
-                            <li>
-                                <a href="/profile/<%= casa1 %>/create">
-                                    <i class="ti-id-badge"></i>
 
-                                    <p>Edit Account</p>
-
-                                </a>
-
-                            </li>
                             <li>
                                     <a href="/logout">
                                         <i class="ti-power-off"></i>

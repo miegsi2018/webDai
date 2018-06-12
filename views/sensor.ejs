@@ -170,18 +170,18 @@
 
 
 
-                <div class="col-lg-6 col-sm-6">
-                  <h3 style="display: inline;">Alarm</h3>
-                  <p id="alar"></p>
+                <div class="col-lg-6 col-sm-3">
+                  <h3 style="display: inline; margin-left: 10px;">Alarm</h3>
+                
 
                 </div>
-                <div class="col-lg-6 col-sm-6">
+                <div class="col-lg-6 col-sm-3">
 
-                  <div class="onoffswitch" style="margin-top: 5px;">
-                    <form id="form_myonoffswitch">
+                  <div class="onoffswitch text-center" style="margin-top: 5px;">
+                    <form id="form_myonoffswitch text-center">
                       <input type="text" id="division" value="<%= division %>" hidden>
                       <input type="text" id="armed" value="<%= arm %>" hidden>
-                      <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" onchange="alarm()">
+                      <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox text-center" id="myonoffswitch" onchange="alarm()">
                       <label class="onoffswitch-label" for="myonoffswitch">
                         <span class="onoffswitch-inner"></span>
                         <span class="onoffswitch-switch" style="height: 23px;"></span>
@@ -532,14 +532,14 @@
                   $('#luzAtual').text('light: ' + luz);
                   $('#movAtual').text(movimento);
                   $('#humAtual').text('Humidity: ' + humidade);
-                  $('#alar').text('Alarm State: ' + alarme);
+          
 
 
                   if (movimento == "motion detected") {
                     document.getElementById("Movi").style.color = "green";
-                    $('#movAtual').text('Com Movimento ');
+                    $('#movAtual').text('Motion ');
                   } else {
-                    $('#movAtual').text('Sem Movimento ');
+                    $('#movAtual').text('No Motion ');
                   }
 
 
