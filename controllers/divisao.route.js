@@ -241,7 +241,6 @@ router.post('/:casa/:id_division/edit', function(request, response) {
     var divisao = request.params.id_division;
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-console.log("--------Divisao--------Divisao--------Divisao--------Divisao----------" + divisao)
     var path = 0;
     var teste = 0;
     // if (!request.files)
@@ -275,6 +274,10 @@ console.log("--------Divisao--------Divisao--------Divisao--------Divisao-------
 });
 
 router.get('/:id_division/:casa', function (request, response) {
+ response.header("Access-Control-Allow-Origin", "*");
+ response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+
 
   var id = request.user.email;
   var sensoresUser = new Array();
