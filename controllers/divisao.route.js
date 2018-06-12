@@ -273,6 +273,25 @@ console.log("--------Divisao--------Divisao--------Divisao--------Divisao-------
         response.redirect('/room/' + casa1);
     });
 });
+router.post('/:casa/delete', function(request, response) {
+
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    var id_casa = request.params.casa;
+    var options = {
+        uri: 'http://localhost:8080/house/delete/228',
+        method: 'DELETE',
+        json: {
+            
+
+        }
+       
+       
+    };
+
+    response.redirect('/house')
+
+});
 
 router.get('/:id_division/:casa', function (request, response) {
 
@@ -444,7 +463,30 @@ router.get('/:id_division/:casa/edit', function(request, response) {
 });
 
 
+router.post('/:id_division/:casa/delete', function(request, response) {
 
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    var id_casa = request.params.casa;
+    var id_division = request.params.id_division;
+    console.log("tentativa inicial")
+
+    var options = {
+        uri: 'http://localhost:8080/division/'+ id_division,
+        method: 'DELETE',
+        json: {
+            
+
+        }
+       
+    };
+    req(options, function(error, resp, body) {
+
+    })
+console.log("tentativa final")
+    response.redirect('/room/' + id_division)
+
+});
 
 
 module.exports = router;
