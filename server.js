@@ -7,7 +7,7 @@ const validator = require('express-validator');
 const engines = require('consolidate');
 
 var server = require('http').createServer(app);
-global.io = require('socket.io')(server);
+global.io = require('socket.io')(server, { origins: '*:*'});
 
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
