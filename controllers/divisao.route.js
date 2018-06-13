@@ -22,7 +22,7 @@ router.get('/:casa',  global.secure(),  function(request, response) {
                 var nTotal = 0;
                 var Ncasa = jsonCasa.name;
 
-                jsonData2 = JSON.parse(body2)
+                jsonData2 = JSON.parse(body2);
                 console.log(jsonData2);
 
                 jsonDivi = JSON.parse(body);
@@ -253,7 +253,6 @@ router.get('/:id_division/:casa', global.secure(),  function (request, response)
                 var Ncasa = jsonCasa.name;
 
                 var id_sensor;
-                var Ncasa;
                 var arm;
                 for (var e of jsonDivi) {
 
@@ -264,34 +263,34 @@ router.get('/:id_division/:casa', global.secure(),  function (request, response)
                     }
 
                 }
-                console.log("acabou fazes iniciais")
+                console.log("acabou fazes iniciais");
                 console.log(id_sensor);
                 var client = mqtt.connect('mqtt://alvesvitor.ddns.net:80', {
                     username: "dai",
                     password: '12345678'
-                })
-                console.log("Inicio faze cliente")
+                });
+                console.log("Inicio faze cliente");
                 client.on('connect', function () {
-                    console.log('MQTT IS WORKING' + ' ' + 2)
-                    client.subscribe('data/' + id_sensor)
+                    console.log('MQTT IS WORKING' + ' ' + 2);
+                    client.subscribe('data/' + id_sensor);
                     console.log('data/' + id_sensor);
-                    client.publish('presence', 'Hello mqtt')
-                })
-                console.log("Log intermedio")
+                    client.publish('presence', 'Hello mqtt');
+                });
+                console.log("Log intermedio");
                 io.on('connection', function (socket) {
 
                     client.on('message', (topic, measurements) => {
                         console.log(`Received message: '${measurements}'`);
                         socket.emit(topic, measurements.toString());
                         var labels = JSON.parse(measurements);
-                        console.log(labels.measurements)
+                        console.log(labels.measurements);
                     });
                 });
 
 
                 var inicial = new Date();
                 var final = new Date();
-                final.setDate(final.getDate() + 1)
+                final.setDate(final.getDate() + 1);
                 inicial.setDate(inicial.getDate() - 1);
                 var graph = [];
                 console.log(inicial);
