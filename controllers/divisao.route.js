@@ -267,11 +267,9 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                     username: "dai",
                     password: '12345678'
                 });
-                console.log("Inicio faze cliente");
                 client.on('connect', function () {
                     console.log('MQTT IS WORKING' + ' ' + 2);
                     client.subscribe('data/' + id_sensor);
-                    console.log('data/' + id_sensor);
                     client.publish('presence', 'Hello mqtt')
                 })
 		    
@@ -318,28 +316,23 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                     }
                 };
 
-                var avgHum = {
-                    uri: 'http://localhost:8080/avgHum',
-                    method: 'POST',
-                    json: {
-                        "dataI": inicial,
-                        "dataF": final,
-                        "device": sensor_formatted
-                    }
-                };
-
                 console.log(options.json);
 
+		var avgTemp; 
+		var avgHum;
                 var finalVar;
                 req(options, function (error, resp, body) {
-                    console.log(body);
+			avgTemp = body.tempHum.temp;
+
+
+			    console.log("temp:  "+ avgTemp);
+			avgHum = body.tempHum.hum;
                     var a = body;
                     for (var t = 0; t < body.temp.length; t++) {
                         finalVar = body.temp[t];
                         finalVar = finalVar.replace(/^"(.*)"$/, '$1');
 			var finalTemp = body.data[i];
 			 finalTemp = finalTemp.substring(10,19);
-                        console.log(finalVar);
 
                         graph.push({
                             'data': finalTemp,
@@ -349,11 +342,6 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                         i++;
                     }
 
-                    req(avgTemp, function (error, resp, body) {
-                        var avgTemp = body;
-
-                        req(avgHum, function (error, resp, body) {
-                            var avgHum = body;
                             response.set("Content-Type", "text/html");
                             response.render('./sensor', {
                                 id: id,
@@ -364,16 +352,14 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                                 graph: graph,
                                 Ncasa,
                                 arm: arm,
-                                avgTemp: avgTemp.toFixed(2),
-                                avgHum: avgHum.toFixed(2)
+                                avgTemp: avgTemp,
+                                avgHum: avgHum
                             });
                         });
                     });
-                });
             });
         });
     });
-});
 
 router.get('/:id_division/:casa/edit', global.secure(), function (request, response) {
     var id = request.user.email;
