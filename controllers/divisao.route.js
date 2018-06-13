@@ -474,7 +474,7 @@ router.post('/addQR', function (request, response) {
     req(options, function (error, resp, body) {
         
     })
-    response.redirect('/house')
+
 });
 
 router.post('/addnewroom', function (request, response) {
@@ -494,7 +494,7 @@ router.post('/addnewroom', function (request, response) {
     req(options, function (error, resp, body) {
         
     })
-    response.redirect('/house')
+
 });
 
 router.post('/turnRelay', function (request, response) {
