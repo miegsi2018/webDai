@@ -203,7 +203,7 @@
 
                         $.ajax({
                           type: "POST",
-                          url: "http://localhost:8080/division/arm",
+                          url: "/room/turnAlarm",
                           data: JSON.stringify(data),
                           contentType: "application/json; charset=utf-8",
                           dataType: "json",
@@ -411,7 +411,7 @@
                   
                   $.ajax({
                     type: "POST",
-                    url: "http://localhost:8080/changeLight",
+                    url: "/room/turnRelay",
                     data: JSON.stringify(data),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -434,7 +434,7 @@
 
                   $.ajax({
                     type: "POST",
-                    url: "http://localhost:8080/changeLight",
+                    url: "/room/turnRelay",
                     data: JSON.stringify(data),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
