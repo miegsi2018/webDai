@@ -7,7 +7,7 @@ const validator = require('express-validator');
 const engines = require('consolidate');
 
 var server = require('http').createServer(app);
-global.io = require('socket.io')(server, { origins: '*:*'});
+global.io = require('socket.io')(server);
 
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -15,6 +15,7 @@ const passport = require('passport');
 const userModel = require('./models/user.model');
 
 var restServer = 'http://localhost:8080/';
+io.origins('*:*') // for latest version
 
 
 
@@ -33,7 +34,6 @@ global.secure = function() {
 };
 };
 //end of 
-
 
 
 

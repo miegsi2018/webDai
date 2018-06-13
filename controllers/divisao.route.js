@@ -264,8 +264,6 @@ router.get('/:id_division/:casa', global.secure(),  function (request, response)
                     }
 
                 }
-                console.log("acabou fazes iniciais")
-                console.log(id_sensor);
                 var client = mqtt.connect('mqtt://alvesvitor.ddns.net:80', {
                     username: "dai",
                     password: '12345678'
@@ -277,7 +275,6 @@ router.get('/:id_division/:casa', global.secure(),  function (request, response)
                     console.log('data/' + id_sensor);
                     client.publish('presence', 'Hello mqtt')
                 })
-                console.log("Log intermedio")
                 io.on('connection', function (socket) {
 
                     client.on('message', (topic, measurements) => {
@@ -319,10 +316,12 @@ router.get('/:id_division/:casa', global.secure(),  function (request, response)
                     for (var t = 0; t < body.temp.length; t++) {
                         finalVar = body.temp[t];
                         finalVar = finalVar.replace(/^"(.*)"$/, '$1');
+			var finalTemp = body.data[i];
+			 finalTemp = finalTemp.substring(10,19);
                         console.log(finalVar);
 
                         graph.push({
-                            'data': body.data[i],
+                            'data': finalTemp,
                             'temperature': finalVar
                         });
 
