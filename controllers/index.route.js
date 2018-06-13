@@ -212,6 +212,7 @@ router.get('/house', global.secure(), function(request, response, body) {
 
             var casa = [];
             var casaN = [];
+            var ca = 0;
             if (jsonData2.length >= 1) {
                 casa.push(jsonData2[0].id_house);
 
@@ -224,6 +225,7 @@ router.get('/house', global.secure(), function(request, response, body) {
                             if (casa != jsonData2[i].id_house) {
                                 casa.push(jsonData2[i].id_house);
                                 casaN.push(jsonData2[i].house);
+                                ca = ca + 1;
 
                             }
 
@@ -244,7 +246,8 @@ router.get('/house', global.secure(), function(request, response, body) {
                 casaN: casaN,
                 jsonData2: jsonData2,
                 jsonCasa: jsonCasa,
-                account: account
+                account: account,
+                ca: ca
             });
         });
     });
