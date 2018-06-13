@@ -1,4 +1,3 @@
-const port = 8000;
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
@@ -28,7 +27,8 @@ global.secure = function() {
 
         } else {
 
-            request.session.returnTo = request.path;
+            request.session.returnTo = request.originalUrl;
+		console.log(request.originalUrl);
             response.redirect('/login');
         }
 };
@@ -79,14 +79,6 @@ global.connection = mysql.createConnection({
     }
 });
 
-app.listen(8000, function() {
-
-
-
-
-    console.log('Server started at: ' + port);
-
-});
 
 //Midleware that sets the isAuthenticated variable in all views
 
@@ -111,6 +103,3 @@ app.use('/room', require('./controllers/divisao.route'));
 
 app.use('/logout', require('./controllers/logout.route'));
 app.use('/card', require('./controllers/card.route'));
-app.all('room/*', function(req, res) {
-	  res.redirect("/house");
-});

@@ -8,6 +8,7 @@ var userData;
 router.use(fileUpload());
 
 
+
 router.get('/:casa', global.secure(), function (request, response) {
     var id = request.user.email;
     var casa1 = request.params.casa;
