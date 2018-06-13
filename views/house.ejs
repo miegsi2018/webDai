@@ -136,13 +136,12 @@
                     <div class="row">
                             <%  if(ca == 0){ %>
                                 <h1 class="text-center">You don't Have any Houses. Create one pls.</h1>
-                                <% }else{ %>
+                                <% }else{    %>
+                                
                         <% for(var i = 0; i < jsonCasa.length; i++){ %>
-
-                            <% if(jsonCasa[i].account_id === account){ %>
-                                <%  if(jsonCasa.length == 0){ %>
-                                    <h1>Não Tem Divisões Ainda. Por Favor Crie Uma Divisão</h1>
-                                    <% }else{ %>
+                          
+                            <% if(jsonCasa[i].account_id == account){ %>
+                                
                                        
                                                 <li style="list-style-type: none; z-index: 1;">
                                                     <div class="col-lg-4 col-sm-6">
@@ -170,9 +169,13 @@
                                                 </li>
                                        
                                                     <% } %>
+                                                   
                                                         <% } %>
-                                                            <% } %>
-                                                            <% } %>
+                                                        <% } %>
+                                                    
+                                              
+                                                          
+                                                            
 
 
                     </div>

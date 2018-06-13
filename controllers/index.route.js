@@ -203,12 +203,15 @@ router.get('/house', global.secure(), function(request, response, body) {
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
     var id = request.user.email;
+    var id_user = request.user.id_user;
     var account = request.user.account;
 
     req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
         req.get('http://localhost:8080/house/', function(error, resp, body) {
+            req.get('http://localhost:8080/utilizador/' + id_user, function(error, resp, body3) {
             jsonData2 = JSON.parse(body2);
             jsonCasa = JSON.parse(body);
+            jsonUser = JSON.parse(body3);
 
             var casa = [];
             var casaN = [];
@@ -217,25 +220,18 @@ router.get('/house', global.secure(), function(request, response, body) {
                 casa.push(jsonData2[0].id_house);
 
                 casaN.push(jsonData2[0].house);
-                for (var i = 0; i < jsonData2.length; i++) {
-
-                    for (var i = 1; i < jsonData2.length; i++) {
-
-                        if (jsonData2[i - 1].id_house != jsonData2[i].id_house) {
-                            if (casa != jsonData2[i].id_house) {
-                                casa.push(jsonData2[i].id_house);
-                                casaN.push(jsonData2[i].house);
-                                ca = ca + 1;
-
-                            }
-
-                        }
+                
+                
+            }
+            for (var i = 0; i < jsonCasa.length; i++) {
+                    if(jsonCasa[i].account_id == account){
+                        ca = ca + 1;
                     }
-                }
+                  
             }
 
 
-
+console.log(jsonData2.length)
 
 
 
@@ -252,6 +248,7 @@ router.get('/house', global.secure(), function(request, response, body) {
         });
     });
 
+});
 });
 
 
