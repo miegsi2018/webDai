@@ -18,8 +18,8 @@
         // Funcao que faz um post em AJAX para adicionar uma divisão nova com um sensor atraves de QR Code
         function submitWhithQR() {
              data = {
-		     "sensor_id": "<%=id_sensor%>",
-                 "id_division":  $('#sel1').val(),
+		        "sensor_id": "<%=id_sensor%>",
+                "id_division":  $('#sel1').val(),
              }
 
             $.ajax({
@@ -27,7 +27,6 @@
                 url: "/room/addQR",
                 data: JSON.stringify(data),
                 contentType: "application/json; charset=utf-8",
-
                 dataType: "json",
                 success: function () {}
             })
@@ -42,11 +41,11 @@
             data = {
                 "id_house": $('#sel2').val(),
                 "name": document.getElementById("room").value,
-		    "sensor_id": "<%=id_sensor%>"
+		        "sensor_id": "<%=id_sensor%>"
             }
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/division",
+                url: "/room/addnewroom",
                 data: JSON.stringify(data),
                 contentType: "application/json; charset=utf-8",
 
