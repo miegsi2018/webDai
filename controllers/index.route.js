@@ -51,7 +51,7 @@ router.get('/login', function(request, response) {
         console.log(body);
         var a = body;
         for (var t = 0; t < body.temp.length; t++) {
-            console.log('fds');
+          
             console.log(body.data[i]);
             i++;
             graph.push({
@@ -315,7 +315,7 @@ router.post('/house/create', function(request, response, body) {
 });
 
 
-router.get('/house/edit/:casa', function(request, response, body) {
+router.get('/house/edit/:casa', global.secure(),  function(request, response, body) {
     //console.log(request.isAuthenticated());
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -350,7 +350,7 @@ router.get('/house/edit/:casa', function(request, response, body) {
 });
 
 
-router.post('/house/edit/:casa', function(request, response, body) {
+router.post('/house/edit/:casa',   function(request, response, body) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var errors = request.validationErrors();
@@ -505,27 +505,8 @@ router.get('/home/:casa', global.secure(), function(request, response, body) {
 
 });
 
-// router.post('home/:casa', global.secure(), function(request, response, body) {
-//     response.header("Access-Control-Allow-Origin", "*");
-//     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-//     var options = {
-//         uri: 'http://localhost:8080/avgTemp',
-//         method: 'POST',
-//         json: {
-//             "dataI": request.body.dataI,
-//             "dataF": request.body.dataF
-//         }
-//     };
-
-//     console.log(options.json);
-
-//     req(options, function(error, resp, body) {
-//         console.log(body);
-//         document.getElementById('avg').innerHTML = body;
-//     });
-// });
-router.post('home/:casa', global.secure(), function(request, response, body) {
+router.post('home/:casa', function(request, response, body) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var casa1 = request.params.casa;
