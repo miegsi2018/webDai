@@ -110,8 +110,5 @@ app.use('/room', require('./controllers/divisao.route'));
 
 app.use('/logout', require('./controllers/logout.route'));
 app.use('/card', require('./controllers/card.route'));
-app.use('*', function(req, res){
-  res.redirect('/house');
-});
 
 //new
