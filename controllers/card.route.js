@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 const sensorModel = require('../models/sensor.model');

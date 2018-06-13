@@ -275,6 +275,8 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                     console.log('data/' + id_sensor);
                     client.publish('presence', 'Hello mqtt')
                 })
+		    
+		io.origins('*:*') // for latest version
                 io.on('connection', function (socket) {
 
                     client.on('message', (topic, measurements) => {
