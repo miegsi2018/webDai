@@ -295,8 +295,8 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
 
                 var sensor_formatted = id_sensor.toString();
                 var i = 0;
-
-                var options = {
+                
+		var options = {
                     uri: 'http://localhost:8080/returnGraph',
                     method: 'POST',
                     json: {
@@ -323,27 +323,33 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                 var finalVar;
                 req(options, function (error, resp, body) {
 			avgTemp = body.tempHum.temp;
+			
+			
+			avgHum = body.tempHum.hum;
+			if(avgTemp != null){	
 			avgTemp  = avgTemp.substring(0, 4);
 
 
-
-			    console.log("temp:  "+ avgTemp);
-			avgHum = body.tempHum.hum;
 			avgHum = avgHum.substring(0,4);
+			}
                     var a = body;
                     for (var t = 0; t < body.temp.length; t++) {
                         finalVar = body.temp[t];
                         finalVar = finalVar.replace(/^"(.*)"$/, '$1');
 			var finalTemp = body.data[i];
 			 finalTemp = finalTemp.substring(10,19);
-
+				
                         graph.push({
                             'data': finalTemp,
                             'temperature': finalVar
                         });
-
+			if (i < 500){
                         i++;
+			}else{
+			i =  i + 500;
+			t = t + 499
                     }
+	}
 
                             response.set("Content-Type", "text/html");
                             response.render('./sensor', {
