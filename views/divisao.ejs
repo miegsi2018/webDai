@@ -47,7 +47,15 @@
 
 
                 <%  if(divi.length == 0){ %>
-                    <h1>Não Tem Divisões Ainda. Por Favor Crie Uma Divisão</h1>
+                    <div class="col-lg-1 col-sm-6" >
+                        </div>
+                    <div class="col-lg-10 col-sm-6" >
+                            <h1 class="text-center">You don't have any Rooms. Create one pls.</h1>
+                        </div>
+                        
+                            <div class="col-lg-1 col-sm-6" >
+                                </div>
+                 
                     <% }else{ %>
                         <%  for(var i = 0; i < divi.length; i++){ %>
 
@@ -64,7 +72,7 @@
                                         
                                     <div class="card card-user" onclick="location.href='/room/<%=divi[i].id_division %>/<%= casa1 %>';">
                                         <div class="image">
-                                            <img src="/public/assets/img/div/deafult.jpg" alt="..." />
+                                            <img src="/public/assets/img/room.jpg" alt="..." />
                                         </div>
                                         <div class="text-center">
                                             <div class="row">

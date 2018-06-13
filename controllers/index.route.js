@@ -51,7 +51,7 @@ router.get('/login', function(request, response) {
         console.log(body);
         var a = body;
         for (var t = 0; t < body.temp.length; t++) {
-            console.log('fds');
+          
             console.log(body.data[i]);
             i++;
             graph.push({
@@ -203,37 +203,35 @@ router.get('/house', global.secure(), function(request, response, body) {
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
     var id = request.user.email;
+    var id_user = request.user.id_user;
     var account = request.user.account;
 
     req.get('http://localhost:8080/view/' + id, function(error, resp, body2) {
         req.get('http://localhost:8080/house/', function(error, resp, body) {
+            req.get('http://localhost:8080/utilizador/' + id_user, function(error, resp, body3) {
             jsonData2 = JSON.parse(body2);
             jsonCasa = JSON.parse(body);
+            jsonUser = JSON.parse(body3);
 
             var casa = [];
             var casaN = [];
+            var ca = 0;
             if (jsonData2.length >= 1) {
                 casa.push(jsonData2[0].id_house);
 
                 casaN.push(jsonData2[0].house);
-                for (var i = 0; i < jsonData2.length; i++) {
-
-                    for (var i = 1; i < jsonData2.length; i++) {
-
-                        if (jsonData2[i - 1].id_house != jsonData2[i].id_house) {
-                            if (casa != jsonData2[i].id_house) {
-                                casa.push(jsonData2[i].id_house);
-                                casaN.push(jsonData2[i].house);
-
-                            }
-
-                        }
+                
+                
+            }
+            for (var i = 0; i < jsonCasa.length; i++) {
+                    if(jsonCasa[i].account_id == account){
+                        ca = ca + 1;
                     }
-                }
+                  
             }
 
 
-
+console.log(jsonData2.length)
 
 
 
@@ -244,11 +242,13 @@ router.get('/house', global.secure(), function(request, response, body) {
                 casaN: casaN,
                 jsonData2: jsonData2,
                 jsonCasa: jsonCasa,
-                account: account
+                account: account,
+                ca: ca
             });
         });
     });
 
+});
 });
 
 
@@ -315,7 +315,7 @@ router.post('/house/create', function(request, response, body) {
 });
 
 
-router.get('/house/edit/:casa', function(request, response, body) {
+router.get('/house/edit/:casa', global.secure(),  function(request, response, body) {
     //console.log(request.isAuthenticated());
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -350,7 +350,7 @@ router.get('/house/edit/:casa', function(request, response, body) {
 });
 
 
-router.post('/house/edit/:casa', function(request, response, body) {
+router.post('/house/edit/:casa',   function(request, response, body) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var errors = request.validationErrors();
@@ -505,27 +505,8 @@ router.get('/home/:casa', global.secure(), function(request, response, body) {
 
 });
 
-// router.post('home/:casa', global.secure(), function(request, response, body) {
-//     response.header("Access-Control-Allow-Origin", "*");
-//     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-//     var options = {
-//         uri: 'http://localhost:8080/avgTemp',
-//         method: 'POST',
-//         json: {
-//             "dataI": request.body.dataI,
-//             "dataF": request.body.dataF
-//         }
-//     };
-
-//     console.log(options.json);
-
-//     req(options, function(error, resp, body) {
-//         console.log(body);
-//         document.getElementById('avg').innerHTML = body;
-//     });
-// });
-router.post('home/:casa', global.secure(), function(request, response, body) {
+router.post('home/:casa', function(request, response, body) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var casa1 = request.params.casa;

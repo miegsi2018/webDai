@@ -81,20 +81,5 @@ router.post('/rfidAdd', global.secure(), function(request, response) {
 
 
 
-// var options = {
-//             uri: 'http://localhost:8080/rfidAdd',
-//             method: 'POST',
-//             json: {
-//
-//
-//                 "tag": tag,
-//                 "user_id": request.user.id_user,
-//                 "id_division": request.body.division
-//             }
-//         };
-//
-//
-//
-/*  */
 
 module.exports = router;

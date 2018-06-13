@@ -134,13 +134,14 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-
+                            <%  if(ca == 0){ %>
+                                <h1 class="text-center">You don't have any Houses. Create one pls.</h1>
+                                <% }else{    %>
+                                
                         <% for(var i = 0; i < jsonCasa.length; i++){ %>
-
-                            <% if(jsonCasa[i].account_id === account){ %>
-                                <%  if(jsonCasa.length == 0){ %>
-                                    <h1>Não Tem Divisões Ainda. Por Favor Crie Uma Divisão</h1>
-                                    <% }else{ %>
+                          
+                            <% if(jsonCasa[i].account_id == account){ %>
+                                
                                        
                                                 <li style="list-style-type: none; z-index: 1;">
                                                     <div class="col-lg-4 col-sm-6">
@@ -152,7 +153,7 @@
                                                         </div>
 
                                                         <div class="card card-user" onclick="location.href='/home/<%= jsonCasa[i].id_house %>';">
-                                                            <div class="image" style="background: url('/public/assets/img/casas/default.jpg');  background-repeat: no-repeat; background-size: 100% 100%;">
+                                                            <div class="image" style="background: url('/public/assets/img/house.jpg');  background-repeat: no-repeat; background-size: 100% 100%;">
                                                             </div>
                                                             <div class="text-center">
                                                                 <div class="row">
@@ -168,8 +169,13 @@
                                                 </li>
                                        
                                                     <% } %>
+                                                   
                                                         <% } %>
-                                                            <% } %>
+                                                        <% } %>
+                                                    
+                                              
+                                                          
+                                                            
 
 
                     </div>
