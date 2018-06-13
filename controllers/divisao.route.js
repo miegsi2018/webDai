@@ -8,7 +8,7 @@ var userData;
 router.use(fileUpload());
 
 
-router.get('/:casa',  global.secure(),  function(request, response) {
+router.get('/:casa', global.secure(), function (request, response) {
     var id = request.user.email;
     var casa1 = request.params.casa;
 
@@ -47,7 +47,7 @@ router.get('/:casa',  global.secure(),  function(request, response) {
 
                     }
                 }
-          
+
 
                 response.set("Content-Type", "text/html");
                 response.render('./divisao', {
@@ -91,7 +91,7 @@ router.post('/:casa/regi', function (request, response) {
 
     var path = 0;
     var teste = 0;
-    
+
     var options = {
         uri: 'http://localhost:8080/division',
         method: 'POST',
@@ -113,7 +113,7 @@ router.post('/:casa/regi', function (request, response) {
 });
 
 
-router.get('/:casa/add', global.secure(),  function (request, response) {
+router.get('/:casa/add', global.secure(), function (request, response) {
     var id = request.user.email;
     var casa1 = request.params.casa;
 
@@ -140,7 +140,7 @@ router.get('/:casa/add', global.secure(),  function (request, response) {
     });
 });
 
-router.get('/:casa/:id_division/edit', global.secure(),  function (request, response) {
+router.get('/:casa/:id_division/edit', global.secure(), function (request, response) {
     var id = request.user.email;
     var casa1 = request.params.casa;
     var divisao = request.params.id_division;
@@ -229,9 +229,9 @@ router.post('/:casa/delete', function (request, response) {
 
 });
 
-router.get('/:id_division/:casa', global.secure(),  function (request, response) {
- response.header("Access-Control-Allow-Origin", "*");
- response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+router.get('/:id_division/:casa', global.secure(), function (request, response) {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
 
 
@@ -310,6 +310,26 @@ router.get('/:id_division/:casa', global.secure(),  function (request, response)
                     }
                 };
 
+                var avgTemp = {
+                    uri: 'http://localhost:8080/avgTemp',
+                    method: 'POST',
+                    json: {
+                        "dataI": inicial,
+                        "dataF": final,
+                        "device": sensor_formatted
+                    }
+                };
+
+                var avgHum = {
+                    uri: 'http://localhost:8080/avgHum',
+                    method: 'POST',
+                    json: {
+                        "dataI": inicial,
+                        "dataF": final,
+                        "device": sensor_formatted
+                    }
+                };
+
                 console.log(options.json);
 
                 var finalVar;
@@ -329,18 +349,25 @@ router.get('/:id_division/:casa', global.secure(),  function (request, response)
                         i++;
                     }
 
-                    console.log(graph);
+                    req(avgTemp, function (error, resp, body) {
+                        var avgTemp = body;
 
-                    response.set("Content-Type", "text/html");
-                    response.render('./sensor', {
-                        id: id,
-                        casa1: casa1,
-                        division: division,
-                        jsonData2: jsonData2,
-                        id_sensor: id_sensor,
-                        graph: graph,
-                        Ncasa,
-                        arm: arm
+                        req(avgHum, function (error, resp, body) {
+                            var avgHum = body;
+                            response.set("Content-Type", "text/html");
+                            response.render('./sensor', {
+                                id: id,
+                                casa1: casa1,
+                                division: division,
+                                jsonData2: jsonData2,
+                                id_sensor: id_sensor,
+                                graph: graph,
+                                Ncasa,
+                                arm: arm,
+                                avgTemp: avgTemp.toFixed(2),
+                                avgHum: avgHum.toFixed(2)
+                            });
+                        });
                     });
                 });
             });
@@ -348,7 +375,7 @@ router.get('/:id_division/:casa', global.secure(),  function (request, response)
     });
 });
 
-router.get('/:id_division/:casa/edit', global.secure(),  function(request, response) {
+router.get('/:id_division/:casa/edit', global.secure(), function (request, response) {
     var id = request.user.email;
     var sensoresUser = new Array();
     var casa1 = request.params.casa;
@@ -378,7 +405,7 @@ router.get('/:id_division/:casa/edit', global.secure(),  function(request, respo
 
                 id_sensor = e.sensor_id;
                 nome_divisao = e.division;
-                id_casa = e. id_house;
+                id_casa = e.id_house;
 
 
             }
@@ -398,7 +425,7 @@ router.get('/:id_division/:casa/edit', global.secure(),  function(request, respo
             jsonData2: jsonData2,
             id_sensor: id_sensor,
             nome_divisao: nome_divisao,
-            id_casa : id_casa,
+            id_casa: id_casa,
             Ncasa
         });
     });
@@ -454,52 +481,52 @@ router.post('/addnewroom', function (request, response) {
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     console.log('------------HOUSE: ' + request.body.id_house + '||||| SENSOR: ' + request.body.sensor_id + '||||| NAME: ' + request.body.name);
     var options = {
-         uri: "http://localhost:8080/division/",
-         method: "POST",
-         json: {
-             "id_house": request.body.id_house,
-             "name": request.body.name,
-             "sensor_id": request.body.sensor_id
-         }
-     }
+        uri: "http://localhost:8080/division/",
+        method: "POST",
+        json: {
+            "id_house": request.body.id_house,
+            "name": request.body.name,
+            "sensor_id": request.body.sensor_id
+        }
+    }
 
-     req(options, function (error, resp, body) {
+    req(options, function (error, resp, body) {
 
-     })
+    })
 });
 
 router.post('/turnRelay', function (request, response) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var options = {
-         uri: "http://localhost:8080/changeLight",
-         method: "POST",
-         json: {
-             "topic": request.body.topic,
-             "message": request.body.message
-         }
-     }
+        uri: "http://localhost:8080/changeLight",
+        method: "POST",
+        json: {
+            "topic": request.body.topic,
+            "message": request.body.message
+        }
+    }
 
-     req(options, function (error, resp, body) {
+    req(options, function (error, resp, body) {
 
-     })
+    })
 });
 
 router.post('/turnAlarm', function (request, response) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var options = {
-         uri: "http://localhost:8080/division/arm",
-         method: "POST",
-         json: {
-             "id_division": request.body.id_division,
-             "armed": request.body.armed
-         }
-     }
+        uri: "http://localhost:8080/division/arm",
+        method: "POST",
+        json: {
+            "id_division": request.body.id_division,
+            "armed": request.body.armed
+        }
+    }
 
-     req(options, function (error, resp, body) {
+    req(options, function (error, resp, body) {
 
-     })
+    })
 });
 
 module.exports = router;
