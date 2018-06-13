@@ -139,7 +139,7 @@ router.get('/:casa/add', global.secure(),  function (request, response) {
         });
     });
 });
-});
+
 router.get('/:casa/:id_division/edit', global.secure(),  function (request, response) {
     var id = request.user.email;
     var casa1 = request.params.casa;
