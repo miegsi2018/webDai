@@ -323,10 +323,13 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                 var finalVar;
                 req(options, function (error, resp, body) {
 			avgTemp = body.tempHum.temp;
+			avgTemp  = avgTemp.substring(0, 4);
+
 
 
 			    console.log("temp:  "+ avgTemp);
 			avgHum = body.tempHum.hum;
+			avgHum = avgHum.substring(0,4);
                     var a = body;
                     for (var t = 0; t < body.temp.length; t++) {
                         finalVar = body.temp[t];
