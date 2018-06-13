@@ -100,6 +100,7 @@ app.use(function(request, response, next) {
 
 
 
+
 server.listen(5000);
 
 
@@ -110,5 +111,3 @@ app.use('/room', require('./controllers/divisao.route'));
 
 app.use('/logout', require('./controllers/logout.route'));
 app.use('/card', require('./controllers/card.route'));
-
-//new

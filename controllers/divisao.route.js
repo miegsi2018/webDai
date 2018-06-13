@@ -267,11 +267,9 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                     username: "dai",
                     password: '12345678'
                 });
-                console.log("Inicio faze cliente");
                 client.on('connect', function () {
                     console.log('MQTT IS WORKING' + ' ' + 2);
                     client.subscribe('data/' + id_sensor);
-                    console.log('data/' + id_sensor);
                     client.publish('presence', 'Hello mqtt')
                 })
 		    
@@ -297,8 +295,8 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
 
                 var sensor_formatted = id_sensor.toString();
                 var i = 0;
-
-                var options = {
+                
+		var options = {
                     uri: 'http://localhost:8080/returnGraph',
                     method: 'POST',
                     json: {
@@ -318,42 +316,41 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                     }
                 };
 
-                var avgHum = {
-                    uri: 'http://localhost:8080/avgHum',
-                    method: 'POST',
-                    json: {
-                        "dataI": inicial,
-                        "dataF": final,
-                        "device": sensor_formatted
-                    }
-                };
-
                 console.log(options.json);
 
+		var avgTemp; 
+		var avgHum;
                 var finalVar;
                 req(options, function (error, resp, body) {
-                    console.log(body);
+			avgTemp = body.tempHum.temp;
+			
+			
+			avgHum = body.tempHum.hum;
+			if(avgTemp != null){	
+			avgTemp  = avgTemp.substring(0, 4);
+
+
+			avgHum = avgHum.substring(0,4);
+			}
                     var a = body;
                     for (var t = 0; t < body.temp.length; t++) {
                         finalVar = body.temp[t];
                         finalVar = finalVar.replace(/^"(.*)"$/, '$1');
 			var finalTemp = body.data[i];
 			 finalTemp = finalTemp.substring(10,19);
-                        console.log(finalVar);
-
+				
                         graph.push({
                             'data': finalTemp,
                             'temperature': finalVar
                         });
-
+			if (i < 500){
                         i++;
+			}else{
+			i =  i + 500;
+			t = t + 499
                     }
+	}
 
-                    req(avgTemp, function (error, resp, body) {
-                        var avgTemp = body;
-
-                        req(avgHum, function (error, resp, body) {
-                            var avgHum = body;
                             response.set("Content-Type", "text/html");
                             response.render('./sensor', {
                                 id: id,
@@ -364,16 +361,14 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                                 graph: graph,
                                 Ncasa,
                                 arm: arm,
-                                avgTemp: avgTemp.toFixed(2),
-                                avgHum: avgHum.toFixed(2)
+                                avgTemp: avgTemp,
+                                avgHum: avgHum
                             });
                         });
                     });
-                });
             });
         });
     });
-});
 
 router.get('/:id_division/:casa/edit', global.secure(), function (request, response) {
     var id = request.user.email;
