@@ -108,7 +108,7 @@ router.post('/:casa/regi', function (request, response) {
 
 
         console.log(resp);
-        response.redirect('/room/' + casa1);
+        response.redirect('/home/' + casa1);
     });
 });
 
@@ -206,7 +206,7 @@ router.post('/:casa/:id_division/edit', function (request, response) {
     };
 
     req(options, function (error, resp, body) {
-        response.redirect('/room/' + casa1);
+        response.redirect('/home/' + casa1);
     });
 });
 router.post('/:casa/delete', function (request, response) {
@@ -427,7 +427,7 @@ router.post('/:id_division/:casa/delete', function (request, response) {
 
     })
     console.log("tentativa final")
-    response.redirect('/room/' + id_casa)
+    response.redirect('/home/' + id_casa)
 
 });
 
