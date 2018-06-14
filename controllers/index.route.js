@@ -379,18 +379,6 @@ router.post('/house/edit/:casa',   function(request, response, body) {
 
 
 
-
-
-
-        Jimp.read('./public/assets/img/casas/' + account + "-" + nome + '.jpg', function(err, lenna) {
-            if (err) throw err;
-            lenna.resize(480, 320) // resize
-                .quality(100) // set JPEG quality
-                // set greyscale
-                .write('./public/assets/img/casas/' + account + "-" + request.body.name + '.jpg'); // save
-            console.log("imagem resized")
-        });
-
         var options = {
             uri: 'http://localhost:8080/house/' + casa1,
             method: 'POST',

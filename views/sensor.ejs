@@ -148,7 +148,7 @@
 
       <div class="row">
         <div class="col-lg-4 col-sm-6 text-center">
-          <button type="submit" class="btn btn-info btn-fill btn-wd" style="width: 60%; margin-top: 20px; margin-bottom: 10px;" onclick="location.href='/room/<%= casa1 %>';">Back to your rooms</button>
+          <button type="submit" class="btn btn-info btn-fill btn-wd" style="width: 60%; margin-top: 20px; margin-bottom: 10px;" onclick="location.href='/home/<%= casa1 %>';">Back to your rooms</button>
           <br>
         </div>
         <div class="col-lg-2 col-sm-6">
@@ -331,6 +331,7 @@
 
           </div>
         </div>
+        </div>
       <div class="row">
         <div class="col-lg-6 col-sm-6">
           <div class="card">
@@ -367,7 +368,9 @@
               <div id="collapse-3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-3">
                 <div class="panel-body text-center">
                   <hr>
-
+                  <p id="luzAtual"></p>
+                  <hr>
+                  
                   <div class="pretty p-default p-curve p-toggle">
                     <input type="checkbox" onchange="turnRelay1()" id="relay1"/>
                     <div class="state p-success p-on" >
@@ -380,6 +383,7 @@
 
                  
                   <div class="pretty p-default p-curve p-toggle">
+                  
                     <input type="checkbox" onclick="turnRelay2()" id="relay2"/>
                     <div class="state p-success p-on" >
                       <label>Relay On</label>
