@@ -19,6 +19,7 @@
         function submitWhithQR() {
              data = {
 		        "sensor_id": "<%=id_sensor%>",
+		     "type": "<%=type%>",
                 "id_division":  $('#sel1').val(),
              }
 
@@ -40,8 +41,9 @@
         function createRoom() {
             data = {
                 "id_house": $('#sel2').val(),
+		"type": "<%=type%>",
                 "name": document.getElementById("room").value,
-		        "sensor_id": "<%=id_sensor%>"
+	        "sensor_id": "<%=id_sensor%>"
             }
             $.ajax({
                 type: "POST",

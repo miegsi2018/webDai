@@ -114,7 +114,7 @@
           title: 'Temperatura nas últimas 24 Horas',
           hAxis: {
             slantedText: 1,
-            showTextEvery: 300,
+            showTextEvery: 500,
             title: 'Date',
             titleTextStyle: {
               color: '#333'
@@ -523,7 +523,7 @@
                   document.getElementById("myonoffswitch").checked = true;
                 }
 
-                var socket = io.connect('http://localhost:5000');
+                var socket = io.connect();
                 socket.on('data/<%= id_sensor%>', function (measurements) {
                   var labels = JSON.parse(measurements);
 

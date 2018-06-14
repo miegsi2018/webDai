@@ -1,4 +1,3 @@
-const port = 8000;
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
@@ -7,7 +6,7 @@ const validator = require('express-validator');
 const engines = require('consolidate');
 
 var server = require('http').createServer(app);
-global.io = require('socket.io')(server, { origins: '*:*'});
+global.io = require('socket.io')(server);
 
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -15,6 +14,7 @@ const passport = require('passport');
 const userModel = require('./models/user.model');
 
 var restServer = 'http://localhost:8080/';
+io.origins('*:*') // for latest version
 
 
 
@@ -27,13 +27,13 @@ global.secure = function() {
 
         } else {
 
-            request.session.returnTo = request.path;
+            request.session.returnTo = request.originalUrl;
+		console.log(request.originalUrl);
             response.redirect('/login');
         }
 };
 };
 //end of 
-
 
 
 
@@ -79,14 +79,6 @@ global.connection = mysql.createConnection({
     }
 });
 
-app.listen(8000, function() {
-
-
-
-
-    console.log('Server started at: ' + port);
-
-});
 
 //Midleware that sets the isAuthenticated variable in all views
 
@@ -95,6 +87,7 @@ app.use(function(request, response, next) {
     response.locals.isAuthenticated = request.isAuthenticated();
     next();
 });
+
 
 
 
@@ -110,8 +103,3 @@ app.use('/room', require('./controllers/divisao.route'));
 
 app.use('/logout', require('./controllers/logout.route'));
 app.use('/card', require('./controllers/card.route'));
-app.use('*', function(req, res){
-  res.redirect('/house');
-});
-
-//new

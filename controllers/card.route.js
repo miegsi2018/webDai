@@ -1,3 +1,4 @@
+
 const express = require('express');
 const router = express.Router();
 const sensorModel = require('../models/sensor.model');
@@ -5,6 +6,7 @@ const divisaoModel = require('../models/divisao.model');
 const req = require('request');
 var userData;
 var userData2 = [];
+
 
 router.get('/:casa', global.secure(), function(request, response) {
     //console.log(request.isAuthenticated());
