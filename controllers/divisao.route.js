@@ -392,12 +392,12 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                 }else{
                     
                     response.set("Content-Type", "text/html");
-                    response.render('./sensor', {
+                    response.render('./sensor_2', {
                         id: id,
                         casa1: casa1,
                         division: division,
                         jsonData2: jsonData2,
-                        id_sensor: id_sensor,
+                        sensor_id: id_sensor,
                         Ncasa,
                         arm: arm
                     });
