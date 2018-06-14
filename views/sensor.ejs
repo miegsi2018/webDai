@@ -288,13 +288,13 @@
 
 
 
-              <div class="dropdown-heading" role="tab" id="heading-2">
-
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
+              <div class="dropdown-heading" role="tab" id="heading-4">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-4" aria-expanded="true" aria-controls="collapse-4">
 
 
                   <div class="row">
-                    <h3 style="text-align: center;">Motion</h3>
+                    <h3 style="text-align: center;">Humidity</h3>
+                    
 
 
                     <div class="col-xs-4">
@@ -302,7 +302,7 @@
                     </div>
                     <div class="col-xs-4">
                       <div class="icon-big icon-warning text-center">
-                        <i id="Movi" class="fas fa-street-view" style="color: Grey   ;"></i>
+                        <i class="fas fa-tint" style="color: DeepSkyBlue   ;"></i>
                       </div>
                     </div>
                     <div class="col-xs-4">
@@ -314,20 +314,23 @@
               </div>
 
 
-              <div id="collapse-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-2">
+              <div id="collapse-4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-4">
                 <div class="panel-body">
                   <hr>
                   <!-- <p>Estado: <i class="fas fa-check" style="color: green;"></i></p> -->
-                  <p id="movAtual"></p>
+                  <p id="humAtual"></p>
+                  <p>Average humidity in the last 24 hours: <%= avgHum %></p>
                 </div>
               </div>
 
 
 
+
             </div>
+
+
           </div>
         </div>
-      </div>
       <div class="row">
         <div class="col-lg-6 col-sm-6">
           <div class="card">
@@ -447,19 +450,20 @@
           </div>
         </div>
 
+
         <div class="col-lg-6 col-sm-6">
           <div class="card">
             <div class="content">
 
 
 
-              <div class="dropdown-heading" role="tab" id="heading-4">
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-4" aria-expanded="true" aria-controls="collapse-4">
+              <div class="dropdown-heading" role="tab" id="heading-2">
+
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
 
 
                   <div class="row">
-                    <h3 style="text-align: center;">Humidity</h3>
-                    
+                    <h3 style="text-align: center;">Motion</h3>
 
 
                     <div class="col-xs-4">
@@ -467,7 +471,7 @@
                     </div>
                     <div class="col-xs-4">
                       <div class="icon-big icon-warning text-center">
-                        <i class="fas fa-tint" style="color: DeepSkyBlue   ;"></i>
+                        <i id="Movi" class="fas fa-street-view" style="color: Grey   ;"></i>
                       </div>
                     </div>
                     <div class="col-xs-4">
@@ -479,24 +483,20 @@
               </div>
 
 
-              <div id="collapse-4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-4">
+              <div id="collapse-2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-2">
                 <div class="panel-body">
                   <hr>
                   <!-- <p>Estado: <i class="fas fa-check" style="color: green;"></i></p> -->
-                  <p id="humAtual"></p>
-                  <p>Average humidity in the last 24 hours: <%= avgHum %></p>
+                  <p style="margin-bottom: 0px;" id="movAtual"></p>
                 </div>
               </div>
 
 
 
-
             </div>
-
-
           </div>
         </div>
-
+      </div>
 
 
       </div>
