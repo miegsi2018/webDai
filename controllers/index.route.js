@@ -120,7 +120,7 @@ router.post('/add/add/:id_sensor', global.secure(), function(request, response) 
 
 
 
-router.get('/add/:id_sensor', global.secure(), function(request, response) {
+router.get('/add/:id_sensor/:type', global.secure(), function(request, response) {
 
 
 
@@ -128,6 +128,7 @@ router.get('/add/:id_sensor', global.secure(), function(request, response) {
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     var id_user = request.user.email;
     var id_sensor = request.params.id_sensor;
+    var type = request.params.type;
     var id_account = request.user.account;
     console.log(id_user);
 
@@ -164,6 +165,8 @@ router.get('/add/:id_sensor', global.secure(), function(request, response) {
             division: division,
             id_division: id_division,
             id_sensor: id_sensor,
+
+            type: type,
 
             casa1: "Nova Casa",
             id: id_user,

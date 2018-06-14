@@ -8,6 +8,7 @@ var userData;
 router.use(fileUpload());
 
 
+
 router.get('/:casa', global.secure(), function (request, response) {
     var id = request.user.email;
     var casa1 = request.params.casa;
@@ -99,7 +100,9 @@ router.post('/:casa/regi', function (request, response) {
             "id_house": casa1,
             "name": request.body.name,
             "sensor_id": request.body.sensor,
-            "path": path,
+
+            "type": request.body.type,
+            "path": path
 
         }
     };
@@ -273,8 +276,8 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                     client.subscribe('data/' + id_sensor);
                     client.publish('presence', 'Hello mqtt')
                 })
-
-                io.origins('*:*') // for latest version
+		    
+		io.origins('*:*');// for latest version
                 io.on('connection', function (socket) {
 
                     client.on('message', (topic, measurements) => {
@@ -476,12 +479,12 @@ router.post('/:id_division/:casa/delete', function (request, response) {
 router.post('/addQR', function (request, response) {
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    console.log('---------------------------------------------------' + request.body.id_division + '\\\\\\' + request.body.sensor_id);
     var options = {
         uri: "http://localhost:8080/division/" + request.body.id_division,
         method: "POST",
         json: {
             "sensor_id": request.body.sensor_id,
+            "type": request.body.type,
             "id_division": request.body.id_division
         }
     }
@@ -502,6 +505,8 @@ router.post('/addnewroom', function (request, response) {
         json: {
             "id_house": request.body.id_house,
             "name": request.body.name,
+
+            "type": request.body.type,
             "sensor_id": request.body.sensor_id
         }
     }
