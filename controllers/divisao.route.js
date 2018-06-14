@@ -242,8 +242,20 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
     var sensoresUser = new Array();
     var casa1 = request.params.casa;
     var division = request.params.id_division;
+    var type;
 
+    req.get('http://localhost:8080/view/new/' + id, function (error, resp, view) {
+        parsedView = JSON.parse(view);
+        console.log('----------------------------- algo: ' + parsedView.id_division[1])
 
+        for (var i = 0; i < parsedView.id_division.length; i++) {
+            if (parsedView.id_division[i] == division) {
+                type = parsedView.stype[i]
+                console.log('--------------------------- atencao: ' + type)
+            }
+        }
+    });
+    
     req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
         req.get('http://localhost:8080/house/' + casa1, function (error, resp, body) {
             req.get('http://localhost:8080/division', function (error, resp, body3) {
@@ -251,7 +263,7 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                 jsonCasa = JSON.parse(body);
                 jsonDivi = JSON.parse(body3);
                 var divi = [];
-
+                console.log('--------------------------- atencao2: ' + type)
 
                 var nTotal = 0;
                 var Ncasa = jsonCasa.name;
@@ -267,6 +279,9 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                     }
 
                 }
+
+                if(type != null && type == 1){
+
                 var client = mqtt.connect('mqtt://alvesvitor.ddns.net:80', {
                     username: "dai",
                     password: '12345678'
@@ -276,8 +291,8 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                     client.subscribe('data/' + id_sensor);
                     client.publish('presence', 'Hello mqtt')
                 })
-		    
-		io.origins('*:*');// for latest version
+
+                io.origins('*:*'); // for latest version
                 io.on('connection', function (socket) {
 
                     client.on('message', (topic, measurements) => {
@@ -288,21 +303,8 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                     });
                 });
 
-                if (jsonData2.stype == 2 && jsonData2.id_division == division) {
-                    response.set("Content-Type", "text/html");
-                    response.render('./sensorAlarm', {
-                        id: id,
-                        casa1: casa1,
-                        division: division,
-                        jsonData2: jsonData2,
-                        id_sensor: id_sensor,
-                        graph: graph,
-                        Ncasa,
-                        arm: arm,
-                        avgTemp: avgTemp,
-                        avgHum: avgHum
-                    });
-                } else {
+
+                
 
                     var inicial = new Date();
                     var final = new Date();
@@ -386,6 +388,18 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                             avgTemp: avgTemp,
                             avgHum: avgHum
                         });
+                    });
+                }else{
+                    
+                    response.set("Content-Type", "text/html");
+                    response.render('./sensor_2', {
+                        id: id,
+                        casa1: casa1,
+                        division: division,
+                        jsonData2: jsonData2,
+                        sensor_id: id_sensor,
+                        Ncasa,
+                        arm: arm
                     });
                 };
             });
