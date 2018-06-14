@@ -272,7 +272,7 @@
 
 
                   <p id="tempAtual"></p>
-                  <p>Average temperature in the last 24 hours: <%= avgTemp %></p>
+                  <p>Average temperature in the last 24 hours: <%= avgTemp %>ºC</p>
 
                 </div>
               </div>
@@ -319,7 +319,7 @@
                   <hr>
                   <!-- <p>Estado: <i class="fas fa-check" style="color: green;"></i></p> -->
                   <p id="humAtual"></p>
-                  <p>Average humidity in the last 24 hours: <%= avgHum %></p>
+                  <p>Average humidity in the last 24 hours: <%= avgHum %>%</p>
                 </div>
               </div>
 
@@ -534,10 +534,10 @@
                   var movimento = labels.measurements["motion"];
                   var humidade = labels.measurements["humidity"];
                   var alarme = labels.alarm["state"];
-                  $('#tempAtual').text('Current Temperature: ' + temp);
+                  $('#tempAtual').text('Current Temperature: ' + temp + "ºC");
                   $('#luzAtual').text('light: ' + luz);
                   $('#movAtual').text(movimento);
-                  $('#humAtual').text('Humidity: ' + humidade);
+                  $('#humAtual').text('Humidity: ' + humidade + "%");
           
 
 

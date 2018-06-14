@@ -310,7 +310,7 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                     var final = new Date();
                     final.setDate(final.getDate() + 1);
                     inicial.setDate(inicial.getDate() - 1);
-                    var graph = [];
+                    var graph = []; 
                     console.log(inicial);
                     console.log(final);
 
