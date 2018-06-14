@@ -252,6 +252,7 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                 jsonDivi = JSON.parse(body3);
                 var divi = [];
 
+
                 var nTotal = 0;
                 var Ncasa = jsonCasa.name;
 
@@ -287,91 +288,110 @@ router.get('/:id_division/:casa', global.secure(), function (request, response) 
                     });
                 });
 
+                if (jsonData2.stype == 2 && jsonData2.id_division == division) {
+                    response.set("Content-Type", "text/html");
+                    response.render('./sensorAlarm', {
+                        id: id,
+                        casa1: casa1,
+                        division: division,
+                        jsonData2: jsonData2,
+                        id_sensor: id_sensor,
+                        graph: graph,
+                        Ncasa,
+                        arm: arm,
+                        avgTemp: avgTemp,
+                        avgHum: avgHum
+                    });
+                } else {
 
-                var inicial = new Date();
-                var final = new Date();
-                final.setDate(final.getDate() + 1);
-                inicial.setDate(inicial.getDate() - 1);
-                var graph = [];
-                console.log(inicial);
-                console.log(final);
+                    var inicial = new Date();
+                    var final = new Date();
+                    final.setDate(final.getDate() + 1);
+                    inicial.setDate(inicial.getDate() - 1);
+                    var graph = [];
+                    console.log(inicial);
+                    console.log(final);
 
-                var sensor_formatted = id_sensor.toString();
-                var i = 0;
-                
-		var options = {
-                    uri: 'http://localhost:8080/returnGraph',
-                    method: 'POST',
-                    json: {
-                        "dataI": inicial,
-                        "dataF": final,
-                        "device": sensor_formatted
-                    }
-                };
+                    var sensor_formatted = id_sensor.toString();
+                    var i = 0;
 
-                var avgTemp = {
-                    uri: 'http://localhost:8080/avgTemp',
-                    method: 'POST',
-                    json: {
-                        "dataI": inicial,
-                        "dataF": final,
-                        "device": sensor_formatted
-                    }
-                };
+                    var options = {
+                        uri: 'http://localhost:8080/returnGraph',
+                        method: 'POST',
+                        json: {
+                            "dataI": inicial,
+                            "dataF": final,
+                            "device": sensor_formatted
+                        }
+                    };
 
-                console.log(options.json);
+                    var avgTemp = {
+                        uri: 'http://localhost:8080/avgTemp',
+                        method: 'POST',
+                        json: {
+                            "dataI": inicial,
+                            "dataF": final,
+                            "device": sensor_formatted
+                        }
+                    };
 
-		var avgTemp; 
-		var avgHum;
-                var finalVar;
-                req(options, function (error, resp, body) {
-			avgTemp = body.tempHum.temp;
-			
-			
-			avgHum = body.tempHum.hum;
-			if(avgTemp != null){	
-			avgTemp  = avgTemp.substring(0, 4);
+                    console.log(options.json);
+
+                    var avgTemp;
+                    var avgHum;
+                    var finalVar;
+                    req(options, function (error, resp, body) {
+                        avgTemp = body.tempHum.temp;
 
 
-			avgHum = avgHum.substring(0,4);
-			}
-                    var a = body;
-                    for (var t = 0; t < body.temp.length; t++) {
-                        finalVar = body.temp[t];
-                        finalVar = finalVar.replace(/^"(.*)"$/, '$1');
-			var finalTemp = body.data[i];
-			 finalTemp = finalTemp.substring(10,19);
-				
-                        graph.push({
-                            'data': finalTemp,
-                            'temperature': finalVar
-                        });
-			if (i < 500){
-                        i++;
-			}else{
-			i =  i + 500;
-			t = t + 499
-                    }
-	}
+                        avgHum = body.tempHum.hum;
+                        if (avgTemp != null) {
+                            avgTemp = avgTemp.substring(0, 4);
 
-                            response.set("Content-Type", "text/html");
-                            response.render('./sensor', {
-                                id: id,
-                                casa1: casa1,
-                                division: division,
-                                jsonData2: jsonData2,
-                                id_sensor: id_sensor,
-                                graph: graph,
-                                Ncasa,
-                                arm: arm,
-                                avgTemp: avgTemp,
-                                avgHum: avgHum
+
+                            avgHum = avgHum.substring(0, 4);
+                        }
+                        var a = body;
+                        for (var t = 0; t < body.temp.length; t++) {
+                            finalVar = body.temp[t];
+                            finalVar = finalVar.replace(/^"(.*)"$/, '$1');
+                            var finalTemp = body.data[i];
+                            finalTemp = finalTemp.substring(10, 19);
+
+                            graph.push({
+                                'data': finalTemp,
+                                'temperature': finalVar
                             });
+                            if (i < 500) {
+                                i++;
+                            } else {
+                                i = i + 500;
+                                t = t + 499
+                            }
+                        }
+
+
+
+
+                        response.set("Content-Type", "text/html");
+                        response.render('./sensor', {
+                            id: id,
+                            casa1: casa1,
+                            division: division,
+                            jsonData2: jsonData2,
+                            id_sensor: id_sensor,
+                            graph: graph,
+                            Ncasa,
+                            arm: arm,
+                            avgTemp: avgTemp,
+                            avgHum: avgHum
                         });
                     });
+                };
             });
         });
     });
+});
 
 router.get('/:id_division/:casa/edit', global.secure(), function (request, response) {
     var id = request.user.email;
@@ -470,7 +490,7 @@ router.post('/addQR', function (request, response) {
     }
 
     req(options, function (error, resp, body) {
-        
+
     })
 
 });
@@ -492,7 +512,7 @@ router.post('/addnewroom', function (request, response) {
     }
 
     req(options, function (error, resp, body) {
-        
+
     })
 
 });
