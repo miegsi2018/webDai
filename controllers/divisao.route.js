@@ -564,5 +564,93 @@ router.post('/turnAlarm', function (request, response) {
 
     })
 });
+router.get('/:id_division/:casa/2', global.secure(), function (request, response) {
+    response.header("Access-Control-Allow-Origin", "*");
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+
+
+    var id = request.user.email;
+    var sensoresUser = new Array();
+    var casa1 = request.params.casa;
+    var division = request.params.id_division;
+
+
+    req.get('http://localhost:8080/view/' + id, function (error, resp, body2) {
+        req.get('http://localhost:8080/house/' + casa1, function (error, resp, body) {
+            req.get('http://localhost:8080/division', function (error, resp, body3) {
+                jsonData2 = JSON.parse(body2);
+                jsonCasa = JSON.parse(body);
+                jsonDivi = JSON.parse(body3);
+                var divi = [];
+
+                var nTotal = 0;
+                var Ncasa = jsonCasa.name;
+
+                var sensor_id;
+                var arm;
+                for (var e of jsonDivi) {
+
+                    if (division == e.id_division) {
+                        console.log("it workt:" + e.sensor_id);
+                        sensor_id = e.sensor_id;
+                        arm = e.armed;
+                    }
+
+                }
+
+
+
+
+                            response.set("Content-Type", "text/html");
+                            response.render('./sensor_2', {
+                                id: id,
+                                casa1: casa1,
+                                division: division,
+                                jsonData2: jsonData2,
+                                sensor_id: sensor_id,
+
+                                Ncasa,
+                                arm: arm,
+
+                            });
+                        });
+                    });
+            });
+        });
+router.post('/openDoor', function (request, response) {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            var options = {
+                uri: "http://localhost:8080//division/doorOpen",
+                method: "POST",
+                json: {
+                    "sensor_id": "relay/" + request.body.sensor_id + "/rele1",
+                    
+                }
+            }
+        
+            req(options, function (error, resp, body) {
+        
+            })
+          
+        });
+        router.post('/closeDoor', function (request, response) {
+            response.header("Access-Control-Allow-Origin", "*");
+            response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            var options = {
+                uri: "http://localhost:8080/division/doorClose",
+                method: "POST",
+                json: {
+                    "sensor_id": "relay/" + request.body.sensor_id + "/rele1",
+                    
+                }
+            }
+        
+            req(options, function (error, resp, body) {
+        
+            })
+          
+        });
 
 module.exports = router;

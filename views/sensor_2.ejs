@@ -1,0 +1,279 @@
+<% include partials/header %>
+  <style>
+    a {
+      color: black;
+    }
+
+    a:hover,
+    a:focus {
+      color: black;
+    }
+
+    .onoffswitch {
+      position: relative;
+      width: 90px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+
+    .onoffswitch-checkbox {
+      display: none;
+    }
+
+    .onoffswitch-label {
+      display: block;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid #999999;
+      border-radius: 20px;
+    }
+
+    .onoffswitch-inner {
+      display: block;
+      width: 200%;
+      margin-left: -100%;
+      transition: margin 0.3s ease-in 0s;
+    }
+
+    .onoffswitch-inner:before,
+    .onoffswitch-inner:after {
+      display: block;
+      float: left;
+      width: 50%;
+      height: 30px;
+      padding: 0;
+      line-height: 30px;
+      font-size: 14px;
+      color: white;
+      font-family: Trebuchet, Arial, sans-serif;
+      font-weight: bold;
+      box-sizing: border-box;
+    }
+
+    .onoffswitch-inner:before {
+      content: "ON";
+      padding-left: 10px;
+      background-color: green;
+      color: #FFFFFF;
+    }
+
+    .onoffswitch-inner:after {
+      content: "OFF";
+      padding-right: 10px;
+      background-color: red;
+      color: black;
+      text-align: right;
+    }
+
+
+    .onoffswitch-switch {
+      display: block;
+      width: 18px;
+      margin: 6px;
+      background: #FFFFFF;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 56px;
+      border: 2px solid #999999;
+      border-radius: 20px;
+      transition: all 0.3s ease-in 0s;
+    }
+
+    .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
+      margin-left: 0;
+    }
+
+    .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
+      right: 0px;
+    }
+  </style>
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 text-center">
+          <button type="submit" class="btn btn-info btn-fill btn-wd" style="width: 60%; margin-top: 20px; margin-bottom: 10px;" onclick="location.href='/room/<%= casa1 %>';">Back to your rooms</button>
+          <br>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-lg-6 col-sm-6">
+          <div class="card">
+            <div class="content">
+
+
+
+
+
+
+
+
+              <div class="row">
+
+
+
+
+                <div class="col-lg-6 col-sm-6">
+                  <h3 style="display: inline; margin-left: 10px;">Alarm</h3>
+
+
+                </div>
+                <div class="col-lg-6 col-sm-6">
+
+                  <div class="onoffswitch text-center" style="margin-top: 5px;">
+                    <form id="form_myonoffswitch text-center">
+                      <input type="text" id="division" value="<%= division %>" hidden>
+                      <input type="text" id="armed" value="<%= arm %>" hidden>
+                      <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox text-center" id="myonoffswitch" onchange="alarm()">
+                      <label class="onoffswitch-label" for="myonoffswitch">
+                        <span class="onoffswitch-inner"></span>
+                        <span class="onoffswitch-switch" style="height: 23px;"></span>
+                      </label>
+                    </form>
+                    <script type="text/javascript">
+                      function alarm() {
+
+                        if (document.getElementById("myonoffswitch").checked == false) {
+                          var armed = "false";
+                        } else {
+                          var armed = "true";
+
+                        }
+                        data = {
+                          "id_division": document.getElementById("division").value,
+
+                        }
+
+                        $.ajax({
+                          type: "POST",
+                          url: "/room/turnAlarm",
+                          data: JSON.stringify(data),
+                          contentType: "application/json; charset=utf-8",
+                          dataType: "json",
+                          success: function () {}
+                        });
+                      };
+                    </script>
+
+
+                  </div>
+
+
+                </div>
+
+              </div>
+
+
+
+
+
+
+
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="col-lg-6 col-sm-6">
+          <div class="card ">
+            <div class="content">
+
+
+
+
+
+
+
+
+              <div class="row">
+
+
+
+
+                <div class="col-lg-6 col-sm-6">
+                  <h3 style="display: inline; margin-left: 10px;">Door:</h3>
+
+
+                </div>
+                <div class="col-lg-6 col-sm-6">
+                  <div class="onoffswitch text-center" style="margin-top: 5px;">
+                    <form id="form_myonoffswitch text-center">
+                      <input type="text" id="sensor_id" value="<%= sensor_id %>" hidden>
+                      <input type="text" id="armed" value="<%= arm %>" hidden>
+                      <input type="checkbox" name="onoffswitch1" class="onoffswitch-checkbox text-center" id="myonoffswitch1" onchange="door()">
+                      <label class="onoffswitch-label" for="myonoffswitch1">
+                        <span class="onoffswitch-inner"></span>
+                        <span class="onoffswitch-switch" style="height: 23px;"></span>
+                      </label>
+                    </form>
+                    <script type="text/javascript">
+                      function door() {
+
+                        if (document.getElementById("myonoffswitch1").checked == false) {
+                          data = {
+                          "sensor_id": document.getElementById("sensor_id").value,
+
+                        }
+
+                        $.ajax({
+                          type: "POST",
+                          url: "/room/closeDoor",
+                          data: JSON.stringify(data),
+                          contentType: "application/json; charset=utf-8",
+                          dataType: "json",
+                          success: function () {}
+                        });
+                        } else {
+                          data = {
+                          "sensor_id": document.getElementById("sensor_id").value,
+
+                        }
+
+                        $.ajax({
+                          type: "POST",
+                          url: "/room/openDoor",
+                          data: JSON.stringify(data),
+                          contentType: "application/json; charset=utf-8",
+                          dataType: "json",
+                          success: function () {}
+                        });
+
+                        }
+                        
+                      };
+                    </script>
+
+
+                  </div>
+
+
+
+
+                </div>
+
+              </div>
+
+
+
+
+
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
+      <% include partials/footer %>
