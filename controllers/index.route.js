@@ -477,11 +477,15 @@ router.get('/home/:casa', global.secure(), function (request, response, body) {
                 console.log('reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee: ' + autismo.temp)
 
 
+                if (autismo.temp === null || autismo.hum === null) {
+                    avgHum = 0;
+                    avgTemp = 0;
+                } else {
+                    avgHum = autismo.hum.substring(0, 4);
+                    avgTemp = autismo.temp.substring(0, 4);
+                }
 
 
-
-                avgHum = autismo.hum.substring(0, 4);
-                avgTemp = autismo.temp.substring(0, 4);
 
 
 
